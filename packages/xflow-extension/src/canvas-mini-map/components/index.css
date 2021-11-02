@@ -1,0 +1,13 @@
+.xflow-minimap {
+  z-index: 999;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.xflow-minimap .x6-widget-minimap .x6-graph {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.xflow-minimap .x6-widget-minimap {
+  background: rgba(34, 34, 34, 0.05);
+}

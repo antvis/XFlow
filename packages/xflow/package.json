@@ -1,0 +1,62 @@
+{
+  "private": false,
+  "name": "@antv/xflow",
+  "version": "0.0.1-alpha.1",
+  "license": "MIT",
+  "scripts": {
+    "start": "father-build -w",
+    "build": "rimraf lib es dist && npm-run-all --parallel make:lib make:umd --serial make:less",
+    "make:less": "node ./scripts/gen-less-entry.js",
+    "make:lib": "father-build",
+    "make:umd": "NODE_ENV=production webpack --config webpack.config.js --mode production",
+    "release": "npm run build && npm publish --access=public",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "lint": "eslint --no-error-on-unmatched-pattern=true  \"{src,test}/**/*.{ts,tsx}\" && prettier ./src --check ",
+    "lint:clean": "rimraf .eslintcache",
+    "lint:fix": "eslint --no-error-on-unmatched-pattern=true  \"{src,test}/**/*.{ts,tsx}\"  --fix && prettier ./src  --write ",
+    "test": "jest --verbose true",
+    "test:coverage": "jest --coverage"
+  },
+  "main": "es/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es"
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "dependencies": {
+    "@antv/xflow-core": "0.0.1-alpha.1",
+    "@antv/xflow-extension": "0.0.1-alpha.1",
+    "@antv/xflow-hook": "0.0.1-alpha.1",
+    "mana-syringe": "^0.1.0",
+    "classnames": "^2.2.6",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "@ant-design/icons": "^4.6.0",
+    "@antv/layout": "^0.0.5",
+    "@antv/x6": "^1.12.11",
+    "@antv/x6-react-components": "^1.1.0",
+    "@antv/x6-react-shape": "^1.2.5",
+    "antd": "^4.6.3",
+    "lodash": "^4.17.20",
+    "react": "^16.8.0  || ^17.0.0",
+    "react-dom": "^16.8.0  || ^17.0.0"
+  }
+}

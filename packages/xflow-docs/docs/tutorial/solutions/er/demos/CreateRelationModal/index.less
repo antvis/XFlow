@@ -1,0 +1,82 @@
+.create-relation-container {
+  @bg-color: #35393d;
+  @fg-color: #2c3033;
+  @tx-color: #d7dbde;
+  @ic-color: #bbc0c4;
+  @bt-color: #5f656b;
+
+  .ant-modal-close {
+    color: @ic-color;
+  }
+
+  .ant-modal-header {
+    background-color: @bg-color;
+    border-bottom: 1px solid @fg-color;
+
+    .ant-modal-title {
+      color: @tx-color;
+    }
+  }
+
+  .ant-modal-body {
+    background-color: @bg-color;
+
+    .ant-form-item-label > label {
+      color: @tx-color;
+    }
+
+    .ant-radio-wrapper {
+      color: @tx-color;
+    }
+
+    .ant-input {
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.25);
+      border: 0;
+    }
+
+    .ant-input[disabled] {
+      color: @bt-color;
+      background-color: rgba(95, 101, 107, 0.25);
+    }
+
+    input::-webkit-input-placeholder {
+      color: @bt-color;
+    }
+
+    textarea::-webkit-input-placeholder {
+      color: @bt-color;
+    }
+
+    .ant-select-arrow {
+      color: @bt-color;
+    }
+
+    .ant-select-selection {
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.25);
+      border: 0;
+    }
+
+    .ant-select-selection__placeholder {
+      color: @bt-color;
+    }
+  }
+
+  .ant-modal-footer {
+    background-color: @bg-color;
+    border-top: 1px solid @fg-color;
+
+    .ant-btn {
+      color: @tx-color;
+      background-color: @bg-color;
+      border: 1px solid @bt-color;
+    }
+
+    .ant-btn-primary {
+      color: #fff;
+      background-color: #1890ff;
+      border: 1px solid #1890ff;
+    }
+  }
+}

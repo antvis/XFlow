@@ -1,0 +1,38 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "loose": true,
+        "targets": {
+          "browsers": [
+            "last 1 version",
+            "> 1%",
+            "IE 9"
+          ]
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "babel-plugin-import",
+      {
+        "libraryName": "lodash",
+        "libraryDirectory": "",
+        "transformToDefaultImport": true,
+        "camel2DashComponentName": false
+      },
+      "lodash"
+    ],
+    [
+      "babel-plugin-import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": true
+      },
+      "antd"
+    ]
+  ]
+}

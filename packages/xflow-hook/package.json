@@ -1,0 +1,35 @@
+{
+  "private": false,
+  "name": "@antv/xflow-hook",
+  "version": "0.0.1-alpha.1",
+  "license": "MIT",
+  "scripts": {
+    "start": "father-build -w",
+    "build": "father-build",
+    "release": "npm run build && npm publish --access=public",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "lint": "eslint --no-error-on-unmatched-pattern=true  \"{src,test}/**/*.{ts,tsx}\" && prettier ./src --check ",
+    "lint:clean": "rimraf .eslintcache",
+    "lint:fix": "eslint --no-error-on-unmatched-pattern=true  \"{src,test}/**/*.{ts,tsx}\"  --fix && prettier ./src  --write ",
+    "test": "jest --verbose true",
+    "test:coverage": "jest --coverage"
+  },
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es"
+  ],
+  "publishConfig": {
+    "registry": " https://registry.npmjs.org "
+  },
+  "dependencies": {
+    "toposort": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/toposort": "^2.0.3"
+  },
+  "peerDependencies": {}
+}

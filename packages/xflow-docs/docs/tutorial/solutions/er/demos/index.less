@@ -1,0 +1,26 @@
+.xflow-er-solution-container {
+  width: 100%;
+  height: 550px;
+  border: 1px solid #ebedf1;
+
+  .xflow-canvas-root {
+    margin-top: 60px;
+  }
+
+  /** 覆盖节点默认选中色 */
+  .x6-node-selected rect {
+    stroke: #1890ff;
+    stroke-width: 4px;
+  }
+
+  .x6-edge-selected path {
+    stroke: #1890ff;
+    stroke-width: 2px;
+  }
+
+  /** 默认隐藏链接桩 */
+  .x6-port-body {
+    z-index: 1;
+    visibility: hidden;
+  }
+}
