@@ -1,0 +1,16 @@
+name: 🆖　Potential Duplicates
+on:
+  issues:
+    types: [opened, edited]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wow-actions/use-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+          env_name: bot_token
+      - uses: wow-actions/potential-duplicates@v1
+        with:
+          GITHUB_TOKEN: ${{ env.bot_token }}

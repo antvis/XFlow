@@ -1,0 +1,10 @@
+pkg:xflow:
+  - packages/xflow/**/*
+pkg:xflow-core:
+  - packages/xflow-core/**/*
+pkg:xflow-hook:
+  - packages/xflow-hook/**/*
+pkg:xflow-extension:
+  - packages/xflow-extension/**/*
+pkg:docs:
+  - packages/xflow-docs/**/*

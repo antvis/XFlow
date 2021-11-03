@@ -1,0 +1,17 @@
+name: 🚧　Create Issue Branch
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  cib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: wow-actions/use-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+          env_name: bot_token
+      - uses: robvanderleek/create-issue-branch@main
+        env:
+          GITHUB_TOKEN: ${{ env.bot_token }}
