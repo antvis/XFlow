@@ -59,7 +59,7 @@ export const useKeybindingConfig = createKeybindingConfig(config => {
         keybinding: ['command+v', 'ctrl+v'],
         callback: async function (item, ctx, cmd, e) {
           e.preventDefault()
-          cmd.executeCommand<NsGraphCmd.GraphPasteSelectionCommand.IArgs>(
+          cmd.executeCommand<NsGraphCmd.GraphPasteSelection.IArgs>(
             XFlowGraphCommands.GRAPH_PASTE.id,
             {},
           )

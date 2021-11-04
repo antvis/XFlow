@@ -11,24 +11,26 @@ nav:
   order: 1
 ---
 
-组件分成两种：UI 组件和 Preset 组件
+# KeyBindings 快捷键
 
-## UI 组件
+提供键盘快捷键的注册，帮助用户使用键盘操作提高操作效率
 
-|           组件名称 | 描述                | 状态 |
-| -----------------: | ------------------- | ---- |
-|      NodeTreePanel | 可拖拽新节点的栏目  | done |
-|  CanvasContextMenu | 画布右键菜单组件    | done |
-|      CanvasToolbar | 画布通用工具栏      | done |
-| CanvasScaleToolbar | 画布缩放工具栏      | done |
-|   CanvasConfigForm | 画布 JsonSchemaForm | done |
-|      CanvasMiniMap | 画布导航小地图      | done |
-|     CanvasSnapline | 画布对齐线          | todo |
-|       CanvasDrawer | 画布抽屉组件        | todo |
-|        CanvasModla | 画布弹窗组件        | todo |
+# 何时使用
 
-## Preset
+需要通过键盘完成高频操作时 ：
 
-|          组件名称 | 描述 | 状态 |
-| ----------------: | ---: | ---- |
-| DagGraphExtension |      | done |
+- 删除
+- 复制
+- 粘贴
+- 撤销
+- 重做
+
+# 代码演示
+
+## 基础使用
+
+<code src="./demos/basic/index.tsx" classname="keyboard-basic-demo"   />
+
+## 快捷键触发命令
+
+<code src="./demos/command/index.tsx" classname="keyboard-command-demo"   />

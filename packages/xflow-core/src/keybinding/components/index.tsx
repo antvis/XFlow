@@ -38,10 +38,18 @@ export const KeyBindings: React.FC<IProps> = props => {
 
 KeyBindings.defaultProps = {}
 
-export const createKeybindingConfig = (setConfig: (config: KeybindingConfig) => void) => () => {
-  return React.useMemo(() => {
-    const config = new KeybindingConfig()
-    setConfig(config)
-    return config
-  }, [])
-}
+export const createKeybindingConfig =
+  <T extends unknown = any>(addOptions: (config: KeybindingConfig, getValue: () => T) => void) =>
+  (value?: T) => {
+    /** bridge config and value */
+    const valueContainer = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
+    valueContainer.getValue = () => value
+
+    const hookConfig = React.useMemo(() => {
+      const config = new KeybindingConfig()
+      addOptions(config, valueContainer.getValue)
+      return config
+    }, [])
+
+    return hookConfig
+  }
