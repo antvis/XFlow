@@ -67,7 +67,7 @@ return (
     <XFlowCanvas config={useGrapConfig()}>
       <CanvasScaleToolbar />
       <CanvasMiniMap minimapOptions={{ width: 200, height: 120 }} />
-      <CanvasSnapline color="#690" />
+      <CanvasSnapline color="#1890ff" />
     </XFlowCanvas>
   </Xflow>
 )
@@ -87,23 +87,12 @@ export const useGraphConfig = createGraphConfig(config => {
   config.setX6Config({
     grid: true,
     scaling: { min: 0.2, max: 3 },
-    mousewheel: { enabled: true },
+    mousewheel: { enabled: true, zoomAtMousePosition: true },
   })
 
   /** 预设画布需要渲染的React节点、连线上的React内容 */
   config.setNodeRender('NODE1', props => <Node1 {...props} />)
   config.setEdgeRender('EDGE1', props => <Edge1 {...props} />)
-
-  /** 预设画布相关事件 */
-  config.setEvents([
-    {
-      eventName: 'node:click',
-      callback: (e, cmds, ctx) => {
-        /** 通过e?.node?.getData()可以获取节点的数据 */
-        const nodeData = e?.node?.getData()
-      },
-    },
-  ])
 })
 ```
 
@@ -146,6 +135,18 @@ const onLoad: IAppLoad = async app => {
   ]
   const graphData = { nodes, edges }
   setGraphData(graphData)
+
+  /** 监听画布事件 */
+  const graph = await app.getGraphInstance()
+  graph.on('node:click', ({ e, x, y, node, view }) => {
+    const nodeData: NsGraph.INodeConfig = node.getData()
+    message.success(`${nodeData.id}节点被点击了`)
+  })
+  graph .on('edge:click', ({ e, x, y, edge, view }) => {
+    edge.toFront()
+    const edgeData: NsGraph.IEdgeConfig = edge.getData()
+    message.success(`${edgeData.id}连线被点击了`)
+  })
 }
 ```
 

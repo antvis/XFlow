@@ -1,5 +1,5 @@
-import React from 'react'
 import type { NsGraph } from '@antv/xflow'
+import React from 'react'
 import './node1.less'
 
 const Node1: NsGraph.INodeRender = props => {

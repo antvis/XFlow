@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 /** 图核心组件 & 类型定义 */
 import type { IAppLoad, NsGraph } from '@antv/xflow'
 import { XFlow, XFlowCanvas } from '@antv/xflow'
+/** 图的各种扩展交互组件 */
+import { CanvasContextMenu, CanvasMiniMap, CanvasScaleToolbar, CanvasSnapline } from '@antv/xflow'
 /** 图的配置项 */
 import { useGraphConfig } from './config-graph'
 /** 右键菜单栏 */
 import { useMenuConfig } from './menu-config'
-/** 图的各种扩展交互组件 */
-import { CanvasContextMenu, CanvasMiniMap, CanvasScaleToolbar, CanvasSnapline } from '@antv/xflow'
+import { message } from 'antd'
 import './index.less'
 
 export interface IProps {}
@@ -58,6 +59,17 @@ const Demo: React.FC<IProps> = () => {
     ]
     const graphData = { nodes, edges }
     setGraphData(graphData)
+
+    const graph = await app.getGraphInstance()
+    graph.on('node:click', ({ e, x, y, node, view }) => {
+      const nodeData: NsGraph.INodeConfig = node.getData()
+      message.success(`${nodeData.id}节点被点击了`)
+    })
+    graph .on('edge:click', ({ e, x, y, edge, view }) => {
+      edge.toFront()
+      const edgeData: NsGraph.IEdgeConfig = edge.getData()
+      message.success(`${edgeData.id}连线被点击了`)
+    })
   }
 
   return (
@@ -81,14 +93,14 @@ const Demo: React.FC<IProps> = () => {
         <CanvasContextMenu config={menuConfig} />
         <CanvasMiniMap
           miniMapClz="xflow-custom-minimap"
-          nodeFillColor="#690"
+          nodeFillColor="#ccc"
           minimapOptions={{
             width: 200,
             height: 120,
           }}
           position={{ top: 12, right: 12 }}
         />
-        <CanvasSnapline color="#690" />
+        <CanvasSnapline color="#1890ff" />
       </XFlowCanvas>
     </XFlow>
   )

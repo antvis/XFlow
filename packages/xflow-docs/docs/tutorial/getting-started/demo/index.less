@@ -12,6 +12,18 @@
   height: 320px;
   overflow: scroll;
 
+  /** 覆盖节点默认选中色 */
+  .x6-node-selected rect {
+    stroke: #dd4a68;
+    stroke-width: 3px;
+  }
+
+  /** 覆盖连线默认选中色 */
+  .x6-edge-selected path {
+    stroke: #873bf4;
+    stroke-width: 2px;
+  }
+
   .xflow-workspace-toolbar-top {
     border-bottom: @light-border;
   }
