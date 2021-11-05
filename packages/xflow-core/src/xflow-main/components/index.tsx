@@ -31,7 +31,7 @@ import { NsGraphCmd } from '../../command-contributions'
 
 export interface IProps {
   /** XFlow 工作台组件元信息, 会储存在全局Model中并在调用Service时作为额外的参数传入 */
-  meta?: { flowId: string; [key: string]: any }
+  meta?: { flowId?: string; [key: string]: any }
   /** 画布的配置，用于配置X6的Grpah.Options和绑定Graph的事件 */
   graphConfig?: GraphConfig
   /** 画布数据 */
