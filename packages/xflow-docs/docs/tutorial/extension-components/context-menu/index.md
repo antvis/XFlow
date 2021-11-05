@@ -10,24 +10,28 @@ nav:
   path: /docs
 ---
 
-组件分成两种：UI 组件和 Preset 组件
+# ContextMenu 右键菜单
 
-## UI 组件
+负责在用户触发右键事件时，渲染一个菜单作为操作入口用于执行命令/操作 UI 组件/打开链接
 
-|           组件名称 | 描述                | 状态 |
-| -----------------: | ------------------- | ---- |
-|      NodeTreePanel | 可拖拽新节点的栏目  | done |
-|  CanvasContextMenu | 画布右键菜单组件    | done |
-|      CanvasToolbar | 画布通用工具栏      | done |
-| CanvasScaleToolbar | 画布缩放工具栏      | done |
-|   CanvasConfigForm | 画布 JsonSchemaForm | done |
-|      CanvasMiniMap | 画布导航小地图      | done |
-|     CanvasSnapline | 画布对齐线          | todo |
-|       CanvasDrawer | 画布抽屉组件        | todo |
-|        CanvasModla | 画布弹窗组件        | todo |
+# 何时使用
 
-## Preset
+1. 需要一个或多个默认可见的操作画布的入口，比如：添加/删除图上节点
+2. 需要一个或多个默认可见的操作画布 UI 组件的按钮，比如：打开一个弹窗组件
+3. 需要一个或多个可打开的链接，比如展示一个可以点击的链接
 
-|          组件名称 | 描述 | 状态 |
-| ----------------: | ---: | ---- |
-| DagGraphExtension |      | done |
+# 代码演示
+
+## 基础使用（TBD）
+
+利用工具栏可以方便的执行 xflow 的命令, onClick 中可以使用[ICommnadService](/api/interface/command) 执行[所有命令](/api/commands)
+
+<code src="./demos/basic/index.tsx" classname="canvas-menu-basic"   />
+
+## 动态添加（TBD）
+
+<code src="./demos/basic/index.tsx" classname="canvas-menu-basic"   />
+
+## 配合快捷键（TBD）
+
+<code src="./demos/basic/index.tsx" classname="canvas-menu-basic"   />
