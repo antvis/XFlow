@@ -115,6 +115,9 @@ export class RxModel<T = any> implements NsModel.IModel<T> {
 
   /** 更新model */
   public setValue: NsModel.ISetValue<T> = value => {
+    if (!this.subject$) {
+      return
+    }
     if (typeof value === 'function') {
       const currentValue = this.subject$.getValue()
       const nextState = produce(currentValue, draft => {
