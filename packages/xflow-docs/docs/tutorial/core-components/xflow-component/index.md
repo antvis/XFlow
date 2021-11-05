@@ -11,132 +11,156 @@ nav:
   order: 1
 ---
 
-## XFlow 工作台组件
+# XFlow 工作台组件
 
-XFlow 是 XFlow 的核心组件，对应一个图编辑应用工作台, 配置一个工作台需要理解以下三个配置项`graphConfig`,`commandConfig`,`onLoad`。
+在 XFlow 中, 一切都是React组件。XFlow工作台组件是 XFlow 的核心组件之一, 可以理解为是一个图编辑应用的工作空间, 它包含了画布组件、各种交互组件等。
 
-## 组件示例
 
-<code src="./demos/basic/index.tsx" classname="component-demo" />
+## 核心配置项
 
-### 核心配置项
+### 元信息Meta
 
-|          名称 |                                                                                     关联 api | 必选 | 描述                                 |
-| ------------: | -------------------------------------------------------------------------------------------: | ---: | ------------------------------------ |
-|   graphConfig | [createGraphConfig](/docs/tutorial-core-components/xflow-canvas-component#creategraphconfig) |      | 配置 Graph                           |
-| commandConfig |                                                                              createCmdConfig |      | 配置 Command Hook                    |
-|        onLoad |                                                                         onAppDestroyCallback |      | 核心回调函数，用于执行初始化画布逻辑 |
+XFlow支持在工作台初始化之前传入Meta元信息, 该元信息在整个XFlow工作空间可用。
 
-## 核心配置项说明
+问题1: Meta传入后, 具体是怎么使用的？
 
-### graphConfig
+### 画布配置GraphConfig
 
-`graphConfig` 和 XFlowCanvas 组件的[config](/docs/tutorial-core-components/xflow-canvas-component#creategraphconfig)属性是一致的。主要是用于配置 X6 的 [GraphOptions（X6 配置项）](https://x6.antv.vision/zh/docs/api/graph/graph) , [GraphEvents（X6 事件）](https://x6.antv.vision/zh/docs/tutorial/intermediate/events) 和 配置 React 来渲染画布节点
-
-`graphConfig` 有两种使用方式：
-
-1. 单独使用 XFlow 组件：通过 `graphConfig` 属性配置。
-2. 配合 XFlowCanvas 组件 使用: 通过 `config` 属性配置。
+XFlow 提供默认画布配置项, 也允许自定义画布配置项。具体配置项与 X6 保持一致, 详细见[X6 画布配置](https://x6.antv.vision/zh/docs/api/graph/graph)
 
 ```tsx | pure
-/** 1. 第一种使用方式：使用XFlow组件做渲染，XFlow会在children中添加一个XFlowCanvas */
-<XFlow onLoad={onLoad} graphConfig={graphConfig} />
+export const useGraphConfig = createGraphConfig(config => {
+  /** 预设XFlow画布配置项 */
+  config.setX6Config({
+    /** 画布网格 */
+    grid: true,
+    /** 画布缩放等级 */
+    scaling: {
+      min: 0.2,
+      max: 3,
+    },
+    /** 画布滚轮缩放 */
+    mousewheel: {
+      enabled: true,
+      /** 将鼠标位置作为中心缩放 */
+      zoomAtMousePosition: true,
+    },
+  })
+  /** 预设XFlow画布需要渲染的React节点/边 */
+  config.setNodeRender('NODE1', props => <Node1 {...props} />)
+  config.setNodeRender('NODE2', Node2)
+  config.setEdgeRender('EDGE1', props => <Edge1 {...props} />)
+  config.setEdgeRender('EDGE2', props => <Edge2 {...props} />)
+})
+```
 
-/** 2. 第二种使用方式：使用XFlowCanvas组件,可以控制画布的渲染位置 */
-<XFlow onLoad={onLoad} >
-  <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 0, right: 0 }} />
+### 画布数据GraphData
+XFlow支持直接传入GraphData即可渲染出画布内容。需要注意的是GraphData里的节点node必须要有x,y属性。另外XFlow内部会自动进行画布内容Diff, 相同节点、连线不会重新渲染。
+
+```tsx | pure
+<XFlow graphData={graphData}>
+  <XFlowCanvas />
 </XFlow>
 ```
 
-`graphConfig`上通过 createGraphConfig 创建， graphConfig 上有 3 个关键 api：
+### 布局算法Layout
 
-1. [setX6Config](/docs/tutorial-core-components/xflow-canvas-component#setx6config): 配置 X6 配置项
-2. [setEvents](/docs/tutorial-core-components/xflow-canvas-component#setevents): 绑定画布 事件
-3. [setDefaultNodeRender](/docs/tutorial-core-components/xflow-canvas-component#setdefaultnoderender): 配置 React 来渲染画布节点
+XFlow 支持 AntV 旗下的常见布局算法, 详细见[@antv/layout](https://g6.antv.vision/zh/docs/api/graphLayout/guide), 也允许用户自定义布局算法。
 
-### onLoad
+如果使用`@antv/layout`支持的布局算法, 则使用方式如下:
+```tsx | pure
+<XFlow
+  graphData={graphData}
+  graphLayout={{
+    layoutType: 'dagre',
+    layoutOptions: {
+      type: 'dagre',
+      rankdir: 'TB',
+      nodesep: 60,
+      ranksep: 40,
+    },
+  }}
+>
+  <XFlowCanvas />
+</XFlow>
+```
 
-图编辑工作台在 start 成功后会执行回调函数（[onLoad](/api/interface/application#frontendapplication)），在回调函数的参数中我们获取工作台实例([app](/api/interface/application#frontendapplication))，并通过实例的 api 来完成工作台的初始化。
-
-#### app 的 api 列表
-
-|               api 名称 |                                                                                    类型 |                           描述 |
-| ---------------------: | --------------------------------------------------------------------------------------: | -----------------------------: |
-|         executeCommand | \<T\>( commandId: string, cmdArgs: T, hook?: IRuntimeHook )=>Promise\<ICommandHandler\> |                   执行单个命令 |
-| executeCommandPipeline |                                                    (cmdOptions: IGraphPipelineCommand[] | 用 pipeline 的方式执行多个命令 |
-|               commands |                                                                    IGraphCommandService |                   Command 实例 |
-|         contextService |                                                                         IContextService |                   数据模型服务 |
-
-#### 示例代码
+如果使用自定义布局算法, 则使用方式如下:
 
 ```tsx | pure
-const XFlowDemo: React.FC<IDemoProps> = props => {
-  const graphConfig = useGraphConfig(props)
-  const onLoad: IAppLoad = async app => {
-    // 在回调函数中我们可以执行命令来完成工作台的初始化，这里我们执行了一个添加节点的命令
-    app.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
-      nodeConfig: {
-        id: 'node1',
-        x: 100,
-        y: 100,
-        label: 'Hello World',
-        width: 200,
-        height: 40,
-      },
-    })
-    return app
+graphLayout={{
+  customLayout: async (graphData: NsGraph.IGraphData) => {
+    /** 自定义布局算法, 为每一个节点node赋予渲染所需的x,y属性 */
+    return graphData
   }
-
-  return <XFlow graphConfig={graphConfig} onLoad={onLoad} />
-}
+}}
 ```
 
-|            命令 id |       类型 |               描述 |
-| -----------------: | ---------: | -----------------: |
-|  XFlowNodeCommands |  NsNodeCmd | 所有节点相关的命令 |
-|  XFlowEdgeCommands |  NsEdgeCmd |   所有边相关的命令 |
-| XFlowGraphCommands | NsGraphCmd |   所有图相关的命令 |
-| XFlowPanelCommands | NsPanelCmd | 更新交互组件的命令 |
+## XFlow初始化完成回调onLoad
 
-[查看所有 XFlow 内置的命令](/api/commands)。
-
-## commandConfig
-
-commandConfig 中可以使用 hooks 可以配置 Command 执行时所需的默认参数: 比如配置添加节点命令的 createNodeService 参数
-
-### 创建 commandConfig
-
-`commandConfig` 需要通过 createCmdConfig 创建
+XFlow初始化完成后会回调`onLoad`方法, 在`onLoad`中可以执行各种业务逻辑操作, 比如从服务端获取数据、执行布局算法、渲染画布内容、监听画布相关事件等。
 
 ```tsx | pure
-import { createCmdConfig, XFlow } from '@antv/xflow'
 
-/** 创建一个 CommandConfig 的 ReactHook */
-export const useCmdConfig = createCmdConfig(commandConfig => {
-  //获得了commandConfig
-})
+/** XFlow初始化完成的回调 */
+const onLoad: IAppLoad = async app => {
+  /** 缩放画布 */
+  const graph = await app.getGraphInstance()
+  graph.zoom(-0.2)
 
-/** 在函数组件中使用 */
-export const Demo = () => {
-  const graphConfig = useCmdConfig()
-  return <XFlow graphConfig={graphConfig} />
+  /** Mock从服务端获取数据 */
+  const graphData = await MockApi.loadGraphData()
+
+  /** 渲染画布数据 */
+  await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
+    graphData,
+  } as NsGraphCmd.GraphRender.IArgs)
+
+  /** 监听画布相关事件 */
+  graph.on('node:mousedown', ({ e, x, y, node, view }) => {})
 }
+
 ```
 
-### 使用 commandConfig
 
-通过 commandConfig 的 setRegisterHookFn api 来注册 命令 的钩子函数
+在`onLoad`回调方法中, 会返回XFlow实例, 我们称之为app。通过app实例, 可以获取画布实例、获取画布配置项、执行各种命令操作等。
 
 ```tsx | pure
-export const useCmdConfig = createCmdConfig(commandConfig => {
-  // 通过setRegisterHookFn可以通过hooks注册命令的钩子函数
-  commandConfig.setRegisterHookFn(hooks => {
+
+/** 获取画布实例 */
+const graphInstance = await app.getGraphInstance()
+/** 获取画布配置项 */
+const graphConfig = await app.getGraphConfig()
+
+/** 执行XFlow内置的各种命令操作 */
+app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
+  graphData,
+} as NsGraphCmd.GraphRender.IArgs)
+
+```
+
+
+## XFlow核心Hook
+
+### 命令钩子CommandConfig
+
+在实际业务中, 可能有很多操作都需要与服务端做交互, 将数据保存在服务端, 比如往画布中添加一个节点、修改节点的信息、拖拽出一条连线等操作。`XFlow提供了执行命令的钩子, 允许用户提前预设好service层的行为, 在触发某个具体命令时, 会自动调用钩子里的service逻辑`。
+
+```tsx | pure
+export const useCmdConfig = createCmdConfig(config => {
+  /** 设置hook */
+  config.setRegisterHookFn(hooks => {
     const list = [
       hooks.addNode.registerHook({
-        name: 'get node config from backend api',
+        name: 'addNodeHook',
         handler: async args => {
-          // 在添加节点command 执行时，会在command的参数里加上createNodeService
           args.createNodeService = MockApi.addNode
+        },
+      }),
+      hooks.addEdge.registerHook({
+        name: 'addEdgeHook',
+        handler: async args => {
+          args.createEdgeService = MockApi.addEdge
         },
       }),
     ]
@@ -145,38 +169,18 @@ export const useCmdConfig = createCmdConfig(commandConfig => {
     return toDispose
   })
 })
+
 ```
 
-## 全部配置项
+### 全局状态钩子 ModelServiceConfig
+
+在实际业务中, 可能有很多画布与交互组件联动的需求, 比如画布选中一个节点, 交互组件里展示该节点信息, 同时修改节点信息, 修改后的节点信息实时同步到画布节点中。XFlow内置了若干全局状态, 比如画布当前选中的节点/连线、 画布的缩放比例等, 这些全局状态可以在画布中使用、在配套的交互组件中使用, 方便实现画布与交互组件的联动效果。`但是我们也允许用户主动扩展需要保存的全局状态, 以实现业务需要的效果`。
 
 ```tsx | pure
-export interface IProps {
-  /** XFlow 工作台组件元信息, 会储存在全局Model中并在调用Service时作为额外的参数传入 */
-  meta?: { flowId?: string; [id: string]: any }
-  /** 核心模块Graph的配置，用于配置X6的Grpah.Options和绑定Graph的事件 */
-  graphConfig?: GraphConfig
-  /** 核心模块钩子函数，可以配置额外的业务逻辑包括以下4个hook:
-   * 1. graphOptions: 在实例化X6之前执行
-   * 2. afterGraphInit:  在实例化X6后执行
-   * 3. x6Events: 在实例化X6后绑定事件
-   * 4. beforeGraphDestory: 在X6实例销毁前执行
-   */
-  hookConfig?: HookConfig
-  /** 可以在这里扩展工作台全局状态  */
-  contextConfig?: ContextConfig
-  /** 在这里配置Command的Hook  */
-  commandConfig?: CommandConfig
-  /** xflow app 初始化成功的回调 */
-  onLoad?: IAppLoad
-  /** xflow app 销毁前的回调 */
-  onAppDestroyCallback?: IAppDestoryCallback
-  /** xflow app 初始化后的回调 */
-  onAppConfigReadyCallback?: IConfigReadyCallback
-  /** app container style */
-  style?: React.CSSProperties
-  /** app container classname */
-  className?: string
-  /** xflow less文件中的prefix变量 */
-  xflowPrefixCls?: string
-}
+待书写
 ```
+
+
+### HookConfig
+
+待书写
