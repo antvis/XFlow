@@ -11,24 +11,17 @@ nav:
   order: 1
 ---
 
-组件分成两种：UI 组件和 Preset 组件
+# NodeDndPanel 节点拖拽面板
 
-## UI 组件
+提供通过拖拽来快速新建节点的能力
 
-|           组件名称 | 描述                | 状态 |
-| -----------------: | ------------------- | ---- |
-|      NodeTreePanel | 可拖拽新节点的栏目  | done |
-|  CanvasContextMenu | 画布右键菜单组件    | done |
-|      CanvasToolbar | 画布通用工具栏      | done |
-| CanvasScaleToolbar | 画布缩放工具栏      | done |
-|   CanvasConfigForm | 画布 JsonSchemaForm | done |
-|      CanvasMiniMap | 画布导航小地图      | done |
-|     CanvasSnapline | 画布对齐线          | todo |
-|       CanvasDrawer | 画布抽屉组件        | todo |
-|        CanvasModla | 画布弹窗组件        | todo |
+# 何时使用
 
-## Preset
+需要通过拖拽完成新建节点的能力时
 
-|          组件名称 | 描述 | 状态 |
-| ----------------: | ---: | ---- |
-| DagGraphExtension |      | done |
+# 代码演示
+
+## 基础使用
+
+TDD
+<code src="./demos/basic/index.tsx" classname="toolbar-demo"  id="node-dnd-basic"/>
