@@ -30,7 +30,7 @@ export const usePanelLyaoutStyle = (config: IPanelProps, noSchema: boolean) => {
       lineHeight: footerHeight,
       height: footerHeight,
       bottom: 0,
-      ...(noSchema ? { lineHeight: footerHeight, height: footerHeight } : { bottom: footerHeight }),
+      ...(noSchema ? { lineHeight: footerHeight, height: footerHeight } : { bottom: 0 }),
       ...config.footerPosition,
     }),
   }

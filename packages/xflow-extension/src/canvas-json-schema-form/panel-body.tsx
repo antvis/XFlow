@@ -7,6 +7,7 @@ import type {
   ITriggerUpdate,
   IControlMapService,
   IDefaultControls,
+  FieldData,
 } from './interface'
 import { SchemaForm } from './schema-form'
 import { makeControlMap, xflowDefaultControls } from './schema-form/control-map/index'
@@ -16,7 +17,7 @@ export interface IBodyProps {
   loading: boolean
   prefixClz: string
   style: React.CSSProperties
-  onFieldsChange: (records: Record<string, any>) => void
+  onFieldsChange: (changedValues: FieldData[], allValues: FieldData[]) => void
   defaultControlRender?: React.FC<IControlProps>
   triggerUpdate?: ITriggerUpdate
   afterUpdatingCb?: IAfterUpdatingCallback

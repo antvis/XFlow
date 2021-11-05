@@ -85,12 +85,12 @@ export const SchemaForm: React.FC<Props> = props => {
           const { name: tabName, groups } = tab
           return (
             <TabPane key={tabName} tab={tabName}>
-              {groups.length === 0 && <Empty />}
+              {groups.length === 0 && <Empty style={{ padding: '24px 0' }} />}
               {groups.length > 0 &&
                 groups.map(group => {
                   const { controls: groupControls = [] } = group
                   if (groupControls.length === 0) {
-                    return <Empty style={{ padding: '12px 0' }} />
+                    return <Empty style={{ padding: '24px 0' }} />
                   }
                   return groupControls.map(control => {
                     const { shape, name: controlName } = control

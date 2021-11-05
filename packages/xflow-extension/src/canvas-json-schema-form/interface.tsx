@@ -1,40 +1,59 @@
+import type React from 'react'
 import type { IPosition, NsGraph, IModelService, IGraphCommandService } from '@antv/xflow-core'
 import type { FormInstance } from 'antd'
-import type React from 'react'
+import type { FieldData } from 'rc-field-form/es/interface'
 import type { Cell } from '@antv/x6'
 
+export { FieldData }
 /** Panel 布局 */
 export interface IPanelProps {
   headerPosition: IPosition
   bodyPosition: IPosition
   footerPosition: IPosition
 }
-
+/** 画布选中会触发Form更新的画布元素类型 */
 export type TargetType = 'node' | 'edge' | 'group' | 'canvas'
+/** 画布元素的数据 */
 export type TargetData = NsGraph.INodeConfig | NsGraph.IEdgeConfig | NsGraph.IGroupConfig | null
 
+/** shape 对应的 render map  */
 export type IControlMap = Map<string, React.FC<IControlProps>>
 /** Panel Props */
 export interface IProps extends Partial<IPanelProps> {
+  // 定位的配置
   position: IPosition
+  // 最外层元素的样式
   style?: React.CSSProperties
-  prefixClz?: string
+  // 最外层元素的classname
   className?: string
-  header?: React.ReactNode
-  footer?: React.ReactNode
-  footerText?: string
+  // 替换 header的渲染组件
+  header?: React.FC<ICustomProps>
+  // 替换 footer的渲染组件
+  footer?: React.FC<ICustomProps>
+  // 默认的header文字
   headerText?: string
-  emptyRender?: React.FC<IPanelBodyRenderProps>
-  defaultControlRender?: React.FC<IControlProps>
-  afterUpdatingCb?: IAfterUpdatingCallback
-  controlMapService?: IControlMapService
-  getCustomRenderComponent?: ICustomRender
-  formSchemaService?: IFormSchemaService
-  formValueUpdateService?: IFormValueUpdateService
-  // 默认的formcontrols
-  defaultControls?: IDefaultControls
-  // 响应的target
+  // 默认的footer文字
+  footerText?: string
+  // 监听的画布的选中元素
   targetType?: TargetType[]
+  // 默认的shape render
+  defaultControlRender?: React.FC<IControlProps>
+  // control shape 字段对应的render components
+  defaultControls?: IDefaultControls
+  // 可以通过controlMapService更新内置的controlMap
+  controlMapService?: IControlMapService
+  // 画布selection:change事件的回调 return的值是form的schema
+  formSchemaService?: IFormSchemaService
+  // formitem change时会调用的回调，用于保存form的值到画布/db
+  formValueUpdateService?: IFormValueUpdateService
+  // 画布selection:change事件的回调函数 如果函数返回结果是react.component 会代替form的渲染
+  getCustomRenderComponent?: ICustomRender
+  // formValueUpdateService完成后的回调
+  afterUpdatingCb?: IAfterUpdatingCallback
+}
+
+export interface IInternalProps extends IProps {
+  prefixClz?: string
 }
 
 /** Custom Panel Body Props */
@@ -107,7 +126,8 @@ export interface ICustomProps {
 /** service: form value change 时触发 */
 export interface IFormValueUpdateService {
   (args: {
-    values: Record<string, any>
+    values: FieldData[]
+    allFields: FieldData[]
     // target
     targetType: TargetType
     targetData: TargetData
@@ -151,6 +171,16 @@ export interface IDependency {
 /** ControlSchema name的类型 */
 export type NamePath = string | number | (string | number)[]
 
+/**  Form控件 shape的类型 */
+export enum ControlShape {
+  INPUT = 'input',
+  CHECKBOX = 'checkbox',
+  TEXTAREA = 'textArea',
+  SELECT = 'select',
+  DATETIME = 'datetime',
+  FLOAT = 'float',
+}
+
 /** Form控件 */
 export interface IControlSchema {
   /** form表单渲染的控件名 */
@@ -158,7 +188,7 @@ export interface IControlSchema {
   /** form store中的字段名 */
   name: NamePath
   /** controlmap中对应的 control id */
-  shape: string
+  shape: ControlShape | string
   /** 默认值 */
   defaultValue?: string | number | boolean
   /** 用户保存的值 */

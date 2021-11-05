@@ -1,5 +1,5 @@
 import React from 'react'
-import type { IGraphCommandService, IModelService } from '@antv/xflow-core'
+import { delay, IGraphCommandService, IModelService } from '@antv/xflow-core'
 import { useXFlowApp, DisposableCollection, createComponentModel } from '@antv/xflow-core'
 import type { NsModelServiceCmd } from '@antv/xflow-core'
 import { XFlowModelCommands, Disposable, MODELS } from '@antv/xflow-core'
@@ -68,8 +68,15 @@ export const useJsonSchemaFormModel = (props: IProps) => {
             const updateState = async (targetCell: Cell | null, type: TargetType) => {
               self.setValue(m => {
                 m.loading = true
+                m.schema = { tabs: [] }
+                m.targetType = null
+                m.targetData = null
+                m.targetCell = null
               })
               const targetData = targetCell ? targetCell.getData() : null
+              if (!formSchemaService) {
+                return
+              }
               const schema = await formSchemaService({
                 commandService,
                 modelService,
@@ -85,10 +92,14 @@ export const useJsonSchemaFormModel = (props: IProps) => {
                 targetData: targetData,
               })
             }
-            const getCellType = (targetCell): TargetType => {
+            const getCellType = (targetCell: Cell): TargetType => {
               if (!targetCell) {
                 return 'canvas'
-              } else if (targetCell.isGroup && targetCell.isGroup()) {
+              } else if (
+                targetCell.isNode &&
+                targetCell.isNode() &&
+                targetCell.getProp('isGroup')
+              ) {
                 return 'group'
               } else if (targetCell.isNode && targetCell.isNode()) {
                 return 'node'

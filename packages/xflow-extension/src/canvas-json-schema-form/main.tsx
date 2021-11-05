@@ -1,5 +1,5 @@
 import React from 'react'
-import type { IProps, IPanelProps, ITriggerUpdate } from './interface'
+import type { IProps, IInternalProps, IPanelProps, ITriggerUpdate, FieldData } from './interface'
 import { useXflowPrefixCls } from '@antv/xflow-core'
 import { PanelFooter } from './panel-footer'
 import { PanelHeader } from './panel-header'
@@ -13,17 +13,24 @@ import { WorkspacePanel } from '../base-panel'
 import './style/index'
 
 /** useFormPanelData获取数据 */
-export const JsonSchemaFormMain: React.FC<IProps> = props => {
+export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
   const { prefixClz } = props
-  const { getCustomRenderComponent, afterUpdatingCb, formValueUpdateService } = props
+  const { getCustomRenderComponent, afterUpdatingCb, formValueUpdateService = () => {} } = props
   const { state, commandService, modelService } = useJsonSchemaFormModel(props)
 
   // 联动更新form items的值
   const triggerUpdate = React.useCallback<ITriggerUpdate>(
-    async (form, values) => {
+    async (form, values = {}) => {
       form.setFieldsValue(values)
+      const changedFields = Object.entries(values).map(([key, val]) => {
+        return { name: key, value: val } as FieldData
+      })
+      const allFields = Object.entries(state.targetData).map(([key, val]) => {
+        return { name: key, value: val } as FieldData
+      })
       const result = await formValueUpdateService({
-        values,
+        allFields: allFields,
+        values: changedFields,
         modelService,
         commandService,
         targetData: state.targetData,
@@ -45,9 +52,10 @@ export const JsonSchemaFormMain: React.FC<IProps> = props => {
 
   // 在fields change时的回调
   const onFieldsChange = React.useCallback(
-    async values => {
+    async (changedFields: FieldData[], allFields: FieldData[]) => {
       const result = await formValueUpdateService({
-        values,
+        values: changedFields,
+        allFields,
         modelService,
         commandService,
         targetData: state.targetData,
@@ -108,11 +116,13 @@ export const JsonSchemaFormMain: React.FC<IProps> = props => {
       <PanelHeader
         hasSchema={!noSchema}
         {...props}
+        state={state}
         style={headerStyle}
         prefixClz={props.prefixClz}
       />
       <PanelBody
         {...props}
+        key={state.targetData && state.targetData.id}
         style={bodyStyle}
         prefixClz={props.prefixClz}
         loading={state.loading}
@@ -129,7 +139,7 @@ export const JsonSchemaForm: React.FC<IProps> = props => {
   const prefixClz = useXflowPrefixCls('json-schema-form')
   return (
     <WorkspacePanel {...props} className={prefixClz}>
-      <JsonSchemaFormMain {...props} />
+      <JsonSchemaFormMain {...props} prefixClz={prefixClz} />
     </WorkspacePanel>
   )
 }
