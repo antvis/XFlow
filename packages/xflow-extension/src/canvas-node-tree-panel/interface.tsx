@@ -60,19 +60,35 @@ export interface ITreeNode {
    */
   readonly label: string
   /**
-   * The parent menu id of the menu item.
+   * Dnd节点的宽度
+   */
+  readonly width?: number
+  /**
+   * Dnd节点的高度
+   */
+  readonly height?: number
+  /**
+   * Dnd节点的renderKey
+   */
+  readonly renderKey?: string
+  /**
+   * Dnd节点的popover的提示内容
+   */
+  readonly popoverContent: React.ReactNode
+  /**
+   * 【内部渲染用】文件夹的标识.
    */
   isDirectory?: boolean
   /**
-   * The parent menu id of the menu item.
+   * 【内部渲染用】节点的标识.
    */
   isLeaf?: boolean
   /**
-   * The submenu for a `'submenu'` type item.
+   * 【内部渲染用】子节点
    */
   children?: ITreeNode[]
   /**
-   *fieldName
+   * fieldName，支持NsGraph.INodeConfig
    */
   [fieldName: string]: any
 }

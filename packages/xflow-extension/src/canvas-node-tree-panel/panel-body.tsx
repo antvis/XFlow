@@ -10,7 +10,7 @@ import type {
   INodeFactoryArgs,
 } from './interface'
 import type { IModelService, IGraphCommandService, IGraphConfig, NsGraph } from '@antv/xflow-core'
-import { getNodeReactComponent, useXFlowApp } from '@antv/xflow-core'
+import { getNodeReactComponent, useXFlowApp, XFlowConstants } from '@antv/xflow-core'
 import { XFlowNode } from '../canvas-dag-extension/x6-extension/node'
 const { DirectoryTree, TreeNode } = Tree
 
@@ -37,7 +37,7 @@ export const renderNode = (props: IConfigRenderOptions) => {
     return <div />
   }
 
-  const renderKey = graphConfig.nodeTypeParser(nodeConfig)
+  const renderKey = graphConfig.nodeTypeParser(nodeConfig) || XFlowConstants.XFLOW_DEFAULT_NODE
   const reactComponent = graphConfig.nodeRender.get(renderKey)
 
   return (
@@ -128,7 +128,7 @@ export interface IBodyProps extends IProps {
 export const NodePanelBody: React.FC<IBodyProps> = props => {
   const { x6NodeFactory, dndOptions, onNodeDrop, state, onFolderExpand, prefixClz } = props
   const { graphProvider, modelService, commandService } = useXFlowApp()
-
+  const [graphConfig, setConfig] = React.useState<IGraphConfig>()
   const [dnd, setDnd] = React.useState<Addon.Dnd>()
 
   const [graph, setGraph] = React.useState<Graph>()
@@ -136,12 +136,11 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
     setGraph(x6Graph)
   })
 
-  let graphConfig = undefined
-  graphProvider.getGraphOptions().then(x6GraphConfig => {
-    graphConfig = x6GraphConfig
-  })
-
   React.useEffect(() => {
+    graphProvider.getGraphOptions().then(x6GraphConfig => {
+      setConfig(x6GraphConfig)
+    })
+
     if (!graph) {
       return
     }
@@ -179,8 +178,8 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
       const wrappedComponent = getNodeReactComponent(reactComponent, commandService, modelService)
       const nodeData = {
         data: nodeConfig,
-        width: 180,
-        height: 40,
+        width: nodeConfig.width || 180,
+        height: nodeConfig.height || 40,
         // X6_NODE_PORTAL_NODE_VIEW
         view: graphConfig.graphId,
         component: wrappedComponent,
