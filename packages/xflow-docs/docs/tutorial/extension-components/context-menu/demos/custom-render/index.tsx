@@ -1,9 +1,7 @@
 /**
- *  title: 基础使用（右键删除节点/删除边/画布菜单）
+ *  title: 自定义渲染
  *  desc: |
- *    可以在节点/边/画布上配置菜单 <br>
- *    菜单配置中可以配置点击时执行 xflow 命令 <br>
- *    点击查看 [所有可用的命令](/api/commands) <br>
+ *    内置的菜单补满足时，可以配置自定义组件 <br>
  */
 import React from 'react'
 import { XFlow, XFlowCanvas, CanvasContextMenu } from '@antv/xflow'

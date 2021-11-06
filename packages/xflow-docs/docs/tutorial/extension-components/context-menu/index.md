@@ -22,16 +22,18 @@ nav:
 
 # 代码演示
 
-## 基础使用（TBD）
-
-利用工具栏可以方便的执行 xflow 的命令, onClick 中可以使用[ICommnadService](/api/interface/command) 执行[所有命令](/api/commands)
+## 基础使用
 
 <code src="./demos/basic/index.tsx" classname="canvas-menu-basic"   />
 
-## 动态添加（TBD）
+## 动态添加
 
-<code src="./demos/basic/index.tsx" classname="canvas-menu-basic"   />
+<code src="./demos/dynamic-config/index.tsx" classname="canvas-menu-dynamic-config"   />
 
-## 配合快捷键（TBD）
+## 配合快捷键
 
-<code src="./demos/basic/index.tsx" classname="canvas-menu-basic"   />
+<code src="./demos/hotkey/index.tsx" classname="canvas-menu-hotkey"   />
+
+## 自定义渲染
+
+<code src="./demos/custom-render/index.tsx" classname="canvas-custom-render"   />

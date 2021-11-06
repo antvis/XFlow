@@ -1,9 +1,7 @@
 /**
- *  title: 基础使用（右键删除节点/删除边/画布菜单）
+ *  title: 动态渲染：不同的节点有不同的菜单
  *  desc: |
- *    可以在节点/边/画布上配置菜单 <br>
- *    菜单配置中可以配置点击时执行 xflow 命令 <br>
- *    点击查看 [所有可用的命令](/api/commands) <br>
+ *    可以根据不同的节点数据，动态的生成不同的Menu Items <br>
  */
 import React from 'react'
 import { XFlow, XFlowCanvas, CanvasContextMenu } from '@antv/xflow'

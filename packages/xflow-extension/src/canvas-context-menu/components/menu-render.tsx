@@ -31,6 +31,9 @@ export const renderMenuOptions = (props: IRenderProps) => {
     isVisible = true,
     iconName,
     submenu = [],
+    active,
+    hotkey,
+    render,
     onClick,
   } = menuItem
 
@@ -69,12 +72,10 @@ export const renderMenuOptions = (props: IRenderProps) => {
       <Menu.SubMenu
         key={String(id)}
         text={label}
-        disabled={isDisable}
+        disabled={isDisable || submenu.length === 0}
         icon={Icon ? <Icon /> : null}
-        onClick={async () => {
-          await onClick({ menuItem, target, commandService, modelService })
-          onHide && onHide()
-        }}
+        active={active}
+        hotkey={hotkey}
       >
         {submenu.map((item, submenuIdx) =>
           renderMenuOptions({
@@ -92,12 +93,26 @@ export const renderMenuOptions = (props: IRenderProps) => {
 
   /** 叶子节点 */
   const Icon = IconStore.get(iconName)
+  if (render) {
+    return React.createElement(render, { menuItem, target, commandService, modelService, onHide }, [
+      <Menu.Item
+        key={String(id)}
+        text={label}
+        disabled={!isEnabled}
+        icon={Icon ? <Icon /> : null}
+        active={active}
+        hotkey={hotkey}
+      />,
+    ])
+  }
   return (
     <Menu.Item
       key={String(id)}
       text={label}
       disabled={!isEnabled}
       icon={Icon ? <Icon /> : null}
+      active={active}
+      hotkey={hotkey}
       onClick={async () => {
         await onClick({ menuItem, target, commandService, modelService })
         onHide && onHide()
