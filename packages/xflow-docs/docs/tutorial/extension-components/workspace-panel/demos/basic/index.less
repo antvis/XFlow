@@ -2,14 +2,23 @@
 @primaryColor: #1890ff;
 @light-border: 1px solid #d9d9d9;
 
-.keyboard-basic-demo {
+.custom-panel-demo {
   position: relative;
   border: @light-border;
   .__dumi-default-previewer-demo {
     padding: 16px 12px;
   }
 
+  .card-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: space-evenly;
+    height: 100%;
+  }
+
   .xflow-workspace {
+    height: 400px;
     box-shadow: 0 0 10px 1px #e9e9e9;
   }
 
