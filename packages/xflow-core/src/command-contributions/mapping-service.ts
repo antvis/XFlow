@@ -33,8 +33,8 @@ export class GraphMappingHelper {
     if (Array.isArray(node.ports)) {
       return node.ports
     }
-    if (node.ports && Array.isArray((node.ports as any).items)) {
-      return (node.ports as any).items as NsGraph.INodeAnchor[]
+    if (node.ports && Array.isArray(node.ports.items)) {
+      return node.ports.items
     }
     return []
   }

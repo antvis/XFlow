@@ -4,6 +4,7 @@ import type { PortManager } from '@antv/x6/es/model/port'
 /**
  * XFlow画布数据
  */
+
 export namespace NsGraph {
   /** Graph元数据 */
   export interface IGraphMeta {
@@ -55,7 +56,7 @@ export namespace NsGraph {
     /** 所属群组 */
     group?: string
     /** ports: 链接桩 */
-    ports?: INodeAnchor[]
+    ports?: INodeAnchor[] | INodePortMeta
     /** cell attrs */
     attrs?: Attr.CellAttrs
     /** 用户自定义字段 */
@@ -116,6 +117,10 @@ export namespace NsGraph {
     OUTPUT = 'output',
   }
 
+  /** group + anchor的配置  */
+  export interface INodePortMeta extends PortManager.Metadata {
+    items: INodeAnchor[]
+  }
   /** 节点锚点配置信息 */
   export interface INodeAnchor extends PortManager.Port {
     /** uuid */
