@@ -2,11 +2,8 @@
  * title: 基础使用
  * desc: |
  *  使用 formSchemaService 函数返回的数据作为form的schema <br>
- *  schema中的shape字段决定了使用什么组件来渲染 <br>
- *  用户修改表单项后会触发 formValueUpdateService 的回调，在回调中可以保存数据 <br>
- *  保存数据有两种方式 <br>
- *    1. 将数据存在画布数据中：将数据通过 Command 修改画布/节点/边的数据，
- *    2. 将数据独立存储：设计独立的db表来存储画布/节点/边的数据。
+ *  schema 中的 shape 字段决定渲染的组件 <br>
+ *  用户修改表单项后会触发 formValueUpdateService 的回调，回调中可以保存数据 <br>
  */
 import React from 'react'
 import type { NsNodeCmd, NsGraph } from '@antv/xflow'

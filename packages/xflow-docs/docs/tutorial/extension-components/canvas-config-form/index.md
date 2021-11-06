@@ -25,11 +25,11 @@ nav:
 
 # 代码演示
 
-## 渲染和节点联动的 form
+## 基础使用
 
 <code src="./demos/basic/index.tsx" classname="json-form-demo"  />
 
-control 的配置方式如下：
+#### 支持的表单项的配置：
 
 ```tsx | pure
 interface ControlSchema {

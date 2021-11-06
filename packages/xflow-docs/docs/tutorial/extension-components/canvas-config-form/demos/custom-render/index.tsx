@@ -1,12 +1,8 @@
 /**
- * title: 基础使用
+ * title: 自定义渲染
  * desc: |
- *  使用 formSchemaService 函数返回的数据作为form的schema <br>
- *  schema中的shape字段决定了使用什么组件来渲染 <br>
- *  用户修改表单项后会触发 formValueUpdateService 的回调，在回调中可以保存数据 <br>
- *  保存数据有两种方式 <br>
- *    1. 将数据存在画布数据中：将数据通过 Command 修改画布/节点/边的数据，
- *    2. 将数据独立存储：设计独立的db表来存储画布/节点/边的数据。
+ *   支持使用自定义渲染来支持更复杂的业务场景 <br>
+ *   配置一个函数决定是否用自定义组件代替form的渲染 <br>
  */
 import React from 'react'
 import type { NsNodeCmd, NsGraph } from '@antv/xflow'
