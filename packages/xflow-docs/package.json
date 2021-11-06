@@ -1,6 +1,6 @@
 {
   "name": "@antv/xflow-docs",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "description": "@antv/xflow-docs",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -35,7 +35,7 @@
     "lodash": "^4.17.20"
   },
   "dependencies": {
-    "@antv/xflow": "0.0.1-alpha.1",
+    "@antv/xflow": "0.0.1-alpha.2",
     "@antv/gatsby-theme-antv": "^1.1.8"
   },
   "devDependencies": {
