@@ -2,7 +2,6 @@ import type { Syringe } from 'mana-syringe'
 import type { IGraphCommand } from '../../command/interface'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IHooks } from '../../hooks/interface'
-
 /** commands */
 import { NsAddNode, AddNodeCommand } from './node-add'
 import { NsDelNode, DelNodeCommand } from './node-del'
@@ -12,8 +11,6 @@ import { NsCenterNode, CenterNodeCommand } from './node-center'
 import { NsFrontNode, FrontNodeCommand } from './node-front'
 import { NsBackNode, BackNodeCommand } from './node-back'
 import { NsHighlightNode, HighlightNodeCommand } from './node-highlight'
-import { NsEmbedNode, EmbedNodeCommand } from './node-embed'
-import { NsToggleCollapse, ToggleCollapseCommand } from './node-toggle-collapse'
 import type { Simplify } from '../../common/types'
 
 /** 注册Command Handler Class */
@@ -26,8 +23,6 @@ export const registerNodeCommand = (register: Syringe.Register) => {
   register(FrontNodeCommand)
   register(BackNodeCommand)
   register(HighlightNodeCommand)
-  register(EmbedNodeCommand)
-  register(ToggleCollapseCommand)
 }
 
 /** app onStart 时, 注册 Command Hooks */
@@ -44,8 +39,6 @@ export const hookhubList: {
   NsFrontNode,
   NsBackNode,
   NsHighlightNode,
-  NsEmbedNode,
-  NsToggleCollapse,
 ]
 
 /** 扩展 Command Hooks 类型*/
@@ -58,8 +51,6 @@ export interface ICmdHooks
     NsFrontNode.ICmdHooks,
     NsBackNode.ICmdHooks,
     NsHighlightNode.ICmdHooks,
-    NsEmbedNode.ICmdHooks,
-    NsToggleCollapse.ICmdHooks,
     IHooks {}
 
 /** Command 参数类型*/
@@ -100,14 +91,5 @@ export namespace NsNodeCmd {
   export namespace HighlightNode {
     export type IArgs = Simplify<NsHighlightNode.IArgs>
     export type IResult = Simplify<NsHighlightNode.IResult>
-  }
-  export namespace EmbedNode {
-    export type IArgs = Simplify<NsEmbedNode.IArgs>
-    export type IResult = Simplify<NsEmbedNode.IResult>
-  }
-
-  export namespace ToggleCollapse {
-    export type IArgs = Simplify<NsToggleCollapse.IArgs>
-    export type IResult = Simplify<NsToggleCollapse.IResult>
   }
 }
