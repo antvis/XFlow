@@ -1,5 +1,5 @@
 import React from 'react'
-import { createGraphConfig, NsGraph, XFlowNodeCommands, NsNodeCmd, IEvent } from '@antv/xflow'
+import { createGraphConfig, XFlowNodeCommands, NsNodeCmd, NsGraph } from '@antv/xflow'
 /** 自定义React节点/边 */
 import Node1 from './react-node/node1'
 import Node2 from './react-node/node2'
@@ -42,6 +42,6 @@ export const useGraphConfig = createGraphConfig(config => {
           strokeWidth: 3,
         } as NsNodeCmd.HighlightNode.IArgs)
       },
-    } as IEvent<'node:click'>,
+    } as NsGraph.IEvent<'node:click'>,
   ])
 })

@@ -45,16 +45,8 @@ export interface IHookContribution<T extends IHooks> {
 }
 
 /** 内置的Hooks */
-export interface IEvent<Key extends keyof EventArgs = any> {
-  eventName: Key
-  callback: (
-    x6Event: EventArgs[Key],
-    commandService: IGraphCommandService,
-    modelService: IModelService,
-  ) => void
-}
-
-export type IEventCollection = IEvent[]
+export interface IEvent<Key extends keyof EventArgs> extends NsGraph.IEvent<Key> {}
+export type IEventCollection = NsGraph.IEvent[]
 export type IEventSubscription = Disposable[]
 
 export interface IGeneralAppService {

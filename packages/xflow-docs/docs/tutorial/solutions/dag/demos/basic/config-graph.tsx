@@ -1,5 +1,5 @@
 import type { IProps } from './index'
-import type { IEvent } from '@antv/xflow'
+import type { IEvent, NsGraph } from '@antv/xflow'
 import { createHookConfig, DisposableCollection } from '@antv/xflow'
 import { DND_RENDER_ID, GROUP_NODE_RENDER_ID } from './constant'
 import { DndNode } from './react-node/dnd-node'
@@ -39,7 +39,7 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, getProps) =>
             callback: (e, cmds, ctx) => {
               // 绑定事件
             },
-          } as IEvent<'node:click'>)
+          } as NsGraph.IEvent<'node:click'>)
         },
       }),
     ]

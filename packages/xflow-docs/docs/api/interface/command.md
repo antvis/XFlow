@@ -1,5 +1,6 @@
 ---
-title: Command 命令
+title: CommandService 命令
+order: 4
 group:
   path: /interface
   title: Interface 接口定义

@@ -1,5 +1,6 @@
 ---
 title: NsGraph 图数据结构
+order: 1
 group:
   path: /interface
   title: Interface 接口定义
@@ -12,16 +13,23 @@ nav:
 
 ## NsGraph namespace
 
-|                                                   名称 |                                                                                          说明 |
-| -----------------------------------------------------: | --------------------------------------------------------------------------------------------: |
-|       [NsGraph](/docs/api/interface#nsgraph-namespace) |                                                                       XFlow 的 基础 namespace |
-|   [NsGraph.IGraphMeta](/docs/api/interface#igraphmeta) | Graph 元数据 <br> 除了图的 Id 之外，可能包括这些业务属性：画布名称/创建时间/更新时间/用户权限 |
-|   [NsGraph.IGraphData](/docs/api/interface#igraphmeta) |                                                                            图数据包括节点和边 |
-| [NsGraph.INodeConfig](/docs/api/interface#inodeconfig) |                                                                                  节点配置类型 |
-| [NsGraph.IEdgeConfig](/docs/api/interface#iedgeconfig) |                                                                                  边的配置类型 |
-| [NsGraph.INodeAnchor](/docs/api/interface#inodeanchor) |                                                                                节点的锚点配置 |
+|                                              名称 |                                                                                          说明 |
+| ------------------------------------------------: | --------------------------------------------------------------------------------------------: |
+|       [NsGraph](/api/interface#nsgraph-namespace) |                                                                       XFlow 的 基础 namespace |
+|   [NsGraph.IGraphMeta](/api/interface#igraphmeta) | Graph 元数据 <br> 除了图的 Id 之外，可能包括这些业务属性：画布名称/创建时间/更新时间/用户权限 |
+|   [NsGraph.IGraphData](/api/interface#igraphmeta) |                                                                            图数据包括节点和边 |
+| [NsGraph.INodeConfig](/api/interface#inodeconfig) |                                                                                  节点配置类型 |
+| [NsGraph.IEdgeConfig](/api/interface#iedgeconfig) |                                                                                  边的配置类型 |
+| [NsGraph.INodeAnchor](/api/interface#inoderender) |                                                                                节点的锚点配置 |
+|           [NsGraph.IEvent](/api/interface#ievent) |                                                                                Graph 事件配置 |
+| [NsGraph.INodeRender](/api/interface#inoderender) |                                                                                ReactNode 组件 |
+| [NsGraph.IEdgeRender](/api/interface#iedgerender) |                                                                               ReactLabel 组件 |
 
 ```tsx | pure
+/** 如何引入？ */
+import { NsGraph } from '@antv/xflow'
+
+/** 类型说明 */
 export namespace NsGraph {
   /** Graph元数据：除了图的Id之外，可能包括这些业务属性：画布名称/创建时间/更新时间/用户权限 */
   export interface IGraphMeta {
@@ -45,6 +53,21 @@ export namespace NsGraph {
 
   /** 锚点配置 */
   export interface INodeAnchor {
+    // ...
+  }
+
+  /** 事件配置 */
+  export interface IEvent {
+    // ...
+  }
+
+  /** 节点React组件类型 */
+  export interface INodeRender {
+    // ...
+  }
+
+  /** 边Label组件类型 */
+  export interface IEdgeRender {
     // ...
   }
 }
@@ -172,5 +195,60 @@ Anchor 输入/输出类型，用于有向无环图
 export enum AnchorType {
   INPUT = 'input',
   OUTPUT = 'output',
+}
+```
+
+### IEvent
+
+画布事件配置项：包含事件名和事件回调
+
+```tsx | pure
+export interface IEvent<Key extends keyof EventArgs = any> {
+  eventName: Key
+  callback: (
+    x6Event: EventArgs[Key],
+    commands: IGraphCommandService,
+    contextService: IContextService,
+  ) => void
+}
+```
+
+### INodeRender
+
+React Node 组件
+
+```tsx | pure
+export type INodeRender<T extends NsGraph.INodeConfig = any> = React.FC<INodeProps<T>>
+```
+
+### INodeProps
+
+React Node 组件的 Props
+
+```tsx | pure
+export interface INodeProps<T extends NsGraph.INodeConfig> {
+  cell: X6Node
+  data: T
+  size: { width: number; height: number }
+  position: { x: number; y: number }
+}
+```
+
+### IEdgeRender
+
+React EdgeLabel 组件
+
+```tsx | pure
+export type IEdgeRender<T extends IEdgeConfig = any> = React.FC<IEdgeProps<T>>
+```
+
+### IEdgeProps
+
+React EdgeLabel 组件的 Props
+
+```tsx | pure
+export interface IEdgeProps<T extends NsGraph.IEdgeConfig> {
+  cell: X6Edge
+  data: T
 }
 ```

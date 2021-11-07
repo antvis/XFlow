@@ -1,6 +1,9 @@
 import type { Point } from '@antv/x6'
+import type { EventArgs } from '@antv/x6/es/graph/events'
 import type { Attr } from '@antv/x6/es/registry/attr'
 import type { PortManager } from '@antv/x6/es/model/port'
+import type { IGraphCommandService } from './command/interface'
+import type { IModelService } from './model-service/interface'
 /**
  * XFlow画布数据
  */
@@ -168,6 +171,16 @@ export namespace NsGraph {
   export interface IReactEdgeProps<T = any> {
     data: T
   }
-
+  /** XFlow Edge label 组件类型 */
   export type IEdgeRender<T extends NsGraph.IEdgeConfig = any> = React.FC<IReactEdgeProps<T>>
+
+  /** xflow 封装的 X6 event */
+  export interface IEvent<Key extends keyof EventArgs = any> {
+    eventName: Key
+    callback: (
+      x6Event: EventArgs[Key],
+      commandService: IGraphCommandService,
+      modelService: IModelService,
+    ) => void
+  }
 }

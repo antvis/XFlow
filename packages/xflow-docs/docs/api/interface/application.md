@@ -1,5 +1,6 @@
 ---
 title: Application 应用
+order: 3
 group:
   path: /interface
   title: Interface 接口定义
@@ -13,40 +14,44 @@ nav:
 ## FrontendApplication
 
 ```tsx | pure
-export declare class FrontendApplication {
-  readonly commands: IGraphCommandService
-  readonly contextService: IContextService
-  /** 启动 app  */
-  start(): Promise<void>
-  /** 停止 app */
-  stop(): Promise<void>
+/** 如何引用？ */
+import { IApplication } from '@antv/xflow'
+/** 类型说明：图编辑应用 */
+export declare class IApplication {
+  /** IGraphCommandService：执行命令修改应用状态 */
+  readonly commandService: IGraphCommandService
+  /** IModelService：获取应用状态 */
+  readonly modelService: IModelService
+  /** 获取画布实例 */
+  public getGraphInstance(): Promise<X6Graph>
+  /** 获取画布配置项 */
+  public getGraphConfig(): Promise<IGraphConfig>
   /** 暴露命令的执行接口 */
-  executeCommand<T = any>(
-    commandId: string,
-    cmdArgs: T,
-    hook?: IRuntimeHook<T, any>,
-  ): Promise<ICommandHandler>
+  public executeCommand<Args, Result>(
+    command: string,
+    args: Args,
+    hooks?: IRuntimeHook<Args, Result>,
+  ): Promise<ICommandHandler<Args, Result> | undefined>
   /** 暴露命令的批量执行接口 */
-  executeCommandPipeline(cmdOptions: IGraphPipelineCommand[]): Promise<ICommandHandler>
-  /** 绑定app事件 */
-  protected registerEventListeners(): void
-  /** 获取所有app扩展 */
-  protected contributions(): IFrontendApplicationContribution[]
-  /** 启动所有app扩展 */
-  protected startContributions(): Promise<void>
-  /** 停止所有app扩展  */
-  protected stopContributions(): void
+  public executeCommandPipeline(cmdOptions: IGraphPipelineCommand[]): Promise<ICommandHandler>
+  >
 }
 ```
 
 ## IAppLoad
 
 ```tsx | pure
-export type IAppLoad = (app: FrontendApplication, registry: ExtensionRegistry) => void
+/** 引入方式 */
+import { IAppLoad } from '@antv/xflow'
+/** 类型说明：app启动后的回调 */
+export type IAppLoad = (app: IApplication) => void
 ```
 
-## IAppDestoryCallback
+## IAppDestory
 
 ```tsx | pure
-export type IAppDestoryCallback = (app: FrontendApplication) => void
+/** 引入方式 */
+import { IAppDestory } from '@antv/xflow'
+/** 类型说明：app销毁前的回调 */
+export type IAppDestory = (app: IApplication) => void
 ```

@@ -1,4 +1,4 @@
-import { createGraphConfig, IEvent } from '@antv/xflow'
+import { createGraphConfig, NsGraph } from '@antv/xflow'
 import { DndNode } from './react-node/dnd-node'
 import { DND_RENDER_ID } from './constant'
 
@@ -26,7 +26,7 @@ export const useGraphConfig = createGraphConfig(config => {
         const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGElement>
         showPorts(ports, true)
       },
-    } as IEvent<'node:mouseenter'>,
+    } as NsGraph.IEvent<'node:mouseenter'>,
     {
       eventName: 'node:mouseleave',
       callback: () => {
@@ -34,6 +34,6 @@ export const useGraphConfig = createGraphConfig(config => {
         const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGElement>
         showPorts(ports, false)
       },
-    } as IEvent<'node:mouseleave'>,
+    } as NsGraph.IEvent<'node:mouseleave'>,
   ])
 })

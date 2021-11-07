@@ -1,5 +1,6 @@
 ---
-title: X6Graph 画布
+title: X6Graph 画布配置
+order: 2
 group:
   path: /interface
   title: Interface 接口定义
@@ -97,13 +98,35 @@ const defaultOptions: Graph.Options = {
 }
 ```
 
+### IGraphConfig
+
 ```tsx | pure
-export interface IEvent<Key extends keyof EventArgs = any> {
-  eventName: Key
-  callback: (
-    x6Event: EventArgs[Key],
-    commands: IGraphCommandService,
-    contextService: IContextService,
-  ) => void
+// 如何引用
+import { IGraphConfig } from '@antv/xflow'
+
+// 类型说明
+export interface IGraphConfig {
+  /** xflow实例id */
+  xflowInstanceId: string
+  /** 画布实例id */
+  graphId: string
+  /** 画布portal viewid */
+  nodeViewId: string
+  /** 画布的options */
+  x6Options: X6Graph.Options
+  /** 画布的root节点 */
+  rootContainer: HTMLElement
+  /** 画布的dom节点 */
+  graphContainer: HTMLElement
+  /** 自定节点的渲染 */
+  nodeRender: Map<string, React.FC<any>>
+  /** 自定义边label的渲染 */
+  edgeRender: Map<string, React.FC<any>>
+  /** 自定义X6事件 */
+  events: NsGraph.IEvent[]
+  /** 解析node类型：从nodeConfig 中解析 ReactComponent类型 */
+  nodeTypeParser: (nodeConfig: NsGraph.INodeConfig) => string
+  /** 解析edge类型：从edgeConfig 中解析 ReactComponent类型 */
+  edgeTypeParser: (edgeConfig: NsGraph.IEdgeConfig) => string
 }
 ```

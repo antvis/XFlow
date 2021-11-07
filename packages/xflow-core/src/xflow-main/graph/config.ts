@@ -5,7 +5,6 @@ import { Deferred } from '../../common/deferred'
 import type { NsGraph } from '../../interface'
 import { MAX_ZOOM, MIN_ZOOM, XFLOW_DEFAULT_EDGE, XFLOW_DEFAULT_NODE } from '../../constants'
 import { uuidv4 } from '../../common/uuid'
-import type { IEvent as GraphEvent } from '../../hooks/interface'
 
 export namespace NsGraphConfig {
   export const CONFIG_TYPE = 'GraphConfig'
@@ -52,7 +51,7 @@ export class GraphConfig {
   private edgeTypeParser: (edgeConfig: NsGraph.IEdgeConfig) => string =
     NsGraphConfig.defaultEdgeTypeParser
   /** 自定义事件 */
-  private events: GraphEvent[] = []
+  private events: NsGraph.IEvent[] = []
 
   mergeX6Config = async (config: Partial<X6Graph.Options>) => {
     const current = await this.getX6Config()
@@ -72,7 +71,7 @@ export class GraphConfig {
   setGraphContainer = (ele: HTMLElement | null) => {
     ele && this.graphContainer?.resolve(ele)
   }
-  setEvents = (events: GraphEvent[]) => {
+  setEvents = (events: NsGraph.IEvent[]) => {
     this.events = events
   }
   setDefaultNodeRender = (component: NsGraph.INodeRender) => {
@@ -233,7 +232,7 @@ export interface IGraphConfig {
   /** 自定义边label的渲染 */
   edgeRender: Map<string, React.FC<any>>
   /** 自定义X6事件 */
-  events: GraphEvent[]
+  events: NsGraph.IEvent[]
   /** 解析node类型：从nodeConfig 中解析 ReactComponent类型 */
   nodeTypeParser: (nodeConfig: NsGraph.INodeConfig) => string
   /** 解析edge类型：从edgeConfig 中解析 ReactComponent类型 */

@@ -1,8 +1,8 @@
 ---
 title: 全局状态
 group:
-  path: /observables
-  title: Observables 全局状态
+  path: /models
+  title: MODELS 全局状态
   order: 3
 nav:
   title: API
@@ -10,4 +10,223 @@ nav:
   order: 2
 ---
 
-## XFlow Observables
+## MODELS
+
+通过事件监听系统状态，如果 MODEL 更新则触发 UI 组件的更新
+
+```tsx | pure
+// 如何使用？
+import { MODELS } from '@antv/xflow'
+// 使用models
+const getModel = async () => {
+  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
+  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
+  console.log(graphScale, graphScaleModel)
+}
+```
+
+## MODEL HOOKS
+
+```tsx | pure
+// 如何使用？
+import { MODELS } from '@antv/xflow'
+// 使用models
+const getModel = async () => {
+  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
+  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
+  console.log(graphScale, graphScaleModel)
+}
+```
+
+### useModelAsync
+
+```tsx | pure
+// 如何使用？
+import { MODELS } from '@antv/xflow'
+// 使用models
+const getModel = async () => {
+  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
+  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
+  console.log(graphScale, graphScaleModel)
+}
+```
+
+### useModel
+
+```tsx | pure
+// 如何使用？
+import { MODELS } from '@antv/xflow'
+// 使用models
+const getModel = async () => {
+  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
+  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
+  console.log(graphScale, graphScaleModel)
+}
+```
+
+## XFlow MODELS
+
+ 内置开箱即用的 Models
+
+````tsx | pure
+// 如何使用？
+import { MODELS } from '@antv/xflow'
+// 使用models
+const getModel= async()=>{
+  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
+  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
+  console.log(graphScale,graphScaleModel)
+}
+
+/** 画布是否已开启多选 */
+export namespace GRAPH_ENABLE_MULTI_SELECT {
+  export const id = 'GRAPH_ENABLE_MULTI_SELECT'
+  export type IState = {
+    isEnable: boolean
+  }
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布已选中节点 */
+export namespace IS_NODE_SELECTED {
+  export const id = 'IS_NODE_SELECTED'
+  export type IState = boolean
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布选中节点是Group */
+export namespace IS_GROUP_SELECTED {
+  export const id = 'IS_GROUP_SELECTED'
+  export type IState = boolean
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布选中节点是Group */
+export namespace IS_NORMAL_NODES_SELECTED {
+  export const id = 'IS_NORMAL_NODES_SELECTED'
+  export type IState = boolean
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布选中Cell状态，保存最后一个选中的节点 */
+export namespace SELECTED_CELL {
+  export const id = 'LAST_SELECTED_CELL'
+  export type IState = Cell | null
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布选中CellS状态 */
+export namespace SELECTED_CELLS {
+  export const id = 'SELECTED_CELLS'
+  export type IState = Cell[]
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+
+/** 画布选中节点状态， 如有多个节点则保存最后一个选中的节点 */
+export namespace SELECTED_NODE {
+  export const id = 'LAST_SELECTED_NODE'
+  export type IState = Node<Node.Properties> | null
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布选中节点状态 */
+export namespace SELECTED_NODES {
+  export const id = 'SELECTED_NODES'
+  export type IState = Node<Node.Properties>[]
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布选中边状态 */
+export namespace SELECTED_EDGES {
+  export const id = 'SELECTED_EDGES'
+  export type IState = Edge<Edge.Properties>[]
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布选中GROUP List */
+export namespace SELECTED_GROUPS {
+  export const id = 'SELECTED_GROUPS'
+  export type IState = Node<Node.Properties>[]
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布节点右键菜单状态 */
+export namespace CONTEXTMENU_NODE {
+  export const id = 'CONTEXTMENU_NODE'
+  export type IState = Node<Node.Properties> | null
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布边右键菜单状态 */
+export namespace CONTEXTMENU_EDGE {
+  export const id = 'CONTEXTMENU_EDGE'
+  export type IState = Edge<Edge.Properties> | null
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布右键菜单状态 */
+export namespace CONTEXTMENU_TARGET {
+  export const id = 'CONTEXTMENU_TARGET'
+  export type IState = ContextMenuInfo | null
+  export interface ContextMenuInfo {
+    type: TargetType
+    data: CellView.EventArgs['cell:contextmenu']
+    anchor: { x: number; y: number }
+    cell: Cell
+  }
+  export type TargetType = 'node' | 'edge' | 'blank' | 'null'
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布元数据状态 */
+export namespace GRAPH_META {
+  export const id = 'GRAPH_META'
+  export type IState = { flowId: string; [key: string]: any }
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** 画布缩放状态 */
+export namespace GRAPH_SCALE {
+  export const id = 'GRAPH_SCALE'
+  export type IState = {
+    zoomFactor: number
+    sx?: number
+    sy?: number
+    ox?: number
+    oy?: number
+  }
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** COMMAND REDO STACK的状态*/
+export namespace COMMAND_REDOABLE {
+  export const id = 'COMMAND_REDOABLE'
+  export type IState = boolean
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+/** COMMAND UNDO STACK的状态*/
+export namespace COMMAND_UNDOABLE {
+  export const id = 'COMMAND_UNDOABLE'
+  export type IState = boolean
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+
+/** History Undo Redo */
+export namespace HISTORY_UNDOABLE {
+  export const id = 'HISTORY_UNDOABLE'
+  export type IState = boolean
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+export namespace HISTORY_REDOABLE {
+  export const id = 'HISTORY_REDOABLE'
+  export type IState = boolean
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
+
+```
+````

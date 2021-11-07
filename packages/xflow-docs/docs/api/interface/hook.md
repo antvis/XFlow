@@ -1,5 +1,6 @@
 ---
-title: Hook 钩子
+title: HookService 钩子
+order: 6
 group:
   path: /interface
   title: Interface 接口定义
@@ -7,11 +8,19 @@ group:
 nav:
   title: API
   path: /api
-  order: 1
+  order: 5
 ---
 
-## Hook
+## IHookService
 
-## HookHub
+```tsx | pure
+/** 如何引入？ */
+import { IHookService } from '@antv/xflow'
 
-## IRuntimeHook
+/** 边数据 */
+export interface IHookService<T = IHooks> {
+  registerHookHub: (hookName: string, hook: HookHub) => Disposable
+  registerHook: (registerHookFunc: IRegsiterHookFn<T>) => Disposable
+  hookProvider: () => T
+}
+```
