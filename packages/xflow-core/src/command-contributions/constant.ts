@@ -15,10 +15,16 @@ export namespace XFlowNodeCommands {
     label: 'Move Node',
     category,
   }
-  /** 重命名节点 */
-  export const SET_NODE_LABEL: IGraphCommand = {
-    id: 'xflow:set-node-name',
-    label: '重命名节点',
+  /** 删除节点 */
+  export const DEL_NODE: IGraphCommand = {
+    id: 'xflow:del-node',
+    label: '删除节点',
+    category,
+  }
+  /** 更新节点 */
+  export const UPDATE_NODE: IGraphCommand = {
+    id: 'xflow:update-node',
+    label: '更新节点',
     category,
   }
   /** 节点交互：高亮节点 */
@@ -33,46 +39,22 @@ export namespace XFlowNodeCommands {
     label: '选中节点',
     category,
   }
-  /** 删除节点 */
-  export const DEL_NODE: IGraphCommand = {
-    id: 'xflow:del-node',
-    label: '删除节点',
-    category,
-  }
-  /** 更新节点 */
-  export const UPDATE_NODE: IGraphCommand = {
-    id: 'xflow:update-node',
-    label: '更新节点',
-    category,
-  }
   /** 节点居中 */
   export const CENTER_NODE: IGraphCommand = {
     id: 'xflow:center-node',
     label: '居中节点',
     category,
   }
-  /** 节点前置 */
+  /** 节点前置：调整zindex */
   export const FRONT_NODE: IGraphCommand = {
     id: 'xflow:front-node',
     label: '前置节点',
     category,
   }
-  /** 节点后置 */
+  /** 节点后置：调整zindex */
   export const BACK_NODE: IGraphCommand = {
     id: 'xflow:back-node',
     label: '后置节点',
-    category,
-  }
-  /** 增加子节点 */
-  export const EMBED_NODE: IGraphCommand = {
-    id: 'xflow:embed-node',
-    label: '嵌入子节点',
-    category,
-  }
-  /** 切换节点展开/折叠状态 */
-  export const ToggleCollapse: IGraphCommand = {
-    id: 'xflow:toggle-collapse',
-    label: '切换节点展开折叠状态',
     category,
   }
 }
@@ -98,25 +80,19 @@ export namespace XFlowEdgeCommands {
     label: '更新边',
     category,
   }
-  /** 更新label */
-  export const SET_EDGE_LABEL: IGraphCommand = {
-    id: 'xflow:set-edge-edge',
-    label: '设置边',
-    category,
-  }
   /** 高亮边 */
   export const HIGHLIGHT_EDGE: IGraphCommand = {
     id: 'xflow:highlight-edge',
     label: '高亮边',
     category,
   }
-  /** 边前置 */
+  /** 边前置：调整zindex */
   export const FRONT_EDGE: IGraphCommand = {
     id: 'xflow:front-edge',
     label: '前置变',
     category,
   }
-  /** 边后置 */
+  /** 边后置：调整zindex */
   export const BACK_EDGE: IGraphCommand = {
     id: 'xflow:back-edge',
     label: '后置边',
@@ -199,7 +175,7 @@ export namespace XFlowGraphCommands {
     label: '粘贴',
     category,
   }
-  /** Graph Paste */
+  /** Graph 开启框选 */
   export const GRAPH_TOGGLE_MULTI_SELECT: IGraphCommand = {
     id: 'xflow:graph-toggle-multi-select',
     label: '启用框选',

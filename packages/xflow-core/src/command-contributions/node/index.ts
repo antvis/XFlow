@@ -2,21 +2,23 @@ import type { Syringe } from 'mana-syringe'
 import type { IGraphCommand } from '../../command/interface'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IHooks } from '../../hooks/interface'
+import type { Simplify } from '../../common/types'
 /** commands */
 import { NsAddNode, AddNodeCommand } from './node-add'
 import { NsDelNode, DelNodeCommand } from './node-del'
+import { NsSelectNode, SelectNodeCommand } from './node-select'
 import { NsMoveNode, MoveNodeCommand } from './node-move'
 import { NsUpdateNode, UpdateNodeCommand } from './node-update'
 import { NsCenterNode, CenterNodeCommand } from './node-center'
 import { NsFrontNode, FrontNodeCommand } from './node-front'
 import { NsBackNode, BackNodeCommand } from './node-back'
 import { NsHighlightNode, HighlightNodeCommand } from './node-highlight'
-import type { Simplify } from '../../common/types'
 
 /** 注册Command Handler Class */
 export const registerNodeCommand = (register: Syringe.Register) => {
   register(AddNodeCommand)
   register(DelNodeCommand)
+  register(SelectNodeCommand)
   register(MoveNodeCommand)
   register(UpdateNodeCommand)
   register(CenterNodeCommand)
@@ -33,6 +35,7 @@ export const hookhubList: {
 }[] = [
   NsAddNode,
   NsDelNode,
+  NsSelectNode,
   NsMoveNode,
   NsUpdateNode,
   NsCenterNode,
@@ -44,8 +47,9 @@ export const hookhubList: {
 /** 扩展 Command Hooks 类型*/
 export interface ICmdHooks
   extends NsAddNode.ICmdHooks,
-    NsMoveNode.ICmdHooks,
     NsDelNode.ICmdHooks,
+    NsSelectNode.ICmdHooks,
+    NsMoveNode.ICmdHooks,
     NsUpdateNode.ICmdHooks,
     NsCenterNode.ICmdHooks,
     NsFrontNode.ICmdHooks,
@@ -62,6 +66,10 @@ export namespace NsNodeCmd {
   export namespace DelNode {
     export type IArgs = Simplify<NsDelNode.IArgs>
     export type IResult = Simplify<NsDelNode.IResult>
+  }
+  export namespace SelectNode {
+    export type IArgs = Simplify<NsSelectNode.IArgs>
+    export type IResult = Simplify<NsSelectNode.IResult>
   }
   export namespace MoveNode {
     export type IArgs = Simplify<NsMoveNode.IArgs>

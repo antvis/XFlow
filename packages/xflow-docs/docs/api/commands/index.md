@@ -47,16 +47,22 @@ export namespace XFlowNodeCommands {
     label: '添加节点',
     category,
   }
+  /** 删除节点 */
+  export const DEL_NODE: IGraphCommand = {
+    id: 'xflow:del-node',
+    label: '删除节点',
+    category,
+  }
+  /** 更新节点 */
+  export const UPDATE_NODE: IGraphCommand = {
+    id: 'xflow:update-node',
+    label: '更新节点',
+    category,
+  }
   /** 移动节点 */
   export const MOVE_NODE: IGraphCommand = {
     id: 'xflow:move-node',
     label: 'Move Node',
-    category,
-  }
-  /** 重命名节点 */
-  export const SET_NODE_LABEL: IGraphCommand = {
-    id: 'xflow:set-node-name',
-    label: '重命名节点',
     category,
   }
   /** 节点交互：高亮节点 */
@@ -69,18 +75,6 @@ export namespace XFlowNodeCommands {
   export const SELECT_NODE: IGraphCommand = {
     id: 'xflow:select-node',
     label: '选中节点',
-    category,
-  }
-  /** 删除节点 */
-  export const DEL_NODE: IGraphCommand = {
-    id: 'xflow:del-node',
-    label: '删除节点',
-    category,
-  }
-  /** 更新节点 */
-  export const UPDATE_NODE: IGraphCommand = {
-    id: 'xflow:update-node',
-    label: '更新节点',
     category,
   }
   /** 节点居中 */
@@ -129,12 +123,6 @@ export namespace XFlowEdgeCommands {
   export const UPDATE_EDGE: IGraphCommand = {
     id: 'xflow:update-edge',
     label: '更新边',
-    category,
-  }
-  /** 更新label */
-  export const SET_EDGE_LABEL: IGraphCommand = {
-    id: 'xflow:set-edge-edge',
-    label: '设置边',
     category,
   }
   /** 高亮边 */
