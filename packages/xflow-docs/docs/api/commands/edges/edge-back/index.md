@@ -1,6 +1,6 @@
 ---
-title: AddGroup 添加群组
-order: 51
+title: BackEdge 后置边
+order: 26
 group:
   path: /api/commands
   title: Command 命令
@@ -11,9 +11,9 @@ nav:
   order: 1
 ---
 
-## 添加群组命令
+## 置于底层
 
-XFlow 提供添加群组的命令 `XFlowNodeCommands.ADD_GROUP`, 通过该命令可以实现在画布中添加群组。
+XFlow 提供置于底层的命令 `XFlowNodeCommands.BACK_EDGE`, 通过该命令可以实现在画布中添加一个节点。
 
 ### Command 示例
 
@@ -38,7 +38,7 @@ export interface IArgs extends IArgsBase {
 }
 ```
 
-#### nodeConfig
+#### edgeConfig
 
 节点的元数据，参考数据格式 [NsGraph.INodeConfig](/docs/api/interface#inodeconfig)
 

@@ -1,6 +1,6 @@
 ---
 title: DelNode 删除节点
-order: 30
+order: 12
 group:
   path: /api/commands
   title: Command 命令
@@ -13,7 +13,7 @@ nav:
 
 ## 删除节点命令
 
-XFlow 提供节点添加的命令 `XFlowNodeCommands.NODE_ADD`, 通过该命令可以实现在画布中添加一个节点。
+XFlow 提供节点添加的命令 `XFlowNodeCommands.DEL_NODE`, 通过该命令可以实现在画布中添加一个节点。
 
 ### Command 示例
 

@@ -1,6 +1,6 @@
 ---
-title: AddGroup 添加群组
-order: 51
+title: CenterNode 居中节点
+order: 17
 group:
   path: /api/commands
   title: Command 命令
@@ -11,9 +11,9 @@ nav:
   order: 1
 ---
 
-## 添加群组命令
+## 居中节点
 
-XFlow 提供添加群组的命令 `XFlowNodeCommands.ADD_GROUP`, 通过该命令可以实现在画布中添加群组。
+XFlow 提供节点添加的命令 `XFlowNodeCommands.CENTER_NODE`, 通过该命令可以居中节点。
 
 ### Command 示例
 

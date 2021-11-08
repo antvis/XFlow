@@ -1,6 +1,6 @@
 ---
-title: AddGroup 添加群组
-order: 51
+title: UpdateEdge 更新边
+order: 23
 group:
   path: /api/commands
   title: Command 命令
@@ -11,9 +11,9 @@ nav:
   order: 1
 ---
 
-## 添加群组命令
+## 更新边
 
-XFlow 提供添加群组的命令 `XFlowNodeCommands.ADD_GROUP`, 通过该命令可以实现在画布中添加群组。
+XFlow 提供节点添加的命令 `XFlowNodeCommands.UPDATE_EDGE`, 通过该命令可以实现在画布中添加一个节点。
 
 ### Command 示例
 

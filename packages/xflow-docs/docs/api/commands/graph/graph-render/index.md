@@ -1,6 +1,6 @@
 ---
 title: GraphRender 画布渲染
-order: 2
+order: 35
 group:
   path: /api/commands
   title: Command 命令

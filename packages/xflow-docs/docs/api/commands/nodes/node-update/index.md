@@ -1,6 +1,6 @@
 ---
-title: NodeUpdate 节点更新
-order: 5
+title: UpdateNode 更新节点
+order: 13
 group:
   path: /api/commands
   title: Command 命令

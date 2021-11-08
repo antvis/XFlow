@@ -1,6 +1,6 @@
 ---
-title: AddGroup 添加群组
-order: 51
+title: CollapseGroup 折叠群组
+order: 53
 group:
   path: /api/commands
   title: Command 命令
@@ -11,9 +11,9 @@ nav:
   order: 1
 ---
 
-## 添加群组命令
+## 折叠群组
 
-XFlow 提供添加群组的命令 `XFlowNodeCommands.ADD_GROUP`, 通过该命令可以实现在画布中添加群组。
+XFlow 提供折叠群组的命令 `XFlowGroupCommands.COLLAPSE_GROUP`, 通过该命令可以折叠群组。
 
 ### Command 示例
 

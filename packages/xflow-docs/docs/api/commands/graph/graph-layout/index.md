@@ -1,6 +1,6 @@
 ---
 title: GraphLayout 画布布局
-order: 4
+order: 34
 group:
   path: /api/commands
   title: Command 命令

@@ -1,6 +1,6 @@
 ---
 title: GraphLoadData 画布数据获取
-order: 3
+order: 32
 group:
   path: /api/commands
   title: Command 命令

@@ -1,6 +1,6 @@
 ---
 title: AddNode 添加节点
-order: 20
+order: 11
 group:
   path: /api/commands
   title: Command 命令
@@ -11,9 +11,9 @@ nav:
   order: 1
 ---
 
-## 添加节点命令
+## 添加节点
 
-XFlow 提供节点添加的命令 `XFlowNodeCommands.NODE_ADD`, 通过该命令可以实现在画布中添加一个节点。
+XFlow 提供节点添加的命令 `XFlowNodeCommands.ADD_NODE`, 通过该命令可以实现在画布中添加一个节点。
 
 ### Command 示例
 

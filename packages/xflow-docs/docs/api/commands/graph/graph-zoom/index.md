@@ -1,6 +1,6 @@
 ---
 title: GraphZoom 画布缩放
-order: 2
+order: 39
 group:
   path: /api/commands
   title: Command 命令

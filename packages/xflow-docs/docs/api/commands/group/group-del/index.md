@@ -1,6 +1,6 @@
 ---
 title: DelGroup 删除群组
-order: 21
+order: 52
 group:
   path: /api/commands
   title: Command 命令
