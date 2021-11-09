@@ -18,10 +18,6 @@ import {
   FlowGraphExtension,
 } from '@antv/xflow'
 
-// ConfigFormPanel,
-// ToolbarPanel,
-// ContextMenuPanel,
-
 /** app 组件配置  */
 /** 配置画布 */
 import { useGraphConfig } from './config-graph'
