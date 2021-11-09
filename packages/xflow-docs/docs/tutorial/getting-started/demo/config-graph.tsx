@@ -1,6 +1,5 @@
 import React from 'react'
-import type { NsNodeCmd, NsGraph } from '@antv/xflow'
-import { createGraphConfig, XFlowNodeCommands } from '@antv/xflow'
+import { createGraphConfig } from '@antv/xflow'
 /** 自定义React节点/边 */
 import Node1 from './react-node/node1'
 import Node2 from './react-node/node2'
@@ -18,9 +17,11 @@ export const useGraphConfig = createGraphConfig(config => {
       max: 3,
     },
     /** 画布滚轮缩放 */
-    // mousewheel: {
-    //   enabled: true,
-    // },
+    mousewheel: {
+      enabled: true,
+      /** 将鼠标位置作为中心缩放 */
+      zoomAtMousePosition: true,
+    },
   })
 
   /** 预设XFlow画布需要渲染的React节点/边 */
@@ -28,21 +29,4 @@ export const useGraphConfig = createGraphConfig(config => {
   config.setNodeRender('NODE2', Node2)
   config.setEdgeRender('EDGE1', props => <Edge1 {...props} />)
   config.setEdgeRender('EDGE2', props => <Edge2 {...props} />)
-
-  /** 预设XFlow事件*/
-  config.setEvents([
-    {
-      eventName: 'node:click',
-      callback: (e, cmds, ctx) => {
-        /** 通过e?.node?.getData()可以获取节点的数据 */
-        const nodeData: NsGraph.INodeConfig = e?.node?.getData()
-        /** 通过cmds?.executeCommand()可以在点击节点后触发其他内置命令, 比如触发节点高亮命令 */
-        cmds.executeCommand(XFlowNodeCommands.HIGHLIGHT_NODE.id, {
-          nodeId: nodeData?.id,
-          stroke: '#00ff00',
-          strokeWidth: 3,
-        } as NsNodeCmd.HighlightNode.IArgs)
-      },
-    } as NsGraph.IEvent<'node:click'>,
-  ])
 })

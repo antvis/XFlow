@@ -27,7 +27,7 @@ $ yarn add @antv/xflow
 
 ```
 
-XFlow 是基于 X6 图编辑引擎、面向 React 技术栈用户的图编辑应用框架, 会默认安装 `@antv/x6`、`@antv/x6-react-shape`。
+XFlow 是基于 X6 图编辑引擎、面向 React 技术栈用户的应用级解决方案, 会默认安装 `@antv/x6`、`@antv/x6-react-shape`。
 
 XFlow 支持 AntV 旗下的常见布局算法, 与兄弟团队[G6 图布局](https://g6.antv.vision/zh/docs/api/graphLayout/guide)保持一致, 会默认安装 `@antv/layout`。
 
@@ -65,9 +65,12 @@ return (
     isAutoCenter={true}
   >
     <XFlowCanvas config={useGrapConfig()}>
+      {/** 工具栏 */}
       <CanvasScaleToolbar />
+      {/** 小地图  */}
       <CanvasMiniMap minimapOptions={{ width: 200, height: 120 }} />
-      <CanvasSnapline color="#690" />
+      {/** 对齐线 */}
+      <CanvasSnapline color="#1890ff" />
     </XFlowCanvas>
   </Xflow>
 )
@@ -75,7 +78,7 @@ return (
 
 ### Step2 预设相关配置
 
-然后, 我们需要预设画布全局配置项`graphConfig`, 该配置项决定了画布上的内容如何呈现。比如画布是否需要网格、画布的缩放等级、画布是否支持滚轮缩放等, 再比如画布上需要渲染哪种类型的 React 节点/连线, 再比如画布上需要支持哪些事件等。
+然后, 我们需要预设画布全局配置项`graphConfig`, 该配置项决定了画布上的内容如何呈现。比如画布是否需要网格、画布的缩放等级、画布是否支持滚轮缩放等, 再比如画布上需要渲染哪种类型的 React 节点/连线等。
 
 ```tsx | pure
 import { createGraphConfig } from '@antv/xflow'
@@ -87,29 +90,18 @@ export const useGraphConfig = createGraphConfig(config => {
   config.setX6Config({
     grid: true,
     scaling: { min: 0.2, max: 3 },
-    mousewheel: { enabled: true },
+    mousewheel: { enabled: true, zoomAtMousePosition: true },
   })
 
   /** 预设画布需要渲染的React节点、连线上的React内容 */
   config.setNodeRender('NODE1', props => <Node1 {...props} />)
   config.setEdgeRender('EDGE1', props => <Edge1 {...props} />)
-
-  /** 预设画布相关事件 */
-  config.setEvents([
-    {
-      eventName: 'node:click',
-      callback: (e, cmds, ctx) => {
-        /** 通过e?.node?.getData()可以获取节点的数据 */
-        const nodeData = e?.node?.getData()
-      },
-    },
-  ])
 })
 ```
 
 ### Step3 画布渲染等逻辑操作
 
-预设相关配置后, 我们就可以在`onLoad`里进行一些必要的业务逻辑操作，比如从服务端获取数据、执行布局算法、渲染画布内容等。
+预设相关配置后, 我们就可以在`onLoad`方法里进行一些必要的业务逻辑操作，比如从服务端获取数据、执行布局算法、渲染画布内容、监听画布相关事件等。
 
 ```tsx | pure
 /** XFlow初始化完成后的回调 */
@@ -146,12 +138,24 @@ const onLoad: IAppLoad = async app => {
   ]
   const graphData = { nodes, edges }
   setGraphData(graphData)
+
+  /** 监听画布事件 */
+  const graph = await app.getGraphInstance()
+  graph.on('node:click', ({ e, x, y, node, view }) => {
+    const nodeData: NsGraph.INodeConfig = node.getData()
+    message.success(`${nodeData.id}节点被点击了`)
+  })
+  graph .on('edge:click', ({ e, x, y, edge, view }) => {
+    edge.toFront()
+    const edgeData: NsGraph.IEdgeConfig = edge.getData()
+    message.success(`${edgeData.id}连线被点击了`)
+  })
 }
 ```
 
 到此，一个简单的图形应用已经具备雏形了。但 XFlow 的魅力远不止于此！如果您的应用还需要各种交互组件，XFlow 为您内置了若干交互组件，拿来即用，比如上面使用的 `CanvasScaleToolbar工具栏`，`CanvasMinimap小地图`，`CanvasSnapline对齐线`。
 
-另外 XFlow 真正强大之处在于: 1. 画布组件与交互组件的联动机制 2. XFlow 提供的扩展机制允许定制任意业务需要的交互组件。
+另外 XFlow 真正强大之处在于: 1. 画布组件与交互组件的联动机制 2. XFlow 提供的扩展机制允许定制任意业务需要的交互组件。您可以在后面的教程中详细了解。
 
 ## 更多
 
