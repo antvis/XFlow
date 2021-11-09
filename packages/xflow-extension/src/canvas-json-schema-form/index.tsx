@@ -13,3 +13,6 @@ export {
   FormItemWrapper,
   executeJsonSchemaFormCommand,
 }
+
+export type { IFromItemWrapperProps } from './schema-form'
+export type { IProps as IJsonSchemaFormProps } from './interface'

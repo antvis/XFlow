@@ -48,7 +48,7 @@ export const Demo: React.FC<IProps> = props => {
   const toolbarConfig = useToolbarConfig()
   const menuConfig = useMenuConfig()
   const cmdConfig = useCmdConfig()
-  const contextConfig = useModelServiceConfig()
+  const modelConfig = useModelServiceConfig()
   const keybindingConfig = useKeybindingConfig()
 
   const cache = React.useMemo<{ app: IApplication } | null>(
@@ -77,7 +77,7 @@ export const Demo: React.FC<IProps> = props => {
   return (
     <XFlow
       className="user-custom-clz"
-      contextConfig={contextConfig}
+      modelServiceConfig={modelConfig}
       commandConfig={cmdConfig}
       onLoad={onLoad}
       meta={meta}

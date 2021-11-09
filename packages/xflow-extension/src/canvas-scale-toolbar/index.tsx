@@ -21,4 +21,4 @@ const CanvasScaleToolbar: React.FC<IProps> = props => {
   )
 }
 
-export { CanvasScaleToolbar, CANVAS_SCALE_TOOLBAR_CONFIG }
+export { CanvasScaleToolbar, IProps as ICanvasScaleToolbarProps, CANVAS_SCALE_TOOLBAR_CONFIG }
