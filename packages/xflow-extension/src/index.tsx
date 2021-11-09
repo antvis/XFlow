@@ -1,33 +1,48 @@
 /** 对齐线 */
-export { CanvasSnapline } from './canvas-snapline'
+export { CanvasSnapline, ICanvasSnaplineProps } from './canvas-snapline'
 
 /** Port Tooltip */
 export { CanvasNodePortTooltip } from './canvas-node-port-tooltip'
 
 /** 画布 右键菜单 */
-export { CanvasContextMenu, createCtxMenuConfig } from './canvas-context-menu'
+export {
+  CanvasContextMenu,
+  ICanvasContextMenuProps,
+  createCtxMenuConfig,
+} from './canvas-context-menu'
 
 /** 画布 Scale Toolbar */
-export { CanvasScaleToolbar, CANVAS_SCALE_TOOLBAR_CONFIG } from './canvas-scale-toolbar'
+export {
+  CanvasScaleToolbar,
+  ICanvasScaleToolbarProps,
+  CANVAS_SCALE_TOOLBAR_CONFIG,
+} from './canvas-scale-toolbar'
 
 /** 画布 Toolbar */
-export { CanvasToolbar, createToolbarConfig } from './canvas-toolbar'
+export { CanvasToolbar, IToolbarProps, createToolbarConfig } from './canvas-toolbar'
 
 /** demo utils */
 export { FormBuilder, IFormSchema, randomInt } from './demo-utils'
 
 /** 画布 minimap */
-export { CanvasMiniMap } from './canvas-mini-map'
+export { CanvasMiniMap, ICanvasMiniMapProps } from './canvas-mini-map'
 
 /** 组件树 */
-export { NodeTreePanel, NsNodeTreePanelModel, NsNodeTreePanel } from './canvas-node-tree-panel'
+export {
+  NodeTreePanel,
+  NsNodeTreePanelModel,
+  INodeTreePanelProps,
+  NsNodeTreePanel,
+} from './canvas-node-tree-panel'
 
 /** JSON Schema Form */
 export {
+  JsonSchemaForm,
+  IJsonSchemaFormProps,
+  FormItemWrapper,
+  IFromItemWrapperProps,
   NsJsonSchemaForm,
   NsJsonSchemaFormModel,
-  JsonSchemaForm,
-  FormItemWrapper,
   executeJsonSchemaFormCommand,
 } from './canvas-json-schema-form'
 

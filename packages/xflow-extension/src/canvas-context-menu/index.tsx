@@ -10,6 +10,8 @@ export interface IProps {
   config: ContextMenuConfig
 }
 
+export { IProps as ICanvasContextMenuProps }
+
 export const CanvasContextMenu: React.FC<IProps> = props => {
   const xflow = useXFlowApp()
   const canRender = !!xflow

@@ -9,7 +9,7 @@ interface CalculatedData {
   initialValue: string | number | boolean
 }
 
-interface Props {
+export interface Props {
   schema: IControlSchema
   children: (data: CalculatedData) => React.ReactElement
 }

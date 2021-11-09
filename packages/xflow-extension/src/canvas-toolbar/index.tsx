@@ -36,3 +36,5 @@ export const createToolbarConfig =
 
     return toolbarConfig
   }
+
+export { IToolbarProps }
