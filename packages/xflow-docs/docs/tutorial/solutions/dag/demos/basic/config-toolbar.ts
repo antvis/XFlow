@@ -1,5 +1,7 @@
-import { createToolbarConfig, IToolbarItemOptions, XFlowGroupCommands, uuidv4 } from '@antv/xflow'
-import { XFlowGraphCommands, MODELS, IModelService, IconStore } from '@antv/xflow'
+import type { IToolbarItemOptions } from '@antv/xflow'
+import { createToolbarConfig, XFlowGroupCommands, uuidv4 } from '@antv/xflow'
+import type { IModelService } from '@antv/xflow'
+import { XFlowGraphCommands, MODELS, IconStore } from '@antv/xflow'
 import {
   UngroupOutlined,
   SaveOutlined,
@@ -10,8 +12,8 @@ import {
 } from '@ant-design/icons'
 import { MockApi } from './service'
 import { CustomCommands } from './cmd-extensions/constants'
-import { NsDeployDagCmd } from './cmd-extensions/cmd-deploy'
-import { NsGraphCmd, NsGroupCmd } from '@antv/xflow'
+import type { NsDeployDagCmd } from './cmd-extensions/cmd-deploy'
+import type { NsGraphCmd, NsGroupCmd } from '@antv/xflow'
 import { GROUP_NODE_RENDER_ID } from './constant'
 
 export namespace NSToolbarConfig {

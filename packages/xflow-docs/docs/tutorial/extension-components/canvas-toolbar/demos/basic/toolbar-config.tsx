@@ -1,8 +1,9 @@
-import { createToolbarConfig, IToolbarItemOptions } from '@antv/xflow'
+import type { IToolbarItemOptions } from '@antv/xflow'
+import { createToolbarConfig } from '@antv/xflow'
 import { XFlowGraphCommands, XFlowNodeCommands, IconStore } from '@antv/xflow'
 import { SaveOutlined, PlusCircleOutlined, DeleteOutlined } from '@ant-design/icons'
 import { message } from 'antd'
-import { NsGraphCmd, NsNodeCmd } from '@antv/xflow'
+import type { NsGraphCmd, NsNodeCmd } from '@antv/xflow'
 
 export namespace NSToolbarConfig {
   /** 注册icon 类型 */

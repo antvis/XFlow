@@ -1,8 +1,8 @@
 import { DND_RENDER_ID, NODE_WIDTH, NODE_HEIGHT } from './constant'
 import { uuidv4, NsGraph } from '@antv/xflow'
-import { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
-import { NsNodeCmd, NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
-import { NsDeployDagCmd } from './cmd-extensions/cmd-deploy'
+import type { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
+import type { NsNodeCmd, NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
+import type { NsDeployDagCmd } from './cmd-extensions/cmd-deploy'
 /** mock 后端接口调用 */
 export namespace MockApi {
   export const NODE_COMMON_PROPS = {

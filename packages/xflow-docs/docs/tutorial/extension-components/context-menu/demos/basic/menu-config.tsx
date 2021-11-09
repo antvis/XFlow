@@ -1,7 +1,9 @@
 import { createCtxMenuConfig } from '@antv/xflow-extension'
-import { NsNodeCmd, NsEdgeCmd } from '@antv/xflow'
-import { IMenuOptions, MenuItemType } from '@antv/xflow'
-import { IconStore, XFlowNodeCommands, XFlowEdgeCommands, NsGraph } from '@antv/xflow'
+import type { NsNodeCmd, NsEdgeCmd } from '@antv/xflow'
+import type { IMenuOptions } from '@antv/xflow'
+import { MenuItemType } from '@antv/xflow'
+import type { NsGraph } from '@antv/xflow'
+import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
 import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons'
 
 export const useMenuConfig = createCtxMenuConfig(config => {

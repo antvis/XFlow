@@ -1,5 +1,6 @@
 import React from 'react'
-import { createGraphConfig, XFlowNodeCommands, NsNodeCmd, NsGraph } from '@antv/xflow'
+import type { NsNodeCmd, NsGraph } from '@antv/xflow'
+import { createGraphConfig, XFlowNodeCommands } from '@antv/xflow'
 /** 自定义React节点/边 */
 import Node1 from './react-node/node1'
 import Node2 from './react-node/node2'

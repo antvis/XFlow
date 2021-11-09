@@ -1,14 +1,12 @@
 import React from 'react'
 import { inject, injectable } from 'mana-syringe'
-import { HookHub, ICmdHooks as IHooks, NsGraph, Deferred, IModelService } from '@antv/xflow'
-import { Modal, FormInstance, Form, Input, ConfigProvider } from 'antd'
+import type { HookHub, ICmdHooks as IHooks, NsGraph, IModelService } from '@antv/xflow'
+import { Deferred } from '@antv/xflow'
+import type { FormInstance } from 'antd'
+import { Modal, Form, Input, ConfigProvider } from 'antd'
 
-import {
-  IArgsBase,
-  ICommandHandler,
-  ICommandContextProvider,
-  IGraphCommandService,
-} from '@antv/xflow'
+import type { IArgsBase, ICommandHandler, IGraphCommandService } from '@antv/xflow'
+import { ICommandContextProvider } from '@antv/xflow'
 
 import { CustomCommands } from './constants'
 
@@ -154,7 +152,7 @@ function showModal(node: NsGraph.INodeConfig, getAppContext: IGetAppCtx) {
       modal.update({ okButtonProps: { loading: true } })
       await form.validateFields()
       const values = await form.getFieldsValue()
-      let newName: string = values.newNodeName
+      const newName: string = values.newNodeName
       /** 执行 backend service */
       if (updateNodeNameService) {
         const { err, nodeName } = await updateNodeNameService(newName, node, graphMeta)

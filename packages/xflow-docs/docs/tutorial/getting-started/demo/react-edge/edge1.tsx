@@ -1,10 +1,10 @@
 import React from 'react'
-import type { NsGraphConfig } from '@antv/xflow'
+import type { NsGraph } from '@antv/xflow'
 import { useAppContext } from '@antv/xflow'
 import { Tooltip } from 'antd'
 import './edge1.less'
 
-const Edge1: NsGraphConfig.IEdgeRender = props => {
+const Edge1: NsGraph.IEdgeRender = props => {
   const ctx = useAppContext()
   // console.log('edge useAppContext', ctx);
   // console.log('edge props:', props);

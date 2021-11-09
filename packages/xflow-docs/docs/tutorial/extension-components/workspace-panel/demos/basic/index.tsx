@@ -18,10 +18,7 @@ const XFlowDemo: React.FC<IDemoProps> = props => {
   const graphConfig = useGraphConfig(props)
   return (
     <XFlow onLoad={onLoad} className="xflow-workspace">
-      <XFlowCanvas
-        config={graphConfig}
-        position={{ top: 0, bottom: 0, left: 290, right: 0 }}
-      ></XFlowCanvas>
+      <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 290, right: 0 }} />
       <CustomPanel position={{ top: 0, bottom: 0, left: 0, width: 290 }} />
     </XFlow>
   )

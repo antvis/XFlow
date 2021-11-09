@@ -1,8 +1,8 @@
 import { DND_RENDER_ID, NODE_WIDTH, NODE_HEIGHT } from './constant'
 import { uuidv4, NsGraph } from '@antv/xflow'
-import { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
-import { NsNodeCmd, NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
-import { NsDeployDagCmd } from './cmd-extensions/cmd-deploy'
+import type { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
+import type { NsNodeCmd, NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
+
 /** mock 后端接口调用 */
 export namespace MockApi {
   export const NODE_COMMON_PROPS = {
@@ -14,7 +14,7 @@ export namespace MockApi {
   /** 查图的meta元信息 */
   export const queryGraphMeta: NsGraphCmd.GraphMeta.IArgs['graphMetaService'] = async args => {
     console.log('queryMeta', args)
-    return { ...args, flowId: args.flowId }
+    return { ...args, flowId: args.meta.flowId }
   }
   /** 加载图数据的api */
   export const loadGraphData = async (meta: NsGraph.IGraphMeta) => {
@@ -138,17 +138,6 @@ export namespace MockApi {
     graphData: NsGraph.IGraphData,
   ) => {
     console.log('saveGraphData api', meta, graphData)
-    return {
-      success: true,
-      data: graphData,
-    }
-  }
-  /** 部署图数据的api */
-  export const deployDagService: NsDeployDagCmd.IDeployDagService = async (
-    meta: NsGraph.IGraphMeta,
-    graphData: NsGraph.IGraphData,
-  ) => {
-    console.log('deployService api', meta, graphData)
     return {
       success: true,
       data: graphData,

@@ -24,6 +24,9 @@
     "deploy": "npm run docs:build && npm run docs:deploy",
     "prepublishOnly": "npm run build:lib",
     "release": "npm run build && npm publish",
+    "lint": "eslint --no-error-on-unmatched-pattern=true  \"{docs,test}/**/*.{ts,tsx}\" && prettier ./docs --check ",
+    "lint:fix": "eslint  \"{docs,test}/**/*.{ts,tsx}\"  --fix   ",
+    "lint:clean": "rimraf .eslintcache",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
   },
   "publishConfig": {
@@ -35,8 +38,8 @@
     "lodash": "^4.17.20"
   },
   "dependencies": {
-    "@antv/xflow": "0.0.1-alpha.2",
-    "@antv/gatsby-theme-antv": "^1.1.8"
+    "@antv/gatsby-theme-antv": "^1.1.8",
+    "@antv/xflow": "0.0.1-alpha.2"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.6.0",
@@ -47,6 +50,7 @@
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.5.0",
     "@types/jest": "^25.2.1",
+    "@umijs/fabric": "^2.8.1",
     "antd": "^4.6.3",
     "babel-plugin-import": "^1.13.3",
     "dumi": "^1.0.14",

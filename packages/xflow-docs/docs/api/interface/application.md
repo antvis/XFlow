@@ -11,7 +11,7 @@ nav:
   order: 1
 ---
 
-## FrontendApplication
+## IApplication
 
 ```tsx | pure
 /** 如何引用？ */

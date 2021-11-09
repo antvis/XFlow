@@ -1,4 +1,5 @@
-import { NsNodeTreePanel, XFlowConstants } from '@antv/xflow'
+import type { NsNodeTreePanel } from '@antv/xflow'
+import { XFlowConstants } from '@antv/xflow'
 import * as commandUtils from './comannd-utils'
 
 export const DND_RENDER_ID = 'DND_RENDER_ID'

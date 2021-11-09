@@ -74,7 +74,7 @@ export interface ITreeNode {
   /**
    * Dnd节点的popover的提示内容
    */
-  readonly popoverContent: React.ReactNode
+  readonly popoverContent?: React.ReactNode
   /**
    * 【内部渲染用】文件夹的标识.
    */

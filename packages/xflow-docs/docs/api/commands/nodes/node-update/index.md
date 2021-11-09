@@ -37,7 +37,7 @@ app.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
     width: 120,
     height: 60,
     /** 用户自定义字段, 一般是业务数据 */
-    info: 'Hello World New',
+    label: 'Hello World New',
   },
 } as NsNodeCmd.UpdateNode.IArgs)
 ```
@@ -51,7 +51,7 @@ export const useGraphConfig = createGraphConfig(graphConfig => {
   graphConfig.setX6Config({ grid: true })
   graphConfig.setDefaultNodeRender(props => {
     /** 节点数据更新时, React节点会拿到最新的数据, 并重新渲染 */
-    return <div className="react-node"> {props.data.info} </div>
+    return <div className="react-node"> {props.data.label} </div>
   })
 })
 ```
@@ -61,7 +61,7 @@ export const useGraphConfig = createGraphConfig(graphConfig => {
 |              名称 |                类型 | 必选 |    默认值 | 描述                       |
 | ----------------: | ------------------: | ---: | --------: | -------------------------- |
 |        nodeConfig | NsGraph.INodeConfig |    ✓ | undefined | 节点数据                   |
-| updateNodeService |            Function |      | undefined | 与服务端做交互更新节点信息 |
+| updateNodeService |  IUpdateNodeService |      | undefined | 与服务端做交互更新节点信息 |
 
 #### nodeConfig (必选)
 
@@ -72,5 +72,7 @@ export const useGraphConfig = createGraphConfig(graphConfig => {
 与服务端做交互请求, 用户更新节点信息。请求成功后, 才实际生效到画布中。如果需要使用该功能, 你只需要把服务请求方法传进去, 返回 NsGraph.INodeConfig 新数据即可。
 
 ```tsx | pure
-(args: IArgs): Promise<NsGraph.INodeConfig>
+interface IUpdateNodeService {
+  (args: IArgs): Promise<NsGraph.INodeConfig>
+}
 ```

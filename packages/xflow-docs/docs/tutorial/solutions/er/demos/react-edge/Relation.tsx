@@ -1,6 +1,6 @@
 import React from 'react'
-import { NsGraph } from '@antv/xflow-core'
-import { RelationCanvasModel } from '../interface'
+import type { NsGraph } from '@antv/xflow-core'
+import type { RelationCanvasModel } from '../interface'
 import { Popover, Popconfirm, Tooltip } from 'antd'
 import { ScissorOutlined } from '@ant-design/icons'
 import _ from 'lodash'

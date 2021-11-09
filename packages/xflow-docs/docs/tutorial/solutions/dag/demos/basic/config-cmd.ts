@@ -1,6 +1,7 @@
-import { createCmdConfig, DisposableCollection, NsGraphCmd, XFlowGraphCommands } from '@antv/xflow'
-import { IApplication } from '@antv/xflow'
-import { IGraphPipelineCommand } from '@antv/xflow'
+import type { NsGraphCmd } from '@antv/xflow'
+import { createCmdConfig, DisposableCollection, XFlowGraphCommands } from '@antv/xflow'
+import type { IApplication } from '@antv/xflow'
+import type { IGraphPipelineCommand } from '@antv/xflow'
 import { MockApi } from './service'
 import { commandContributions } from './cmd-extensions'
 export const useCmdConfig = createCmdConfig(config => {

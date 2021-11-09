@@ -1,6 +1,6 @@
-import { NsGraphCmd, useXFlowApp, MODELS, XFlowGraphCommands } from '@antv/xflow'
+import { useXFlowApp, MODELS, XFlowGraphCommands } from '@antv/xflow'
 import { FormItemWrapper } from '@antv/xflow-extension'
-import type { NsJsonSchemaForm } from '@antv/xflow'
+import type { NsJsonSchemaForm, NsGraphCmd } from '@antv/xflow'
 import { Form, Input } from 'antd'
 import React from 'react'
 

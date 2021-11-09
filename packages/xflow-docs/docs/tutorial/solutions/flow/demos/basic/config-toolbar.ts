@@ -1,5 +1,5 @@
-import { IconStore, createToolbarConfig, IToolbarGroupOptions } from '@antv/xflow'
-
+import type { IToolbarGroupOptions } from '@antv/xflow'
+import { IconStore, createToolbarConfig } from '@antv/xflow'
 import { SaveOutlined, ClearOutlined } from '@ant-design/icons'
 import { CustomCommands } from './cmd-extensions/constants'
 

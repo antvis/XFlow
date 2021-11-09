@@ -1,4 +1,5 @@
-import { createGraphConfig, NsGraph } from '@antv/xflow'
+import type { NsGraph } from '@antv/xflow'
+import { createGraphConfig } from '@antv/xflow'
 import { DndNode } from './react-node/dnd-node'
 import { DND_RENDER_ID } from './constant'
 

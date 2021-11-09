@@ -3,7 +3,8 @@
  * desc: 选中节点时会触发自定义渲染替换ToolbarItem
  */
 import React from 'react'
-import { IAppLoad, NsNodeCmd, XFlowNodeCommands } from '@antv/xflow'
+import type { IAppLoad, NsNodeCmd } from '@antv/xflow'
+import { XFlowNodeCommands } from '@antv/xflow'
 import { XFlow, createGraphConfig, XFlowCanvas, CanvasToolbar } from '@antv/xflow'
 import { useToolbarConfig } from './toolbar-config'
 import './index.less'

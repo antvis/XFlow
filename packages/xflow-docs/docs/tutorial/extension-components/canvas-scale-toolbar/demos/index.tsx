@@ -3,7 +3,8 @@
  * desc: CanvasScaleToolbar组件的使用，只需要配置下position属性
  */
 import React from 'react'
-import { IAppLoad, NsGraphCmd, XFlowGraphCommands } from '@antv/xflow'
+import type { IAppLoad, NsGraphCmd } from '@antv/xflow'
+import { XFlowGraphCommands } from '@antv/xflow'
 import { XFlow, createGraphConfig, XFlowCanvas, CanvasScaleToolbar } from '@antv/xflow'
 import { getGraphData } from './mock'
 import './index.less'

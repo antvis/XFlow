@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Form, Input, Select } from 'antd'
-import { FormInstance } from 'antd/es/form'
-import { EntityCanvasModel } from '../interface'
+import type { EntityCanvasModel } from '../interface'
 
 const formItemLayout = {
   labelCol: {
@@ -25,9 +24,6 @@ interface Props {
 const CreateRelationModal = (props: Props) => {
   const { visible, sourceEntity, targetEntity, onOk, onCancel } = props
   const [confirmLoading, setConfirmLoading] = useState<boolean>(false)
-
-  // const formRef = React.createRef<FormInstance>();
-
   const [form] = Form.useForm()
 
   const handleOK = () => {

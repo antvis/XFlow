@@ -13,17 +13,18 @@ nav:
 
 ## NsGraph namespace
 
-|                                              名称 |                                                                                          说明 |
-| ------------------------------------------------: | --------------------------------------------------------------------------------------------: |
-|       [NsGraph](/api/interface#nsgraph-namespace) |                                                                       XFlow 的 基础 namespace |
-|   [NsGraph.IGraphMeta](/api/interface#igraphmeta) | Graph 元数据 <br> 除了图的 Id 之外，可能包括这些业务属性：画布名称/创建时间/更新时间/用户权限 |
-|   [NsGraph.IGraphData](/api/interface#igraphmeta) |                                                                            图数据包括节点和边 |
-| [NsGraph.INodeConfig](/api/interface#inodeconfig) |                                                                                  节点配置类型 |
-| [NsGraph.IEdgeConfig](/api/interface#iedgeconfig) |                                                                                  边的配置类型 |
-| [NsGraph.INodeAnchor](/api/interface#inoderender) |                                                                                节点的锚点配置 |
-|           [NsGraph.IEvent](/api/interface#ievent) |                                                                                Graph 事件配置 |
-| [NsGraph.INodeRender](/api/interface#inoderender) |                                                                                ReactNode 组件 |
-| [NsGraph.IEdgeRender](/api/interface#iedgerender) |                                                                               ReactLabel 组件 |
+|                                                名称 |                                                                                          说明 |
+| --------------------------------------------------: | --------------------------------------------------------------------------------------------: |
+|         [NsGraph](/api/interface#nsgraph-namespace) |                                                                       XFlow 的 基础 namespace |
+|     [NsGraph.IGraphMeta](/api/interface#igraphmeta) | Graph 元数据 <br> 除了图的 Id 之外，可能包括这些业务属性：画布名称/创建时间/更新时间/用户权限 |
+|     [NsGraph.IGraphData](/api/interface#igraphmeta) |                                                                            图数据包括节点和边 |
+|   [NsGraph.INodeConfig](/api/interface#inodeconfig) |                                                                                  节点配置类型 |
+|   [NsGraph.IEdgeConfig](/api/interface#iedgeconfig) |                                                                                  边的配置类型 |
+|   [NsGraph.INodeAnchor](/api/interface#inoderender) |                                                                                节点的锚点配置 |
+| [NsGraph.IGroupConfig](/api/interface#IGroupConfig) |                                                                                  群组节点配置 |
+|             [NsGraph.IEvent](/api/interface#ievent) |                                                                                Graph 事件配置 |
+|   [NsGraph.INodeRender](/api/interface#inoderender) |                                                                                ReactNode 组件 |
+|   [NsGraph.IEdgeRender](/api/interface#iedgerender) |                                                                               ReactLabel 组件 |
 
 ```tsx | pure
 /** 如何引入？ */
@@ -43,6 +44,11 @@ export namespace NsGraph {
 
   /** 节点配置 */
   export interface INodeConfig {
+    // ...
+  }
+
+  /** 群组节点配置 */
+  export interface IGroupConfig {
     // ...
   }
 
@@ -103,7 +109,7 @@ export interface IGraphData {
 
 ```tsx | pure
 /** 边数据 */
-export interface INodeConfig {
+export interface INodeConfig extends IGroupConfig {
   /** 节点的唯一标识 */
   id: string
   /** 节点在画布的位置: x */
@@ -120,6 +126,28 @@ export interface INodeConfig {
   renderKey?: string
   /** 用户自定义字段 */
   [key: string]: any
+}
+```
+
+## IGroupConfig
+
+群组节点配置类型
+
+```tsx | pure
+/** 群组节点信息 */
+export interface IGroupConfig {
+  /** 是否折叠 */
+  isCollapsed?: boolean
+  /** group 折叠后的大小 */
+  groupCollapsedSize?: { width: number; height: number }
+  /** group 未折叠的大小 */
+  groupChildrenSize?: { width: number; height: number }
+  /** 子节点元素集合 */
+  groupChildren?: string[]
+  /** group Header */
+  groupHeaderHeight?: number
+  /** group 内边距 */
+  groupPadding?: number
 }
 ```
 

@@ -36,7 +36,7 @@ export namespace NsUpdateNode {
   }
 
   export const NODE_WIDTH = 200
-  export const NODE_HEIGHT = 50
+  export const NODE_HEIGHT = 40
 }
 
 @injectable({

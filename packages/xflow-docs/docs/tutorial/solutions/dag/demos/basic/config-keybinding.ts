@@ -1,11 +1,9 @@
+import type { NsNodeCmd, NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
 import {
   createKeybindingConfig,
   XFlowNodeCommands,
   XFlowEdgeCommands,
-  NsNodeCmd,
-  NsEdgeCmd,
   MODELS,
-  NsGraphCmd,
   XFlowGraphCommands,
 } from '@antv/xflow'
 

@@ -1,72 +1,54 @@
 import React from 'react'
-import { Card, Form, Input, message } from 'antd'
-import { usePanelContext, WorkspacePanel, randomInt, FormBuilder, IFormSchema } from '@antv/xflow'
-import { NsGraph, NsNodeCmd, XFlowNodeCommands } from '@antv/xflow'
+import { Card, Form, Input, message, Button } from 'antd'
+import type { IFormSchema } from '@antv/xflow'
+import { useXFlowApp, WorkspacePanel, FormBuilder, uuidv4, delay } from '@antv/xflow'
+import type { NsGroupCmd } from '@antv/xflow'
+import { XFlowGroupCommands } from '@antv/xflow'
 
-export const width = 100
-export const height = 40
-
-interface IFormValues extends NsGraph.INodeConfig {}
+interface IFormValues {
+  id: string
+}
 
 const formItems: IFormSchema[] = [
   {
     name: 'id',
     label: 'id',
     rules: [{ required: true }],
-    render: Input,
-  },
-  {
-    name: 'label',
-    label: 'label',
-    rules: [{ required: true }],
-    render: Input,
-  },
-  {
-    name: 'x',
-    label: 'x',
-    render: Input,
-  },
-  {
-    name: 'y',
-    label: 'y',
-    render: Input,
-  },
-  {
-    name: 'width',
-    label: 'width',
-    render: Input,
-  },
-  {
-    name: 'height',
-    label: 'height',
+    renderProps: { disabled: true },
     render: Input,
   },
 ]
 
-let nodeId = 1
-
 export const CmdForm = () => {
-  const { commands } = usePanelContext()
+  const app = useXFlowApp()
   const [form] = Form.useForm<IFormValues>()
-
+  const [hasGroup, setGroup] = React.useState(false)
   React.useEffect(() => {
-    nodeId = 1
-  }, [])
-
+    const setFormValue = async () => {
+      await delay(1000)
+      const graph = await app.getGraphInstance()
+      const nodes = graph.getCells().filter(c => c.getProp('isGroup'))
+      console.log(nodes, graph.getCells())
+      if (nodes[0]) {
+        form.setFieldsValue({ id: nodes[0].id })
+      }
+    }
+    setFormValue()
+  }, [app, form])
   const onFinish = async (values: IFormValues) => {
-    commands.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
-      nodeConfig: values,
-    })
-    nodeId += 1
-    form.setFieldsValue({
-      id: 'node_' + nodeId,
-      x: randomInt(20, 600),
-      y: randomInt(50, 270),
-      width,
-      height,
-      label: 'Node_' + nodeId,
-    })
-    message.success(`${XFlowNodeCommands.ADD_NODE.label}: 命令执行成功`)
+    const nodeConfig = {
+      ...values,
+    }
+    setGroup(true)
+    console.log(nodeConfig)
+    await app.commandService.executeCommand<NsGroupCmd.DelGroup.IArgs>(
+      XFlowGroupCommands.DEL_GROUP.id,
+      {
+        nodeConfig: nodeConfig,
+      },
+    )
+
+    message.success(`${XFlowGroupCommands.DEL_GROUP.label}: 命令执行成功`)
   }
 
   return (
@@ -75,13 +57,13 @@ export const CmdForm = () => {
       formItems={formItems}
       onFinish={onFinish}
       initialValues={{
-        id: 'node_' + nodeId,
-        x: randomInt(20, 100),
-        y: randomInt(50, 150),
-        width,
-        height,
-        label: 'Node_' + nodeId,
+        id: null,
       }}
+      submitButton={
+        <Button type="primary" htmlType="submit" style={{ width: '100%' }} disabled={hasGroup}>
+          执行命令
+        </Button>
+      }
     />
   )
 }
@@ -89,7 +71,7 @@ export const CmdForm = () => {
 export const FormPanel = () => {
   return (
     <WorkspacePanel position={{ top: 0, left: 0, bottom: 0, width: 230 }} className="panel">
-      <Card title="NodeConfig Options" size="small" bordered={false}>
+      <Card title="Group Options" size="small" bordered={false}>
         <CmdForm />
       </Card>
     </WorkspacePanel>

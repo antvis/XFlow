@@ -1,12 +1,13 @@
 import React from 'react'
 import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons'
-import { NsGraph, useXFlowApp, XFlowGroupCommands, NsNodeCmd } from '@antv/xflow'
+import type { NsGraph } from '@antv/xflow'
+import { useXFlowApp, XFlowGroupCommands, NsNodeCmd } from '@antv/xflow'
 import './group.less'
 
 export const GroupNode: NsGraph.INodeRender = props => {
   const { cell } = props
   const app = useXFlowApp()
-  const isCollapse = cell.getProp('isCollapsed') || false
+  const isCollapsed = props.data.isCollapsed || false
   const onExpand = e => {
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
@@ -28,8 +29,8 @@ export const GroupNode: NsGraph.INodeRender = props => {
       <div className="xflow-group-header">
         <div className="header-left">{props.data.label}</div>
         <div className="header-right">
-          {isCollapse && <PlusSquareOutlined onClick={onExpand} />}
-          {!isCollapse && <MinusSquareOutlined onClick={onCollapse} />}
+          {isCollapsed && <PlusSquareOutlined onClick={onExpand} />}
+          {!isCollapsed && <MinusSquareOutlined onClick={onCollapse} />}
         </div>
       </div>
     </div>

@@ -3,5 +3,5 @@
   "compilerOptions": {
     "rootDirs": ["./src", "./dcos"]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "docs/**/*"]
 }

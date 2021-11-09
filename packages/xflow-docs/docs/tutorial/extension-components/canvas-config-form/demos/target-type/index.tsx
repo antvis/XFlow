@@ -147,10 +147,7 @@ const XFlowDemo: React.FC<IDemoProps> = props => {
 
   return (
     <XFlow onLoad={onLoad} className="xflow-workspace">
-      <XFlowCanvas
-        config={graphConfig}
-        position={{ top: 0, bottom: 0, left: 0, right: 290 }}
-      ></XFlowCanvas>
+      <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 0, right: 290 }} />
       <JsonSchemaForm
         targetType={['node', 'edge', 'canvas']}
         formSchemaService={NsJsonForm.formSchemaService}

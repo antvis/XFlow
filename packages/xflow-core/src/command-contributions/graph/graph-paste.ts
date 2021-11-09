@@ -132,7 +132,10 @@ export class GraphPasteSelectionCommand implements ICommand {
               NsGroupCmd.AddGroup.IArgs,
               NsGroupCmd.AddGroup.IResult
             >(XFlowGroupCommands.ADD_GROUP.id, {
-              nodeConfig: this.updateNodeCopiedProps(position, groupNodeConfig),
+              nodeConfig: this.updateNodeCopiedProps(
+                position,
+                groupNodeConfig,
+              ) as NsGraph.IGroupConfig,
             })
           }),
         )

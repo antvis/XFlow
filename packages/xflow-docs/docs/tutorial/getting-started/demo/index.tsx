@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 /** 图核心组件 & 类型定义 */
-import { XFlow, XFlowCanvas, IAppLoad, NsGraph } from '@antv/xflow'
+import type { IAppLoad, NsGraph } from '@antv/xflow'
+import { XFlow, XFlowCanvas } from '@antv/xflow'
 /** 图的配置项 */
 import { useGraphConfig } from './config-graph'
 /** 右键菜单栏 */

@@ -1,6 +1,7 @@
+import type { IAppLoad } from '@antv/xflow'
+import type { NsGraph, IGraphPipelineCommand, NsGraphCmd } from '@antv/xflow'
 import React from 'react'
-import { XFlow, XFlowCanvas, createGraphConfig, XFlowGraphCommands, IAppLoad } from '@antv/xflow'
-import { NsGraph, IGraphPipelineCommand, NsGraphCmd } from '@antv/xflow'
+import { XFlow, XFlowCanvas, createGraphConfig, XFlowGraphCommands } from '@antv/xflow'
 import './index.less'
 
 /** graphConfig hook */

@@ -1,6 +1,7 @@
-import { createCmdConfig, DisposableCollection, NsGraphCmd, XFlowGraphCommands } from '@antv/xflow'
-import { FrontendApplication } from '@antv/xflow'
-import { IGraphPipelineCommand } from '@antv/xflow'
+import type { NsGraphCmd } from '@antv/xflow'
+import type { IApplication } from '@antv/xflow'
+import type { IGraphPipelineCommand } from '@antv/xflow'
+import { createCmdConfig, DisposableCollection, XFlowGraphCommands } from '@antv/xflow'
 import { MockApi } from './service'
 import { commandContributions } from './cmd-extensions'
 export const useCmdConfig = createCmdConfig(config => {
@@ -55,7 +56,7 @@ export const useCmdConfig = createCmdConfig(config => {
 })
 
 /** 查询图的节点和边的数据 */
-export const initGraphCmds = (app: FrontendApplication) => {
+export const initGraphCmds = (app: IApplication) => {
   app.executeCommandPipeline([
     /** 1. 从服务端获取数据 */
     {

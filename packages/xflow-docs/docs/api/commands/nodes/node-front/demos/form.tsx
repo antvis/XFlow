@@ -1,72 +1,38 @@
 import React from 'react'
 import { Card, Form, Input, message } from 'antd'
-import { usePanelContext, WorkspacePanel, randomInt, FormBuilder, IFormSchema } from '@antv/xflow'
-import { NsGraph, NsNodeCmd, XFlowNodeCommands } from '@antv/xflow'
+import type { IFormSchema } from '@antv/xflow'
+import { usePanelContext, WorkspacePanel, FormBuilder } from '@antv/xflow'
+import type { NsNodeCmd } from '@antv/xflow'
+import { XFlowNodeCommands } from '@antv/xflow'
 
-export const width = 100
-export const height = 40
-
-interface IFormValues extends NsGraph.INodeConfig {}
+interface IFormValues {
+  nodeId: string
+}
 
 const formItems: IFormSchema[] = [
   {
-    name: 'id',
-    label: 'id',
+    name: 'nodeId',
+    label: 'nodeId',
     rules: [{ required: true }],
     render: Input,
-  },
-  {
-    name: 'label',
-    label: 'label',
-    rules: [{ required: true }],
-    render: Input,
-  },
-  {
-    name: 'x',
-    label: 'x',
-    render: Input,
-  },
-  {
-    name: 'y',
-    label: 'y',
-    render: Input,
-  },
-  {
-    name: 'width',
-    label: 'width',
-    render: Input,
-  },
-  {
-    name: 'height',
-    label: 'height',
-    render: Input,
+    renderProps: { disabled: true },
   },
 ]
-
-let nodeId = 1
 
 export const CmdForm = () => {
   const { commandService } = usePanelContext()
   const [form] = Form.useForm<IFormValues>()
 
-  React.useEffect(() => {
-    nodeId = 1
-  }, [])
-
   const onFinish = async (values: IFormValues) => {
-    commandService.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
-      nodeConfig: values,
-    })
-    nodeId += 1
+    commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(
+      XFlowNodeCommands.FRONT_NODE.id,
+      values,
+    )
+    console.log('executeCommand with args', values)
+    message.success(`${XFlowNodeCommands.FRONT_NODE.label}: 命令执行成功`)
     form.setFieldsValue({
-      id: 'node_' + nodeId,
-      x: randomInt(20, 600),
-      y: randomInt(50, 270),
-      width,
-      height,
-      label: 'Node_' + nodeId,
+      nodeId: values.nodeId === 'node1' ? 'node2' : 'node1',
     })
-    message.success(`${XFlowNodeCommands.ADD_NODE.label}: 命令执行成功`)
   }
 
   return (
@@ -75,12 +41,7 @@ export const CmdForm = () => {
       formItems={formItems}
       onFinish={onFinish}
       initialValues={{
-        id: 'node_' + nodeId,
-        x: randomInt(20, 100),
-        y: randomInt(50, 150),
-        width,
-        height,
-        label: 'Node_' + nodeId,
+        nodeId: 'node1',
       }}
     />
   )

@@ -1,6 +1,5 @@
 module.exports = {
-  extends: '@umijs/fabric/dist/eslint',
-  files: ['*.ts', '*.tsx'],
+  extends: [require.resolve('../../.eslintrc.js')],
   parserOptions: {
     tsconfigRootDirs: ['./src', './docs'],
     project: 'tsconfig.json',

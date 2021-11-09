@@ -1,4 +1,4 @@
-import { EntityProperty, EntityCanvasModel, RelationCanvasModel } from './interface'
+import type { EntityProperty, EntityCanvasModel, RelationCanvasModel } from './interface'
 
 export const mockProperties: EntityProperty[] = [
   {

@@ -17,7 +17,7 @@ import {
 } from '@antv/xflow'
 import { getGraphData } from './mock'
 import './index.less'
-import { Node, Edge } from '@antv/x6'
+import type { Node, Edge } from '@antv/x6'
 
 /**  Demo Props  */
 export interface IDemoProps {

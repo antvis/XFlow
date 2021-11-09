@@ -1,4 +1,4 @@
-import { NsGraph } from '@antv/xflow'
+import type { NsGraph } from '@antv/xflow'
 
 /** 实体数据模型 */
 export interface EntityModel {
@@ -30,4 +30,4 @@ export interface EntityProperty {
 export interface EntityCanvasModel extends EntityModel, NsGraph.INodeConfig {}
 
 /** 画布连线渲染模型 */
-export interface RelationCanvasModel extends NsGraph.IEdgeConfig {}
+export type RelationCanvasModel = NsGraph.IEdgeConfig

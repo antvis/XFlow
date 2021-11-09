@@ -1,9 +1,9 @@
-import { createCtxMenuConfig, MenuItemType } from '@antv/xflow'
 import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, NsGraph } from '@antv/xflow'
+import type { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
+import { createCtxMenuConfig, MenuItemType } from '@antv/xflow'
 import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
 import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons'
 import { CustomCommands } from './cmd-extensions/constants'
-import { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
 import { MockApi } from './service'
 
 /** menuitem 配置 */

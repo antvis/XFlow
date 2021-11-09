@@ -1,9 +1,10 @@
 import React from 'react'
 import type { IAppLoad, NsNodeCmd } from '@antv/xflow'
 import { XFlow, createGraphConfig, XFlowCanvas, XFlowNodeCommands } from '@antv/xflow'
-import { FormPanel, width, height } from './form'
+import { FormPanel } from './form'
 import './index.less'
-
+export const width = 120
+export const height = 40
 /**  graphConfig hook  */
 export const useGraphConfig = createGraphConfig(graphConfig => {
   graphConfig.setX6Config({ grid: true })
@@ -15,13 +16,32 @@ export const useGraphConfig = createGraphConfig(graphConfig => {
 const NodeAddDemo: React.FC<{}> = () => {
   const graphConfig = useGraphConfig()
   const onLoad: IAppLoad = async app => {
-    // 在appReadyCallback中可以通过app执行command
     app.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
       nodeConfig: {
         id: 'node1',
         x: 100,
         y: 30,
-        label: 'Hello World',
+        label: 'Hello World 1',
+        width,
+        height,
+      },
+    })
+    app.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
+      nodeConfig: {
+        id: 'node2',
+        x: 50,
+        y: 150,
+        label: 'Hello World 2',
+        width,
+        height,
+      },
+    })
+    app.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
+      nodeConfig: {
+        id: 'node3',
+        x: 200,
+        y: 150,
+        label: 'Hello World 3',
         width,
         height,
       },
@@ -30,7 +50,7 @@ const NodeAddDemo: React.FC<{}> = () => {
   }
 
   return (
-    <XFlow meta={{ flowId: 'add-node-demo' }} onLoad={onLoad} className="xflow-workspace">
+    <XFlow onLoad={onLoad} className="xflow-workspace">
       <FormPanel />
       <XFlowCanvas
         className="app-main-content"

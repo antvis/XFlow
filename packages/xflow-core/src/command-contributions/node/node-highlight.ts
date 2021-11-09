@@ -24,7 +24,6 @@ export namespace NsHighlightNode {
     stroke: string
     /** 节点高亮边框宽度 */
     strokeWidth?: number
-
     /** 是否联动高亮节点的关联边 */
     isHighlightRelatedLines?: boolean
     /** 边高亮颜色 */
@@ -32,7 +31,9 @@ export namespace NsHighlightNode {
     /** 边高亮宽度 */
     edgeStrokeWidth?: number
   }
-  export interface IResult {}
+  export interface IResult {
+    err: string | null
+  }
   export interface ICmdHooks extends IHooks {
     highlightNode: HookHub<IArgs, IResult>
   }
@@ -64,6 +65,7 @@ export class HighlightNodeCommand implements ICommand {
         const x6Node = x6Graph?.getCellById(nodeId) as X6Node
         if (!x6Node) {
           console.error(nodeId, 'this nodeId is not exist')
+          return { err: 'this nodeId is not exist' }
         } else {
           /** 高亮节点 */
           x6Node?.setAttrs({
@@ -86,7 +88,7 @@ export class HighlightNodeCommand implements ICommand {
             })
           }
         }
-        return {}
+        return { err: null }
       },
       runtimeHook,
     )

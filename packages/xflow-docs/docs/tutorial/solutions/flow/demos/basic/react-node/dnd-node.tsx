@@ -1,8 +1,8 @@
 import React from 'react'
-import { NsGraphConfig } from '@antv/xflow'
+import type { NsGraph } from '@antv/xflow'
 import './dnd-node.less'
 
-export const DndNode: NsGraphConfig.INodeRender = props => {
+export const DndNode: NsGraph.INodeRender = props => {
   const { label, des } = props.data
   return (
     <div className="xflow-flow-node">

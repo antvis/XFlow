@@ -1,4 +1,5 @@
-import { createModelServiceConfig, Disposable, IModelService } from '@antv/xflow'
+import type { IModelService } from '@antv/xflow'
+import { createModelServiceConfig, Disposable } from '@antv/xflow'
 
 export namespace NS_LOADING_STATE {
   export const id = 'test'

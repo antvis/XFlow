@@ -12,7 +12,9 @@ export namespace NsSelectNode {
   export const hookKey = 'selectNode'
 
   export interface IArgs extends IArgsBase {
+    /** 选中的节点id */
     nodeIds: string[]
+    /** 取消所有节点的选中状态 */
     resetSelection?: boolean
   }
 

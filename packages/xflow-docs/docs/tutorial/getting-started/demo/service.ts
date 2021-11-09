@@ -1,4 +1,5 @@
-import { uuidv4, NsGraph, NsNodeCmd, NsEdgeCmd } from '@antv/xflow'
+import type { NsNodeCmd, NsEdgeCmd } from '@antv/xflow'
+import { uuidv4, NsGraph } from '@antv/xflow'
 
 export namespace MockGraphApi {
   /** 查图的meta元信息 */

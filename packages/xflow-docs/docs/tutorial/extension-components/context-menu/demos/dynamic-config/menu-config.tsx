@@ -1,7 +1,7 @@
-import type { NsNodeCmd, NsEdgeCmd, IMenuOptions } from '@antv/xflow'
-import { createCtxMenuConfig, MenuItemType, MODELS } from '@antv/xflow'
+import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, MODELS, NsGraph } from '@antv/xflow'
+import { createCtxMenuConfig, MenuItemType } from '@antv/xflow'
 import {} from '@antv/xflow'
-import { IconStore, XFlowNodeCommands, XFlowEdgeCommands, NsGraph } from '@antv/xflow'
+import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
 import {
   DeleteOutlined,
   EditOutlined,

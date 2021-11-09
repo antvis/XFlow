@@ -64,21 +64,21 @@ const Demo = props => {
 
 ### 基础 api
 
-|                 名称 |                                            类型 | 必选 | 描述                       |
-| -------------------: | ----------------------------------------------: | ---: | -------------------------- |
-|          setX6Config |             (options: X6Graph.Options) => void; |      | 配置 GraphOptions          |
-|            setEvents |                 (events: GraphEvent[]) => void; |      | 配置 GraphEvents           |
-| setDefaultNodeRender | (component: NsGraphConfig.INodeRender) => void; |    ✓ | 默认的 画布节点 React 组件 |
-| setDefaultEdgeRender | (component: NsGraphConfig.IEdgeRender) => void; |      | 默认的 边 label React 组件 |
+|                 名称 |                                      类型 | 必选 | 描述                       |
+| -------------------: | ----------------------------------------: | ---: | -------------------------- |
+|          setX6Config |       (options: X6Graph.Options) => void; |      | 配置 GraphOptions          |
+|            setEvents |           (events: GraphEvent[]) => void; |      | 配置 GraphEvents           |
+| setDefaultNodeRender | (component: NsGraph.INodeRender) => void; |    ✓ | 默认的 画布节点 React 组件 |
+| setDefaultEdgeRender | (component: NsGraph.IEdgeRender) => void; |      | 默认的 边 label React 组件 |
 
 ### 高级 api
 
-|              名称 |                                                               类型 | 必选 | 描述                               |
-| ----------------: | -----------------------------------------------------------------: | ---: | ---------------------------------- |
-|     setNodeRender | (renderKey: string, component: NsGraphConfig.INodeRender) => void; |      | 设置 renderKey 和对应的 React 组件 |
-|     setEdgeRender | (renderKey: string, component: NsGraphConfig.IEdgeRender) => void; |      | 设置 renderKey 和对应的 React 组件 |
-| setNodeTypeParser |       (parser: (nodeData: NsGraph.INodeConfig) => string) => void; |    ✓ | 设置解析 node render key 的 parser |
-| setEdgeTypeParser |       (parser: (edgeData: NsGraph.INodeConfig) => string) => void; |      | 设置解析 edge render key 的 parser |
+|              名称 |                                                         类型 | 必选 | 描述                               |
+| ----------------: | -----------------------------------------------------------: | ---: | ---------------------------------- |
+|     setNodeRender | (renderKey: string, component: NsGraph.INodeRender) => void; |      | 设置 renderKey 和对应的 React 组件 |
+|     setEdgeRender | (renderKey: string, component: NsGraph.IEdgeRender) => void; |      | 设置 renderKey 和对应的 React 组件 |
+| setNodeTypeParser | (parser: (nodeData: NsGraph.INodeConfig) => string) => void; |    ✓ | 设置解析 node render key 的 parser |
+| setEdgeTypeParser | (parser: (edgeData: NsGraph.INodeConfig) => string) => void; |      | 设置解析 edge render key 的 parser |
 
 ## position
 
@@ -130,10 +130,10 @@ export const useGraphConfig = createGraphConfig(config => {
 配置渲染画布节点的默认 React 组件
 
 ```tsx | pure
-import { NsGraphConfig } from '@antv/xflow'
+import { NsGraph } from '@antv/xflow'
 
 /** 画布的React节点组件 */
-export const DefaulttReactNode: NsGraphConfig.INodeRender = props => {
+export const DefaulttReactNode: NsGraph.INodeRender = props => {
   return <div className="xflow-react-node">{props.data.label}</div>
 }
 
@@ -146,7 +146,7 @@ export const useGraphConfig = createGraphConfig(config => {
 节点内部可以通过 appContext 使用 XFlow 的核心模块:[IGraphCommandService](/api/interface/command#igraphcommandservice) 和 [IModelService](/api/interface/model#imodelservice)
 
 ```tsx | pure
-import { NsGraphConfig, useAppContext } from '@antv/xflow'
+import { NsGraph, useAppContext } from '@antv/xflow'
 
 interface IAppContext {
   cell: X6Node | X6Edge
@@ -154,7 +154,7 @@ interface IAppContext {
   modelService: IModelService
 }
 
-const Node1: NsGraphConfig.INodeRender = props => {
+const Node1: NsGraph.INodeRender = props => {
   const ctx: IAppContext = useAppContext()
   const { data } = props
   return <div className="react-node">{data.label}</div>

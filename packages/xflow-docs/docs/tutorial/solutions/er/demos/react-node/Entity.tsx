@@ -1,12 +1,12 @@
 import React from 'react'
-import { NsGraphConfig } from '@antv/xflow'
-import { EntityCanvasModel, EntityProperty } from '../interface'
+import type { NsGraph } from '@antv/xflow'
+import type { EntityCanvasModel, EntityProperty } from '../interface'
 import { BarsOutlined, EllipsisOutlined } from '@ant-design/icons'
 import { EntityType } from '../const'
 
 import './Entity.less'
 
-const Entity: NsGraphConfig.INodeRender = props => {
+const Entity: NsGraph.INodeRender = props => {
   const entity: EntityCanvasModel = props?.data
 
   const getCls = () => {

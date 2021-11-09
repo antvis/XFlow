@@ -32,12 +32,13 @@ export namespace NsMoveNode {
   }
   /** hook handler 返回类型 */
   export interface IResult {
-    nextY: number
-    nextX: number
+    err: null | string
+    nextY?: number
+    nextX?: number
   }
   /** api service 类型 */
   export interface INodePositionService {
-    (args: IArgs): Promise<IArgs>
+    (args: IArgs): Promise<boolean>
   }
   /** hooks 类型 */
   export interface ICmdHooks extends IHooks {
@@ -62,37 +63,39 @@ export class MoveNodeCommand implements ICommand {
     const result = await hooks.moveNode.call(
       args,
       async handlerArgs => {
-        const updatedArgs = handlerArgs.nodePositionService
-          ? await handlerArgs.nodePositionService(handlerArgs)
-          : handlerArgs
-        /** nodePositionService 返回空时不更新position */
-        if (updatedArgs) {
-          const { dx = 0, dy = 0, x, y, duration = 150 } = updatedArgs.position
-          const x6Graph = await ctx.getX6Graph()
-          const node = x6Graph.getCellById(handlerArgs.id) as Node
-          if (node) {
-            let nextX = x
-            let nextY = y
-            const { x: preX, y: preY } = node.position()
-            let undo = () => {
-              node.position(preX, preY, { silent: false })
-            }
-            if (dx || dy) {
-              nextX = dx + preX
-              nextY = dy + preY
-              node.translate(dx, dy, { transition: { duration } })
-              undo = () => node.translate(-dx, -dy, { transition: { duration } })
-            } else {
-              node.position(nextX, nextY, { silent: false })
-            }
-            /** add undo  */
-            ctx.addUndo(
-              Disposable.create(() => {
-                undo()
-              }),
-            )
-            return { nextX, nextY }
+        const { nodePositionService } = handlerArgs
+
+        /** nodePositionService 返回false时不更新position */
+        if (nodePositionService) {
+          const canDel = await nodePositionService(handlerArgs)
+          if (!canDel) return { err: 'service rejected' }
+        }
+
+        const { dx = 0, dy = 0, x, y, duration = 150 } = handlerArgs.position
+        const x6Graph = await ctx.getX6Graph()
+        const node = x6Graph.getCellById(handlerArgs.id) as Node
+        if (node) {
+          let nextX = x
+          let nextY = y
+          const { x: preX, y: preY } = node.position()
+          let undo = () => {
+            node.position(preX, preY, { silent: false })
           }
+          if (dx || dy) {
+            nextX = dx + preX
+            nextY = dy + preY
+            node.translate(dx, dy, { transition: { duration } })
+            undo = () => node.translate(-dx, -dy, { transition: { duration } })
+          } else {
+            node.position(nextX, nextY, { silent: false })
+          }
+          /** add undo  */
+          ctx.addUndo(
+            Disposable.create(() => {
+              undo()
+            }),
+          )
+          return { err: null, nextX, nextY }
         }
       },
       runtimeHook,

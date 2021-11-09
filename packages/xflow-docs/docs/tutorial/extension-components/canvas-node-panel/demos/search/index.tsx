@@ -22,10 +22,7 @@ const XFlowDemo: React.FC<{}> = props => {
         treeDataService={TreeConfig.treeDataService}
         position={{ top: 0, bottom: 0, left: 0, width: 290 }}
       />
-      <XFlowCanvas
-        config={graphConfig}
-        position={{ top: 0, bottom: 0, left: 290, right: 0 }}
-      ></XFlowCanvas>
+      <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 290, right: 0 }} />
     </XFlow>
   )
 }

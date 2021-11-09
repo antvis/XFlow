@@ -28,7 +28,7 @@ export const useGraphConfig = createGraphConfig<IDemoProps>(graphConfig => {
 })
 
 /**  keybindings  */
-export const useKeybindingConfig = createKeybindingConfig((config, getProps) => {
+export const useKeybindingConfig = createKeybindingConfig(config => {
   config.setKeybindingFunc(reg => {
     return reg.registerKeybinding([
       {

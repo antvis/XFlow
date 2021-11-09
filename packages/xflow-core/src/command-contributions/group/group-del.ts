@@ -15,8 +15,14 @@ export namespace NsDelGroup {
   export const command = XFlowGroupCommands.DEL_GROUP
   /** hook 参数类型 */
   export interface IArgs extends IArgsBase {
-    /** 节点的元数据 */
-    nodeConfig: NsGraph.INodeConfig
+    /** 群组节点的元数据 */
+    nodeConfig: NsGraph.IGroupConfig
+    /** 更新群组节点的元数据的异步方法 */
+    deleteService?: IDeleteGroupService
+  }
+  /** add group api service 类型 */
+  export interface IDeleteGroupService {
+    (args: IArgs): Promise<boolean>
   }
   /** hook handler 返回类型 */
   export interface IResult {
@@ -46,12 +52,21 @@ export class DelGroupCommand implements ICommand {
 
     const result = await hooks.delGroup.call(
       args,
-      async hanlderArgs => {
+      async handlerArgs => {
         const graph = await ctx.getX6Graph()
-        const { nodeConfig, commandService } = hanlderArgs
+        const { nodeConfig, commandService, deleteService: deleteGroupService } = handlerArgs
 
         const { id } = nodeConfig
         const node = graph.getCellById(id)
+
+        if (deleteGroupService) {
+          const canDel = await deleteGroupService(handlerArgs)
+          if (!canDel) return { err: 'service rejected' }
+        }
+
+        if (!node) {
+          return { err: 'target node is not exist' }
+        }
         // 不是Group的节点不能解散
         if (node.getProp('isGroup') !== true) {
           return { err: 'target node is not group' }

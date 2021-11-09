@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
-import { XFlow, XFlowCanvas, IAppLoad, NsGraph, IApplication, KeyBindings } from '@antv/xflow'
+import type { IAppLoad, NsGraph, IApplication } from '@antv/xflow'
+import { XFlow, XFlowCanvas, KeyBindings } from '@antv/xflow'
 import { XFlowAppProvider, useXFlowApp } from '@antv/xflow'
-import {
-  XFlowGraphCommands,
-  XFlowNodeCommands,
-  XFlowEdgeCommands,
-  NsGraphCmd,
-  NsNodeCmd,
-  NsEdgeCmd,
-} from '@antv/xflow'
+import type { NsGraphCmd, NsNodeCmd, NsEdgeCmd } from '@antv/xflow'
+import { XFlowGraphCommands, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
 import { CanvasMiniMap, CanvasScaleToolbar, CanvasSnapline } from '@antv/xflow'
 import GraphToolbar from './GraphToolbar/index'
 
@@ -20,7 +15,7 @@ import { useCmdConfig } from './config-cmd'
 import { useKeybindingConfig } from './config-keybinding'
 
 import { message } from 'antd'
-import { EntityCanvasModel } from './interface'
+import type { EntityCanvasModel } from './interface'
 import CreateRelationModal from './CreateRelationModal'
 import Entity from './react-node/Entity'
 import Relation from './react-edge/Relation'

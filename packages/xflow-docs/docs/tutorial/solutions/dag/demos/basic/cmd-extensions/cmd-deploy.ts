@@ -1,7 +1,9 @@
 import { inject, injectable } from 'mana-syringe'
-import { XFlowGraphCommands, NsGraphCmd, ICmdHooks as IHooks, NsGraph } from '@antv/xflow'
-import { HookHub } from '@antv/xflow-hook'
-import { IArgsBase, ICommandHandler, ICommandContextProvider } from '@antv/xflow'
+import type { NsGraphCmd, ICmdHooks as IHooks, NsGraph } from '@antv/xflow'
+import { XFlowGraphCommands } from '@antv/xflow'
+import type { HookHub } from '@antv/xflow-hook'
+import type { IArgsBase, ICommandHandler } from '@antv/xflow'
+import { ICommandContextProvider } from '@antv/xflow'
 import { CustomCommands } from './constants'
 
 type ICommand = ICommandHandler<

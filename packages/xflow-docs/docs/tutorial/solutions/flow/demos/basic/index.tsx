@@ -1,7 +1,7 @@
+import type { IApplication, IAppLoad } from '@antv/xflow'
 import React from 'react'
 /** app 核心组件 */
 import { XFlow, XFlowCanvas, KeyBindings } from '@antv/xflow'
-import { IApplication, IAppLoad } from '@antv/xflow'
 /** 交互组件 */
 import {
   /** 触发Command的交互组件 */
@@ -76,7 +76,7 @@ export const Demo: React.FC<IProps> = props => {
     if (cache.app) {
       initGraphCmds(cache.app)
     }
-  }, [meta])
+  }, [cache.app, meta])
 
   return (
     <XFlow

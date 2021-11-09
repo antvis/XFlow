@@ -1,7 +1,8 @@
+import type { ICmdHooks as IHooks } from '@antv/xflow'
+import type { HookHub } from '@antv/xflow-hook'
+import type { IArgsBase, ICommandHandler } from '@antv/xflow'
 import { inject, injectable } from 'mana-syringe'
-import { ICmdHooks as IHooks } from '@antv/xflow'
-import { HookHub } from '@antv/xflow-hook'
-import { IArgsBase, ICommandHandler, ICommandContextProvider } from '@antv/xflow'
+import { ICommandContextProvider } from '@antv/xflow'
 import { CustomCommands } from './constants'
 import { Disposable } from '@antv/xflow'
 
@@ -17,7 +18,7 @@ export namespace NsClearGraphCmd {
   /** hook name */
   export const hookKey = 'clearGraph'
   /** hook 参数类型 */
-  export interface IArgs extends IArgsBase {}
+  export type IArgs = IArgsBase
   /** hook handler 返回类型 */
   export interface IResult {}
   /** hooks 类型 */

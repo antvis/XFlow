@@ -1,86 +1,70 @@
 import React from 'react'
-import { Card, Form, Input, message } from 'antd'
-import { usePanelContext, WorkspacePanel, randomInt, FormBuilder, IFormSchema } from '@antv/xflow'
-import { NsGraph, NsNodeCmd, XFlowNodeCommands } from '@antv/xflow'
+import { Card, Form, Input, Switch, message } from 'antd'
+import type { IFormSchema } from '@antv/xflow'
+import { useXFlowApp, WorkspacePanel, FormBuilder } from '@antv/xflow'
+import type { NsNodeCmd } from '@antv/xflow'
+import { XFlowNodeCommands } from '@antv/xflow'
 
-export const width = 100
-export const height = 40
-
-interface IFormValues extends NsGraph.INodeConfig {}
+interface IFormValues {
+  nodeIds: string
+  resetSelection: boolean
+}
 
 const formItems: IFormSchema[] = [
   {
-    name: 'id',
-    label: 'id',
+    name: 'nodeIds',
+    label: 'nodeIds',
     rules: [{ required: true }],
     render: Input,
+    renderProps: { disabled: true },
   },
   {
-    name: 'label',
-    label: 'label',
+    name: 'resetSelection',
+    label: 'resetSelection',
     rules: [{ required: true }],
-    render: Input,
-  },
-  {
-    name: 'x',
-    label: 'x',
-    render: Input,
-  },
-  {
-    name: 'y',
-    label: 'y',
-    render: Input,
-  },
-  {
-    name: 'width',
-    label: 'width',
-    render: Input,
-  },
-  {
-    name: 'height',
-    label: 'height',
-    render: Input,
+    render: Switch,
+    itemProps: {
+      valuePropName: 'checked',
+    },
   },
 ]
 
-let nodeId = 1
-
+let nodeIdx = 1
 export const CmdForm = () => {
-  const { commandService } = usePanelContext()
+  const app = useXFlowApp()
   const [form] = Form.useForm<IFormValues>()
 
-  React.useEffect(() => {
-    nodeId = 1
-  }, [])
-
   const onFinish = async (values: IFormValues) => {
-    commandService.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
-      nodeConfig: values,
-    })
-    nodeId += 1
+    const args: NsNodeCmd.SelectNode.IArgs = {
+      nodeIds: [values.nodeIds],
+      resetSelection: values.resetSelection,
+    }
+    app.commandService.executeCommand<NsNodeCmd.SelectNode.IArgs>(
+      XFlowNodeCommands.SELECT_NODE.id,
+      args,
+    )
+    console.log('executeCommand with args :', args)
+    message.success(`${XFlowNodeCommands.DEL_NODE.label}: 命令执行成功`)
+    // 轮流选中
+    if (nodeIdx < 3) {
+      nodeIdx += 1
+    } else {
+      nodeIdx = 1
+    }
     form.setFieldsValue({
-      id: 'node_' + nodeId,
-      x: randomInt(20, 600),
-      y: randomInt(50, 270),
-      width,
-      height,
-      label: 'Node_' + nodeId,
+      nodeIds: `node${nodeIdx}`,
     })
-    message.success(`${XFlowNodeCommands.ADD_NODE.label}: 命令执行成功`)
   }
 
   return (
     <FormBuilder<IFormValues>
+      layout="vertical"
       form={form}
       formItems={formItems}
       onFinish={onFinish}
       initialValues={{
-        id: 'node_' + nodeId,
-        x: randomInt(20, 100),
-        y: randomInt(50, 150),
-        width,
-        height,
-        label: 'Node_' + nodeId,
+        nodeIds: `node${nodeIdx}`,
+        resetSelection: true,
       }}
     />
   )

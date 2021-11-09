@@ -3,7 +3,7 @@
  * desc: 支持三种布局：'vertical'|'horizontal'|'horizontal-center'
  */
 import React from 'react'
-import { XFlow, createGraphConfig, XFlowCanvas, CanvasToolbar, XFlowConstants } from '@antv/xflow'
+import { XFlow, createGraphConfig, XFlowCanvas, CanvasToolbar } from '@antv/xflow'
 import { useToolbarConfig1, useToolbarConfig2, useToolbarConfig3 } from './toolbar-config'
 import type { IAppLoad } from '@antv/xflow'
 import './index.less'

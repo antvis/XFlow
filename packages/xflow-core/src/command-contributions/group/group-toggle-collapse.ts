@@ -19,12 +19,24 @@ export namespace NsCollapseGroup {
   export const command = XFlowGroupCommands.COLLAPSE_GROUP
   export const hookKey = 'collapseGroup'
   export interface IArgs extends IArgsBase {
+    /** 折叠的group node id */
     nodeId: string
+    /** 是否折叠 */
     isCollapsed: boolean
+    /** 折叠后的大小 */
     collapsedSize?: { width: number; height: number }
+    /** 间距 */
     gap?: number
+    /** 更新群组是否折叠的状态，返回false时不执行 */
+    toggleService?: IToggleGroupCollapseService
   }
-  export interface IResult {}
+  /** add group api service 类型 */
+  export interface IToggleGroupCollapseService {
+    (args: IArgs): Promise<boolean>
+  }
+  export interface IResult {
+    err: null | string
+  }
   export interface ICmdHooks extends IHooks {
     collapseGroup: HookHub<IArgs, IResult>
   }
@@ -105,25 +117,32 @@ export class CollapseGroupCommand implements ICommand {
 
     const result = await hooks.collapseGroup.call(
       args,
-      async () => {
+      async handlerArgs => {
         const x6Graph = await this.ctx.getX6Graph()
         const node = x6Graph.getCellById(args.nodeId) as X6Node
-        if (node) {
-          this.toggleCollapse(node, x6Graph, args)
+        const { toggleService } = handlerArgs
+
+        if (toggleService) {
+          const canToggle = await toggleService(handlerArgs)
+          if (!canToggle) return { err: 'service rejected' }
         }
 
-        this.ctx.addUndo(
-          Disposable.create(async () => {
-            if (node) {
-              this.toggleCollapse(
-                node,
-                x6Graph,
-                Object.assign(args, { isCollapsed: !args.isCollapsed }),
-              )
-            }
-          }),
-        )
-        return {}
+        if (node) {
+          this.toggleCollapse(node, x6Graph, args)
+          this.ctx.addUndo(
+            Disposable.create(async () => {
+              if (node) {
+                this.toggleCollapse(
+                  node,
+                  x6Graph,
+                  Object.assign(args, { isCollapsed: !args.isCollapsed }),
+                )
+              }
+            }),
+          )
+        }
+
+        return { err: null }
       },
       runtimeHook,
     )

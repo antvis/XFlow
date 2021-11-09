@@ -4,14 +4,8 @@
  *  通过 Schema 中的 shape 字段和 controlMapService 配合可以渲染自定义的表单项目
  */
 import React from 'react'
-import type {} from '@antv/xflow'
-import {
-  XFlow,
-  XFlowCanvas,
-  JsonSchemaForm,
-  createGraphConfig,
-  NsJsonSchemaForm,
-} from '@antv/xflow'
+import type { NsJsonSchemaForm } from '@antv/xflow'
+import { XFlow, XFlowCanvas, JsonSchemaForm, createGraphConfig } from '@antv/xflow'
 import { controlMapService, ControlShapeEnum } from './custom-shapes'
 import { onLoad } from './graph-config'
 import './index.less'
@@ -79,10 +73,7 @@ const XFlowDemo: React.FC<IDemoProps> = props => {
 
   return (
     <XFlow onLoad={onLoad} className="xflow-workspace">
-      <XFlowCanvas
-        config={graphConfig}
-        position={{ top: 0, bottom: 0, left: 0, right: 290 }}
-      ></XFlowCanvas>
+      <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 0, right: 290 }} />
       <JsonSchemaForm
         controlMapService={controlMapService}
         formSchemaService={NsJsonForm.formSchemaService}

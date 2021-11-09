@@ -19,27 +19,27 @@ export namespace NsAddGroup {
   export const hookKey = 'addGroup'
   /** hook 参数类型 */
   export interface IArgs extends IArgsBase {
-    /** 节点的元数据 */
-    nodeConfig: NsGraph.INodeConfig
-    /** 创建X6 Node Cell的工厂方法 */
-    cellFactory?: INodeCellFactory
-    /** 创建Node的服务 */
-    createNodeService?: ICreateNodeService
+    /** 群组节点的元数据 */
+    nodeConfig: NsGraph.IGroupConfig
+    /** 创建X6 Group Cell的工厂方法 */
+    cellFactory?: IGroupCellFactory
+    /** 返回群组节点的元数据的异步方法 */
+    createService?: ICreateGroupService
   }
   /** hook handler 返回类型 */
   export interface IResult {
-    /** 节点的元数据 */
-    nodeConfig: NsGraph.INodeConfig
-    /** X6的Cell */
+    /** group 的配置数据 */
+    nodeConfig: NsGraph.IGroupConfig
+    /** Group Cell */
     nodeCell: Node
   }
-  /** add node api service 类型 */
-  export interface ICreateNodeService {
-    (args: IArgs): Promise<NsGraph.INodeConfig>
+  /** add group api service 类型 */
+  export interface ICreateGroupService {
+    (args: IArgs): Promise<NsGraph.IGroupConfig>
   }
   /** 创建X6 Node Cell的工厂方法 */
-  export interface INodeCellFactory {
-    (args: NsGraph.INodeConfig, self: AddGroupCommand): Promise<Node>
+  export interface IGroupCellFactory {
+    (args: NsGraph.IGroupConfig, self: AddGroupCommand): Promise<Node>
   }
   /** hooks 类型 */
   export interface ICmdHooks extends IHooks {
@@ -82,12 +82,17 @@ export class AddGroupCommand implements ICommand {
     const result = await hooks.addGroup.call(
       args,
       async handlerArgs => {
-        const { nodeConfig, createNodeService, cellFactory, commandService } = handlerArgs
+        const {
+          nodeConfig,
+          createService: createGroupService,
+          cellFactory,
+          commandService,
+        } = handlerArgs
         const graph = await ctx.getX6Graph()
 
         const res = await commandService.executeCommand(XFlowNodeCommands.ADD_NODE.id, {
           cellFactory,
-          createNodeService,
+          createNodeService: createGroupService,
           nodeConfig,
         })
         const { nodeCell: groupCell } = res

@@ -1,8 +1,11 @@
 import React from 'react'
 import type { IAppLoad, NsNodeCmd } from '@antv/xflow'
 import { XFlow, createGraphConfig, XFlowCanvas, XFlowNodeCommands } from '@antv/xflow'
-import { FormPanel, width, height } from './form'
+import { FormPanel } from './form'
 import './index.less'
+
+export const width = 100
+export const height = 40
 
 /**  graphConfig hook  */
 export const useGraphConfig = createGraphConfig(graphConfig => {
@@ -15,13 +18,22 @@ export const useGraphConfig = createGraphConfig(graphConfig => {
 const NodeAddDemo: React.FC<{}> = () => {
   const graphConfig = useGraphConfig()
   const onLoad: IAppLoad = async app => {
-    // 在appReadyCallback中可以通过app执行command
     app.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
       nodeConfig: {
         id: 'node1',
         x: 100,
         y: 30,
-        label: 'Hello World',
+        label: 'NODENODE1',
+        width,
+        height,
+      },
+    })
+    app.executeCommand<NsNodeCmd.AddNode.IArgs>(XFlowNodeCommands.ADD_NODE.id, {
+      nodeConfig: {
+        id: 'node2',
+        x: 120,
+        y: 50,
+        label: 'NODENODE2',
         width,
         height,
       },

@@ -1,8 +1,6 @@
-import { createToolbarConfig, IToolbarItemOptions } from '@antv/xflow'
-import { XFlowGraphCommands, XFlowNodeCommands, IconStore } from '@antv/xflow'
-import { SaveOutlined, PlusCircleOutlined, DeleteOutlined } from '@ant-design/icons'
-import { Popconfirm } from 'antd'
-import { NsGraphCmd, NsNodeCmd } from '@antv/xflow'
+import { createToolbarConfig } from '@antv/xflow'
+import { IconStore } from '@antv/xflow'
+import { PlusCircleOutlined } from '@ant-design/icons'
 
 IconStore.set('PlusCircleOutlined', PlusCircleOutlined)
 

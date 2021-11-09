@@ -1,63 +1,75 @@
 import React from 'react'
-import { Card, Form, Input, message } from 'antd'
-import { usePanelContext, WorkspacePanel, randomInt, FormBuilder, IFormSchema } from '@antv/xflow'
-import { NsGraph, NsNodeCmd, XFlowNodeCommands } from '@antv/xflow'
+import { Button, Card, Form, Input, message } from 'antd'
+import type { IFormSchema } from '@antv/xflow'
+import { useXFlowApp, WorkspacePanel, MODELS, useModelAsync, FormBuilder } from '@antv/xflow'
+import type { NsNodeCmd } from '@antv/xflow'
+import { XFlowNodeCommands } from '@antv/xflow'
 
-interface IFormValues extends NsGraph.INodeConfig {}
+interface IFormValues {
+  id: string
+  label: string
+  x: string
+  y: string
+}
 
 const formItems: IFormSchema[] = [
   {
+    name: 'id',
+    label: 'id',
+    rules: [{ required: true }],
+    render: Input,
+    renderProps: { disabled: true },
+  },
+  {
+    name: 'label',
+    label: 'label',
+    rules: [{ required: true }],
+    render: Input,
+  },
+  {
     name: 'x',
     label: 'x',
-    render: Input,
     rules: [{ required: true }],
+    render: Input,
   },
   {
     name: 'y',
     label: 'y',
-    render: Input,
     rules: [{ required: true }],
-  },
-  {
-    name: 'width',
-    label: 'width',
-    render: Input,
-    rules: [{ required: true }],
-  },
-  {
-    name: 'height',
-    label: 'height',
-    render: Input,
-    rules: [{ required: true }],
-  },
-  {
-    name: 'info',
-    label: 'info',
     render: Input,
   },
 ]
 
 export const CmdForm = () => {
-  const { commands } = usePanelContext()
+  const app = useXFlowApp()
   const [form] = Form.useForm<IFormValues>()
+  const [selectNode] = useModelAsync<MODELS.SELECTED_NODE.IState>({
+    getModel: async () => MODELS.SELECTED_NODE.getModel(app.modelService),
+    initialState: null,
+  })
+
+  React.useEffect(() => {
+    if (selectNode) {
+      const nodeConfig = selectNode.getData()
+      form.setFieldsValue({
+        id: nodeConfig.id,
+        label: nodeConfig.label,
+        x: nodeConfig.x,
+        y: nodeConfig.y,
+      })
+    }
+  }, [form, selectNode])
 
   const onFinish = async (values: IFormValues) => {
-    commands.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
-      nodeConfig: {
-        ...values,
-        id: 'node1',
+    const nodeConfig = selectNode.getData()
+    app.commandService.executeCommand<NsNodeCmd.UpdateNode.IArgs>(
+      XFlowNodeCommands.UPDATE_NODE.id,
+      {
+        nodeConfig: { ...nodeConfig, ...values },
       },
-    } as NsNodeCmd.UpdateNode.IArgs)
+    )
 
-    form.setFieldsValue({
-      id: 'node1',
-      x: randomInt(0, 560),
-      y: randomInt(0, 200),
-      width: 80 + randomInt(0, 100),
-      height: 20 + randomInt(0, 50),
-      info: 'Hello world ' + randomInt(0, 100),
-    })
-    message.success(`${XFlowNodeCommands.UPDATE_NODE.label}: 命令执行成功`)
+    message.success(`${XFlowNodeCommands.DEL_NODE.label}: 命令执行成功`)
   }
 
   return (
@@ -66,13 +78,16 @@ export const CmdForm = () => {
       formItems={formItems}
       onFinish={onFinish}
       initialValues={{
-        id: 'node1',
-        x: randomInt(0, 560),
-        y: randomInt(0, 200),
-        width: 120 + randomInt(0, 100),
-        height: 40 + randomInt(0, 50),
-        info: 'Hello world ' + randomInt(0, 100),
+        id: null,
+        label: null,
+        x: null,
+        y: null,
       }}
+      submitButton={
+        <Button type="primary" htmlType="submit" style={{ width: '100%' }} disabled={!selectNode}>
+          选中节点执行命令
+        </Button>
+      }
     />
   )
 }

@@ -1,4 +1,5 @@
-import { createToolbarConfig, IModelService, IToolbarItemOptions } from '@antv/xflow'
+import type { IModelService, IToolbarItemOptions } from '@antv/xflow'
+import { createToolbarConfig } from '@antv/xflow'
 import { MODELS, XFlowNodeCommands, IconStore } from '@antv/xflow'
 import { SaveOutlined, PlusCircleOutlined, DeleteOutlined } from '@ant-design/icons'
 

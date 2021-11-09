@@ -1,12 +1,14 @@
+import type { NsGraph, NsNodeCmd } from '@antv/xflow'
+import type { IFormSchema } from '@antv/xflow'
 import React from 'react'
 import { Card, Form, Input, message } from 'antd'
-import { usePanelContext, WorkspacePanel, randomInt, FormBuilder, IFormSchema } from '@antv/xflow'
-import { NsGraph, NsNodeCmd, XFlowNodeCommands } from '@antv/xflow'
+import { usePanelContext, WorkspacePanel, randomInt, FormBuilder } from '@antv/xflow'
+import { XFlowNodeCommands } from '@antv/xflow'
 
 export const width = 100
 export const height = 40
 
-interface IFormValues extends NsGraph.INodeConfig {}
+type IFormValues = NsGraph.INodeConfig
 
 const formItems: IFormSchema[] = [
   {

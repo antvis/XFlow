@@ -23,23 +23,9 @@ export namespace NsGraph {
     /** 边 */
     edges: IEdgeConfig[]
   }
-  /** 群组节点信息 */
-  export interface IGroupNode {
-    /** 是否折叠 */
-    isCollapsed?: boolean
-    /** group 折叠后的大小 */
-    groupCollapsedSize?: { width: number; height: number }
-    /** group 未折叠的大小 */
-    groupChildrenSize?: { width: number; height: number }
-    /** 子节点元素集合 */
-    groupChildren?: string[]
-    /** group Header */
-    groupHeaderHeight?: number
-    /** group 内边距 */
-    groupPadding?: number
-  }
+
   /** 节点信息 */
-  export interface INodeConfig extends IGroupNode {
+  export interface INodeConfig {
     /** 节点的唯一标识 */
     id: string
     /** 节点在画布的位置: x */
@@ -64,6 +50,21 @@ export namespace NsGraph {
     attrs?: Attr.CellAttrs
     /** 用户自定义字段 */
     [key: string]: any
+  }
+  /** 群组节点信息 */
+  export interface IGroupConfig extends INodeConfig {
+    /** 是否折叠 */
+    isCollapsed?: boolean
+    /** group 折叠后的大小 */
+    groupCollapsedSize?: { width: number; height: number }
+    /** group 未折叠的大小 */
+    groupChildrenSize?: { width: number; height: number }
+    /** 子节点元素集合 */
+    groupChildren?: string[]
+    /** group Header */
+    groupHeaderHeight?: number
+    /** group 内边距 */
+    groupPadding?: number
   }
 
   /** 边信息 */
@@ -92,20 +93,6 @@ export namespace NsGraph {
     [key: string]: any
   }
 
-  /** 群组节点信息 */
-  export interface IGroupNode {
-    /** 是否折叠 */
-    isCollapsed?: boolean
-    /** group 折叠后的大小 */
-    groupCollapsedSize?: { width: number; height: number }
-    /** 子节点元素集合 */
-    groupChildren?: string[]
-    /** group Header */
-    groupHeaderHeight?: number
-    /** group 内边距 */
-    groupPadding?: number
-  }
-
   /** 节点锚点位置：上/下/左/右 */
   export enum AnchorGroup {
     TOP = 'top',
@@ -125,30 +112,19 @@ export namespace NsGraph {
     items: INodeAnchor[]
   }
   /** 节点锚点配置信息 */
-  export interface INodeAnchor extends PortManager.Port {
+  export interface INodeAnchor extends Partial<PortManager.Port> {
     /** uuid */
     id: string
     /** position enum NsGraph.AnchorGroup */
-    group: AnchorGroup
+    group?: AnchorGroup | string
     /** position enum NsGraph.AnchorType */
-    type: AnchorType
+    type?: AnchorType
     /** tooltip */
-    tooltip: string
+    tooltip?: string
     /** 用户自定义字段 */
     [key: string]: any
   }
 
-  /** 组信息 */
-  export interface IGroupConfig {
-    /** 边的唯一标识 */
-    id: string
-    /** 节点 */
-    nodes: INodeConfig[]
-    /** 边 */
-    edges: IEdgeConfig[]
-    /** 用户自定义字段 */
-    [key: string]: any
-  }
   /** XFlow画布缩放选项 */
   export interface ZoomOptions {
     absolute?: boolean

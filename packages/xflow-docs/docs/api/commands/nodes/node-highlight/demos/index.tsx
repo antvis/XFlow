@@ -21,6 +21,7 @@ const NodeAddDemo: React.FC<{}> = () => {
         id: 'node1',
         x: 100,
         y: 30,
+        shape: 'rect',
         label: 'Hello World',
         width,
         height,

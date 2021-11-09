@@ -7,7 +7,7 @@
  *  onNodeDrop 回调时时，要求使用命令创建节点  <br>
  */
 import React from 'react'
-import { XFlow, XFlowCanvas, NodeTreePanel, NsNodeTreePanel } from '@antv/xflow'
+import { XFlow, XFlowCanvas, NodeTreePanel } from '@antv/xflow'
 import { onLoad, useGraphConfig } from './graph-config'
 import * as TreeConfig from './dnd-tree-config'
 
@@ -25,10 +25,7 @@ const XFlowDemo: React.FC<{}> = props => {
         treeDataService={TreeConfig.treeDataService}
         position={{ top: 0, bottom: 0, left: 0, width: 290 }}
       />
-      <XFlowCanvas
-        config={graphConfig}
-        position={{ top: 0, bottom: 0, left: 290, right: 0 }}
-      ></XFlowCanvas>
+      <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 290, right: 0 }} />
     </XFlow>
   )
 }

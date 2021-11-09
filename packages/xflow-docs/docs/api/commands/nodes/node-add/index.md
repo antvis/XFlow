@@ -44,8 +44,7 @@ export interface IArgs extends IArgsBase {
 
 ### createNodeService (可选)
 
- 复杂的图编辑应用的节点 id 等元数据可能需要调用服务端接口生成，因此这里提供了一个接口，XFlow 在执行 AddNodeCommand 时会自动执行 ICreateNodeService 来获取后端数据，
-建议在 addNode 的 hook 中配置这个异步方法。
+ 复杂的图编辑应用的节点 id 等元数据可能需要调用服务端接口生成，因此这里可以配置 createNodeService XFlow 在执行 AddNodeCommand 时会先执行 ICreateNodeService 来获取后端数据，
 
 ```tsx | pure
 /** add node api service 类型 */
@@ -74,7 +73,7 @@ export interface INodeCellFactory {
 - 返回类型：
   - [NsGraph.INodeConfig](/docs/api/interface#inodeconfig) 节点数据
 
-### 配置全局 Hook
+### 配置全局 Hook(可选)
 
 XFlow 的命令可以通过全局的 Hook 来扩展业务逻辑, 比如要配置全局的 createNodeService 只需要在 createCmdConfig 中通过 hooks.addNode.registerHook 注册自己的添加 createNodeService 到 args 中（[IArgs](#命令参数iargs)）
 
