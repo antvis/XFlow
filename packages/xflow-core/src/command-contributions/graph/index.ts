@@ -20,7 +20,6 @@ import {
   GraphToggleMultiSelectCommand,
   NsGraphToggleMultiSelect,
 } from './graph-toggle-multi-select'
-import { NsGraphInstanceCmd, GraphInstanceCommand } from './graph-instance-cmd'
 // history 相关
 import { NsGraphHistoryUndo, GraphHistoryUndoCommand } from './graph-history-undo'
 import { NsGraphHistoryRedo, GraphHistoryRedoCommand } from './graph-history-redo'
@@ -55,7 +54,6 @@ export const registerGraphCommand = (register: Syringe.Register) => {
   register(GraphToggleMultiSelectCommand)
   register(GraphCopySelectionCommand)
   register(GraphPasteSelectionCommand)
-  register(GraphInstanceCommand)
   // tools
   register(GraphAddToolCommand)
   register(GraphDelToolCommand)
@@ -88,7 +86,6 @@ export const hookhubList: {
   NsGraphToggleMultiSelect,
   NsGraphCopySelection,
   NsGraphPasteSelection,
-  NsGraphInstanceCmd,
   // tools
   NsGraphAddTool,
   NsGraphDelTool,
@@ -118,7 +115,6 @@ export interface ICmdHooks
     NsGraphToggleMultiSelect.ICmdHooks,
     NsGraphCopySelection.ICmdHooks,
     NsGraphPasteSelection.ICmdHooks,
-    NsGraphInstanceCmd.ICmdHooks,
     // tool
     NsGraphAddTool.ICmdHooks,
     NsGraphDelTool.ICmdHooks {}
@@ -199,10 +195,6 @@ export namespace NsGraphCmd {
   export namespace GraphPasteSelection {
     export type IArgs = Simplify<NsGraphPasteSelection.IArgs>
     export type IResult = Simplify<NsGraphPasteSelection.IResult>
-  }
-  export namespace GraphInstanceCmd {
-    export type IArgs = Simplify<NsGraphInstanceCmd.IArgs>
-    export type IResult = Simplify<NsGraphInstanceCmd.IResult>
   }
   // Tool
   export namespace GraphAddTool {
