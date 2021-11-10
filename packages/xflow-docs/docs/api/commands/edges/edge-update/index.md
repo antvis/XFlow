@@ -11,72 +11,42 @@ nav:
   order: 1
 ---
 
-## 更新边
+# 更新边
 
-XFlow 提供节点添加的命令 `XFlowNodeCommands.UPDATE_EDGE`, 通过该命令可以实现在画布中添加一个节点。
+XFlow 提供更新连线的命令 `XFlowEdgeCommands.UPDATE_EDGE`, 通过该命令可以实现画布上连线内容的更新。
 
-### Command 示例
+## UpdateEdge 示例
 
-<code src="./demos/index.tsx" classname="cmd-demo" />
+<code src="./demos/index.tsx" />
 
-### 命令参数（IArgs）
+## 命令参数
 
 |              名称 |                类型 | 必选 | 默认值 | 描述               |
 | ----------------: | ------------------: | ---: | -----: | ------------------ |
-|        nodeConfig | NsGraph.INodeConfig |    ✓ |      - | 新建节点的配置数据 |
-|       cellFactory |    INodeCellFactory |      |      - | cell 工厂方法      |
-| createNodeService |  ICreateNodeService |      |      - | 获取元数据的服务   |
+| edgeConfig        | NsGraph.IEdgeConfig |    ✓ |      - | 更新连线的配置数据 |
+| updateEdgeService | IUpdateEdgeService  |      |      - | 更新连线内容的服务   |
+
+
+### edgeConfig
+
+连线的元数据，参考数据格式 [NsGraph.IEdgeConfig](/docs/api/interface#iedgeconfig)
+
+### updateEdgeService (可选)
+
+ 复杂情况下, 连线内容的更新需要与服务端做交互, 将最新数据更新到服务端。XFlow 在执行 UpdateEdge 命令时会自动执行 `updateEdgeService` 方法。因此如果业务场景中连线内容的更新需要存储在服务端, 就可以使用 `updateEdgeService`。
+
+ 建议在 UpdateEdge 的 hook 中配置这个异步方法。
+
 
 ```tsx | pure
-export interface IArgs extends IArgsBase {
-  /** 新建节点的配置数据 */
-  nodeConfig: NsGraph.INodeConfig
-  /** 创建X6 Node Cell的工厂方法 */
-  cellFactory?: INodeCellFactory
-  /** 创建Node的服务 */
-  createNodeService?: ICreateNodeService
+export interface IUpdateEdgeService {
+  (args: IArgs): Promise<NsGraph.IEdgeConfig>
 }
 ```
 
-#### nodeConfig
+## 配置全局 Hook
 
-节点的元数据，参考数据格式 [NsGraph.INodeConfig](/docs/api/interface#inodeconfig)
-
-### createNodeService (可选)
-
- 复杂的图编辑应用的节点 id 等元数据可能需要调用服务端接口生成，因此这里提供了一个接口，XFlow 在执行 AddNodeCommand 时会自动执行 ICreateNodeService 来获取后端数据，
-建议在 addNode 的 hook 中配置这个异步方法。
-
-```tsx | pure
-/** add node api service 类型 */
-export interface ICreateNodeService {
-  (args: IArgs): Promise<NsGraph.INodeConfig>
-}
-```
-
-- 入参类型：[IArgs](#命令参数iargs)
-- 返回类型：[NsGraph.INodeConfig](/docs/api/interface#inodeconfig)
-
-#### cellFactory (可选)
-
-支持高阶用户自定义自己的 X6 Node Cell，要求返回一个 X6 Node 实例
-
-```tsx | pure
-/** 创建X6 Node Cell的工厂方法 */
-export interface INodeCellFactory {
-  (node: NsGraph.INodeConfig, self: AddNodeCommand): Promise<Node>
-}
-```
-
-- 入参类型：
-  - node: [NsGraph.INodeConfig](/docs/api/interface#inodeconfig) 节点数据
-  - self: AddNodeCommand 方便使用 AddNodeCommand 实例上的方法
-- 返回类型：
-  - [NsGraph.INodeConfig](/docs/api/interface#inodeconfig) 节点数据
-
-### 配置全局 Hook
-
-XFlow 的命令可以通过全局的 Hook 来扩展业务逻辑, 比如要配置全局的 createNodeService 只需要在 createCmdConfig 中通过 hooks.addNode.registerHook 注册自己的添加 createNodeService 到 args 中（[IArgs](#命令参数iargs)）
+ XFlow 的命令可以通过全局的 Hook 来扩展业务逻辑, 比如 UpdateEdge 时配置全局的 updateEdgeService。
 
 ```tsx | pure
 import { createCmdConfig, DisposableCollection } from '@antv/xflow'
@@ -84,10 +54,10 @@ import { MockApi } from './service'
 
 export const useCmdConfig = createCmdConfig(config => {
   config.setRegisterHookFn(hooks => {
-    hooks.addNode.registerHook({
-      name: 'get node config data from backend api',
+    hooks.updateEdgee.registerHook({
+      name: 'updateEdge',
       handler: async args => {
-        args.createNodeService = MockApi.addNode
+        args.updateEdgeService = MockApi.updateEdge
       },
     })
   })

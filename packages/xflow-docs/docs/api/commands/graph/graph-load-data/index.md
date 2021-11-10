@@ -15,35 +15,21 @@ nav:
 
 XFlow 提供画布渲染数据获取的命令 `XFlowGraphCommands.GRAPH_LOAD_DATA`, 通过该命令可以实现从服务端获取画布渲染数据。
 
-### 如何获取画布数据
+## 如何获取画布数据
 
-画布数据获取的命令使用非常简单, 仅仅需要传入一个指定的方法, 返回 XFlow 要求的数据格式的数据即可。
+获取画布数据命令的使用方式非常简单, 仅需要传入一个指定的方法, 返回 XFlow 要求的数据格式 [NSGraph.IGraphData](/api/interface) 即可。
 
 ```tsx | pure
 app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
   loadDataService: async () => {
     const graphData: NsGraph.IGraphData = {
       nodes: [
-        {
-          id: 'root1',
-          x: 200,
-          y: 50,
-          width: 120,
-          height: 40,
-          renderKey: 'NODE1',
-          info: 'React节点1',
-        },
-        {
-          id: 'down1',
-          x: 550,
-          y: 50,
-          width: 120,
-          height: 40,
-          renderKey: 'NODE1',
-          info: 'React节点2',
-        },
+        { id: 'root1', width: 120, height: 40, renderKey: 'NODE1', info: 'React节点1' },
+        { id: 'down1', width: 120, height: 40, renderKey: 'NODE1', info: 'React节点2' },
       ],
-      edges: [{ id: 'root1-down1', source: 'root1', target: 'down1', label: 'text' }],
+      edges: [
+        { id: 'root1-down1', source: 'root1', target: 'down1', label: 'text' }
+      ],
     }
     return graphData
   },
@@ -52,12 +38,13 @@ app.executeCommand(XFlowGraphCommands.LOAD_DATA.id, {
 
 ### GraphLoadData 命令参数(IArgs)
 
-|            名称 |     类型 | 必选 |    默认值 | 描述                 |
-| --------------: | -------: | ---: | --------: | -------------------- |
-| loadDataService | Function |    ✓ | undefined | 获取服务端数据的方法 |
+|             名称 |             类型 | 必选 |      默认值 | 描述                 |
+| --------------: | ---------------: | ---: | --------: | -------------------- |
+| loadDataService |         Function |    ✓ | undefined | 获取服务端数据的方法 |
 
 ### GraphLoadData 命令返回(IResult)
 
-|      名称 |               类型 | 必选 |    默认值 | 描述               |
-| --------: | -----------------: | ---: | --------: | ------------------ |
-| graphData | NsGraph.IGraphData |    ✓ | undefined | 从服务端返回的数据 |
+|            名称 |               类型 | 必选 |    默认值 | 描述               |
+| -------------: | -----------------: | ---: | --------: | ------------------ |
+|      graphData | NsGraph.IGraphData |    ✓ | undefined | 从服务端返回的数据 |
+
