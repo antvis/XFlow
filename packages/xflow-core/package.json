@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow-core",
-  "version": "0.0.1-rc.1",
+  "version": "0.0.1-rc.2",
   "license": "MIT",
   "scripts": {
     "start": "father-build -w",
@@ -34,10 +34,11 @@
     "@antv/x6-react-shape": "^1.2.5",
     "@antv/x6-react-components": "^1.1.0",
     "@antv/layout": "^0.0.5",
-    "@antv/xflow-hook": "0.0.1-rc.1",
+    "@antv/xflow-hook": "0.0.1-rc.2",
     "mana-common": "^0.1.0",
     "mana-syringe": "^0.1.0",
     "reflect-metadata": "^0.1.13",
+    "rxjs": "6.6.7",
     "classnames": "^2.2.6",
     "immer": "^8.0.0"
   },
