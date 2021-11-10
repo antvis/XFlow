@@ -27,16 +27,16 @@ export namespace NsGraphZoom {
   export interface IArgs extends IArgsBase {
     /** 缩放因子 */
     factor: number | 'fit' | 'real'
-    /** 自适应Padding参数 */
-    zoomFitPadding?: number
     /** 缩放配置项 */
     zoomOptions?: NsGraph.ZoomOptions
+    /** 自适应Padding参数(边距) */
+    zoomFitPadding?: number
   }
   /** hook handler 返回类型 */
   export interface IResult {
+    factor: number | 'fit' | 'real'
     zoomOptions: NsGraph.ZoomOptions
     zoomFitPadding: number
-    factor: number | 'fit' | 'real'
   }
   /** hooks 类型 */
   export interface ICmdHooks extends IHooks {
