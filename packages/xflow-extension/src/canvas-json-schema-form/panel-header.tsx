@@ -2,7 +2,7 @@ import React from 'react'
 import type { IProps } from './interface'
 import { useXFlowApp } from '@antv/xflow-core'
 import { usePanelContext } from '../base-panel/context'
-import { NsJsonSchemaFormModel } from './service'
+import type { NsJsonSchemaFormModel } from './service'
 export interface IHeaderProps extends IProps {
   hasSchema: boolean
   state: NsJsonSchemaFormModel.IState

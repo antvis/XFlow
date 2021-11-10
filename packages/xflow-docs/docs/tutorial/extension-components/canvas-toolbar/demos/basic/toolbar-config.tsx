@@ -5,7 +5,7 @@ import { SaveOutlined, PlusCircleOutlined, DeleteOutlined } from '@ant-design/ic
 import { message } from 'antd'
 import type { NsGraphCmd, NsNodeCmd } from '@antv/xflow'
 
-export namespace NSToolbarConfig {
+namespace NsConfig {
   /** 注册icon 类型 */
   IconStore.set('PlusCircleOutlined', PlusCircleOutlined)
   IconStore.set('DeleteOutlined', DeleteOutlined)
@@ -72,7 +72,7 @@ export namespace NSToolbarConfig {
 export const useToolbarConfig = createToolbarConfig(toolbarConfig => {
   /** 生产 toolbar item */
   toolbarConfig.setToolbarModelService(async toolbarModel => {
-    const toolbarItems = await NSToolbarConfig.getToolbarItems()
+    const toolbarItems = await NsConfig.getToolbarItems()
     toolbarModel.setValue(toolbar => {
       toolbar.mainGroups = toolbarItems
     })

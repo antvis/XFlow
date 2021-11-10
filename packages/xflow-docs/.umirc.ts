@@ -17,12 +17,14 @@ export default defineConfig({
   },
   outputPath: 'dist',
   hash: true,
+  devtool: 'eval',
   extraBabelIncludes: [
     '@antv/xflow',
     '@antv/xflow-core',
     '@antv/xflow-extension',
     'dumi-theme-graphin',
   ],
+  dynamicImport: {},
   exportStatic: {},
   theme: {
     '@s-site-menu-width': '280px',
@@ -44,6 +46,7 @@ export default defineConfig({
       { title: 'Changelog', path: 'https://github.com/alibaba/hooks/releases' },
     ],
   },
+  styles: ['.__dumi-default-previewer-demo{ min-height: 290px }'],
   /** css */
   links: [],
   /** js */

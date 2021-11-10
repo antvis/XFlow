@@ -10,8 +10,8 @@ import React from 'react'
 import { XFlow, XFlowCanvas, NodeTreePanel } from '@antv/xflow'
 import { onLoad, useGraphConfig } from './graph-config'
 import * as TreeConfig from './dnd-tree-config'
-
 import './index.less'
+import '@antv/xflow/dist/index.css'
 
 const XFlowDemo: React.FC<{}> = props => {
   const graphConfig = useGraphConfig(props)

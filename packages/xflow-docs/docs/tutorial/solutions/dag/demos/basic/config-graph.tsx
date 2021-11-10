@@ -1,13 +1,13 @@
 import type { IProps } from './index'
-import type { IEvent, NsGraph } from '@antv/xflow'
+import type { NsGraph } from '@antv/xflow'
 import { createHookConfig, DisposableCollection } from '@antv/xflow'
 import { DND_RENDER_ID, GROUP_NODE_RENDER_ID } from './constant'
 import { DndNode } from './react-node/dnd-node'
 import { GroupNode } from './react-node/group'
 
-export const useGraphHookConfig = createHookConfig<IProps>((config, getProps) => {
+export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
   // 获取 Props
-  const props = getProps()
+  const props = proxy.getValue()
   console.log('get main props', props)
   config.setRegisterHook(hooks => {
     const disposableList = [
@@ -36,6 +36,7 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, getProps) =>
         handler: async events => {
           events.push({
             eventName: 'node:click',
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             callback: (e, cmds, ctx) => {
               // 绑定事件
             },

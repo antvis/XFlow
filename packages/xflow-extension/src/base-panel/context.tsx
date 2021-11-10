@@ -14,4 +14,5 @@ export const PanelContext = React.createContext<IContext>({
   modelService: null,
 })
 
-export const usePanelContext = <T extends {}>() => React.useContext(PanelContext) as IContext<T>
+export const usePanelContext = <T extends unknown>() =>
+  React.useContext(PanelContext) as IContext<T>

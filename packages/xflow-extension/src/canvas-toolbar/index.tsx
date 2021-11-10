@@ -2,7 +2,6 @@ import React from 'react'
 import { useXFlowApp } from '@antv/xflow-core'
 import { ToolbarConfig } from './config'
 import { XFlowToolbar } from './render-components'
-import './style'
 import type { IToolbarProps } from './interface'
 
 export const CanvasToolbar: React.FC<IToolbarProps> = props => {
@@ -21,8 +20,13 @@ export const CanvasToolbar: React.FC<IToolbarProps> = props => {
   return <XFlowToolbar {...props} config={contextMenuConfig} />
 }
 
+// 缓存props
+interface IValueProxy<T> {
+  getValue: () => T
+}
+
 export const createToolbarConfig =
-  <T extends {} = any>(addOptions: (config: ToolbarConfig, proxy: { getValue: () => T }) => void) =>
+  <T extends unknown = any>(addOptions: (config: ToolbarConfig, proxy: IValueProxy<T>) => void) =>
   (value?: T) => {
     /** bridge config and value */
     const proxy = React.useMemo(() => ({ getValue: () => ({} as T) }), [])

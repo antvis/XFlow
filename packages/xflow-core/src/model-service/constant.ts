@@ -1,6 +1,5 @@
-import type { Node, Edge, CellView, Cell, Graph } from '@antv/x6'
+import type { Node, Edge, CellView, Cell } from '@antv/x6'
 import type { Token } from '../common/types'
-import type { IGraphConfig } from '../xflow-main/graph/config'
 import type { IModelService } from './interface'
 
 /** existModel的Utils */

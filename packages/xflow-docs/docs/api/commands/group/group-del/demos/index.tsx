@@ -7,6 +7,7 @@ import React from 'react'
 import { XFlow, XFlowCanvas } from '@antv/xflow'
 import { FormPanel } from './form'
 import { useGraphConfig, onLoad } from './config-graph'
+import '@antv/xflow/dist/index.css'
 import './index.less'
 
 /**  Demo Props  */

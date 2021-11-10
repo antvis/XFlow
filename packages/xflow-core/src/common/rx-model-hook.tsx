@@ -42,19 +42,18 @@ export const useModel = <T,>(model: RxModel<T>) => {
 
 /** 在组件内部新建一个model */
 export const createComponentModel = <T,>(initialState: T) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  /* eslint-disable-next-line  */
   const model = React.useMemo(() => new RxModel(initialState), [])
   /** model 和 state 绑定触发view刷新 */
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  /* eslint-disable-next-line  */
   const [modelValue, setModelValue, canRender] = useModel(model)
   /** unMount时dispose */
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  /* eslint-disable-next-line  */
   React.useEffect(() => {
     return () => {
       model.dispose()
     }
-    /* eslint-disable-next-line  */
-  }, [])
+  }, [model])
   return [modelValue, setModelValue, model, canRender] as [
     T,
     NsModel.ISetValue<T>,

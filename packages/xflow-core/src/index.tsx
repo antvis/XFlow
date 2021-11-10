@@ -1,3 +1,7 @@
+// IOC
+import * as ManaSyringe from 'mana-syringe'
+export { ManaSyringe }
+
 /** XFlow 基础 interface */
 export { NsGraph } from './interface'
 
@@ -211,4 +215,5 @@ export { insertCss } from './common/utils'
 /** ICON */
 export { IconStore } from './antd-icons'
 
+/** 全局常量 */
 export * as XFlowConstants from './constants'

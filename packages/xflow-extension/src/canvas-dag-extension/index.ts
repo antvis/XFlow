@@ -1,1 +1,1 @@
-export { DagGraphExtension } from './module'
+export { DagGraphExtension } from './components'

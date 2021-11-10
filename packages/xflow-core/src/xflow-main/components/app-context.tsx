@@ -63,6 +63,8 @@ export const XFlowAppInternalProvider: React.FC<{ app: FrontendApplication }> = 
     return userDefinedAppContainer && userDefinedAppContainer.isUserDefined()
       ? userDefinedAppContainer
       : new AppContainer(false)
+    // 不要移除：保证config只生成一次
+    // eslint-disable-next-line
   }, [])
   // set appChange callback
   if (!appContainer.isUserDefined()) {
@@ -73,6 +75,8 @@ export const XFlowAppInternalProvider: React.FC<{ app: FrontendApplication }> = 
     if (props.app) {
       appContainer.setApp(props.app)
     }
+    // 不要移除：只关心 props.app
+    // eslint-disable-next-line
   }, [props.app])
 
   if (appContainer.isUserDefined()) {

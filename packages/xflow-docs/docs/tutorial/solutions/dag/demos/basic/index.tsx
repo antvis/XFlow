@@ -37,6 +37,7 @@ import { onNodeDrop, searchService, treeDataService } from './config-dnd-panel'
 import { formSchemaService, formValueUpdateService, controlMapService } from './config-form'
 
 import './index.less'
+import '@antv/xflow/dist/index.css'
 
 export interface IProps {
   meta: { flowId: string }
@@ -62,7 +63,7 @@ export const Demo: React.FC<IProps> = props => {
    * @param extensionRegistry 当前XFlow配置项
    */
 
-  const onLoad: IAppLoad = async (app, extensionRegistry) => {
+  const onLoad: IAppLoad = async app => {
     cache.app = app
     initGraphCmds(cache.app)
   }

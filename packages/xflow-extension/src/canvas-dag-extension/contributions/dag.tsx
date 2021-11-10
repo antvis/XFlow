@@ -1,5 +1,10 @@
-import { singleton } from 'mana-syringe'
-import { DisposableCollection, NsGraph, Disposable, XFlowEdgeCommands } from '@antv/xflow-core'
+import {
+  ManaSyringe,
+  DisposableCollection,
+  NsGraph,
+  Disposable,
+  XFlowEdgeCommands,
+} from '@antv/xflow-core'
 import type { ICmdHooks, NsEdgeCmd, NsNodeCmd } from '@antv/xflow-core'
 import { IHookContribution } from '@antv/xflow-core'
 import { XFlowNode } from '../x6-extension/node'
@@ -155,7 +160,7 @@ export const dagOptions: Graph.Options = {
  * 内置的hook contribution
  * 处理 config上的runtime的注册项
  */
-@singleton({ contrib: IHookContribution })
+@ManaSyringe.singleton({ contrib: IHookContribution })
 export class DagHooksContribution implements IHookContribution<ICmdHooks> {
   toDispose = new DisposableCollection()
 

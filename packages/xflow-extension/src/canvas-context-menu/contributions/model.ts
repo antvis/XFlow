@@ -1,6 +1,6 @@
-import { inject, singleton } from 'mana-syringe'
 import type { IMenuOptions } from '@antv/xflow-core'
 import {
+  ManaSyringe,
   DisposableCollection,
   MenuItemType,
   IModelContribution,
@@ -11,6 +11,8 @@ import {
 import { MODELS } from '@antv/xflow-core'
 import { CONTEXT_MENU_MODEL } from '../interface'
 import { ContextMenuConfig } from '../config'
+
+const { inject, singleton } = ManaSyringe
 /**
  * IModelContribution
  */

@@ -8,8 +8,6 @@ import { Empty, Form, Tabs } from 'antd'
 import { xflowDefaultControls, makeControlMap, getControlFromMap } from './control-map/index'
 export { FormItemWrapper } from './common/form-item-wrapper'
 
-import './index.less'
-
 interface Props extends FormProps {
   schema: ISchema
   className?: string

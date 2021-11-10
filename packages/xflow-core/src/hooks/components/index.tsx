@@ -14,6 +14,8 @@ export const HookRegistry: React.FC<IProps> = props => {
   /** 获取ContextService的配置 */
   const hookConfig = React.useMemo<XFlowHookConfig>(
     () => (props.config ? props.config : new XFlowHookConfig()),
+    // 不要移除：保证config只生成一次
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
 
@@ -30,8 +32,12 @@ export const HookRegistry: React.FC<IProps> = props => {
   return null
 }
 
+interface IValueProxy<T> {
+  getValue: () => T
+}
+
 export const createHookConfig =
-  <T extends unknown = any>(addOptions: (config: HookConfig, getValue: () => T) => void) =>
+  <T extends unknown = any>(addOptions: (config: HookConfig, container: IValueProxy<T>) => void) =>
   (value?: T) => {
     /** bridge config and value */
     const valueContainer = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
@@ -39,9 +45,9 @@ export const createHookConfig =
 
     const hookConfig = React.useMemo(() => {
       const config = new HookConfig()
-      addOptions(config, valueContainer.getValue)
+      addOptions(config, valueContainer)
       return config
-    }, [])
+    }, [valueContainer])
 
     return hookConfig
   }

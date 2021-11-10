@@ -8,7 +8,7 @@ import { XFlowGraphCommands } from '../constant'
 import { Disposable } from '../../common/disposable'
 import { cellsToJson } from '../../common/graph-utils'
 import { LOCAL_STORAGE_KEY } from '../../constants'
-import { Cell } from '@antv/x6'
+import type { Cell } from '@antv/x6'
 
 type ICommand = ICommandHandler<
   NsGraphCopySelection.IArgs,
@@ -22,7 +22,7 @@ export namespace NsGraphCopySelection {
   /** hookName */
   export const hookKey = 'graphCopySelection'
   /** hook 参数类型 */
-  export interface IArgs extends IArgsBase {}
+  export type IArgs = IArgsBase
   /** hook handler 返回类型 */
   export interface IResult {
     err: null | string

@@ -2,7 +2,6 @@ import React from 'react'
 import { createDagExtensionModule } from '../module'
 import type { IModuleConfig } from '@antv/xflow-core'
 import { useExtensionRegistry, XFlowAppExtensionMoudle } from '@antv/xflow-core'
-import './index.less'
 
 export interface IProps {}
 

@@ -1,12 +1,12 @@
-import { inject, injectable } from 'mana-syringe'
 import type { ICmdHooks as IHooks } from '@antv/xflow'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IArgsBase, ICommandHandler } from '@antv/xflow'
-import { ICommandContextProvider } from '@antv/xflow'
+import { ICommandContextProvider, ManaSyringe } from '@antv/xflow'
 import { CustomCommands } from './constants'
 
 type ICommand = ICommandHandler<NsTestCmd.IArgs, NsTestCmd.IResult, NsTestCmd.ICmdHooks>
 
+const { inject, injectable } = ManaSyringe
 export namespace NsTestCmd {
   /** Command: 用于注册named factory */
   export const command = CustomCommands.TEST_ASYNC_CMD

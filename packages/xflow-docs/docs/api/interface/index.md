@@ -109,7 +109,7 @@ export interface IGraphData {
 
 ```tsx | pure
 /** 边数据 */
-export interface INodeConfig extends IGroupConfig {
+export interface INodeConfig {
   /** 节点的唯一标识 */
   id: string
   /** 节点在画布的位置: x */
@@ -131,11 +131,11 @@ export interface INodeConfig extends IGroupConfig {
 
 ## IGroupConfig
 
-群组节点配置类型
+群组节点配置类型，群组也是节点，所以 extends 节点的所有属性
 
 ```tsx | pure
 /** 群组节点信息 */
-export interface IGroupConfig {
+export interface IGroupConfig extends INodeConfig {
   /** 是否折叠 */
   isCollapsed?: boolean
   /** group 折叠后的大小 */

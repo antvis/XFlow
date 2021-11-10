@@ -6,7 +6,7 @@ import type {
   DisposableCollection,
   IToolbarOptions,
 } from '@antv/xflow-core'
-import React from 'react'
+import type React from 'react'
 
 import type { ToolbarConfig } from './config'
 

@@ -4,11 +4,11 @@
  *    获取app, 分别使用Model/Command/X6Graph <br>
  */
 import React from 'react'
-import { XFlow, XFlowCanvas, WorkspacePanel } from '@antv/xflow'
+import { XFlow, XFlowCanvas } from '@antv/xflow'
 import CustomPanel from './custom-panel'
 import './index.less'
 import { useGraphConfig, onLoad } from './graph-config'
-
+import '@antv/xflow/dist/index.css'
 /**  Demo Props  */
 export interface IDemoProps {
   anything: string

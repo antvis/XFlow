@@ -53,4 +53,4 @@ export { WorkspacePanel, usePanelContext, IWorkspacePanelProps } from './base-pa
 export { DagGraphExtension } from './canvas-dag-extension'
 
 /** 流程图扩展 */
-export { FlowGraphExtension } from './canvas-flow-extension/components'
+export { FlowGraphExtension } from './canvas-flow-extension'

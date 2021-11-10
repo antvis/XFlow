@@ -2,9 +2,8 @@ import React from 'react'
 import type { IModuleConfig } from '@antv/xflow-core'
 import { useExtensionRegistry } from '@antv/xflow-core'
 import { createFlowExtensionModule } from '../module'
-import './index.less'
 
-export const FlowGraphExtension: React.FC<{}> = () => {
+export const FlowGraphExtension: React.FC = () => {
   /** 获取扩展Registry */
   const extensionRegistry = useExtensionRegistry()
   const config = React.useMemo<IModuleConfig>(
