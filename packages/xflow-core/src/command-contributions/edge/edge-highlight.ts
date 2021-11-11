@@ -21,7 +21,7 @@ export namespace NsHighlightEdge {
     /** 边唯一id */
     edgeId: string
     /** 边高亮颜色 */
-    stroke: string
+    strokeColor: string
     /** 边高亮宽度 */
     strokeWidth?: number
   }
@@ -53,21 +53,40 @@ export class HighlightEdgeCommand implements ICommand {
       args,
       async handlerArgs => {
         const x6Graph = await this.ctx.getX6Graph()
-        const { edgeId, stroke, strokeWidth } = handlerArgs
-        const x6Edge = x6Graph?.getCellById(edgeId) as X6Edge
-        if (!x6Edge) {
+        const { edgeId, strokeColor, strokeWidth } = handlerArgs
+
+        const allEdges = x6Graph.getEdges()
+        /** 需要高亮的连线 */
+        const highlightEdge = allEdges.find(edge => edge.id === edgeId)
+        /** 不需要高亮的连线 */
+        const otherEdges = allEdges.filter(edge => edge.id !== edgeId)
+
+        if (!highlightEdge) {
           console.error(edgeId, 'this edgeId is not exist')
         } else {
-          x6Edge?.setAttrs({
-            line: {
-              stroke: stroke || '#7c68fc',
-              strokeWidth: strokeWidth || 2,
-            },
-          })
-          /** 高亮的连线默认前置在画布最前方 */
-          handlerArgs.commandService.executeCommand(XFlowEdgeCommands.FRONT_EDGE.id, {
-            edgeId,
-          } as NsEdgeCmd.FrontEdge.IArgs)
+          const oldAttr = highlightEdge.getAttrs()
+          if (oldAttr?.line?.stroke === strokeColor && oldAttr?.line?.strokeWidth === strokeWidth) {
+            /** 连线已经高亮, 不需要重复操作 */
+          } else {
+            /** 高亮选中的连线 */
+            highlightEdge?.setAttrs({
+              line: {
+                stroke: strokeColor,
+                strokeWidth: strokeWidth || 2,
+              },
+            })
+            /** 其余连线取消高亮状态 */
+            otherEdges.forEach(edge => {
+              edge.setAttrs({
+                line: oldAttr?.line,
+              })
+            })
+
+            /** 高亮的连线默认前置在画布最前方 */
+            handlerArgs.commandService.executeCommand(XFlowEdgeCommands.FRONT_EDGE.id, {
+              edgeId,
+            } as NsEdgeCmd.FrontEdge.IArgs)
+          }
         }
         return {}
       },
