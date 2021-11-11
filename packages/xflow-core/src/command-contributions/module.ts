@@ -14,7 +14,6 @@ import type { CommandConfig } from './config'
 import { registerCommandConfig } from './config'
 import { registerXFlowCommandContribution } from './command-contribution'
 import { GraphMappingHelper } from './mapping-service'
-export { CommandsRegistry as Commands, createCmdConfig } from './components'
 
 /** 依赖扩展模块，必须要加载 */
 export const createModule = (commandConfig: CommandConfig) => {

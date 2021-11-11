@@ -2,8 +2,8 @@ import React from 'react'
 import classNames from 'classnames'
 /** app */
 import { initApp } from '../application-module'
-import type { FrontendApplication as IApplication } from '../application'
 import { XFlowAppInternalProvider, useXFlowApp } from './app-context'
+import type { FrontendApplication as IApplication } from '../application'
 /** app-extension */
 import { ExtensionRegistryContext } from './extension-context'
 import { useXflowPrefixCls } from './global-config-context'
@@ -13,21 +13,21 @@ import { ExtensionRegistry, createExtensionRegistry } from './extension-registry
 import { XFlowCanvas } from './canvas'
 import type { GraphConfig } from '../graph'
 /** command */
-import type { CommandConfig } from '../../command-contributions'
+import { ModelServiceRegistry } from '../../model-service'
 import { CommandsRegistry, XFlowGraphCommands } from '../../command-contributions'
 import type { ModelServiceConfig } from '../../model-service'
-import { ModelServiceRegistry, MODELS } from '../../model-service'
+import type { CommandConfig } from '../../command-contributions'
 /** hook */
-import type { HookConfig } from '../../hooks'
 import { HookRegistry } from '../../hooks'
+import type { HookConfig } from '../../hooks'
 /** UI model */
 import { ToolbarRegistry } from '../../toolbar'
 import { MenuRegistry } from '../../menu'
 /** style */
 import '../style/index.less'
 
-import { NsGraph } from '../../interface'
-import { NsGraphCmd } from '../../command-contributions'
+import type { NsGraph } from '../../interface'
+import type { NsGraphCmd } from '../../command-contributions'
 
 export interface IProps {
   /** XFlow 工作台组件元信息, 会储存在全局Model中并在调用Service时作为额外的参数传入 */
@@ -134,6 +134,8 @@ export const XFlow: React.FC<IProps> = props => {
     return () => {
       destroy()
     }
+    /** 不要删 保证只生成一次 */
+    // eslint-disable-next-line
   }, [])
 
   /** 自动更新meta */
@@ -141,6 +143,8 @@ export const XFlow: React.FC<IProps> = props => {
     if (appRef) {
       appRef.commandService.executeCommand(XFlowGraphCommands.LOAD_META.id, { meta })
     }
+    /** 不要删 只和meta联动 */
+    // eslint-disable-next-line
   }, [meta])
 
   /** 自动渲染画布内容 */
@@ -165,6 +169,8 @@ export const XFlow: React.FC<IProps> = props => {
       }
     }
     fn()
+    /** 不要删 只和graphData联动 */
+    // eslint-disable-next-line
   }, [graphData])
 
   /** classname */

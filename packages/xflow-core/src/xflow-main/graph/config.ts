@@ -258,8 +258,12 @@ export const registerGraphConfig = (register: Syringe.Register, graphConfig: Gra
   })
 }
 
+interface IValueProxy<T> {
+  getValue: () => T
+}
+
 export const createGraphConfig =
-  <T = any>(addOptions: (config: GraphConfig, getValue: () => T) => void) =>
+  <T = any>(addOptions: (config: GraphConfig, proxy: IValueProxy<T>) => void) =>
   (props?: T) => {
     /** bridge config and props */
     const propsContainer = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
@@ -267,9 +271,9 @@ export const createGraphConfig =
 
     const graphConfig = React.useMemo(() => {
       const config = new GraphConfig()
-      addOptions(config, propsContainer.getValue)
+      addOptions(config, propsContainer)
       return config
-    }, [])
+    }, [propsContainer])
 
     return graphConfig
   }

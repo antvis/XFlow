@@ -29,8 +29,15 @@ export const CommandsRegistry: React.FC<IProps> = props => {
   return null
 }
 
+// 缓存props
+interface IValueProxy<T> {
+  getValue: () => T
+}
+
 export const createCmdConfig =
-  <T extends unknown = any>(addOptions: (config: CommandConfig, getValue: () => T) => void) =>
+  <T extends unknown = any>(
+    addOptions: (config: CommandConfig, container: IValueProxy<T>) => void,
+  ) =>
   (value?: T) => {
     /** bridge config and value */
     const valueContainer = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
@@ -38,9 +45,9 @@ export const createCmdConfig =
 
     const hookConfig = React.useMemo(() => {
       const config = new CommandConfig()
-      addOptions(config, valueContainer.getValue)
+      addOptions(config, valueContainer)
       return config
-    }, [])
+    }, [valueContainer])
 
     return hookConfig
   }

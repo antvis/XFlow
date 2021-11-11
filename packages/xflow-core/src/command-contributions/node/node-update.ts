@@ -1,6 +1,5 @@
 import { inject, injectable, postConstruct } from 'mana-syringe'
 import type { Node as X6Node } from '@antv/x6'
-import type { Attr } from '@antv/x6/es/registry/attr'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IHooks } from '../../hooks/interface'
 import { XFlowNodeCommands } from '../constant'

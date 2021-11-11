@@ -1,12 +1,12 @@
 import 'reflect-metadata'
 /** Application 扩展依赖 */
 import { HookConfig } from './config'
-import { createHookConfig } from './components'
 import { HookRegistry } from './hook-registry'
 import { Contribution, Module } from 'mana-syringe'
 import { RuntimeContribution } from './contributions/default'
 import { GraphEventContribution } from './contributions/graph'
 import { IHookContribution } from './interface'
+
 /** 依赖扩展模块，必须要加载 */
 const createModule = (config: HookConfig) => {
   return Module(register => {
@@ -24,10 +24,4 @@ const createModule = (config: HookConfig) => {
   })
 }
 
-export {
-  HookRegistry,
-  createModule,
-  createHookConfig,
-  IHookContribution,
-  HookConfig as XFlowHookConfig,
-}
+export { HookRegistry, createModule, IHookContribution, HookConfig as XFlowHookConfig }

@@ -5,7 +5,7 @@ import { GraphConfig, createX6GraphModule } from '../graph'
 import { useExtensionRegistry } from './extension-context'
 import { useXflowPrefixCls } from './global-config-context'
 import { usePortal } from '@antv/x6-react-shape'
-import { useXFlowApp } from '.'
+import { useXFlowApp } from './app-context'
 
 export interface IProps {
   config?: GraphConfig
@@ -31,6 +31,8 @@ export const XFlowCanvas: React.FC<IProps> = props => {
     const config = props.config ? props.config : new GraphConfig()
     config.setX6Config()
     return config
+    /** 保证只生成一次 */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   /** X6_NODE_PORTAL_NODE_VIEW */
@@ -59,6 +61,8 @@ export const XFlowCanvas: React.FC<IProps> = props => {
     return () => {
       destroy()
     }
+    /** 保证只生成一次 */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const style = usePositionStyle(props.position)

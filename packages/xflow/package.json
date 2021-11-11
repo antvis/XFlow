@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "license": "MIT",
   "scripts": {
     "start": "father-build -w",
@@ -41,9 +41,9 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@antv/xflow-core": "0.1.0-beta.2",
-    "@antv/xflow-extension": "0.1.0-beta.2",
-    "@antv/xflow-hook": "0.1.0-beta.2",
+    "@antv/xflow-core": "0.1.0-beta.3",
+    "@antv/xflow-extension": "0.1.0-beta.3",
+    "@antv/xflow-hook": "0.1.0-beta.3",
     "mana-syringe": "^0.1.0",
     "classnames": "^2.2.6",
     "reflect-metadata": "^0.1.13"
