@@ -11,7 +11,7 @@ nav:
   order: 1
 ---
 
-## 边前置
+## 连线前置
 
 XFlow 提供画布连线前置的命令 `XFlowEdgeCommands.FRONT_EDGE`, 通过该命令可以实现在画布中前置一条连线。
 
