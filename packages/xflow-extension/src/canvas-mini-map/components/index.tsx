@@ -1,9 +1,9 @@
 import React from 'react'
 import { createModule } from '../module'
-import { insertCss, IPosition } from '@antv/xflow-core'
+import type { IPosition } from '@antv/xflow-core'
+import { insertCss } from '@antv/xflow-core'
 import { XFlowAppExtensionMoudle, usePositionStyle } from '@antv/xflow-core'
 import { SimpleNodeView } from '../x6-node-view'
-import './index.css'
 import type { IMinimapOptions } from '../interface'
 
 /** 配置类型 */
@@ -61,7 +61,7 @@ export const CanvasMiniMap: React.FC<IProps> = props => {
       'xflow-minimap',
       'minimap-instacne-' + Date.now().toString(),
     ])
-  }, [])
+  }, [miniMapClz])
   const getConfig = React.useMemo(
     () => async () => {
       return {
@@ -105,7 +105,7 @@ export const CanvasMiniMap: React.FC<IProps> = props => {
     return () => {
       document.head.removeChild($style)
     }
-  }, [borderColor, handlerColor])
+  }, [borderColor, classNameSet, handlerColor])
 
   const clzName = Array.from(classNameSet).join(' ')
 

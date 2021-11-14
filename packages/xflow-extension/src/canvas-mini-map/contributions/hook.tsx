@@ -1,18 +1,17 @@
 import type { ICmdHooks } from '@antv/xflow-core'
 import { DisposableCollection, Disposable } from '@antv/xflow-core'
-import { inject, singleton } from 'mana-syringe'
-import { IHookContribution } from '@antv/xflow-core'
+import { IHookContribution, ManaSyringe } from '@antv/xflow-core'
 import { IMinimapConfigProvider } from '../interface'
 
 /**
  * 内置的hook contribution
  * 处理 config上的runtime的注册项
  */
-@singleton({ contrib: IHookContribution })
+@ManaSyringe.singleton({ contrib: IHookContribution })
 export class HookContribution implements IHookContribution<ICmdHooks> {
   toDispose = new DisposableCollection()
 
-  @inject(IMinimapConfigProvider)
+  @ManaSyringe.inject(IMinimapConfigProvider)
   private minimapConfig: IMinimapConfigProvider
 
   registerHookHub = async () => {

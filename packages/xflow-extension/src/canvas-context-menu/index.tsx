@@ -31,20 +31,18 @@ export const CanvasContextMenu: React.FC<IProps> = props => {
   )
 }
 
-export const createCtxMenuConfig =
-  <T extends {} = any>(
-    addOptions: (config: ContextMenuConfig, proxy: { getValue: () => T }) => void,
-  ) =>
-  (props?: T) => {
-    /** bridge config and props */
-    const proxy = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
-    proxy.getValue = () => props
+export const createCtxMenuConfig = <T extends unknown = any>(
+  addOptions: (config: ContextMenuConfig, proxy: { getValue: () => T }) => void,
+) => (props?: T) => {
+  /** bridge config and props */
+  const proxy = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
+  proxy.getValue = () => props
 
-    const toolbarConfig = React.useMemo(() => {
-      const config = new ContextMenuConfig()
-      addOptions(config, proxy)
-      return config
-    }, [proxy])
+  const toolbarConfig = React.useMemo(() => {
+    const config = new ContextMenuConfig()
+    addOptions(config, proxy)
+    return config
+  }, [proxy])
 
-    return toolbarConfig
-  }
+  return toolbarConfig
+}

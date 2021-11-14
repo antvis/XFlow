@@ -26,20 +26,20 @@ interface IValueProxy<T> {
   getValue: () => T
 }
 
-export const createToolbarConfig =
-  <T extends {} = any>(addOptions: (config: ToolbarConfig, proxy: IValueProxy<T>) => void) =>
-  (value?: T) => {
-    /** bridge config and value */
-    const proxy = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
-    proxy.getValue = () => value
-    /** 生成config */
-    const toolbarConfig = React.useMemo(() => {
-      const config = new ToolbarConfig()
-      addOptions(config, proxy)
-      return config
-    }, [proxy])
+export const createToolbarConfig = <T extends unknown = any>(
+  addOptions: (config: ToolbarConfig, proxy: IValueProxy<T>) => void,
+) => (value?: T) => {
+  /** bridge config and value */
+  const proxy = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
+  proxy.getValue = () => value
+  /** 生成config */
+  const toolbarConfig = React.useMemo(() => {
+    const config = new ToolbarConfig()
+    addOptions(config, proxy)
+    return config
+  }, [proxy])
 
-    return toolbarConfig
-  }
+  return toolbarConfig
+}
 
 export { IToolbarProps }

@@ -1,6 +1,6 @@
 {
   "name": "@antv/xflow-docs",
-  "version": "0.1.0-beta.3",
+  "version": "0.3.1-beta.1",
   "description": "@antv/xflow-docs",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -15,19 +15,16 @@
     "assets.json"
   ],
   "scripts": {
+    "clean": "rm -rf node_modules",
     "start": "dumi dev",
+    "build": "npm run docs:build",
+    "deploy": "npm run docs:build && npm run docs:deploy",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d dist",
-    "build": "dumi build",
-    "build:lib": "rimraf lib && tsc -b",
-    "clean": "rm -rf node_modules",
-    "deploy": "npm run docs:build && npm run docs:deploy",
-    "prepublishOnly": "npm run build:lib",
-    "release": "npm run build && npm publish",
-    "lint": "eslint --no-error-on-unmatched-pattern=true  \"{docs,test}/**/*.{ts,tsx}\" && prettier ./docs --check ",
-    "lint:fix": "eslint  \"{docs,test}/**/*.{ts,tsx}\"  --fix   ",
-    "lint:clean": "rimraf .eslintcache",
-    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
+    "lint": "run-s lint:ts lint:style",
+    "lint:ts": "eslint 'docs/**/*.{js,ts}?(x)' --fix",
+    "lint:style": "stylelint 'docs/**/*.less' --syntax less --fix",
+    "lint:prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -39,7 +36,8 @@
   },
   "dependencies": {
     "@antv/gatsby-theme-antv": "^1.1.8",
-    "@antv/xflow": "0.1.0-beta.3"
+    "@antv/xflow": "0.3.1-beta.1",
+    "dumi-theme-graphin": "^0.1.4"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.6.0",
@@ -55,13 +53,18 @@
     "babel-plugin-import": "^1.13.3",
     "dumi": "^1.0.14",
     "dumi-theme-graphin": "^0.1.4",
+    "less": "^4.1.2",
+    "less-plugin-npm-import": "^2.1.0",
     "lodash": "^4.17.20",
     "parse-github-url": "^1.0.2",
     "prettier": "^2.3.1",
     "rc-footer": "^0.6.6",
+    "react": "^16.8.0  || ^17.0.0",
+    "react-dom": "^16.8.0  || ^17.0.0",
     "react-github-button": "^0.1.11",
     "react-i18next": "^11.8.13",
     "react-slick": "^0.28.1",
+    "request": "^2.88.2",
     "rxjs": "^6.6.0",
     "slick-carousel": "^1.8.1",
     "video-react": "^0.14.1"

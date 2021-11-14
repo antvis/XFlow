@@ -1,7 +1,6 @@
 import React from 'react'
-import { inject, injectable } from 'mana-syringe'
 import type { HookHub, ICmdHooks as IHooks, NsGraph, IModelService } from '@antv/xflow'
-import { Deferred } from '@antv/xflow'
+import { Deferred, ManaSyringe } from '@antv/xflow'
 import type { FormInstance } from 'antd'
 import { Modal, Form, Input, ConfigProvider } from 'antd'
 
@@ -46,11 +45,11 @@ export namespace NsRenameNodeCmd {
   }
 }
 
-@injectable()
+@ManaSyringe.injectable()
 /** 部署画布数据 */
 export class RenameNodeCommand implements ICommand {
   /** api */
-  @inject(ICommandContextProvider) contextProvider: ICommand['contextProvider']
+  @ManaSyringe.inject(ICommandContextProvider) contextProvider: ICommand['contextProvider']
 
   /** 执行Cmd */
   execute = async () => {

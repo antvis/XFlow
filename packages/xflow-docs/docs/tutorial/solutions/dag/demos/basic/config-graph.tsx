@@ -5,9 +5,9 @@ import { DND_RENDER_ID, GROUP_NODE_RENDER_ID } from './constant'
 import { DndNode } from './react-node/dnd-node'
 import { GroupNode } from './react-node/group'
 
-export const useGraphHookConfig = createHookConfig<IProps>((config, getProps) => {
+export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
   // 获取 Props
-  const props = getProps()
+  const props = proxy.getValue()
   console.log('get main props', props)
   config.setRegisterHook(hooks => {
     const disposableList = [

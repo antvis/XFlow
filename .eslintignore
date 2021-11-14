@@ -4,3 +4,9 @@ webpack.config.js
 .babelrc.js
 .stylelintrc.js
 /scripts/*.js
+/**/scripts/*.js
+config
+rollup.config.js
+es
+lib
+dist
