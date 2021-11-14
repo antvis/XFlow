@@ -9,7 +9,7 @@ import { ICommandContextProvider } from '@antv/xflow'
 
 import { CustomCommands } from './constants'
 
-import 'antd/es/modal/style/index'
+import 'antd/es/modal/style/index.css'
 
 type ICommand = ICommandHandler<
   NsRenameNodeCmd.IArgs,

@@ -12,6 +12,7 @@ import {
   createGraphConfig,
   createKeybindingConfig,
 } from '@antv/xflow'
+import '@antv/xflow/dist/index.css'
 import { getGraphData } from './mock'
 import './index.less'
 

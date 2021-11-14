@@ -8,7 +8,6 @@ import { NodePanelFooter } from './panel-footer'
 import { usePanelLyaoutStyle } from './utils'
 import { useTreePanelData, NsNodeTreePanelModel } from './service'
 import * as NsNodeTreePanel from './interface'
-import './style/index'
 
 const NodeTreePanelMain: React.FC<IProps> = props => {
   const { headerStyle, bodyStyle, footerStyle } = usePanelLyaoutStyle(props as IPanelProps)

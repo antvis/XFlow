@@ -10,8 +10,6 @@ export { FormItemWrapper } from './schema-form'
 export { executeJsonSchemaFormCommand } from './service'
 import { WorkspacePanel } from '../base-panel'
 
-import './style/index'
-
 /** useFormPanelData获取数据 */
 export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
   const { prefixClz } = props

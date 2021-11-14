@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import less from 'less'
 import LZString from 'lz-string'
-import type { ICbsData, IPreviewerComponentProps } from './interface'
-import NpmImportPlugin from 'less-plugin-npm-import'
+import type { ICbsData, IPreviewerComponentProps } from './type.d'
+
 const CSB_API_ENDPOINT = 'https://codesandbox.io/api/v1/sandboxes/define'
 
 // ref: https://github.com/codesandbox/codesandbox-importers/blob/master/packages/import-utils/src/api/define.ts
@@ -23,29 +23,38 @@ function getTextContent(raw: string) {
   return text
 }
 
-const lessplugin = new NpmImportPlugin({ prefix: '~' })
 async function cbsHook(data: ICbsData, props: IPreviewerComponentProps) {
   const { className = [] } = props
-  const options = {
-    javascriptEnabled: true,
-  }
   try {
     const cssList = await Promise.all(
       Object.entries(data)
         .filter(([filename, value]) => {
           return filename.includes('.less')
         })
-        .map(([filename, content]) => {
-          return less.render(content, options)
+        .map(async ([filename, content]) => {
+          const options = {
+            javascriptEnabled: true,
+          }
+          const { css } = await less.render(content, options)
+          const cssFilename = filename.replace('.less', '.css')
+          data[cssFilename] = css
+          data[
+            filename
+          ] = `//codesandbox does not support less very well, less is compiled to ${cssFilename} `
+          return css
         }),
     )
 
-    const mainCss = cssList.reduce((acc, output) => acc + '\n' + output.css, '')
+    const mainCss = cssList.reduce((acc, output) => acc + '\n' + output, '')
     data['index.html'] = `
     <style type="text/css">
+    #root .xflow-app-workspace{
+      height:100% !important
+    }
+    
     ${mainCss}
     </style>
-    <div style="height:100%" id="root" class="${className.join(' ')}"></div>
+    <div style="height:100vh" id="root" class="${className.join(' ')}"></div>
     `
   } catch (error) {
     data['index.html'] = `
@@ -56,7 +65,6 @@ async function cbsHook(data: ICbsData, props: IPreviewerComponentProps) {
     `
   }
 
-  console.log(data['index.html'])
   return data
 }
 
@@ -76,6 +84,8 @@ async function getCSBData(opts: IPreviewerComponentProps) {
   const CSSDeps = Object.values(opts.dependencies).filter(dep => dep.css)
   const appFileName = `App${ext}`
   const entryFileName = `index${ext}`
+
+  console.log(opts)
 
   // generate dependencies
   Object.entries(opts.dependencies).forEach(([dep, { version }]) => {
@@ -100,7 +110,7 @@ async function getCSBData(opts: IPreviewerComponentProps) {
   }
   const cbsRawData: ICbsData = {
     'sandbox.config.json': {
-      template: isTSX ? 'create-react-app-typescript' : 'create-react-app',
+      template: 'parcel', //isTSX ? 'create-react-app-typescript' : 'create-react-app',
     },
     'package.json': {
       name: opts.title,
@@ -139,7 +149,7 @@ document.getElementById('root'),
     const key = filename === '_' ? appFileName : filename
     cbsRawData[key] = tsx || jsx || content
   })
-
+  console.log(opts)
   const cbsData = cbsHook ? await cbsHook(cbsRawData, opts) : cbsRawData
 
   // append other imported local files
@@ -149,9 +159,7 @@ document.getElementById('root'),
       content: typeof value === 'string' ? value : JSON.stringify(value, null, 2),
     }
   })
-
-  console.log(files)
-
+  console.log(cbsData)
   return serialize({ files })
 }
 
@@ -177,7 +185,6 @@ export const useCodeSandbox = (
     form.setAttribute('data-demo', opts.title || '')
     const compile = async () => {
       const data = await getCSBData(opts)
-      console.log(data)
       input.name = 'parameters'
       input.value = data
       document.body.appendChild(form)

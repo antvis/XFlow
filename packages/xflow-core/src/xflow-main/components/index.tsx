@@ -23,8 +23,6 @@ import type { HookConfig } from '../../hooks'
 /** UI model */
 import { ToolbarRegistry } from '../../toolbar'
 import { MenuRegistry } from '../../menu'
-/** style */
-import '../style/index.less'
 
 import type { NsGraph } from '../../interface'
 import type { NsGraphCmd } from '../../command-contributions'

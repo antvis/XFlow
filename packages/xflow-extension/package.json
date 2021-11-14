@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow-extension",
-  "version": "0.3.1-beta.1",
+  "version": "0.3.2-beta.1",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist es lib",
@@ -38,8 +38,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@antv/xflow-core": "0.3.1-beta.1",
-    "@antv/xflow-hook": "0.3.1-beta.1",
+    "@antv/xflow-core": "0.3.2-beta.1",
+    "@antv/xflow-hook": "0.3.2-beta.1",
     "schemant-form": "1.1.0"
   },
   "devDependencies": {
@@ -59,16 +59,21 @@
     "rollup-plugin-postcss": "^4.0.1",
     "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-terser": "^7.0.2",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "@antv/x6": "^1.12.11",
+    "@antv/x6-react-shape": "^1.2.5",
+    "@antv/x6-react-components": "1.1.14-beta.1"
   },
   "peerDependencies": {
     "@ant-design/icons": "^4.6.0",
-    "@antv/x6-react-components": "^1.1.0",
     "antd": "^4.6.3",
     "classnames": "^2.2.6",
     "lodash": "^4.17.20",
     "react": "^16.8.0  || ^17.0.0",
     "react-dom": "^16.8.0  || ^17.0.0",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "@antv/x6": "^1.12.11",
+    "@antv/x6-react-shape": "^1.2.5",
+    "@antv/x6-react-components": "1.1.14-beta.1"
   }
 }

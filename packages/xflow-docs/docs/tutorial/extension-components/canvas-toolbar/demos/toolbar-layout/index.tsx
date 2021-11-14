@@ -7,7 +7,7 @@ import { XFlow, createGraphConfig, XFlowCanvas, CanvasToolbar } from '@antv/xflo
 import { useToolbarConfig1, useToolbarConfig2, useToolbarConfig3 } from './toolbar-config'
 import type { IAppLoad } from '@antv/xflow'
 import './index.less'
-
+import '@antv/xflow/dist/index.css'
 /**  Demo Props  */
 export interface IDemoProps {
   anything: string

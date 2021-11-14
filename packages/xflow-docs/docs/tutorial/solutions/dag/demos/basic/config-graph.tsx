@@ -1,5 +1,5 @@
 import type { IProps } from './index'
-import type { IEvent, NsGraph } from '@antv/xflow'
+import type { NsGraph } from '@antv/xflow'
 import { createHookConfig, DisposableCollection } from '@antv/xflow'
 import { DND_RENDER_ID, GROUP_NODE_RENDER_ID } from './constant'
 import { DndNode } from './react-node/dnd-node'
@@ -36,6 +36,7 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
         handler: async events => {
           events.push({
             eventName: 'node:click',
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             callback: (e, cmds, ctx) => {
               // 绑定事件
             },

@@ -16,7 +16,7 @@ import type {
 
 import { CustomCommands } from './constants'
 
-import 'antd/es/modal/style/index'
+import 'antd/es/modal/style/index.css'
 
 type ICommand = ICommandHandler<
   NsRenameNodeCmd.IArgs,
@@ -63,35 +63,40 @@ export class RenameNodeCommand implements ICommand {
     const ctx = this.contextProvider()
     const { args, hooks: runtimeHook } = ctx.getArgs()
     const hooks = ctx.getHooks()
-    const result = await hooks.renameNode.call(args, async args => {
-      const { nodeConfig, graphMeta, commandService, modelService, updateNodeNameService } = args
-      const preNodeName = nodeConfig.label
+    const result = await hooks.renameNode.call(
+      args,
+      async handlerArgs => {
+        const { nodeConfig, graphMeta, commandService, modelService, updateNodeNameService } =
+          handlerArgs
+        const preNodeName = nodeConfig.label
 
-      const getAppContext: IGetAppCtx = () => {
-        return {
-          graphMeta,
-          modelService,
-          commandService,
-          updateNodeNameService,
+        const getAppContext: IGetAppCtx = () => {
+          return {
+            graphMeta,
+            modelService,
+            commandService,
+            updateNodeNameService,
+          }
         }
-      }
 
-      const x6Graph = await ctx.getX6Graph()
-      const cell = x6Graph.getCellById(nodeConfig.id)
+        const x6Graph = await ctx.getX6Graph()
+        const cell = x6Graph.getCellById(nodeConfig.id)
 
-      if (!cell || !cell.isNode()) {
-        throw new Error(`${nodeConfig.id} is not a valid node`)
-      }
-      /** 通过modal 获取 new name */
-      const newName = await showModal(nodeConfig, getAppContext)
-      /** 更新 node name  */
-      if (newName) {
-        const cellData = cell.getData<NsGraph.INodeConfig>()
-        cell.setData({ ...cellData, label: newName } as NsGraph.INodeConfig)
-        return { err: null, preNodeName, currenNodetName: newName }
-      }
-      return { err: null, preNodeName, currenNodetName: '' }
-    })
+        if (!cell || !cell.isNode()) {
+          throw new Error(`${nodeConfig.id} is not a valid node`)
+        }
+        /** 通过modal 获取 new name */
+        const newName = await showModal(nodeConfig, getAppContext)
+        /** 更新 node name  */
+        if (newName) {
+          const cellData = cell.getData<NsGraph.INodeConfig>()
+          cell.setData({ ...cellData, label: newName } as NsGraph.INodeConfig)
+          return { err: null, preNodeName, currenNodetName: newName }
+        }
+        return { err: null, preNodeName, currenNodetName: '' }
+      },
+      runtimeHook,
+    )
 
     ctx.setResult(result)
     return this
@@ -149,6 +154,13 @@ function showModal(node: NsGraph.INodeConfig, getAppContext: IGetAppCtx) {
     static form: FormInstance<IFormProps>
   }
 
+  /** modal销毁逻辑 */
+  const onHide = () => {
+    ModalCache.modal.destroy()
+    ModalCache.form = null as any
+    ModalCache.modal = null as any
+  }
+
   /** modal确认保存逻辑 */
   const onOk = async () => {
     const { form, modal } = ModalCache
@@ -176,14 +188,6 @@ function showModal(node: NsGraph.INodeConfig, getAppContext: IGetAppCtx) {
     }
   }
 
-  /** modal销毁逻辑 */
-  const onHide = () => {
-    modal.destroy()
-    ModalCache.form = null as any
-    ModalCache.modal = null as any
-    // container.destory()
-  }
-
   /** modal内容 */
   const ModalContent = () => {
     const [form] = Form.useForm<IFormProps>()
@@ -209,15 +213,10 @@ function showModal(node: NsGraph.INodeConfig, getAppContext: IGetAppCtx) {
       </div>
     )
   }
-  /** 创建modal dom容器 */
-  // const container = createContainer()
   /** 创建modal */
   const modal = Modal.confirm({
     title: '重命名',
     content: <ModalContent />,
-    // getContainer: () => {
-    //   return container.element
-    // },
     okButtonProps: {
       onClick: e => {
         e.stopPropagation()
@@ -238,15 +237,3 @@ function showModal(node: NsGraph.INodeConfig, getAppContext: IGetAppCtx) {
   /** showModal 返回一个Promise，用于await */
   return defer.promise
 }
-
-// const createContainer = () => {
-//   const div = document.createElement('div')
-//   div.classList.add('xflow-modal-container')
-//   window.document.body.append(div)
-//   return {
-//     element: div,
-//     destory: () => {
-//       window.document.body.removeChild(div)
-//     },
-//   }
-// }

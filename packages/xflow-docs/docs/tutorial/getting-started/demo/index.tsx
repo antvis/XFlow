@@ -9,7 +9,9 @@ import { useGraphConfig } from './config-graph'
 /** 右键菜单栏 */
 import { useMenuConfig } from './menu-config'
 import { message } from 'antd'
+
 import './index.less'
+import '@antv/xflow/dist/index.css'
 
 export interface IProps {}
 
@@ -57,15 +59,15 @@ const Demo: React.FC<IProps> = () => {
         info: { line: 'root1-down3' },
       },
     ]
-    const graphData = { nodes, edges }
-    setGraphData(graphData)
+    const newGraphData = { nodes, edges }
+    setGraphData(newGraphData)
 
     const graph = await app.getGraphInstance()
-    graph.on('node:click', ({ e, x, y, node, view }) => {
+    graph.on('node:click', ({ node }) => {
       const nodeData: NsGraph.INodeConfig = node.getData()
       message.success(`${nodeData.id}节点被点击了`)
     })
-    graph .on('edge:click', ({ e, x, y, edge, view }) => {
+    graph.on('edge:click', ({ edge }) => {
       edge.toFront()
       const edgeData: NsGraph.IEdgeConfig = edge.getData()
       message.success(`${edgeData.id}连线被点击了`)

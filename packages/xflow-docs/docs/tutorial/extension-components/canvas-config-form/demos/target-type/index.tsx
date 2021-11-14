@@ -18,6 +18,7 @@ import {
 } from '@antv/xflow'
 import { set } from 'lodash'
 import { onLoad } from './graph-config'
+import '@antv/xflow/dist/index.css'
 import './index.less'
 
 /**  Demo Props  */

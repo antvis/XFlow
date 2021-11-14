@@ -1,6 +1,6 @@
 {
   "name": "@antv/xflow-docs",
-  "version": "0.3.1-beta.1",
+  "version": "0.3.2-beta.1",
   "description": "@antv/xflow-docs",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -36,14 +36,14 @@
   },
   "dependencies": {
     "@antv/gatsby-theme-antv": "^1.1.8",
-    "@antv/xflow": "0.3.1-beta.1",
+    "@antv/xflow": "0.3.2-beta.1",
     "dumi-theme-graphin": "^0.1.4"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.6.0",
     "@antv/layout": "^0.0.5",
     "@antv/x6": "^1.12.11",
-    "@antv/x6-react-components": "^1.1.0",
+    "@antv/x6-react-components": "^1.1.15",
     "@antv/x6-react-shape": "^1.2.5",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.5.0",
@@ -54,7 +54,6 @@
     "dumi": "^1.0.14",
     "dumi-theme-graphin": "^0.1.4",
     "less": "^4.1.2",
-    "less-plugin-npm-import": "^2.1.0",
     "lodash": "^4.17.20",
     "parse-github-url": "^1.0.2",
     "prettier": "^2.3.1",
@@ -68,6 +67,9 @@
     "rxjs": "^6.6.0",
     "slick-carousel": "^1.8.1",
     "video-react": "^0.14.1"
+  },
+  "resolutions": {
+    "@umijs/preset-dumi": "^1.1.33-0"
   },
   "ci": {
     "type": "aci",

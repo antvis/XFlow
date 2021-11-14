@@ -33,7 +33,7 @@ XFlow 支持 AntV 旗下的常见布局算法, 与兄弟团队[G6 图布局](htt
 
 ## 第一个示例
 
-<code src="./demo/index.tsx" />
+<code src="./demo/index.tsx" classname="quick-start" />
 
 ## 开始使用
 
@@ -145,7 +145,7 @@ const onLoad: IAppLoad = async app => {
     const nodeData: NsGraph.INodeConfig = node.getData()
     message.success(`${nodeData.id}节点被点击了`)
   })
-  graph .on('edge:click', ({ e, x, y, edge, view }) => {
+  graph.on('edge:click', ({ e, x, y, edge, view }) => {
     edge.toFront()
     const edgeData: NsGraph.IEdgeConfig = edge.getData()
     message.success(`${edgeData.id}连线被点击了`)

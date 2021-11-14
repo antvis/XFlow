@@ -27,7 +27,7 @@ nav:
 
 利用工具栏可以方便的执行 xflow 的命令, onClick 中可以使用[ICommnadService](/api/interface/command) 执行[所有命令](/api/commands)
 
-<code src="./demos/basic/index.tsx" classname="toolbar-demo"  id="canvas-toolbar-basic"/>
+<code src="./demos/basic/index.tsx" classname="canvas-toolbar-basic"   />
 
 ## 工具栏配置项
 

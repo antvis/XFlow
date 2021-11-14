@@ -8,6 +8,7 @@ import type { NsJsonSchemaForm } from '@antv/xflow'
 import { XFlow, XFlowCanvas, JsonSchemaForm, createGraphConfig } from '@antv/xflow'
 import { controlMapService, ControlShapeEnum } from './custom-shapes'
 import { onLoad } from './graph-config'
+import '@antv/xflow/dist/index.css'
 import './index.less'
 
 /**  Demo Props  */

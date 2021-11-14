@@ -12,6 +12,7 @@ import {
   XFlowGraphCommands,
 } from '@antv/xflow'
 import { getGraphData } from './mock'
+import '@antv/xflow/dist/index.css'
 import './index.less'
 
 /**  Demo Props  */
