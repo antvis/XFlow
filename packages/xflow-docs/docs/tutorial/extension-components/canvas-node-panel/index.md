@@ -31,33 +31,33 @@ treeDataService 需要返回符合 ITreeNode[]的数据，ITreeNode 的类型如
 /** tree node model */
 export interface ITreeNode {
   /**
-   * The type of the menu item.
+   * 树节点的ID，'root' 是根节点的id
    */
   readonly id: string | 'root'
   /**
-   * The parent menu id of the menu item.
+   * 节点的文件夹ID
    */
   readonly parentId: string
   /**
-   * The display label for the menu item.
+   * 节点名
    */
   readonly label: string
   /**
-   * Dnd节点的宽度
+   * 拖拽出来的画布节点宽度
    */
   readonly width?: number
   /**
-   * Dnd节点的高度
+   * 拖拽出来的画布节点高度
    */
   readonly height?: number
   /**
-   * Dnd节点的renderKey，默认节点可以使用XFlowConstants.XFLOW_DEFAULT_NODE
+   * Dnd节点的renderKey，可选
    */
   readonly renderKey?: string
   /**
-   * Dnd节点的popover的提示内容
+   * Dnd节点的popover的提示内容，可选
    */
-  readonly popoverContent: React.ReactNode
+  readonly popoverContent?: React.ReactNode
 }
 ```
 
