@@ -48,31 +48,31 @@ export interface IOnNodeDrop {
 /** tree node model */
 export interface ITreeNode {
   /**
-   * The type of the menu item.
+   * 树节点的ID，'root' 是根节点的id
    */
   readonly id: string | 'root'
   /**
-   * The parent menu id of the menu item.
+   * 节点的文件夹id
    */
   readonly parentId: string
   /**
-   * The display label for the menu item.
+   * 节点名
    */
   readonly label: string
   /**
-   * Dnd节点的宽度
+   * 画布节点宽度
    */
   readonly width?: number
   /**
-   * Dnd节点的高度
+   * 画布节点高度
    */
   readonly height?: number
   /**
-   * Dnd节点的renderKey
+   * 画布节点的renderKey，可选
    */
   readonly renderKey?: string
   /**
-   * Dnd节点的popover的提示内容
+   * Dnd节点的popover的提示内容，可选
    */
   readonly popoverContent?: React.ReactNode
   /**
