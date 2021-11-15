@@ -20,7 +20,7 @@
     "build": "npm run docs:build",
     "deploy": "npm run docs:build && npm run docs:deploy",
     "docs:build": "dumi build",
-    "docs:deploy": "gh-pages -d dist",
+    "docs:deploy": "cp ./CNAME ./dist && gh-pages -d dist",
     "lint": "run-s lint:ts lint:style",
     "lint:ts": "eslint 'docs/**/*.{js,ts}?(x)' --fix",
     "lint:style": "stylelint 'docs/**/*.less' --syntax less --fix",
