@@ -35,6 +35,15 @@ export {
   NsNodeTreePanel,
 } from '@antv/xflow-extension'
 
+/** 流程图相关组件 */
+export {
+  FlowchartNodePanel,
+  FlowchartNodePanelProps,
+  FlowchartCanvas,
+  FlowchartFormPanel,
+  FlowchartFormWrapper,
+} from '@antv/xflow-extension'
+
 /** JSON Schema Form */
 export {
   JsonSchemaForm,

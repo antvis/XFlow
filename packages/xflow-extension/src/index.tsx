@@ -34,6 +34,10 @@ export {
   INodeTreePanelProps,
   NsNodeTreePanel,
 } from './canvas-node-tree-panel'
+/** 流程图相关 */
+export { FlowchartCanvas } from './flowchart-canvas'
+export { FlowchartNodePanel, FlowchartNodePanelProps } from './flowchart-node-panel'
+export { FlowchartFormPanel, FlowchartFormWrapper } from './flowchart-editor-panel'
 
 /** JSON Schema Form */
 export {
