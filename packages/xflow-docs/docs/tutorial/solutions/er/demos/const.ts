@@ -9,7 +9,7 @@ export enum EntityType {
   OTHER = 'OTHER',
 }
 
-export const entityTypeDisplay = {
+export const EntityTypeDisplay = {
   [EntityType.FACT]: '事实表',
   [EntityType.DIM]: '维度表',
   [EntityType.OTHER]: '其他表',

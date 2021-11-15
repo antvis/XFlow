@@ -28,7 +28,6 @@ const CreateRelationModal = (props: Props) => {
 
   const handleOK = () => {
     form.validateFields().then(values => {
-      console.log('gujinyue111:', values)
       setConfirmLoading(true)
       const cb = () => {
         setConfirmLoading(false)

@@ -46,7 +46,7 @@ export interface IProps {
 export const CanvasMiniMap: React.FC<IProps> = props => {
   const {
     nodeFillColor,
-    borderColor = '#5E97FF',
+    borderColor = '#ced4de',
     handlerColor = 'rgba(0,0,0,.3)',
     miniMapClz = '',
     position = { bottom: 12, right: 12 },
