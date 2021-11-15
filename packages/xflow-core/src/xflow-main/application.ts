@@ -2,10 +2,10 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable max-classes-per-file */
 import { inject, singleton, contrib, Contribution } from 'mana-syringe'
+import { Node as X6Node, Edge as X6Edge, Registry } from '@antv/x6'
 import type { IGraphPipelineCommand } from '../command/interface'
 import type { MaybePromise } from '../common/types'
 import type { IRuntimeHook } from '@antv/xflow-hook/es/interface'
-
 import { IGraphProvider } from '../xflow-main/graph/graph-provider'
 import { IGraphCommandService } from '../command/interface'
 import { IModelService } from '../model-service'
@@ -48,6 +48,39 @@ export class FrontendApplication {
   public getGraphConfig() {
     return this.graphProvider.getGraphOptions()
   }
+
+  /** 获取画布节点 */
+  public async getNodeById(nodeId: string) {
+    const graph = await this.graphProvider.getGraphInstance()
+    return graph.getCellById(nodeId) as X6Node
+  }
+
+  /** 获取画布连线 */
+  public async getEdgeById(edgeId: string) {
+    const graph = await this.graphProvider.getGraphInstance()
+    return graph.getCellById(edgeId) as X6Edge
+  }
+
+  /** 更新节点样式 */
+  public async updateNodeAttrs(node: string | X6Node, attrs: Registry.Attr.CellAttrs) {
+    if (node instanceof X6Node) {
+      node.setAttrs(attrs)
+    } else {
+      const x6Node = await this.getNodeById(node)
+      x6Node.setAttrs(attrs)
+    }
+  }
+
+  /** 更新连线样式 */
+  public async updateEdgeAttrs(edge: string | X6Edge, attrs: Registry.Attr.CellAttrs) {
+    if (edge instanceof X6Edge) {
+      edge.setAttrs(attrs)
+    } else {
+      const x6Edge = await this.getEdgeById(edge)
+      x6Edge.setAttrs(attrs)
+    }
+  }
+
 
   /** 暴露命令的执行接口 */
   public executeCommand<Args = any, Result = any>(

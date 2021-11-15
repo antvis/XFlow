@@ -58,8 +58,8 @@ export const mockProperties: EntityProperty[] = [
 export const mockEntityData: EntityCanvasModel[] = [
   {
     id: 'fact1',
-    x: 550,
-    y: 400,
+    x: 450,
+    y: 150,
     width: 214,
     height: 252,
     entityId: 'fact1',
@@ -69,8 +69,8 @@ export const mockEntityData: EntityCanvasModel[] = [
   },
   {
     id: 'fact2',
-    x: 100,
-    y: 100,
+    x: 0,
+    y: -20,
     width: 214,
     height: 252,
     entityId: 'fact2',
@@ -80,8 +80,8 @@ export const mockEntityData: EntityCanvasModel[] = [
   },
   {
     id: 'dim1',
-    x: 100,
-    y: 400,
+    x: 0,
+    y: 300,
     width: 214,
     height: 252,
     entityId: 'dim1',
@@ -91,8 +91,8 @@ export const mockEntityData: EntityCanvasModel[] = [
   },
   {
     id: 'other1',
-    x: 100,
-    y: 700,
+    x: 180,
+    y: 500,
     width: 214,
     height: 252,
     entityId: 'other1',
@@ -102,7 +102,7 @@ export const mockEntityData: EntityCanvasModel[] = [
   },
   {
     id: 'other2',
-    x: 900,
+    x: 810,
     y: 0,
     width: 214,
     height: 252,
@@ -118,5 +118,10 @@ export const mockRelationData: RelationCanvasModel[] = [
     id: 'fact1-fact2',
     source: 'fact1',
     target: 'fact2',
+  },
+  {
+    id: 'fact1-dim1',
+    source: 'fact1',
+    target: 'dim1',
   },
 ]

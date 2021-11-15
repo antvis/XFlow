@@ -102,6 +102,19 @@ export class GraphManager implements IGraphManager {
 
       graphDefer.resolve(graph)
 
+      graph.on('node:moved', ({ node }) => {
+        const nodeData = node.getData()
+        const position = node.position()
+        const size = node.size()
+        node.setData({
+          ...nodeData,
+          x: position?.x,
+          y: position?.y,
+          width: size?.width,
+          height: size?.height,
+        })
+      })
+
       this.toDisposce.push(
         Disposable.create(async () => {
           await hooks.beforeGraphDestory.call({

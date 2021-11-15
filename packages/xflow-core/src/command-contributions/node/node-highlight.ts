@@ -82,7 +82,7 @@ export class HighlightNodeCommand implements ICommand {
               const x6EdgeData = x6Edge?.getData<any>()
               handlerArgs?.commandService.executeCommand(XFlowEdgeCommands.HIGHLIGHT_EDGE.id, {
                 edgeId: x6EdgeData?.id,
-                stroke: edgeStroke,
+                strokeColor: edgeStroke,
                 strokeWidth: edgeStrokeWidth,
               } as NsEdgeCmd.HighlightEdge.IArgs)
             })

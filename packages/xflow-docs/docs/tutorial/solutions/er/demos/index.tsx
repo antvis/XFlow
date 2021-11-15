@@ -5,6 +5,7 @@ import { XFlowAppProvider, useXFlowApp } from '@antv/xflow'
 import type { NsGraphCmd, NsNodeCmd, NsEdgeCmd } from '@antv/xflow'
 import { XFlowGraphCommands, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
 import { CanvasMiniMap, CanvasScaleToolbar, CanvasSnapline } from '@antv/xflow'
+import { MODELS } from '@antv/xflow'
 import GraphToolbar from './GraphToolbar/index'
 
 /** 配置画布 */
@@ -16,6 +17,8 @@ import { useKeybindingConfig } from './config-keybinding'
 
 import { message } from 'antd'
 import type { EntityCanvasModel } from './interface'
+
+import CreateNodeModal from './CreateNodeModal'
 import CreateRelationModal from './CreateRelationModal'
 import Entity from './react-node/Entity'
 import Relation from './react-edge/Relation'
@@ -27,6 +30,11 @@ import { MockApi } from './service'
 
 interface IProps {}
 
+/** 鼠标的引用 */
+let cursorTipRef: HTMLDivElement
+/** 鼠标在画布的位置 */
+let cursorLocation: any
+
 const Demo: React.FC<IProps> = (props: IProps) => {
   /** XFlow应用实例 */
   const app = useXFlowApp()
@@ -34,7 +42,9 @@ const Demo: React.FC<IProps> = (props: IProps) => {
   /** 画布配置项 */
   const graphConfig = useGraphConfig()
   /** 预设XFlow画布需要渲染的React节点 / 边 */
-  graphConfig.setNodeRender('NODE1', props => <Entity {...props} />)
+  graphConfig.setNodeRender('NODE1', props => {
+    return <Entity {...props} deleteNode={handleDeleteNode} />
+  })
   graphConfig.setEdgeRender('EDGE1', props => {
     return <Relation {...props} deleteRelation={handleDeleteEdge} />
   })
@@ -43,6 +53,10 @@ const Demo: React.FC<IProps> = (props: IProps) => {
   /** 快捷键配置项 */
   const keybindingConfig = useKeybindingConfig()
 
+  /** 是否画布处于可以新建节点状态 */
+  const [graphStatuts, setGraphStatus] = useState<string>('NORMAL')
+  /** 是否展示新建节点弹窗 */
+  const [isShowCreateNodeModal, setIsShowCreateNodeModal] = useState<boolean>(false)
   /** 是否展示新建关联关系弹窗 */
   const [isShowCreateRelationModal, setIsShowCreateRelationModal] = useState<boolean>(false)
   /** 连线source数据 */
@@ -96,6 +110,9 @@ const Demo: React.FC<IProps> = (props: IProps) => {
       graph.on('node:mouseleave', ({ e, node, view }) => {
         changePortsVisible(false)
       })
+      graph.on('edge:click', ({ edge }) => {
+        edge.toFront()
+      })
     }
   }
 
@@ -108,26 +125,52 @@ const Demo: React.FC<IProps> = (props: IProps) => {
 
   /** 创建画布节点 */
   const handleCreateNode = async (values: any) => {
-    // const res = await app.executeCommand(XFlowNodeCommands.ADD_NODE.id, {
-    //   // nodeConfig
-    // } as NsNodeCmd.AddNode.IArgs)
-    // // const res = await app.executeCommand(
-    // //   XFlowNodeCommands.ADD_NODE.id,
-    // //   {} as NsNodeCmd.AddNode.IArgs,
-    // // )
+    const { cb, ...rest } = values
+
+    const graph = await app.getGraphInstance()
+    /** div块鼠标的位置转换为画布的位置 */
+    const graphLoc = graph.clientToLocal(cursorLocation.x, cursorLocation.y - 200)
+
+    const res = await app.executeCommand(XFlowNodeCommands.ADD_NODE.id, {
+      nodeConfig: {
+        id: 'customNode',
+        x: graphLoc.x,
+        y: graphLoc.y,
+        width: 214,
+        height: 252,
+        renderKey: 'NODE1',
+        entityId: values?.name,
+        entityName: values?.displayName,
+        entityType: 'FACT',
+      }
+    } as NsNodeCmd.AddNode.IArgs)
+
+    if (res) {
+      cb && cb()
+      setIsShowCreateNodeModal(false)
+      message.success('添加节点成功!')
+    }
   }
 
   /** 删除画布节点 */
-  const handleDeleteNode = async () => {}
+  const handleDeleteNode = async (nodeId: string) => {
+    const res = await app.executeCommand(XFlowNodeCommands.DEL_NODE.id, {
+      nodeConfig: { id: nodeId },
+    } as NsNodeCmd.DelNode.IArgs)
+
+    if (res) {
+      message.success('删除节点成功!')
+    }
+  }
 
   /** 创建关联关系 */
   const handleCreateEdge = async (values: any) => {
     const { cb, ...rest } = values
     const res = await app.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, {
       edgeConfig: {
-        id: 'fact1-dim1',
+        id: 'fact1-other2',
         source: 'fact1',
-        target: 'dim1',
+        target: 'other2',
         renderKey: 'EDGE1',
         edgeContentWidth: 20,
         edgeContentHeigt: 20,
@@ -161,26 +204,97 @@ const Demo: React.FC<IProps> = (props: IProps) => {
     }
   }
 
+  /** 设置鼠标样式 */
+  const configCursorTip = ({ left, top, display }) => {
+    cursorTipRef.style.left = left
+    cursorTipRef.style.top = top
+    cursorTipRef.style.display = display
+  }
+
   return (
-    <XFlow className="xflow-er-solution-container" commandConfig={cmdConfig} onLoad={onLoad}>
-      <GraphToolbar
-        onAddNodeClick={() => {
-          message.info('鼠标移动到画布空白位置, 再次点击鼠标完成创建', 2)
-        }}
-        onDeleteNodeClick={() => {}}
-        onConnectEdgeClick={() => {
-          console.log('gjy111111')
-          setIsShowCreateRelationModal(true)
-        }}
-      />
-      <XFlowCanvas config={graphConfig}>
-        <CanvasMiniMap nodeFillColor="#00ff00" minimapOptions={{}} />
-        <CanvasScaleToolbar position={{ bottom: 12, left: 20 }} />
-        <CanvasSnapline />
+    <div
+      onMouseMove={e => {
+        if (graphStatuts === 'CREATE') {
+          configCursorTip({
+            left: `${e.pageX}px`,
+            top: `${e.pageY - 180}px`,
+            display: 'block',
+          })
+        }
+      }}
+      onMouseDown={e => {
+        if (graphStatuts === 'CREATE') {
+          cursorLocation = { x: e.pageX, y: e.pageY }
+          setIsShowCreateNodeModal(true)
+          configCursorTip({
+            left: '0px',
+            top: '0px',
+            display:'none',
+          })
+          setGraphStatus('NORMAL')
+        }
+      }}
+      onMouseLeave={e => {
+        if (graphStatuts === 'CREATE') {
+          configCursorTip({
+            left: '0px',
+            top: '0px',
+            display:'none',
+          })
+        }
+      }}
+    >
+      <XFlow
+        className="xflow-er-solution-container"
+        commandConfig={cmdConfig}
+        onLoad={onLoad}
+      >
+        <GraphToolbar
+          onAddNodeClick={() => {
+            message.info('鼠标移动到画布空白位置, 再次点击鼠标完成创建', 2)
+            setGraphStatus('CREATE')
+          }}
+          onDeleteNodeClick={async () => {
+            const modelService = app.modelService
+            const nodes = await MODELS.SELECTED_NODES.useValue(modelService)
+            nodes.forEach(node => {
+              handleDeleteNode(node?.id)
+            })
+          }}
+          onConnectEdgeClick={() => {
+            setIsShowCreateRelationModal(true)
+          }}
+        />
+        <XFlowCanvas config={graphConfig}>
+          <CanvasMiniMap
+            nodeFillColor='#ced4de'
+            minimapOptions={{}} 
+          />
+          <CanvasScaleToolbar position={{ top: 12, left: 20 }} />
+          <CanvasSnapline />
+        </XFlowCanvas>
+        <KeyBindings config={keybindingConfig} />
         {/** 占位空节点 */}
-
-        {/** 创建节点 */}
-
+        {graphStatuts === 'CREATE' && (
+          <div
+            className="cursor-tip-container"
+            ref={ref => {
+              ref && (cursorTipRef = ref)
+            }}
+          >
+            <div className="draft-entity-container">
+              <div>未命名模型</div>
+            </div>
+          </div>
+        )}
+        {/** 创建节点弹窗 */}
+        <CreateNodeModal
+          visible={isShowCreateNodeModal}
+          onOk={handleCreateNode}
+          onCancel={() => {
+            setIsShowCreateNodeModal(false)
+          }}
+        />
         {/** 创建关联关系弹窗 */}
         <CreateRelationModal
           visible={isShowCreateRelationModal}
@@ -191,9 +305,8 @@ const Demo: React.FC<IProps> = (props: IProps) => {
             setIsShowCreateRelationModal(false)
           }}
         />
-      </XFlowCanvas>
-      <KeyBindings config={keybindingConfig} />
-    </XFlow>
+      </XFlow>
+    </div>
   )
 }
 
