@@ -49,10 +49,22 @@ export class FrontendApplication {
     return this.graphProvider.getGraphOptions()
   }
 
+  /** 获取画布所有节点 */
+  public async getAllNodes() {
+    const graph = await this.graphProvider.getGraphInstance()
+    return graph.getNodes()
+  }
+
   /** 获取画布节点 */
   public async getNodeById(nodeId: string) {
     const graph = await this.graphProvider.getGraphInstance()
     return graph.getCellById(nodeId) as X6Node
+  }
+
+  /** 获取画布所有连线 */
+  public async getAllEdges() {
+    const graph = await this.graphProvider.getGraphInstance()
+    return graph.getEdges()
   }
 
   /** 获取画布连线 */
