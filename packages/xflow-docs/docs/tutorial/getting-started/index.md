@@ -66,7 +66,7 @@ $ yarn add @antv/xflow
 
 ```tsx | pure
 import { XFlow, XFlowCanvas } from '@antv/xflow'
-import { CanvasScaleToolbar, CanvasMiniMap, CanvasSnapline } from '@antv/xflow-extension'
+import { CanvasScaleToolbar, CanvasMiniMap, CanvasSnapline } from '@antv/xflow'
 import { useGraphConfig } from './config-graph'
 
 return (

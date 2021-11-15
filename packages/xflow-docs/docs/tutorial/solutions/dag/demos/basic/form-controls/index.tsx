@@ -1,4 +1,4 @@
-import type { NsJsonSchemaForm } from '@antv/xflow-extension'
+import type { NsJsonSchemaForm } from '@antv/xflow'
 import { EditorShape } from './custom-editor'
 import { LinkShape } from './link'
 

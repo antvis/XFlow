@@ -1,52 +1,10 @@
-import { createCtxMenuConfig } from '@antv/xflow-extension'
 import type { NsNodeCmd, NsEdgeCmd } from '@antv/xflow'
 import type { IMenuOptions } from '@antv/xflow'
-import { MenuItemType } from '@antv/xflow'
 import type { NsGraph } from '@antv/xflow'
+import { MenuItemType } from '@antv/xflow'
+import { createCtxMenuConfig } from '@antv/xflow'
 import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
 import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons'
-import { Popconfirm } from 'antd'
-
-export const useMenuConfig = createCtxMenuConfig(config => {
-  config.setMenuModelService(async (data, model, modelService, toDispose) => {
-    const { type, cell } = data
-    console.log(type)
-    switch (type) {
-      case 'node':
-        model.setValue({
-          id: 'root',
-          type: MenuItemType.Root,
-          submenu: [
-            NsCustomMenuItems.DELETE_NODE,
-            NsCustomMenuItems.SEPARATOR,
-            NsCustomMenuItems.NODE_LINK,
-          ],
-        })
-        break
-      case 'edge':
-        model.setValue({
-          id: 'root',
-          type: MenuItemType.Root,
-          submenu: [NsCustomMenuItems.DELETE_EDGE],
-        })
-        break
-      case 'blank':
-        model.setValue({
-          id: 'root',
-          type: MenuItemType.Root,
-          submenu: [NsCustomMenuItems.EMPTY_MENU],
-        })
-        break
-      default:
-        model.setValue({
-          id: 'root',
-          type: MenuItemType.Root,
-          submenu: [NsCustomMenuItems.EMPTY_MENU],
-        })
-        break
-    }
-  })
-})
 
 /** menuitem 配置 */
 export namespace NsCustomMenuItems {
@@ -108,3 +66,44 @@ export namespace NsCustomMenuItems {
     type: MenuItemType.Separator,
   }
 }
+
+export const useMenuConfig = createCtxMenuConfig(config => {
+  config.setMenuModelService(async (data, model, modelService, toDispose) => {
+    const { type, cell } = data
+    console.log(type)
+    switch (type) {
+      case 'node':
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [
+            NsCustomMenuItems.DELETE_NODE,
+            NsCustomMenuItems.SEPARATOR,
+            NsCustomMenuItems.NODE_LINK,
+          ],
+        })
+        break
+      case 'edge':
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsCustomMenuItems.DELETE_EDGE],
+        })
+        break
+      case 'blank':
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsCustomMenuItems.EMPTY_MENU],
+        })
+        break
+      default:
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsCustomMenuItems.EMPTY_MENU],
+        })
+        break
+    }
+  })
+})
