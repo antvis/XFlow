@@ -1,8 +1,7 @@
-import { MutableRefObject } from 'react'
 import { IApplication, XFlowGraphCommands, NsGraphCmd } from '@antv/xflow-core'
-import { IGraphProps, IGraph } from '../interface'
+import { Graph } from '@antv/x6'
 
-// 解决 canvas & node-panel 配置共享问题
+// 解决配置共享问题
 export const globalProps = {
   config: {},
 }
@@ -14,16 +13,17 @@ export const getProps = (key: string) => {
   return globalProps.config?.[key]
 }
 
-const graphInstance = new Map<string, IGraph>()
+const graphInstance = new Map<string, Graph>()
 const appInstance = new Map<string, IApplication>()
 
-export const setInstance = (x6graph: IGraph, app: IApplication) => {
+export const setInstance = async (app?: IApplication) => {
+  const x6graph = await app.getGraphInstance()
   graphInstance.set('x6graph', x6graph)
   appInstance.set('app', app)
 }
 
 export const getGraphInstance = () => {
-  return graphInstance.get('x6graph') as IGraph
+  return graphInstance.get('x6graph') as Graph
 }
 
 export const getAppInstance = () => {

@@ -16,7 +16,7 @@ export interface ICustomNode {
 }
 
 /** tree node model */
-export interface ITreeNode {
+export interface IFlowchartNode {
   /**
    * The type of the menu item.
    */
@@ -48,23 +48,20 @@ export interface ITreeNode {
 export interface IProps extends Omit<TreeNodeProps, 'onNodeDrop'> {
   show?: boolean
   showHeader?: boolean
+  /** 自定义节点 */
   registerNode?: {
     title?: string
     nodes: ICustomNode[]
   }
-  defaultActiveKey?: string[]
-  onNodeDrop?: (nodeConfig: NsGraph.INodeConfig) => void
+  /** 默认展开的折叠面板 */
+  defaultActiveKey?: string[] // ['official', 'custom']
 }
 
 export interface IOnKeywordChange {
   (kwyword: string): void
 }
 
-export type FlowchartNodePanelProps = IProps
-
-export interface IOnFolderExpand {
-  (keys: string[]): void
-}
+export type IFlowchartNodePanelProps = IProps
 
 export namespace NsFlowchartPanelData {
   export const id = 'FLOWCHART_PANEL_DATA'

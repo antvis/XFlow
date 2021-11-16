@@ -8,9 +8,7 @@ import { get } from 'lodash'
 import { onConfigChange, getGraphInstance } from './util'
 import { Node } from '@antv/x6'
 
-/**
- * 节点移动时，实时更新位置信息
- */
+/** 节点移动时，实时更新位置信息，内置之后可去掉 */
 export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { node } = e
   if (!node) {
@@ -23,12 +21,13 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
     const x6Graph = getGraphInstance()
     data?.groupChildren.forEach(async (id: string) => {
       const currentNode = x6Graph.getCellById(id) as Node
-      if (currentNode) {
+      const position = currentNode.getPosition?.()
+      if (currentNode && position) {
         await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
           nodeConfig: {
             ...currentNode.data,
+            ...position,
             ...currentNode.getSize(),
-            ...currentNode.getPosition?.(),
           },
         })
       }
@@ -45,9 +44,7 @@ export const movedNode = async (e: any, cmds: IGraphCommandService, ctx: IModelS
   onConfigChange({ type: 'move:node', config: nodeConfig })
 }
 
-/**
- * 修改节点大小
- */
+/** 修改节点大小 */
 export const resizeNode = async (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { node } = e
   if (!node) {
@@ -102,7 +99,7 @@ export const setEdgeSelected = (e: any, cmds: IGraphCommandService, ctx: IModelS
   }
 }
 
-// 添加辅助工具
+/** 添加辅助工具 */
 export const addTools = async (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { edge } = e
   if (!edge) {
@@ -111,7 +108,7 @@ export const addTools = async (e: any, cmds: IGraphCommandService, ctx: IModelSe
   edge.addTools('vertices', 'ondbclick')
 }
 
-// 添加辅助工具
+/** 移除辅助工具 */
 export const removeTools = async (e: any, cmds: IGraphCommandService, ctx: IModelService) => {
   const { edge } = e
   if (!edge) {

@@ -1,24 +1,22 @@
 import React, { useEffect } from 'react'
 import { XFlowCanvas, useXFlowApp } from '@antv/xflow-core'
-import { useGraphConfig } from './use-graph'
+import { useGraphConfig } from './config-graph'
 import { setInstance } from './utils'
-import { IGraphProps } from './interface'
-
+export { FlowchartExtension } from './extension/module'
+import { IFlowchartGraphProps } from './interface'
 import './index.less'
+export * from './interface'
 
-export const FlowchartCanvas: React.FC<IGraphProps> = props => {
+export const FlowchartCanvas: React.FC<IFlowchartGraphProps> = props => {
   const { position = { top: 40, left: 240, right: 240, bottom: 0 } } = props
   const graphConfig = useGraphConfig(props)
-  const { graphProvider } = useXFlowApp() ?? {}
+  const app = useXFlowApp()
 
   useEffect(() => {
-    if (graphProvider) {
-      /** 获取graph实例 */
-      graphProvider.getGraphInstance().then(x6Graph => {
-        setInstance(x6Graph, graphProvider as any)
-      })
+    if (app) {
+      setInstance(app)
     }
-  }, [graphProvider])
+  }, [app])
 
   return (
     <XFlowCanvas {...props} config={graphConfig} position={position}>

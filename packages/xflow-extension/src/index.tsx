@@ -35,9 +35,15 @@ export {
   NsNodeTreePanel,
 } from './canvas-node-tree-panel'
 /** 流程图相关 */
-export { FlowchartCanvas } from './flowchart-canvas'
-export { FlowchartNodePanel, FlowchartNodePanelProps } from './flowchart-node-panel'
-export { FlowchartFormPanel, FlowchartFormWrapper } from './flowchart-editor-panel'
+import {} from './'
+export { FlowchartCanvas, FlowchartExtension, IFlowchartGraphProps } from './flowchart-canvas'
+export { FlowchartNodePanel, IFlowchartNodePanelProps } from './flowchart-node-panel'
+export {
+  FlowchartFormPanel,
+  FlowchartFormWrapper,
+  IFlowchartFormPanelProps,
+  IFlowchartFormWrapperProps,
+} from './flowchart-editor-panel'
 
 /** JSON Schema Form */
 export {

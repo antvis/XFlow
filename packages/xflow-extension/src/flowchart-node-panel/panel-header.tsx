@@ -24,16 +24,14 @@ export const NodePanelHeader: React.FC<IHeaderProps> = props => {
         }}
       >
         {panelProps.header && React.isValidElement(panelProps.header) && panelProps.header}
-        {panelProps.searchService && (
-          <div className={`${prefixClz}-header-search`}>
-            <Input
-              placeholder="搜索组件"
-              allowClear
-              onChange={e => onKeywordChange(e.target.value)}
-              style={{ width: '100%', border: 0 }}
-            />
-          </div>
-        )}
+        <div className={`${prefixClz}-header-search`}>
+          <Input
+            placeholder="搜索组件"
+            allowClear
+            onChange={e => onKeywordChange(e.target.value)}
+            style={{ width: '100%', border: 0 }}
+          />
+        </div>
       </div>
     </React.Fragment>
   )

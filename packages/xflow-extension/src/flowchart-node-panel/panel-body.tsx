@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Empty, Collapse } from 'antd'
 import { get } from 'lodash'
-import { IProps, ITreeNode, INodeFactoryArgs } from './interface'
+import { IProps, IFlowchartNode } from './interface'
 import { Addon, Graph } from '@antv/x6'
 import {
   NsGraph,
@@ -11,16 +11,11 @@ import {
   XFlowNodeCommands,
 } from '@antv/xflow-core'
 import { NsPanelData } from './service'
-import { XFlowNode } from './node'
 import { setNodeRender } from './utils'
 import { getProps } from '../flowchart-canvas/utils'
-import { NodeTitle } from '../canvas-node-tree-panel/panel-body'
+import { NodeTitle, defaultNodeFactory } from '../canvas-node-tree-panel/panel-body'
 
 const { Panel } = Collapse
-
-export const defaultNodeFactory = (args: INodeFactoryArgs) => {
-  return new XFlowNode(args)
-}
 
 export interface IBodyProps extends IProps {
   state: NsPanelData.IState
@@ -30,13 +25,12 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
   const {
     x6NodeFactory,
     dndOptions,
-    onNodeDrop,
     state,
     prefixClz,
     registerNode,
     defaultActiveKey = ['official', 'custom'],
   } = props
-  const { title = '混合节点' } = registerNode ?? {}
+  const { title = '复制节点' } = registerNode ?? {}
   const { graphProvider, modelService, commandService } = useXFlowApp()
 
   const [dnd, setDnd] = React.useState<Addon.Dnd>()
@@ -53,7 +47,7 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
     graphConfig = x6GraphConfig
   })
 
-  const addNode = useCallback(
+  const onNodeDrop = useCallback(
     async node => {
       const { ports } = node
       const nodeConfig = {
@@ -72,11 +66,12 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
         nodeConfig,
       }
       await commandService.executeCommand(XFlowNodeCommands.ADD_NODE.id, args)
-      if (typeof onNodeDrop === 'function') {
-        onNodeDrop(nodeConfig)
+      const onAddNode = getProps('onAddNode')
+      if (typeof onAddNode === 'function') {
+        onAddNode(nodeConfig)
       }
     },
-    [onNodeDrop, commandService],
+    [commandService],
   )
 
   React.useEffect(() => {
@@ -91,12 +86,12 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
       /** 这里考虑到需要新增群组的需求，不使用x6的getDropNod方法
        * 在validateNode时调用command添加
        */
-      validateNode: async (droppingNode, options) => {
+      validateNode: async droppingNode => {
         const nodeConfig = {
           ...droppingNode.getData<NsGraph.INodeConfig>(),
           ...droppingNode.getPosition(),
         }
-        await addNode(nodeConfig)
+        await onNodeDrop(nodeConfig)
         return false
       },
     })
@@ -116,7 +111,6 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
         data: nodeConfig,
         width,
         height,
-        // X6_NODE_PORTAL_NODE_VIEW
         view: graphConfig.graphId,
         component: wrappedComponent,
       }
@@ -127,8 +121,8 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
   )
 
   const renderTree = React.useCallback(
-    (treeList: ITreeNode[] = []) => {
-      return treeList.map(item => {
+    (list: IFlowchartNode[] = []) => {
+      return list.map(item => {
         const { popoverContent } = item
         return (
           <NodeTitle
@@ -148,7 +142,6 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
   )
   const customNode = state.nodeList.filter(item => item.isCustom)
   const officialNode = state.nodeList.filter(item => !item.isCustom)
-
   const searchCustomNode = state.searchList.filter(item => item.isCustom)
   const searchOfficialNode = state.searchList.filter(item => !item.isCustom)
   const hasCustomNode = customNode.length > 0

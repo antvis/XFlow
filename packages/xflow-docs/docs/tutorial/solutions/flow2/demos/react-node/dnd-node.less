@@ -1,36 +1,12 @@
-@light-border: 1px solid #d9d9d9;
-@primaryColor: #1890ff;
-
-.xflow-flow-node {
-  width: 200px;
-  height: 60px;
-  padding: 8px 12px;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 12px;
-  background: #eff4ff;
-  border: 1px solid #5f95ff;
-  border-radius: 4px;
-  &:hover,
-  &.selected {
-    border-width: 2px;
-  }
-  .node-title {
-    display: flex;
-    align-items: center;
-    height: 20px;
-    line-height: 20px;
-    img {
-      width: 16px;
-      height: 16px;
-    }
-    span {
-      display: inline-block;
-      margin-left: 12px;
-      font-weight: bold;
-    }
-  }
-  .node-des {
-    margin: 0px 0 0 28px;
-    color: rgba(0, 0, 0, 0.45);
-  }
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #84b2e8;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
 }

@@ -8,7 +8,7 @@ export const NoteRightNode: NsGraph.INodeRender = props => {
   const {
     stroke = DefaultNodeConfig.stroke,
     label = DefaultNodeConfig.label,
-    fill = DefaultNodeConfig.fill,
+    fill = 'transparent',
     fontFill = DefaultNodeConfig.fontFill,
     fontSize = DefaultNodeConfig.fontSize,
   } = data

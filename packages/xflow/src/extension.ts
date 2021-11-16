@@ -37,11 +37,15 @@ export {
 
 /** 流程图相关组件 */
 export {
-  FlowchartNodePanel,
-  FlowchartNodePanelProps,
   FlowchartCanvas,
+  FlowchartExtension,
+  IFlowchartGraphProps,
+  FlowchartNodePanel,
+  IFlowchartNodePanelProps,
   FlowchartFormPanel,
   FlowchartFormWrapper,
+  IFlowchartFormPanelProps,
+  IFlowchartFormWrapperProps,
 } from '@antv/xflow-extension'
 
 /** JSON Schema Form */

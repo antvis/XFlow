@@ -1,15 +1,14 @@
 import React from 'react'
-import { createComponentModel, Disposable, MODELS, useXFlowApp, uuidv4 } from '@antv/xflow-core'
-import { IProps, ITreeNode } from './interface'
+import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xflow-core'
+import { IProps, IFlowchartNode } from './interface'
 import { nodeService } from './utils'
-// import { NsPanelData} from '@antv/xflow-core/es/canvas-node-tree-panel/service'
 export namespace NsPanelData {
   export const id = 'NODE_PANEL_DATA'
   export interface IState {
-    nodeList: ITreeNode[]
+    nodeList: IFlowchartNode[]
     defaultExpandAll: boolean
     keyword: string
-    searchList: ITreeNode[]
+    searchList: IFlowchartNode[]
   }
 }
 
@@ -47,7 +46,6 @@ export const usePanelData = (props: IProps) => {
         const graphMetaModel = await MODELS.GRAPH_META.getModel(modelService) //useContext(MODELS.GRAPH_META.id)
         const fetch = async (meta: MODELS.GRAPH_META.IState) => {
           const listData = await nodeService(nodes)
-          console.log('listData', listData)
           return { listData }
         }
 

@@ -3,22 +3,14 @@ import { ConfigProvider, Tooltip } from 'antd'
 import { TooltipPlacement } from 'antd/es/tooltip'
 import ReactDOM from 'react-dom'
 import classnames from 'classnames'
-import {
-  createGraphConfig,
-  DisposableCollection,
-  createHookConfig,
-  XFlowEdgeCommands,
-  NsGraph,
-  IEvent,
-} from '@antv/xflow'
+import { createGraphConfig, IEvent } from '@antv/xflow'
 import { Edge, Shape } from '@antv/x6'
 import {
   NODE_HEIGHT,
-  setNodeRender,
   ASPECTRATIONODE,
+  setNodeRender,
   setGroupRender,
 } from '../flowchart-node-panel'
-
 import {
   movedNode,
   resizeNode,
@@ -33,7 +25,7 @@ import {
 const ANT_PREFIX = 'ant'
 
 export namespace NsAddEdgeEvent {
-  export const EVENT_NAME = 'ADD_EDGE_CMD_EVENT'
+  export const EVENT_NAME = 'ADD_FLOWCHART_EDGE_CMD_EVENT'
   export interface IArgs {
     targetPortId: string
     sourcePortId: string
@@ -76,65 +68,12 @@ const XFlowEdge = Shape.Edge.registry.register(
   true,
 )
 
-export const useGraphHook = createHookConfig(config => {
-  config.setRegisterHook(hooks => {
-    const todo = new DisposableCollection()
-    const edgeData = hooks.afterGraphInit.registerHook({
-      name: 'call add edge to replace temp edge',
-      handler: async args => {
-        const { commandService, graph } = args
-        graph.on(NsAddEdgeEvent.EVENT_NAME, async (args: NsAddEdgeEvent.IArgs) => {
-          const { edge, ...edgeConfig } = args
-          const config = {
-            edgeConfig: {
-              ...edgeConfig,
-              // renderKey: FLOWCHART_EDGE, // 暂不支持
-              source: {
-                cell: edgeConfig.source,
-                port: edgeConfig.sourcePortId,
-              },
-              target: {
-                cell: edgeConfig.target,
-                port: edgeConfig.targetPortId,
-              },
-              zIndex: 1,
-              attrs: {
-                line: {
-                  stroke: '#A2B1C3',
-                  targetMarker: {
-                    name: 'block',
-                    width: 12,
-                    height: 8,
-                  },
-                  strokeDasharray: '5 5',
-                  strokeWidth: 1,
-                },
-              },
-              data: { ...edgeConfig },
-            },
-          }
-          await commandService.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, config)
-          // const onAddEdge = getGlobalProps('onAddEdge');
-          // if (typeof onAddEdge === 'function') {
-          //   onAddEdge(config);
-          // }
-          // onConfigChange({ type: 'add:edge', config });
-          args.edge.remove()
-        })
-      },
-    })
-    todo.push(edgeData)
-    return todo
-  })
-})
-
-/**  graphConfig hook  */
 export const useGraphConfig = createGraphConfig((config, getProps) => {
   const { config: canvasConfig = {} } = getProps()
   config.setEdgeTypeParser(edge => edge?.renderKey as string)
   setNodeRender(config)
   setGroupRender(config)
-  /** 这里比较黑，挂载之后在 flowchart-node-panel 里面消费*/
+  /** 这里比较黑，props 共享*/
   setProps({
     ...getProps(),
     graphConfig: config,
@@ -255,7 +194,7 @@ export const useGraphConfig = createGraphConfig((config, getProps) => {
     },
     ...canvasConfig,
   })
-
+  /** 内交互，上层通过实例绑定 */
   config.setEvents([
     {
       eventName: 'node:selected',

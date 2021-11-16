@@ -103,6 +103,8 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
       hooks.addEdge.registerHook({
         name: 'flow-add-edge',
         handler: async args => {
+          console.log('flow-add-edge')
+
           const cellFactory: NsEdgeCmd.AddEdge.IArgs['cellFactory'] = async edgeConfig => {
             delete (edgeConfig as any).id
             const cell = new Shape.Edge({

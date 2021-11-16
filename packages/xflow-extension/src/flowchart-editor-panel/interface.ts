@@ -1,16 +1,15 @@
-import { IGraphCommandService, IModelService, IPosition } from '@antv/xflow-core'
+import { IGraphCommandService, IModelService, IPosition, NsGraph } from '@antv/xflow-core'
 import { Cell } from '@antv/x6'
 import { NsJsonSchemaForm } from '../canvas-json-schema-form'
 
-export interface BaseProps {
+export interface IFlowchartFormPanelProps {
   style?: React.CSSProperties
   className?: string
   /** 是否展示 */
   show?: boolean
   /** 节点位置 */
   position?: IPosition
-}
-export interface IDetailPanelProps extends BaseProps {
+  prefixClz?: string
   controlMapService?: (editorMap: NsJsonSchemaForm.IControlMap) => NsJsonSchemaForm.IControlMap
   formSchemaService?: (args: {
     cell: Cell
@@ -19,7 +18,16 @@ export interface IDetailPanelProps extends BaseProps {
     modelService: IModelService
     commandService: IGraphCommandService
   }) => Promise<NsJsonSchemaForm.ISchema>
-  prefixClz?: string
   header?: React.ReactNode
-  footer?: React.ReactNode
+}
+
+export type IFlowchartFormWrapperProps = NsJsonSchemaForm.IControlProps & {
+  children: (
+    config: Object,
+    plugin: {
+      updateNode: (config: NsGraph.INodeConfig) => void
+      updateEdge: (config: NsGraph.IEdgeConfig) => void
+      updateGroup: (config: NsGraph.INodeConfig) => void
+    },
+  ) => React.ReactElement
 }

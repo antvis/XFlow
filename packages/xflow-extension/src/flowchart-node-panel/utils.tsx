@@ -1,7 +1,6 @@
 import { uuidv4 } from '@antv/xflow-core'
 import { isNumber } from 'lodash'
 import * as NodesComponent from './nodes'
-import { withPopover } from './with-popover'
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL, ASPECTRATIONODE } from './constants'
 
 /** 和 graph config 注册的节点保持一致 */
@@ -88,9 +87,7 @@ export const setNodeRender = (config, nodes = []) => {
   /** 默认节点，通过 Terminal 标识，避免多次调用*/
   if (!config.nodeRender.get('Terminal')) {
     NODEPOOL.forEach(item => {
-      config.setNodeRender(item.name, props => {
-        return withPopover(props)(NodesComponent[`${item.name.replace(/\s+/g, '')}Node`])
-      })
+      config.setNodeRender(item.name, NodesComponent[`${item.name.replace(/\s+/g, '')}Node`])
     })
   }
 }

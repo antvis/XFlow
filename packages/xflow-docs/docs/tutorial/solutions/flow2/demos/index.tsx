@@ -1,34 +1,25 @@
-import type { IApplication, IAppLoad } from '@antv/xflow'
-import React from 'react'
-/** app 核心组件 */
-import { XFlow, XFlowCanvas, KeyBindings } from '@antv/xflow'
+import type { IAppLoad } from '@antv/xflow'
+import React, { useRef, useEffect } from 'react'
 /** 交互组件 */
 import {
+  XFlow,
+  KeyBindings,
   /** 触发Command的交互组件 */
   CanvasScaleToolbar,
-  WorkspacePanel,
-  NodeTreePanel,
-  JsonSchemaForm,
-  CanvasToolbar,
   CanvasContextMenu,
   /** Graph的扩展交互组件 */
+  CanvasToolbar,
   CanvasSnapline,
-  CanvasMiniMap,
   CanvasNodePortTooltip,
-  FlowGraphExtension,
+  FlowchartExtension,
   FlowchartNodePanel,
   FlowchartCanvas,
   FlowchartFormPanel,
 } from '@antv/xflow'
-import { DND_RENDER_ID } from './constant'
-
+import { Graph } from '@antv/x6'
 /** app 组件配置  */
-/** 配置画布 */
-import { useGraphConfig } from './config-graph'
 /** 配置Command */
 import { useCmdConfig, initGraphCmds } from './config-cmd'
-/** 配置Model */
-import { useModelServiceConfig } from './config-ctx-service'
 /** 配置Menu */
 import { useMenuConfig } from './config-menu'
 /** 配置Toolbar */
@@ -36,9 +27,7 @@ import { useToolbarConfig } from './config-toolbar'
 /** 配置快捷键 */
 import { useKeybindingConfig } from './config-keybinding'
 /** 配置Dnd组件面板 */
-import { onNodeDrop, searchService } from './config-dnd-panel'
-/** 配置JsonConfigForm */
-import { formSchemaService, formValueUpdateService, controlMapService } from './config-form'
+import { DndNode } from './react-node/dnd-node'
 
 import './index.less'
 
@@ -46,75 +35,39 @@ export interface IProps {
   meta: { flowId: string }
 }
 
-const IndicatorNode = props => {
-  const { size = { width: 126, height: 104 }, data } = props
-  const { width, height } = size
-  const { label, stroke, fill, fontFill, fontSize } = data
-
-  return (
-    <div
-      className="indicator-container"
-      style={{
-        width,
-        height,
-        borderColor: stroke,
-        backgroundColor: fill,
-        color: fontFill,
-        fontSize,
-      }}
-    >
-      <span>{label}</span>
-    </div>
-  )
-}
-
 export const Demo: React.FC<IProps> = props => {
   const { meta } = props
-  const graphConfig = useGraphConfig()
   const toolbarConfig = useToolbarConfig()
   const menuConfig = useMenuConfig()
   const cmdConfig = useCmdConfig()
-  const modelConfig = useModelServiceConfig()
   const keybindingConfig = useKeybindingConfig()
-
-  const cache = React.useMemo<{ app: IApplication } | null>(
-    () => ({
-      app: null,
-    }),
-    [],
-  )
+  const graphRef = useRef<Graph>()
   /**
    * @param app 当前XFlow工作空间
    * @param extensionRegistry 当前XFlow配置项
    */
 
   const onLoad: IAppLoad = async (app, extensionRegistry) => {
-    cache.app = app
-    // initGraphCmds(cache.app)
+    graphRef.current = await app.getGraphInstance()
   }
 
-  /** 父组件meta属性更新时,执行initGraphCmds */
-  React.useEffect(() => {
-    if (cache.app) {
-      // initGraphCmds(cache.app)
+  useEffect(() => {
+    if (graphRef.current) {
+      graphRef.current.on('node:click', (...arg) => {
+        console.log(arg)
+      })
     }
-  }, [cache.app, meta])
+  }, [graphRef])
 
   return (
-    <XFlow
-      className="user-custom-clz"
-      modelServiceConfig={modelConfig}
-      commandConfig={cmdConfig}
-      onLoad={onLoad}
-      meta={meta}
-    >
-      <FlowGraphExtension />
+    <XFlow className="user-custom-clz" onLoad={onLoad} meta={meta}>
+      <FlowchartExtension />
       <FlowchartNodePanel
         registerNode={{
           title: '自定义节点',
           nodes: [
             {
-              component: IndicatorNode,
+              component: DndNode,
               popover: () => <div>自定义节点</div>,
               name: 'custom-node-indicator',
               width: 210,
@@ -123,7 +76,6 @@ export const Demo: React.FC<IProps> = props => {
             },
           ],
         }}
-        onNodeDrop={onNodeDrop}
         position={{ width: 162, top: 40, bottom: 0, left: 0 }}
       />
       <CanvasToolbar
@@ -132,7 +84,7 @@ export const Demo: React.FC<IProps> = props => {
         config={toolbarConfig}
         position={{ top: 0, left: 0, right: 0, bottom: 0 }}
       />
-      <FlowchartCanvas config={graphConfig} position={{ top: 40, left: 0, right: 0, bottom: 0 }}>
+      <FlowchartCanvas position={{ top: 40, left: 0, right: 0, bottom: 0 }}>
         <CanvasScaleToolbar
           layout="horizontal"
           position={{ top: -40, right: 0 }}

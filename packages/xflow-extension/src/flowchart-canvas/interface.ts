@@ -6,11 +6,11 @@ export type Datum = {
   egdes?: unknown[]
 }
 
-export interface IGraphProps {
+export interface IFlowchartGraphProps {
   config?: any
   style?: React.CSSProperties
   className?: string
-  isXFlowCanvas?: boolean
+
   position?: IPosition
   /**
    * 这种几个方法应该移动到最外层，后续
@@ -25,10 +25,6 @@ export interface IGraphProps {
     type: string
     config?: NsGraph.INodeConfig | NsGraph.IEdgeConfig
   }) => void
-}
-
-export interface IGraph extends Graph {
-  getGraphData?: () => void
-  updateNodeKeyById?: (id: string, key: string, data: object) => void
-  __proto__?: Record<string, any>
+  /** 内部使用 */
+  isXFlowCanvas?: boolean
 }
