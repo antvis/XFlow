@@ -11,6 +11,6 @@ nav:
   order: 1
 ---
 
-## 流程图解决方案 2
+## 流程图解决方案
 
 <code src="./demos/index.tsx" />

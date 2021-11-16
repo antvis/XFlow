@@ -1,11 +1,67 @@
-import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, NsGraph } from '@antv/xflow'
-import type { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
+import type {
+  NsNodeCmd,
+  NsEdgeCmd,
+  IMenuOptions,
+  NsGraph,
+  IArgsBase,
+  HookHub,
+  ICmdHooks as IHooks,
+} from '@antv/xflow'
 import { createCtxMenuConfig, MenuItemType } from '@antv/xflow'
 import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
 import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons'
-import { CustomCommands } from './cmd-extensions/constants'
 import { MockApi } from './service'
 
+import type { IGraphCommand } from '@antv/xflow'
+export namespace NsRenameNodeCmd {
+  /** Command: 用于注册named factory */
+  export const command = CustomCommands.SHOW_RENAME_MODAL
+  /** hook name */
+  export const hookKey = 'renameNode'
+  /** hook 参数类型 */
+  export interface IArgs extends IArgsBase {
+    nodeConfig: NsGraph.INodeConfig
+    updateNodeNameService: IUpdateNodeNameService
+  }
+  export interface IUpdateNodeNameService {
+    (newName: string, nodeConfig: NsGraph.INodeConfig, meta: NsGraph.IGraphMeta): Promise<{
+      err: string | null
+      nodeName: string
+    }>
+  }
+  /** hook handler 返回类型 */
+  export interface IResult {
+    err: string | null
+    preNodeName?: string
+    currenNodetName?: string
+  }
+  /** hooks 类型 */
+  export interface ICmdHooks extends IHooks {
+    renameNode: HookHub<IArgs, IResult>
+  }
+}
+/** 节点命令 */
+export namespace CustomCommands {
+  const category = '节点操作'
+  /** 清除画布 */
+  export const CLEAR_GRAPH: IGraphCommand = {
+    id: 'xflow:clear-graph',
+    label: '清除',
+    category,
+  }
+  /** 导出 */
+  export const EXPORT_GRAPH: IGraphCommand = {
+    id: 'xflow:export-graph',
+    label: '导出',
+    category,
+  }
+  /** 重命名节点弹窗 */
+  export const SHOW_RENAME_MODAL: IGraphCommand = {
+    id: 'xflow:rename-node-modal',
+    label: '打开重命名弹窗',
+    category,
+  }
+}
 /** menuitem 配置 */
 export namespace NsMenuItemConfig {
   /** 注册菜单依赖的icon */
