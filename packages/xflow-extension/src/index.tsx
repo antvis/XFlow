@@ -54,3 +54,13 @@ export { DagGraphExtension } from './canvas-dag-extension'
 
 /** 流程图扩展 */
 export { FlowGraphExtension } from './canvas-flow-extension'
+
+/** 流程图相关 */
+export { FlowchartCanvas, FlowchartExtension, IFlowchartGraphProps } from './flowchart-canvas'
+export { FlowchartNodePanel, IFlowchartNodePanelProps } from './flowchart-node-panel'
+export {
+  FlowchartFormPanel,
+  FlowchartFormWrapper,
+  IFlowchartFormPanelProps,
+  IFlowchartFormWrapperProps,
+} from './flowchart-editor-panel'
