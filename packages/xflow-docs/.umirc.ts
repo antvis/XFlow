@@ -31,6 +31,7 @@ export default defineConfig({
     '@primary-color': '#873bf4',
   },
   locales: [
+    ['zh', 'CN'],
     ['zh-CN', '中文'],
     ['en-US', 'English'],
   ],

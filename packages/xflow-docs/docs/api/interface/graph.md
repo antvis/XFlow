@@ -74,26 +74,27 @@ const defaultOptions: Graph.Options = {
     factor: 1.1,
     modifiers: ['ctrl', 'meta'],
   },
-  /** 普通画布, 支持拖拽平移 */
+  /** 普通画布, 支持拖拽平移 (详细文档：https://x6.antv.vision/zh/docs/api/graph/graph/#panning) */
   panning: {
     enabled: true,
   },
-  /** 缩放参数 */
+  /** 缩放参数 (详细文档：https://x6.antv.vision/zh/docs/api/graph/transform/#scaling) */
   scaling: {
     min: MIN_ZOOM,
     max: MAX_ZOOM,
   },
-  /** keyboad */
+  /** keyboad (详细文档：https://x6.antv.vision/zh/docs/api/graph/keyboard)*/
   keyboard: {
     enabled: true,
   },
-  /** 定制节点和边的交互行为 */
+  /** 定制节点和边的交互行为 (详细文档：https://x6.antv.vision/zh/docs/api/graph/interaction/#interacting) */
   interacting: {
     /** 节点默认可以被移动 */
     nodeMovable: true,
     /** 边上标签默认不可以被移动 */
     edgeLabelMovable: false,
   },
+  /** 是否是异步渲染的画布 (详细文档：https://x6.antv.vision/zh/docs/api/graph/view/#async) */
   async: false,
 }
 ```
