@@ -208,9 +208,9 @@ export class QueryGraphStatusCommand implements ICommand {
     const ctx = this.contextProvider()
     const { args, hooks: runtimeHook } = ctx.getArgs()
     const hooks = ctx.getHooks()
+
     // 引用
     this.x6Graph = await ctx.getX6Graph()
-
     const result = await hooks.queryGraphStatus.call(
       args,
       async handlerArgs => {
