@@ -20,9 +20,8 @@ nav:
 
 ### 元信息Meta
 
-XFlow支持在工作台初始化之前传入Meta元信息, 该元信息在整个XFlow工作空间可用。
+XFlow支持在工作台初始化之前传入Meta元信息, 该元信息会被存储在全局的ModelService实例中, 在整个XFlow工作空间可用。[ModelService具体的使用方式](/api/models)
 
-问题1: Meta传入后, 具体是怎么使用的？
 
 ### 画布配置GraphConfig
 

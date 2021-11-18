@@ -56,7 +56,7 @@ const CreateRelationModal = (props: Props) => {
           name="SOURCE_GUID"
           label="SOURCE_GUID"
           rules={[{ required: true }]}
-          initialValue={`${sourceEntity?.entityName}(${sourceEntity?.entityId})`}
+          initialValue={`${sourceEntity?.entityName || ''}(${sourceEntity?.entityId || ''})`}
         >
           <Input />
         </Form.Item>
@@ -65,7 +65,7 @@ const CreateRelationModal = (props: Props) => {
           name="TARGET_GUID"
           label="TARGET_GUID"
           rules={[{ required: true }]}
-          initialValue={`${targetEntity?.entityName}(${targetEntity?.entityId})`}
+          initialValue={`${targetEntity?.entityName || ''}(${targetEntity?.entityId || ''})`}
         >
           <Input />
         </Form.Item>
