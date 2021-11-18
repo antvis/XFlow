@@ -93,6 +93,12 @@ export class FrontendApplication {
     }
   }
 
+  /** 平移画布 */
+  public async translateGraph(tx: number, ty: number) {
+    const graph = await this.graphProvider.getGraphInstance()
+    const currentTranslate = graph.translate()
+    graph.translate(currentTranslate.tx + tx, currentTranslate.ty + ty)
+  }
 
   /** 暴露命令的执行接口 */
   public executeCommand<Args = any, Result = any>(
