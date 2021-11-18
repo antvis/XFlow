@@ -1,6 +1,9 @@
 
-<p align="center"><strong>XFlow</strong></p>
-<p align="center">AntV旗下专业的图编辑应用级解决方案</p>
+## XFlow: 专业的图编辑应用级解决方案
+
+### 什么是XFlow？
+
+XFlow 是 AntV 旗下, 基于 X6 图编辑引擎、面向 React 技术栈用户的图编辑应用级解决方案, 旨在让复杂的图编辑应用开发变得简单高效。XFlow 源自蚂蚁体验技术部数据智能团队, 已经在蚂蚁大数据部、人工智能中台业务场景深度打磨验证, 值得信赖！
 
 
 ## 特性
@@ -56,11 +59,6 @@ $ yarn add @antv/xflow
 * https://unpkg.com/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
 
 * https://cdn.jsdelivr.net/npm/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
-
-
-
-## 第一个示例
-
 
 
 
