@@ -4,12 +4,21 @@ import {
   NsGraph,
   Disposable,
   XFlowEdgeCommands,
+  IGraphCommandService,
 } from '@antv/xflow-core'
-import type { ICmdHooks, NsEdgeCmd, NsNodeCmd } from '@antv/xflow-core'
-import { IHookContribution } from '@antv/xflow-core'
+import type { IModelService, IHookService, ICmdHooks, NsEdgeCmd, NsNodeCmd } from '@antv/xflow-core'
+import {
+  IGraphCommandFactory,
+  IHookContribution,
+  IModelContribution,
+  IGraphCommandContribution,
+} from '@antv/xflow-core'
+import type { Edge, Graph, Node } from '@antv/x6'
+import { HookHub } from '@antv/xflow-hook'
 import { XFlowNode } from '../x6-extension/node'
 import { XFlowEdge, EDGE_PATH_TYPE } from '../x6-extension/edge'
-import type { Edge, Graph, Node } from '@antv/x6'
+import { GRAPH_STATUS_INFO } from '../constants'
+import { NsGraphStatusCommand } from './command'
 
 export namespace NsAddEdgeEvent {
   export const EVENT_NAME = 'ADD_EDGE_CMD_EVENT'
@@ -160,14 +169,25 @@ export const dagOptions: Graph.Options = {
  * 内置的hook contribution
  * 处理 config上的runtime的注册项
  */
-@ManaSyringe.singleton({ contrib: IHookContribution })
-export class DagHooksContribution implements IHookContribution<ICmdHooks> {
-  toDispose = new DisposableCollection()
+@ManaSyringe.singleton({
+  contrib: [IHookContribution, IModelContribution, IGraphCommandContribution],
+})
+export class DagHooksContribution
+  implements IHookContribution<ICmdHooks>, IGraphCommandContribution, IModelContribution
+{
+  /** IGraphCommandFactory */
+  @ManaSyringe.inject(IGraphCommandFactory)
+  commandFactory: IGraphCommandFactory
 
-  registerHookHub = async () => {
-    return Disposable.create(() => {})
+  /** 注册Command */
+  registerGraphCommands = (commands: IGraphCommandService) => {
+    commands.registerCommand(NsGraphStatusCommand.command, {
+      createCommand: this.commandFactory,
+    })
   }
-
+  /** 注册Hub */
+  toDispose = new DisposableCollection()
+  /** 注册Hook */
   registerHook = async (hooks: ICmdHooks) => {
     const toDispose = new DisposableCollection()
     const disposables = [
@@ -264,5 +284,27 @@ export class DagHooksContribution implements IHookContribution<ICmdHooks> {
     ]
     toDispose.pushAll(disposables)
     return Disposable.create(() => {})
+  }
+
+  /** 注册Hub */
+  registerHookHub = async (registry: IHookService) => {
+    return registry.registerHookHub(NsGraphStatusCommand.hookKey, new HookHub())
+  }
+
+  /** 扩展Model */
+  registerModel(registry: IModelService): void {
+    /** node status map */
+    registry.registerModel<GRAPH_STATUS_INFO.IState>({
+      id: GRAPH_STATUS_INFO.id,
+      getInitialValue: () => ({
+        statusMap: new Map(),
+        subscription: new DisposableCollection(),
+        status: GRAPH_STATUS_INFO.StatusEnum.DEFAULT,
+      }),
+      watchChange: async self => {
+        const { subscription } = await self.getValidValue()
+        return subscription
+      },
+    })
   }
 }

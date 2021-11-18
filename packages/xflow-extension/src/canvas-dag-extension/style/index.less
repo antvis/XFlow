@@ -1,5 +1,5 @@
 .dag-extension-container {
-  @keyframes processing-line {
+  @keyframes xflow-processing-line {
     to {
       stroke-dashoffset: -1000;
     }
@@ -25,12 +25,10 @@
     }
     &.processing {
       path:nth-child(2) {
+        animation: ~'xflow-processing-line 30s infinite linear';
         stroke: rgba(57, 202, 116, 0.8);
         stroke-width: 2px;
         stroke-dasharray: 8px, 2px;
-        &:local {
-          animation: processing-line 30s infinite linear;
-        }
       }
     }
     // 交互状态

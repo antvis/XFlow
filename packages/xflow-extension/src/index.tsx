@@ -50,7 +50,12 @@ export {
 export { WorkspacePanel, usePanelContext, IWorkspacePanelProps } from './base-panel'
 
 /** DAG图扩展 */
-export { DagGraphExtension } from './canvas-dag-extension'
+export {
+  DagGraphExtension,
+  GRAPH_STATUS_INFO,
+  XFlowDagCommands,
+  NsGraphStatusCommand,
+} from './canvas-dag-extension'
 
 /** 流程图扩展 */
 export { FlowGraphExtension } from './canvas-flow-extension'

@@ -80,6 +80,12 @@ export interface IGraphCommandService {
     args: Args,
     hooks?: IRuntimeHook<Args, Result>,
   ) => Promise<ICommandHandler<Args, Result> | undefined>
+  /** 注册Command */
+  registerCommand: (command: IGraphCommand, factory: ICommandFactory) => Disposable
+  /** 注册Command */
+  setGlobal: (key: string, value: any) => void
+  /** 注册Command */
+  getGlobal: (key: string) => void
 }
 
 /**
@@ -165,6 +171,10 @@ export interface IContext<Args extends IArgsBase = any, Result = any, Hooks = IH
   getCommands: () => IGraphCommandService
   getModelService: () => IModelService
   getDisposables: () => DisposableCollection
+  /** 设置command间的共享变量 */
+  setGlobal: (key: string, value: any) => void
+  /** 获取共享变量 */
+  getGlobal: (key: string) => void
 }
 
 /**
@@ -187,7 +197,7 @@ export interface IGraphCommandContribution {
   /**
    * Register commands and handlers.
    */
-  registerGraphCommands: (commands: ICommandRegistry) => void
+  registerGraphCommands: (commands: IGraphCommandService) => void
 }
 
 /** 执行command需要的参数  */
@@ -222,12 +232,7 @@ export interface IGenericCmdOptions<T = any, Args extends IArgsBase = any> {
   (item: T, modelService: IModelService, cmd: IGraphCommandService): Promise<ICommandConfig<Args>>
 }
 
-/** Command 扩展点 */
-export interface ICommandRegistry {
-  registerCommand: (command: IGraphCommand, factory: ICommandFactory) => Disposable
-}
-
 /** Command 注册函数 */
 export interface ICommandRegisterFunction {
-  (registry: ICommandRegistry): void
+  (registry: Pick<IGraphCommandService, 'registerCommand'>): void
 }

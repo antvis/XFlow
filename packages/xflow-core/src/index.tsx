@@ -49,19 +49,15 @@ export {
  *****************************************************/
 
 /** Command 类型 */
-export type {
-  IArgsBase,
-  IGraphCommand,
-  ICommandConfig,
-  ICommandHandler,
-  IGraphPipelineCommand,
-  IGraphCommandContribution,
-} from './command'
+export type { IArgsBase, IGraphCommand, ICommandConfig, IGraphPipelineCommand } from './command'
 
 /** Command Service */
 export {
+  ICommandHandler,
   IGraphCommandService,
   ICommandContextProvider,
+  IGraphCommandContribution,
+  IGraphCommandFactory,
   GraphCommandRegistry,
   commandRegistryModule,
 } from './command'

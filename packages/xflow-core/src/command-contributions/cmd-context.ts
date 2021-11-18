@@ -25,7 +25,7 @@ export class CmdContext<Args = any, Result = any, Hooks extends IHooks = IHooks>
   protected readonly hookService: IHookService<Hooks>
 
   @inject(IGraphCommandService)
-  protected readonly command: IGraphCommandService
+  protected readonly commandService: IGraphCommandService
 
   @inject(IModelService)
   protected readonly modelService: IModelService
@@ -105,7 +105,7 @@ export class CmdContext<Args = any, Result = any, Hooks extends IHooks = IHooks>
   }
   /** 获取Command Service */
   getCommands = () => {
-    return this.command
+    return this.commandService
   }
   /** 获取Context Service */
   getModelService = () => {
@@ -128,4 +128,12 @@ export class CmdContext<Args = any, Result = any, Hooks extends IHooks = IHooks>
   }
   /** 获取 toDispose */
   getDisposables = () => this.toDispose
+  /** 设置的共享变量 可以在command间共享 */
+  setGlobal = (key: string, value: any) => {
+    this.commandService.setGlobal(key, value)
+  }
+  /** 获取共享变量 */
+  getGlobal = (key: string) => {
+    return this.commandService.getGlobal(key)
+  }
 }
