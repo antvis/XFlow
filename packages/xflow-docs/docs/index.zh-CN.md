@@ -1,12 +1,12 @@
 ---
-title: XFlow - React 图编辑组件库
+title: XFlow - 图编辑应用级解决方案
 sidebar: false
 banner:
-  title: XFlow
-  desc: 图编辑应用级解决方案
+  title: XFlow 图编辑应用级解决方案
+  desc: 基于 X6 图编辑引擎、面向 React 技术栈用户的专业的图编辑应用级解决方案, 帮助您轻松开发复杂的图编辑应用。目前已经在蚂蚁大数据/人工智能场景中深度打磨验证。
   image: https://gw.alipayobjects.com/mdn/rms_00edcb/afts/img/A*Gix7Rry3-5wAAAAAAAAAAABkARQnAQ
   actions:
-    - text: Quick Start →
+    - text: 图表示例
       link: /docs/tutorial/quick-start
       type: primary
   notifications:
