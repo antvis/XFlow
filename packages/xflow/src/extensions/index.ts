@@ -54,3 +54,16 @@ export { DagGraphExtension } from '@antv/xflow-extension'
 
 /** 流程图扩展 */
 export { FlowGraphExtension } from '@antv/xflow-extension'
+
+/** 流程图相关组件 */
+export {
+  FlowchartCanvas,
+  FlowchartExtension,
+  IFlowchartGraphProps,
+  FlowchartNodePanel,
+  IFlowchartNodePanelProps,
+  FlowchartFormPanel,
+  FlowchartFormWrapper,
+  IFlowchartFormPanelProps,
+  IFlowchartFormWrapperProps,
+} from '@antv/xflow-extension'

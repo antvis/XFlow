@@ -6,6 +6,7 @@ import { useConfig, CANVAS_SCALE_TOOLBAR_CONFIG } from './config'
 interface IProps {
   position: IPosition
   className?: string
+  layout?: 'vertical' | 'horizontal'
   style?: React.CSSProperties
 }
 

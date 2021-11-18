@@ -1,0 +1,78 @@
+.flowchart-extension-container {
+  .x6-edge {
+    stroke-width: 1px;
+    &.success {
+      path:nth-child(2) {
+        stroke: #888 !important;
+      }
+      path:nth-child(3) {
+        fill: #888 !important;
+        stroke: #888 !important;
+      }
+    }
+    &.error {
+      stroke-width: 2px;
+      path:nth-child(2) {
+        stroke: rgba(245, 34, 45, 0.45) !important;
+        stroke-width: 2px;
+      }
+    }
+    &.guideProcessing {
+      path:nth-child(2) {
+        stroke: rgba(57, 202, 116, 0.8);
+        stroke-width: 2px;
+        stroke-dasharray: 8px, 2px;
+        &:local {
+          animation: processing-line 30s infinite linear;
+        }
+      }
+    }
+    &.x6-edge-selected {
+      path:nth-child(2) {
+        stroke: #1890ff;
+        stroke-width: 2px;
+      }
+    }
+    &:hover {
+      path:nth-child(2) {
+        stroke: #1890ff;
+        stroke-width: 2px;
+      }
+    }
+    &.hoverHighlight {
+      path:nth-child(2) {
+        stroke: #1890ff;
+        stroke-width: 2px;
+      }
+    }
+    @keyframes processing-line {
+      to {
+        stroke-dashoffset: -1000;
+      }
+    }
+  }
+
+  .x6-widget-transform {
+    margin: -1px 0 0 -1px;
+    padding: 0;
+    border: 1px solid #239edd;
+  }
+  .x6-widget-transform > div {
+    border: 1px solid #239edd;
+  }
+  .x6-widget-transform > div:hover {
+    background-color: #3dafe4;
+  }
+  .x6-widget-transform-active-handle {
+    background-color: #3dafe4;
+  }
+  .x6-widget-transform-resize {
+    border-radius: 0;
+  }
+  .x6-widget-selection-inner {
+    border: 1px solid #239edd;
+  }
+  .x6-widget-selection-box {
+    opacity: 0;
+  }
+}
