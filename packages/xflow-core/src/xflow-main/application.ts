@@ -2,7 +2,8 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable max-classes-per-file */
 import { inject, singleton, contrib, Contribution } from 'mana-syringe'
-import { Node as X6Node, Edge as X6Edge, Registry } from '@antv/x6'
+import type { Registry } from '@antv/x6';
+import { Node as X6Node, Edge as X6Edge } from '@antv/x6'
 import type { IGraphPipelineCommand } from '../command/interface'
 import type { MaybePromise } from '../common/types'
 import type { IRuntimeHook } from '@antv/xflow-hook/es/interface'
@@ -49,10 +50,22 @@ export class FrontendApplication {
     return this.graphProvider.getGraphOptions()
   }
 
+  /** 获取画布所有节点 */
+  public async getAllNodes() {
+    const graph = await this.graphProvider.getGraphInstance()
+    return graph.getNodes()
+  }
+
   /** 获取画布节点 */
   public async getNodeById(nodeId: string) {
     const graph = await this.graphProvider.getGraphInstance()
     return graph.getCellById(nodeId) as X6Node
+  }
+
+  /** 获取画布所有连线 */
+  public async getAllEdges() {
+    const graph = await this.graphProvider.getGraphInstance()
+    return graph.getEdges()
   }
 
   /** 获取画布连线 */
@@ -79,6 +92,13 @@ export class FrontendApplication {
       const x6Edge = await this.getEdgeById(edge)
       x6Edge.setAttrs(attrs)
     }
+  }
+
+  /** 平移画布 */
+  public async translateGraph(tx: number, ty: number) {
+    const graph = await this.graphProvider.getGraphInstance()
+    const currentTranslate = graph.translate()
+    graph.translate(currentTranslate.tx + tx, currentTranslate.ty + ty)
   }
 
 

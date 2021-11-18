@@ -105,11 +105,18 @@ export class GraphManager implements IGraphManager {
       graph.on('node:moved', ({ node }) => {
         const nodeData = node.getData()
         const position = node.position()
-        const size = node.size()
         node.setData({
           ...nodeData,
           x: position?.x,
           y: position?.y,
+        })
+      })
+
+      graph.on('node:resized', ({ node }) => {
+        const nodeData = node.getData()
+        const size = node.size()
+        node.setData({
+          ...nodeData,
           width: size?.width,
           height: size?.height,
         })

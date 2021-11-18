@@ -7,7 +7,7 @@ import Edge1 from './react-edge/edge1'
 import Edge2 from './react-edge/edge2'
 
 export const useGraphConfig = createGraphConfig(config => {
-  /** 预设XFlow画布配置项 */
+  /** 设置XFlow画布配置项 */
   config.setX6Config({
     /** 画布网格 */
     grid: true,
@@ -17,14 +17,14 @@ export const useGraphConfig = createGraphConfig(config => {
       max: 3,
     },
     /** 画布滚轮缩放 */
-    mousewheel: {
-      enabled: true,
-      /** 将鼠标位置作为中心缩放 */
-      zoomAtMousePosition: true,
-    },
+    // mousewheel: {
+    //   enabled: true,
+    //   /** 将鼠标位置作为中心缩放 */
+    //   zoomAtMousePosition: true,
+    // },
   })
 
-  /** 预设XFlow画布需要渲染的React节点/边 */
+  /** 设置XFlow画布需要渲染的React节点/边 */
   config.setNodeRender('NODE1', props => <Node1 {...props} />)
   config.setNodeRender('NODE2', Node2)
   config.setEdgeRender('EDGE1', props => <Edge1 {...props} />)
