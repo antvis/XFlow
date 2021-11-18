@@ -1,7 +1,8 @@
 import React from 'react'
 import { Tree, Empty, Popover } from 'antd'
 import { FolderFilled, FolderOpenFilled } from '@ant-design/icons'
-import { Graph, Addon } from '@antv/x6'
+import type { Graph } from '@antv/x6'
+import { Addon } from '@antv/x6'
 import type {
   NsTreePanelData,
   IProps,
@@ -166,7 +167,7 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
       },
     })
     setDnd(dndInstance)
-  }, [commandService, dndOptions, graph, modelService, onNodeDrop])
+  }, [commandService, dndOptions, graph, graphProvider, modelService, onNodeDrop])
 
   const onMouseDown = React.useCallback(
     (nodeConfig: NsGraph.INodeConfig) => (e: React.MouseEvent<HTMLElement, MouseEvent>) => {

@@ -1,6 +1,7 @@
-import { Syringe } from 'mana-syringe'
+import type { SyringeModule } from 'mana-syringe'
 import type { MaybePromise } from '../common/types'
 import type { FrontendApplication } from './application'
+import { Syringe } from 'mana-syringe'
 
 /** 模块的Config接口 */
 export interface IModuleConfig<T = any> {
@@ -13,7 +14,7 @@ export interface IModuleConfig<T = any> {
  * 包含配置和创建模块的函数
  */
 export interface IExtensionModule<T = any> {
-  createModule: (config: IModuleConfig<T>) => Syringe.Module
+  createModule: (config: IModuleConfig<T>) => SyringeModule
   config: IModuleConfig<T>
 }
 

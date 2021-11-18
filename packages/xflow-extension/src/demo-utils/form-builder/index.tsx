@@ -1,8 +1,8 @@
 import type { ComponentClass, FunctionComponent } from 'react'
-import React from 'react'
-import type { FormInstance } from 'antd'
-import { Form, Button, ButtonProps } from 'antd'
+import type { FormInstance, ButtonProps } from 'antd'
 import type { Rule } from 'rc-field-form/es/interface'
+import React from 'react'
+import { Form, Button } from 'antd'
 
 export interface IFormSchema {
   name: string

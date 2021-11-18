@@ -8,6 +8,7 @@ import { XFlowGraphCommands } from '@antv/xflow'
 import { XFlow, createGraphConfig, XFlowCanvas, CanvasScaleToolbar } from '@antv/xflow'
 import { getGraphData } from './mock'
 import './index.less'
+import '@antv/xflow/dist/index.css'
 
 /**  Demo Props  */
 export interface IDemoProps {

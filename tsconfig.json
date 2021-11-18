@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "target": "ES5",
+    "target": "es6",
     "module": "CommonJS",
+    "lib": ["ESNext", "DOM"] /* Specify library files to be included in the compilation. */,
     "moduleResolution": "node",
     "strict": false,
     "sourceMap": true,
@@ -15,6 +16,12 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["packages/*/src", ".eslintrc.js", ".eslintrc.js", "typings.d.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "packages/**/src",
+    "packages/**/docs",
+    ".eslintrc.js",
+    ".eslintrc.js",
+    "typings.d.ts"
+  ],
+  "exclude": ["node_modules", "**/es", "**/lib"]
 }

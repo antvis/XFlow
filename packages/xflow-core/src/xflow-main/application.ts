@@ -2,7 +2,8 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable max-classes-per-file */
 import { inject, singleton, contrib, Contribution } from 'mana-syringe'
-import { Node as X6Node, Edge as X6Edge, Registry } from '@antv/x6'
+import type { Registry } from '@antv/x6';
+import { Node as X6Node, Edge as X6Edge } from '@antv/x6'
 import type { IGraphPipelineCommand } from '../command/interface'
 import type { MaybePromise } from '../common/types'
 import type { IRuntimeHook } from '@antv/xflow-hook/es/interface'

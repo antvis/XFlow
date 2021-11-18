@@ -52,7 +52,7 @@ $ yarn add @antv/xflow
 
 ## 第一个示例
 
-<code src="./demo/index.tsx" />
+<code src="./demo/index.tsx" classname="quick-start" />
 
 ## 开始使用
 

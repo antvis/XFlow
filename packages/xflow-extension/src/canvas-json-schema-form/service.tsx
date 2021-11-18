@@ -1,7 +1,6 @@
 import React from 'react'
-import { delay, IGraphCommandService, IModelService } from '@antv/xflow-core'
 import { useXFlowApp, DisposableCollection, createComponentModel } from '@antv/xflow-core'
-import type { NsModelServiceCmd } from '@antv/xflow-core'
+import type { NsModelServiceCmd, IGraphCommandService, IModelService } from '@antv/xflow-core'
 import { XFlowModelCommands, Disposable, MODELS } from '@antv/xflow-core'
 import type { IProps, ISchema, TargetType, TargetData } from './interface'
 import type { Cell } from '@antv/x6'

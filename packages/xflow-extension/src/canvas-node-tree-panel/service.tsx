@@ -132,6 +132,7 @@ export const useTreePanelData = (props: IProps) => {
         })
       }
     },
+    // eslint-disable-next-line
     [searchService, state.treeNodeList],
   )
   return {

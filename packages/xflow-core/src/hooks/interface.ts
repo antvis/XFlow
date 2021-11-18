@@ -45,7 +45,7 @@ export interface IHookContribution<T extends IHooks> {
 }
 
 /** 内置的Hooks */
-export interface IEvent<Key extends keyof EventArgs> extends NsGraph.IEvent<Key> {}
+export type IEvent<Key extends keyof EventArgs> = NsGraph.IEvent<Key>
 export type IEventCollection = NsGraph.IEvent[]
 export type IEventSubscription = Disposable[]
 

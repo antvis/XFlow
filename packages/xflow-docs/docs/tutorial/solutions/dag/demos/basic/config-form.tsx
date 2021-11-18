@@ -1,5 +1,5 @@
-import { controlMapService, ControlShapeEnum } from './form-controls'
 import type { NsJsonSchemaForm } from '@antv/xflow'
+import { controlMapService, ControlShapeEnum } from './form-controls'
 import { MODELS } from '@antv/xflow'
 
 export function delay(ms: number) {

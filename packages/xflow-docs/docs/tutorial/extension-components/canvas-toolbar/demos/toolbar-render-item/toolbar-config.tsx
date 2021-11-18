@@ -1,9 +1,9 @@
 import type { IToolbarItemOptions } from '@antv/xflow'
-import { createToolbarConfig } from '@antv/xflow'
-import { XFlowGraphCommands, XFlowNodeCommands, IconStore } from '@antv/xflow'
+import { XFlowNodeCommands, createToolbarConfig } from '@antv/xflow'
+import { IconStore } from '@antv/xflow'
 import { SaveOutlined, PlusCircleOutlined, DeleteOutlined } from '@ant-design/icons'
 import { Popconfirm } from 'antd'
-import { NsGraphCmd, NsNodeCmd } from '@antv/xflow'
+import React from 'react'
 
 export namespace NSToolbarConfig {
   /** 注册icon 类型 */
@@ -49,7 +49,7 @@ export namespace NSToolbarConfig {
       isVisible: false,
     })
     iconToolbarGroup.push({
-      id: XFlowNodeCommands.MOVE_NODE.id + 'visible',
+      id: XFlowNodeCommands.MOVE_NODE.id + 'active',
       iconName: 'PlusCircleOutlined',
       tooltip: '添加节点 active=true, group2',
       active: true,

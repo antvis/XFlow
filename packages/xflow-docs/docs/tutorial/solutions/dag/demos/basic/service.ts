@@ -178,7 +178,7 @@ export namespace MockApi {
       height: 40,
       ...args.nodeConfig,
       id: nodeId,
-      ports: ports.map(port => {
+      ports: (ports as NsGraph.INodeAnchor[]).map(port => {
         return { ...port, id: uuidv4() }
       }),
     }

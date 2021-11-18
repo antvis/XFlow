@@ -38,7 +38,7 @@ export const CanvasSnapline: React.FC<IProps> = props => {
     return () => {
       document.head.removeChild($style)
     }
-  }, [color])
+  }, [color, extension])
 
   return <XFlowAppExtensionMoudle<IConfig> config={config} createModule={createModule} />
 }

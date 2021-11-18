@@ -1,3 +1,6 @@
+/** IOC */
+export { ManaSyringe } from '@antv/xflow-core'
+
 /** XFlow 基础 interface */
 export { NsGraph } from '@antv/xflow-core'
 
@@ -202,5 +205,5 @@ export { Simplify } from '@antv/xflow-core'
 
 /** ICON */
 export { IconStore } from '@antv/xflow-core'
-
+/** 全局常量 */
 export { XFlowConstants } from '@antv/xflow-core'

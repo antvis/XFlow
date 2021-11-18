@@ -11,6 +11,7 @@ import { onLoad, useGraphConfig } from './graph-config'
 import { useMenuConfig } from './menu-config'
 
 import './index.less'
+import '@antv/xflow/dist/index.css'
 
 /**  Demo Props  */
 export interface IDemoProps {

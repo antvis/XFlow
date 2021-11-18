@@ -1,3 +1,3 @@
 export * from './core'
-export * from './extension'
+export * from './extensions'
 export * from './hook'

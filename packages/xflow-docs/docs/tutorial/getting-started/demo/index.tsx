@@ -8,6 +8,7 @@ import { CanvasMiniMap, CanvasScaleToolbar, CanvasSnapline } from '@antv/xflow'
 import { useGraphConfig } from './config-graph'
 import { message } from 'antd'
 import './index.less'
+import '@antv/xflow/dist/index.css'
 
 export interface IProps {}
 

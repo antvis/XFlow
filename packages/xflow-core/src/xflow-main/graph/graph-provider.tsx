@@ -5,7 +5,8 @@ import type { Edge, Edge as X6Edge } from '@antv/x6'
 import { Graph as X6Graph, Dom } from '@antv/x6'
 import { DisposableCollection, Disposable } from '../../common/disposable'
 import { Deferred } from '../../common/deferred'
-import { IGraphConfig, IGraphOptionProvider } from './config'
+import type { IGraphConfig } from './config'
+import { IGraphOptionProvider } from './config'
 import { singleton, inject, Syringe } from 'mana-syringe'
 import { IGraphCommandService } from '../../command'
 import { IModelService } from '../../model-service/interface'
@@ -111,7 +112,7 @@ export class GraphManager implements IGraphManager {
         })
       })
 
-      graph.on('node:resized', ({ e, x, y, node, view }) => {
+      graph.on('node:resized', ({ node }) => {
         const nodeData = node.getData()
         const size = node.size()
         node.setData({

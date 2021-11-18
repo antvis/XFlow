@@ -17,7 +17,7 @@ export namespace NsGraphHistoryReset {
   /** hookName */
   export const hookKey = 'historyReset'
   /** hook 参数类型 */
-  export interface IArgs extends IArgsBase {}
+  export type IArgs = IArgsBase
   /** hook handler 返回类型 */
   export interface IResult {
     err: null | string

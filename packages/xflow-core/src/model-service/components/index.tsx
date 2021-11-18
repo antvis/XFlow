@@ -29,6 +29,8 @@ export const ModelServiceRegistry: React.FC<IProps> = props => {
       disposable.dispose()
       modelServiceConfig.dispose()
     }
+    // 不要移除：保证 只生执行一次
+    // eslint-disable-next-line
   }, [])
 
   return null
@@ -36,8 +38,14 @@ export const ModelServiceRegistry: React.FC<IProps> = props => {
 
 ModelServiceRegistry.defaultProps = { XFlowModuleType: 'ModelServiceConfig' }
 
+interface IValueProxy<T> {
+  getValue: () => T
+}
+
 export const createModelServiceConfig =
-  <T extends unknown = any>(addOptions: (config: ModelServiceConfig, getValue: () => T) => void) =>
+  <T extends unknown = any>(
+    addOptions: (config: ModelServiceConfig, proxy: IValueProxy<TextDecoderOptions>) => void,
+  ) =>
   (value?: T) => {
     /** bridge config and value */
     const valueContainer = React.useMemo(() => ({ getValue: () => ({} as T) }), [])
@@ -45,9 +53,9 @@ export const createModelServiceConfig =
 
     const hookConfig = React.useMemo(() => {
       const config = new ModelServiceConfig()
-      addOptions(config, valueContainer.getValue)
+      addOptions(config, valueContainer)
       return config
-    }, [])
+    }, [valueContainer])
 
     return hookConfig
   }

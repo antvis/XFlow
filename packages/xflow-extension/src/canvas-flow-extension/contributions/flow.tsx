@@ -1,7 +1,6 @@
 import type { Graph } from '@antv/x6'
 import type { ICmdHooks, NsEdgeCmd, NsNodeCmd } from '@antv/xflow-core'
-import { singleton } from 'mana-syringe'
-import { DisposableCollection, Disposable } from '@antv/xflow-core'
+import { ManaSyringe, DisposableCollection, Disposable } from '@antv/xflow-core'
 import { IHookContribution } from '@antv/xflow-core'
 import { XFlowNode } from '../x6-extension/node'
 import { Shape } from '@antv/x6'
@@ -77,7 +76,7 @@ export const flowOptions: Graph.Options = {
  * 内置的hook contribution
  * 处理 config上的runtime的注册项
  */
-@singleton({ contrib: IHookContribution })
+@ManaSyringe.singleton({ contrib: IHookContribution })
 export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
   toDispose = new DisposableCollection()
 

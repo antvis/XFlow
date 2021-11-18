@@ -5,7 +5,6 @@ import { Dropdown } from '@antv/x6-react-components'
 import { useXFlowApp, useModelAsync } from '@antv/xflow-core'
 import { CONTEXT_MENU_MODEL } from '../interface'
 import { XFlowMenu } from './menu'
-import '../style/index'
 
 const DisposeHelper: React.FC<{ toDispose: DisposableCollection }> = ({ toDispose }) => {
   React.useEffect(() => {

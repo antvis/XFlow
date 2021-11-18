@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { uuidv4 } from '@antv/xflow'
 import { XFlowNodeCommands } from '@antv/xflow'
 import { DND_RENDER_ID } from './constant'
 import type { NsNodeCmd } from '@antv/xflow'
 import type { NsNodeTreePanel } from '@antv/xflow'
+import React from 'react'
 
 export const onNodeDrop: NsNodeTreePanel.IOnNodeDrop = async (node, commands, modelService) => {
   const args: NsNodeCmd.AddNode.IArgs = {

@@ -1,5 +1,5 @@
 import { injectable } from 'mana-syringe'
-import { NsGraph } from '../interface'
+import type { NsGraph } from '../interface'
 
 @injectable()
 export class GraphMappingHelper {
