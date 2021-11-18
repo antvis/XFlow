@@ -3,11 +3,9 @@ import React, { useState } from 'react'
 import type { IAppLoad, NsGraph } from '@antv/xflow'
 import { XFlow, XFlowCanvas } from '@antv/xflow'
 /** 图的各种扩展交互组件 */
-import { CanvasContextMenu, CanvasMiniMap, CanvasScaleToolbar, CanvasSnapline } from '@antv/xflow'
+import { CanvasMiniMap, CanvasScaleToolbar, CanvasSnapline } from '@antv/xflow'
 /** 图的配置项 */
 import { useGraphConfig } from './config-graph'
-/** 右键菜单栏 */
-import { useMenuConfig } from './menu-config'
 import { message } from 'antd'
 import './index.less'
 
@@ -16,8 +14,6 @@ export interface IProps {}
 const Demo: React.FC<IProps> = () => {
   /** 画布配置 */
   const graphConfig = useGraphConfig()
-  /** 右键菜单配置 */
-  const menuConfig = useMenuConfig()
 
   /** 画布渲染数据 */
   const [graphData, setGraphData] = useState<NsGraph.IGraphData>(undefined)
@@ -90,7 +86,6 @@ const Demo: React.FC<IProps> = () => {
     >
       <XFlowCanvas config={graphConfig}>
         <CanvasScaleToolbar position={{ top: 12, left: 12 }} />
-        <CanvasContextMenu config={menuConfig} />
         <CanvasMiniMap
           miniMapClz="xflow-custom-minimap"
           nodeFillColor="#ccc"
