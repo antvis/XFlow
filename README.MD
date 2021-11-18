@@ -1,13 +1,29 @@
 
-<p align="center"><strong>XFlow 是 AntV 旗下的图编辑应用级解决方案</strong></p>
+<p align="center"><strong>XFlow</strong></p>
+<p align="center">AntV旗下专业的图编辑应用级解决方案</p>
 
 
 ## 特性
 
-- 🌱　极易定制：支持使用 React 组件 开发节点/连线样式
-- 🚀　开箱即用：内置 1个快速上手 + 3个解决方案, 内置若干配套 React 交互组件, 如小地图、对齐线、右键菜单等
-- 💯　生产可用：源自蚂蚁体验技术部数据智能团队, 在蚂蚁大数据部、人工智能中台业务场景深度打磨验证, 值得信赖
-- 🧲　 一切皆可扩展：内置统一的扩展模式, 可按照自己的业务需求扩展图交互, 所有组件皆可扩展
+- 🌱　极易定制：支持使用 React 组件 开发节点/连线样式。
+- 🚀　开箱即用：内置1个快速上手 + 3个解决方案, 内置若干 React 交互组件, 如小地图、对齐线、右键菜单等。
+- 💯　生产可用：源自蚂蚁体验技术部数据智能团队, 在蚂蚁大数据部、人工智能中台业务场景深度打磨验证。
+- 🧲　 一切皆可扩展：内置统一的扩展模式, 可按照自己的业务需求扩展图交互, 所有组件皆可扩展。
+
+
+## 应用案例
+
+### 简单示例
+<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*S8LGR6I1SqsAAAAAAAAAAAAAARQnAQ />
+
+### 流程图解决方案
+<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ixVAQrEoCTcAAAAAAAAAAAAAARQnAQ />
+
+### DAG解决方案
+<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*mFc0SLQOW44AAAAAAAAAAAAAARQnAQ />
+
+### ER图解决方案
+<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*kp-AQ7_GKi0AAAAAAAAAAAAAARQnAQ />
 
 
 ## 安装
@@ -35,10 +51,6 @@ $ yarn add @antv/xflow
 <script src="https://unpkg.com/@antv/xflow/dist/index.umd.js"></script>
 ```
 
-```tsx | pure
-<script src="https://unpkg.com/@antv/xflow/dist/index.umd.js"></script>
-```
-
 对于生产环境, 我们推荐使用一个明确的版本号, 以避免新版本升级造成不可预期的破坏:
 
 * https://unpkg.com/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
@@ -46,9 +58,10 @@ $ yarn add @antv/xflow
 * https://cdn.jsdelivr.net/npm/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
 
 
+
 ## 第一个示例
 
-<code src="./packages/xflow-docs/docs/tutorial/getting-started/index.md" />
+
 
 
 ## 开始使用
@@ -175,20 +188,11 @@ const onLoad: IAppLoad = async app => {
 * XFlow 提供的扩展机制允许定制任意业务需要的交互组件。您可以在后面的教程中详细了解。
 
 
+
 ## 使用文档
 
 [XFlow 使用文档](https://xflow.antv.vision/zh/docs/tutorial-01/about)
 
-## 应用案例
-
-### 流程图解决方案
-<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ixVAQrEoCTcAAAAAAAAAAAAAARQnAQ />
-
-### DAG解决方案
-<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*mFc0SLQOW44AAAAAAAAAAAAAARQnAQ />
-
-### ER图解决方案
-<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*kp-AQ7_GKi0AAAAAAAAAAAAAARQnAQ />
 
 ## 如何交流
 
@@ -197,9 +201,9 @@ const onLoad: IAppLoad = async app => {
 需要注意的是，提问题时请配上 [CodeSandbox](https://codesandbox.io/s/pensive-sound-f4nhc) 的复现代码，方便快速定位和解决问题。
 
 <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,rOHuvgq5s0EHDktyyQJffDE3ZAmHnbB2e6iwn/w4BKs=&_dt_no_comment=1&origin=11" target="_blank" rel="noopener noreferrer">
-  <img src="https://gw.alipayobjects.com/mdn/rms_43231b/afts/img/A*Up-4S4v8H-0AAAAAAAAAAAAAARQnAQ" alt="X6 图可视化交流群1" width="375" />
-  <img src="https://gw.alipayobjects.com/mdn/rms_43231b/afts/img/A*5FhnSb3ewfQAAAAAAAAAAAAAARQnAQ" alt="X6 图可视化交流群2" width="375" />
+  <img src="https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*KuL6R7t0Xw0AAAAAAAAAAAAAARQnAQ" alt="X6/XFlow 图可视化交流群1" width="375" />
 </a>
+
 
 ## 如何开发
 
@@ -255,15 +259,15 @@ $ yarn --registry=https://registry.npmjs.org
 $ yarn run dev:docs
 ```
 
+
 ## 如何贡献
 
 如果你在使用的过程中碰到问题，可以先通过 [issues](https://github.com/antvis/xflow/issues) 看看有没有类似的 bug 或者建议。
 
 如需提交代码，请遵从我们的[贡献指南](/CONTRIBUTING.zh-CN.md)。我们会收集贡献者的 Github 头像到下面贡献者清单中。
 
-<a href="https://github.com/antvis/x6/graphs/contributors">
+<a href="https://github.com/antvis/xflow/graphs/contributors">
   <img src="/CONTRIBUTORS.svg" alt="Contributors" width="740" />
 </a>
 
-## 开源协议
 
