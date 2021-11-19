@@ -1,13 +1,13 @@
 {
   "_chunksMap": {
     "umi": [
-      "/umi.a7b078c8.js"
+      "/umi.2469abad.js"
     ],
     "wrappers": [
       "/umi.styles.d7c18461.chunk.css",
       "/umi.styles.42a472ed.async.js",
       "/vendors.55ca897e.async.js",
-      "/wrappers.d068be2f.async.js"
+      "/wrappers.38621b62.async.js"
     ],
     "dumi_demos": [
       "/umi.styles.d7c18461.chunk.css",
@@ -447,14 +447,14 @@
       "/umi.styles.42a472ed.async.js",
       "/vendors.55ca897e.async.js",
       "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__getting-started__index.zh-CN.md.d0d5006f.async.js"
+      "/docs__tutorial__getting-started__index.zh-CN.md.10a86593.async.js"
     ],
     "docs__tutorial__getting-started__index.zh.md": [
       "/umi.styles.d7c18461.chunk.css",
       "/umi.styles.42a472ed.async.js",
       "/vendors.55ca897e.async.js",
       "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__getting-started__index.zh.md.1b32de1c.async.js"
+      "/docs__tutorial__getting-started__index.zh.md.31cbaddc.async.js"
     ],
     "docs__tutorial__solutions__dag__index.md": [
       "/umi.styles.d7c18461.chunk.css",
@@ -481,14 +481,14 @@
       "/umi.styles.d7c18461.chunk.css",
       "/umi.styles.42a472ed.async.js",
       "/vendors.55ca897e.async.js",
-      "/demos_no_comp.a93b007a.async.js"
+      "/demos_no_comp.eb2645b4.async.js"
     ]
   },
   "umi.styles.css": "/umi.styles.d7c18461.chunk.css",
   "umi.styles.js": "/umi.styles.42a472ed.async.js",
   "vendors.js": "/vendors.55ca897e.async.js",
   "dumi_demos.js": "/dumi_demos.61ccf57f.async.js",
-  "demos_no_comp.js": "/demos_no_comp.a93b007a.async.js",
+  "demos_no_comp.js": "/demos_no_comp.eb2645b4.async.js",
   "docs__api__commands__edges__edge-add__index.md.js": "/docs__api__commands__edges__edge-add__index.md.6545dfc6.async.js",
   "docs__api__commands__edges__edge-back__index.md.js": "/docs__api__commands__edges__edge-back__index.md.3b524142.async.js",
   "docs__api__commands__edges__edge-delete__index.md.js": "/docs__api__commands__edges__edge-delete__index.md.476eaf00.async.js",
@@ -550,13 +550,13 @@
   "docs__tutorial__faq.md.js": "/docs__tutorial__faq.md.ed857bdc.async.js",
   "docs__tutorial__getting-started__index.en-US.md.js": "/docs__tutorial__getting-started__index.en-US.md.695c617b.async.js",
   "docs__tutorial__getting-started__index.md.js": "/docs__tutorial__getting-started__index.md.54298545.async.js",
-  "docs__tutorial__getting-started__index.zh-CN.md.js": "/docs__tutorial__getting-started__index.zh-CN.md.d0d5006f.async.js",
-  "docs__tutorial__getting-started__index.zh.md.js": "/docs__tutorial__getting-started__index.zh.md.1b32de1c.async.js",
+  "docs__tutorial__getting-started__index.zh-CN.md.js": "/docs__tutorial__getting-started__index.zh-CN.md.10a86593.async.js",
+  "docs__tutorial__getting-started__index.zh.md.js": "/docs__tutorial__getting-started__index.zh.md.31cbaddc.async.js",
   "docs__tutorial__solutions__dag__index.md.js": "/docs__tutorial__solutions__dag__index.md.5fc73faa.async.js",
   "docs__tutorial__solutions__er__index.md.js": "/docs__tutorial__solutions__er__index.md.2e9cc679.async.js",
   "docs__tutorial__solutions__flow__index.md.js": "/docs__tutorial__solutions__flow__index.md.f4e563db.async.js",
-  "umi.js": "/umi.a7b078c8.js",
-  "wrappers.js": "/wrappers.d068be2f.async.js",
+  "umi.js": "/umi.2469abad.js",
+  "wrappers.js": "/wrappers.38621b62.async.js",
   "/~demos/canvas-config-form-basic/index.html": "//~demos/canvas-config-form-basic/index.html",
   "/~demos/canvas-config-form-custom-render/index.html": "//~demos/canvas-config-form-custom-render/index.html",
   "/~demos/canvas-config-form-custom-shape/index.html": "//~demos/canvas-config-form-custom-shape/index.html",
