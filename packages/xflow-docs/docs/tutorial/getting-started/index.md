@@ -2,7 +2,7 @@
 title: 快速上手
 path: index
 group:
-  path: /tutorial-02
+  path: /tutorial
   title: 快速上手
   order: 1
 nav:
