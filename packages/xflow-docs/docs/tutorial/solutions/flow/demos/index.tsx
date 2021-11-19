@@ -19,7 +19,7 @@ import {
 import { Graph } from '@antv/x6'
 /** app 组件配置  */
 /** 配置Command */
-import { useCmdConfig, initGraphCmds } from './config-cmd'
+// import { useCmdConfig, initGraphCmds } from './config-cmd'
 /** 配置Menu */
 import { useMenuConfig } from './config-menu'
 /** 配置Toolbar */
@@ -39,7 +39,7 @@ export const Demo: React.FC<IProps> = props => {
   const { meta } = props
   const toolbarConfig = useToolbarConfig()
   const menuConfig = useMenuConfig()
-  const cmdConfig = useCmdConfig()
+  // const cmdConfig = useCmdConfig()
   const keybindingConfig = useKeybindingConfig()
   const graphRef = useRef<Graph>()
   /**
@@ -47,7 +47,7 @@ export const Demo: React.FC<IProps> = props => {
    * @param extensionRegistry 当前XFlow配置项
    */
 
-  const onLoad: IAppLoad = async (app, extensionRegistry) => {
+  const onLoad: IAppLoad = async app => {
     graphRef.current = await app.getGraphInstance()
   }
 
@@ -60,7 +60,7 @@ export const Demo: React.FC<IProps> = props => {
   }, [graphRef])
 
   return (
-    <XFlow className="user-custom-clz" onLoad={onLoad} meta={meta}>
+    <XFlow className="flow-user-custom-clz" onLoad={onLoad} meta={meta}>
       <FlowchartExtension />
       <FlowchartNodePanel
         registerNode={{

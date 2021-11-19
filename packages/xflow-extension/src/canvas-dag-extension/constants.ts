@@ -1,5 +1,5 @@
 import type { DisposableCollection } from '@antv/xflow-core'
-import { IGraphCommand } from '@antv/xflow-core'
+import type { IGraphCommand } from '@antv/xflow-core'
 import { getModelUtil, useModelValueUtil } from '@antv/xflow-core/es/model-service/constant'
 
 export const EDGE_PATH_TYPE = {
