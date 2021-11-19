@@ -15,20 +15,19 @@ nav:
 
 ## 效果演示
 
-<code src="./demos/index.tsx">
+<code compact transform src="./demos/index.tsx" classname="er-demo">
 
 ## 功能概览
 
 ### 画布内容渲染
 
-自由的节点/连线样式定制: 支持渲染React开发的节点, 支持在连线上渲染复杂的React节点, 再也不用担心设计师天马行空的设计稿啦。
+自由的节点/连线样式定制: 支持渲染 React 开发的节点, 支持在连线上渲染复杂的 React 节点, 再也不用担心设计师天马行空的设计稿啦。
 
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*cQv3Q6gTJ2YAAAAAAAAAAAAAARQnAQ width='50%' />
 
-
 ### 交互能力
 
-支持画布拖拽移动、画布按住ctrl缩放(也可配置成滚轮缩放)。
+支持画布拖拽移动、画布按住 ctrl 缩放(也可配置成滚轮缩放)。
 
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*jJbUSbcE8wwAAAAAAAAAAAAAARQnAQ width='50%' />
 
@@ -40,7 +39,7 @@ nav:
 
 &nbsp;
 
-支持当前选中节点、连线始终前置, 同时支持节点选中、hover高亮, 支持连线选中、hover高亮, 所有样式均可自定义配置。
+支持当前选中节点、连线始终前置, 同时支持节点选中、hover 高亮, 支持连线选中、hover 高亮, 所有样式均可自定义配置。
 
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*wRFlQaTMIvYAAAAAAAAAAAAAARQnAQ width='50%' />
 
@@ -54,12 +53,11 @@ nav:
 
 ### 事件监听
 
-支持监听画布空白处点击事件、节点点击事件、连线点击事件、拖拽连线完成的事件等等。另外由于节点/连线上的内容均支持使用React节点, 所以将事件直接写在React组件里, 也是可以的。
-
+支持监听画布空白处点击事件、节点点击事件、连线点击事件、拖拽连线完成的事件等等。另外由于节点/连线上的内容均支持使用 React 节点, 所以将事件直接写在 React 组件里, 也是可以的。
 
 ### 缩放工具栏
 
-支持画布缩放工具栏, 允许画布放大、缩小、回归1:1并画布居中、画布内容适配可视区域。
+支持画布缩放工具栏, 允许画布放大、缩小、回归 1:1 并画布居中、画布内容适配可视区域。
 
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ioiKT4NWZYIAAAAAAAAAAAAAARQnAQ width='60%' />
 
@@ -67,12 +65,9 @@ nav:
 
 支持展示小地图, 小地图的所有样式均可自定义。小地图会与画布内容的变化实时联动。效果如上图。
 
-
 ### 快捷键
 
-支持快捷删除节点和连线, 选中某个节点或者连线, 按Delete键, 即可实现删除能力。此外如果打开框选功能, 批量选中若干节点/连线, 也可以实现批量删除的能力。
-
-
+支持快捷删除节点和连线, 选中某个节点或者连线, 按 Delete 键, 即可实现删除能力。此外如果打开框选功能, 批量选中若干节点/连线, 也可以实现批量删除的能力。
 
 ### 交互组件与画布联动
 

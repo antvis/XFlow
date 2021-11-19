@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, NsGraph } from '@antv/xflow'
 import type { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
 import { createCtxMenuConfig, MenuItemType } from '@antv/xflow'

@@ -12,6 +12,7 @@
     "dev:docs": "cd ./packages/xflow-docs && yarn start",
     "test": "lerna run test --scope=@ali/{xflow-hook,xflow-core}",
     "build": "lerna run build --scope=@antv/xflow --include-dependencies --stream",
+    "build:less": "lerna run build:less --scope=@antv/xflow --include-dependencies --stream",
     "build:pkg": "lerna run build --scope=@antv/xflow --include-dependencies --stream",
     "release:pkg": "lerna run release --scope=@antv/xflow --include-dependencies --stream",
     "clean": "lerna clean --yes && rm -rf ./node_modules",

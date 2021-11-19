@@ -76,7 +76,7 @@ export const Demo: React.FC<IProps> = props => {
 
   return (
     <XFlow
-      className="user-custom-clz"
+      className="dag-user-custom-clz"
       hookConfig={graphHooksConfig}
       modelServiceConfig={modelServiceConfig}
       commandConfig={cmdConfig}
