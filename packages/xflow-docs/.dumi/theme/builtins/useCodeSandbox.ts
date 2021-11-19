@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import less from 'less'
 import LZString from 'lz-string'
-import type { ICbsData, IPreviewerComponentProps } from './type.d'
+import type { ICbsData, IPreviewerComponentProps } from './type'
 
 const CSB_API_ENDPOINT = 'https://codesandbox.io/api/v1/sandboxes/define'
 
