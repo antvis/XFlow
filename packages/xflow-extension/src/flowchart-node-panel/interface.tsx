@@ -1,6 +1,6 @@
 import type { NsGraph } from '@antv/xflow-core'
 import type React from 'react'
-import type { IProps as TreeNodeProps } from '../canvas-node-tree-panel/interface'
+import type { IProps as TreeNodeProps, ITreeDataService } from '../canvas-node-tree-panel/interface'
 import { INodeFactoryArgs } from '../canvas-node-tree-panel/interface'
 
 export { INodeFactoryArgs }
@@ -9,7 +9,7 @@ export { INodeFactoryArgs }
 export interface ICustomNode {
   name: string
   component: NsGraph.INodeRender<any>
-  popover?: React.Component<any>
+  popover?: React.ComponentType<any>
   label?: string
   width?: number
   height?: number
@@ -46,7 +46,7 @@ export interface IFlowchartNode {
   isCustom?: boolean
 }
 
-export interface IProps extends Omit<TreeNodeProps, 'onNodeDrop'> {
+export interface IProps extends Omit<TreeNodeProps, 'treeDataService' | 'onNodeDrop'> {
   show?: boolean
   showHeader?: boolean
   /** 自定义节点 */
@@ -54,6 +54,7 @@ export interface IProps extends Omit<TreeNodeProps, 'onNodeDrop'> {
     title?: string
     nodes: ICustomNode[]
   }
+  treeDataService?: ITreeDataService
   /** 默认展开的折叠面板 */
   defaultActiveKey?: string[] // ['official', 'custom']
 }

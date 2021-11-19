@@ -1,6 +1,5 @@
 import { DND_RENDER_ID, NODE_WIDTH, NODE_HEIGHT } from './constant'
 import { uuidv4, NsGraph } from '@antv/xflow'
-import type { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
 import type { NsNodeCmd, NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
 
 /** mock 后端接口调用 */
@@ -18,6 +17,7 @@ export namespace MockApi {
   }
   /** 加载图数据的api */
   export const loadGraphData = async (meta: NsGraph.IGraphMeta) => {
+    console.log(meta)
     const nodes: NsGraph.INodeConfig[] = [
       {
         ...NODE_COMMON_PROPS,
@@ -172,16 +172,6 @@ export namespace MockApi {
           },
     }
     return node
-  }
-
-  /** 更新节点 name，可能依赖接口判断是否重名，返回空字符串时，不更新 */
-  export const renameNode: NsRenameNodeCmd.IUpdateNodeNameService = async (
-    name,
-    node,
-    graphMeta,
-  ) => {
-    console.log('rename node', node, name, graphMeta)
-    return { err: null, nodeName: name }
   }
 
   /** 删除节点的api */

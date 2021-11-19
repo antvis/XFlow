@@ -12,20 +12,6 @@ import { NsGraphStatusCommand } from '@antv/xflow'
 import './algo-node.less'
 
 const fontStyle = { fontSize: '16px', color: '#C1CDF7' }
-
-export const AlgoNode: NsGraph.INodeRender = props => {
-  return (
-    <div className="xflow-algo-node">
-      <span className="icon">
-        <DatabaseOutlined style={fontStyle} />
-      </span>
-      <span className="label">{props.data.label}</span>
-      <span className="status">
-        <AlgoIcon status={props.data && props.data.status} hide={props.isNodeTreePanel} />
-      </span>
-    </div>
-  )
-}
 interface IProps {
   status: NsGraphStatusCommand.StatusEnum
   hide: boolean
@@ -48,4 +34,18 @@ export const AlgoIcon: React.FC<IProps> = props => {
     default:
       return null
   }
+}
+
+export const AlgoNode: NsGraph.INodeRender = props => {
+  return (
+    <div className="xflow-algo-node">
+      <span className="icon">
+        <DatabaseOutlined style={fontStyle} />
+      </span>
+      <span className="label">{props.data.label}</span>
+      <span className="status">
+        <AlgoIcon status={props.data && props.data.status} hide={props.isNodeTreePanel} />
+      </span>
+    </div>
+  )
 }

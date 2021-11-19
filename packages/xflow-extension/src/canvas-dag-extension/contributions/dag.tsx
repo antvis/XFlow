@@ -4,9 +4,15 @@ import {
   NsGraph,
   Disposable,
   XFlowEdgeCommands,
+} from '@antv/xflow-core'
+import type {
+  IModelService,
+  IHookService,
+  ICmdHooks,
+  NsEdgeCmd,
+  NsNodeCmd,
   IGraphCommandService,
 } from '@antv/xflow-core'
-import type { IModelService, IHookService, ICmdHooks, NsEdgeCmd, NsNodeCmd } from '@antv/xflow-core'
 import {
   IGraphCommandFactory,
   IHookContribution,

@@ -52,26 +52,28 @@ export default defineConfig({
   links: [],
   /** js */
   scripts: [],
-  chunks: ['umi.styles', 'vendors', 'umi'],
+  chunks: process.env.NODE_ENV === 'production' ? ['umi.styles', 'vendors', 'umi'] : undefined,
   chainWebpack: function (config, { webpack }) {
-    config.optimization.splitChunks({
-      ...config.optimization.get('splitChunks'),
-      cacheGroups: {
-        ...(config.optimization.get('splitChunks')?.cacheGroups || {}),
-        mergedStyles: {
-          name: 'umi.styles',
-          test: /\.(less|s?css)$/,
-          chunks: 'all',
-          reuseExistingChunk: true,
-          enforce: true,
-          priority: 11,
+    if (process.env.NODE_ENV === 'production') {
+      config.optimization.splitChunks({
+        ...config.optimization.get('splitChunks'),
+        cacheGroups: {
+          ...(config.optimization.get('splitChunks')?.cacheGroups || {}),
+          mergedStyles: {
+            name: 'umi.styles',
+            test: /\.(less|s?css)$/,
+            chunks: 'all',
+            reuseExistingChunk: true,
+            enforce: true,
+            priority: 11,
+          },
+          vendor: {
+            name: 'vendors',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 10,
+          },
         },
-        vendor: {
-          name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
-          priority: 10,
-        },
-      },
-    })
+      })
+    }
   },
 })
