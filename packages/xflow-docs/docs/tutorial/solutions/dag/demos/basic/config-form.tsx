@@ -18,7 +18,43 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
       tabs: [
         {
           name: 'GraphMeta',
-          groups: [],
+          groups: [
+            {
+              name: 'groupName',
+              controls: [
+                {
+                  name: 'Tab2-1',
+                  label: '项目名',
+                  shape: 'Input',
+                  disabled: false,
+                  required: true,
+                  tooltip: '图的业务项目名',
+                  extra: 'hello world extra',
+                  placeholder: 'please write something',
+                  value: '',
+                  defaultValue: '', // 可以认为是默认值
+                  hidden: false,
+                  options: [{ title: '', value: '' }],
+                  originData: {}, // 原始数据
+                },
+                {
+                  label: '图数据',
+                  name: 'Tab1-0',
+                  /** 使用自定义shape */
+                  shape: ControlShapeEnum.EDITOR,
+                  disabled: false,
+                  required: true,
+                  tooltip: 'JSON 数据',
+                  placeholder: 'please write something',
+                  value: '',
+                  defaultValue: '', // 可以认为是默认值
+                  hidden: false,
+                  options: [{ title: '', value: '' }],
+                  originData: {}, // 原始数据
+                },
+              ],
+            },
+          ],
         },
       ],
     }
@@ -48,7 +84,7 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 originData: {}, // 原始数据
               },
               {
-                label: 'Link',
+                label: '这是一个超链接',
                 name: 'Tab1-1',
                 /** 使用自定义shape */
                 shape: ControlShapeEnum.LINKSHAPE,
@@ -65,7 +101,7 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
               },
               {
                 label: 'Tab1-2',
-                name: 'Tab1-2', // 也可以是数组
+                name: 'Tab1-2',
                 shape: 'Input',
                 disabled: false,
                 required: true,
@@ -81,7 +117,7 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
               },
               {
                 label: 'Tab1-3',
-                name: 'Tab1-3', // 也可以是数组
+                name: 'Tab1-3',
                 shape: 'Input',
                 disabled: false,
                 required: true,
@@ -97,7 +133,7 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
               },
               {
                 label: 'Tab1-4',
-                name: 'Tab1-4', // 也可以是数组
+                name: 'Tab1-4',
                 shape: 'Input',
                 disabled: false,
                 required: true,
@@ -106,7 +142,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
-
                 hidden: false,
                 options: [{ title: '', value: '' }],
                 originData: {}, // 原始数据
@@ -122,7 +157,7 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
             name: 'groupName',
             controls: [
               {
-                name: 'Tab2-1', // 也可以是数组
+                name: 'Tab2-1',
                 label: 'Tab2-1',
                 shape: 'Input',
                 disabled: false,
@@ -132,7 +167,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
-
                 hidden: false,
                 options: [{ title: '', value: '' }],
                 originData: {}, // 原始数据
@@ -148,7 +182,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
-
                 hidden: false,
                 options: [{ title: '', value: '' }],
                 originData: {}, // 原始数据
@@ -187,7 +220,43 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
       tabs: [
         {
           name: 'Tab3',
-          groups: [],
+          groups: [
+            {
+              name: '',
+              controls: [
+                {
+                  name: 'Tab3-1',
+                  label: '算法配置1',
+                  shape: 'Input',
+                  disabled: false,
+                  required: true,
+                  tooltip: '算法配置1',
+                  extra: 'hello world extra',
+                  placeholder: 'please write something',
+                  value: '',
+                  defaultValue: '', // 可以认为是默认值
+                  hidden: false,
+                  options: [{ title: '', value: '' }],
+                  originData: {}, // 原始数据
+                },
+                {
+                  name: 'Tab3-2',
+                  label: '算法配置2',
+                  shape: 'Input',
+                  disabled: false,
+                  required: true,
+                  tooltip: '算法配置2',
+                  extra: 'hello world extra',
+                  placeholder: 'please write something',
+                  value: '',
+                  defaultValue: '', // 可以认为是默认值
+                  hidden: false,
+                  options: [{ title: '', value: '' }],
+                  originData: {}, // 原始数据
+                },
+              ],
+            },
+          ],
         },
       ],
     }

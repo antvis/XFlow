@@ -72,7 +72,7 @@ export const dagOptions: Graph.Options = {
         attrs: {
           line: {
             strokeDasharray: '5 5',
-            stroke: '#808080',
+            stroke: '#888',
             strokeWidth: 1,
             targetMarker: {
               name: 'block',
@@ -95,7 +95,7 @@ export const dagOptions: Graph.Options = {
               line: {
                 strokeDasharray: '',
                 targetMarker: '',
-                stroke: '#808080',
+                stroke: '#d5d5d5',
               },
             })
             const targetPortId = edgeCell.getTargetPortId()
@@ -227,7 +227,7 @@ export class DagHooksContribution
                 line: {
                   strokeDasharray: '',
                   targetMarker: '',
-                  stroke: '#808080',
+                  stroke: '#d5d5d5',
                   strokeWidth: 1,
                 },
               },

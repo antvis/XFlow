@@ -84,18 +84,16 @@ export namespace NsGraphStatusCommand {
         diff.remove.push(item)
       }
     })
-    console.log(cur, next, diff)
     return diff
   }
   export const shouldStop = async (info: IStatusInfo) => {
     return [StatusEnum.ERROR, StatusEnum.SUCCESS].includes(info.graphStatus)
   }
 }
-
+/** 创建节点命令 */
 @ManaSyringe.injectable({
   token: { token: ICommandHandler, named: NsGraphStatusCommand.command.id },
 })
-/** 创建节点命令 */
 export class QueryGraphStatusCommand implements ICommand {
   /** api */
   @ManaSyringe.inject(ICommandContextProvider) contextProvider: ICommand['contextProvider']
@@ -150,12 +148,7 @@ export class QueryGraphStatusCommand implements ICommand {
     if (!cell) {
       return
     }
-    cell.setData(() => ({
-      ...cell.getData(),
-      ...cell.getSize(),
-      ...cell.getPosition(),
-      ...data,
-    }))
+    cell.setData({ ...cell.getData(), ...cell.getSize(), ...cell.getPosition(), ...data })
   }
   /** 更新连线数据 */
   updateNodes = (
@@ -165,7 +158,6 @@ export class QueryGraphStatusCommand implements ICommand {
   ) => {
     Object.keys(curStatusInfo).forEach(status => {
       const nodes = NsGraphStatusCommand.statusDiff(curStatusInfo[status], nextStatusMap[status])
-      console.log(nodes)
       nodes.add.forEach((id: string) => {
         this.updateNodeData(id, statusMap[id])
       })

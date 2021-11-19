@@ -7,7 +7,6 @@ import {
   /** 触发Command的交互组件 */
   CanvasScaleToolbar,
   JsonSchemaForm,
-  WorkspacePanel,
   NodeTreePanel,
   CanvasContextMenu,
   CanvasToolbar,
@@ -86,35 +85,34 @@ export const Demo: React.FC<IProps> = props => {
     >
       <DagGraphExtension />
       <NodeTreePanel
+        className="xflow-node-panel"
         searchService={searchService}
         treeDataService={treeDataService}
         onNodeDrop={onNodeDrop}
-        position={{ width: 290, top: 0, bottom: 0, left: 0 }}
+        position={{ width: 230, top: 0, bottom: 0, left: 0 }}
+        footerPosition={{ height: 0 }}
+        bodyPosition={{ top: 40, bottom: 0, left: 0 }}
       />
       <CanvasToolbar
         className="xflow-workspace-toolbar-top"
         layout="horizontal"
         config={toolbarConfig}
-        position={{ top: 0, left: 290, right: 290, bottom: 0 }}
+        position={{ top: 0, left: 230, right: 320, bottom: 0 }}
       />
-      <XFlowCanvas position={{ top: 40, left: 290, right: 290, bottom: 40 }}>
+      <XFlowCanvas position={{ top: 40, left: 230, right: 320, bottom: 0 }}>
         <CanvasScaleToolbar position={{ top: 12, right: 12 }} />
         <CanvasContextMenu config={menuConfig} />
-        <CanvasMiniMap />
+        <CanvasMiniMap nodeFillColor="#c5c5c5" />
         <CanvasSnapline color="#faad14" />
         <CanvasNodePortTooltip />
       </XFlowCanvas>
-      <WorkspacePanel
-        className="xflow-workspace-toolbar-bottom"
-        position={{ bottom: 0, left: 290, right: 290, height: 40, lineHeight: 40 }}
-      >
-        <div> Bottom Toolbar </div>
-      </WorkspacePanel>
       <JsonSchemaForm
         controlMapService={controlMapService}
         formSchemaService={formSchemaService}
         formValueUpdateService={formValueUpdateService}
-        position={{ width: 290, top: 0, bottom: 0, right: 0 }}
+        bodyPosition={{ top: 0, bottom: 0, right: 0 }}
+        position={{ width: 320, top: 0, bottom: 0, right: 0 }}
+        footerPosition={{ height: 0 }}
       />
       <KeyBindings config={keybindingConfig} />
     </XFlow>

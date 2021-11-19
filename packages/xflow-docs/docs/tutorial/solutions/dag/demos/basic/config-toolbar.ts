@@ -38,7 +38,6 @@ export namespace NSToolbarConfig {
       statusMap.node4 = { status: NsGraphStatusCommand.StatusEnum.SUCCESS }
       graphStatus = NsGraphStatusCommand.StatusEnum.SUCCESS
     }
-    console.log(statusMap)
     return {
       graphStatus: graphStatus,
       statusMap: statusMap,
@@ -168,7 +167,7 @@ export namespace NSToolbarConfig {
           XFlowDagCommands.QUERY_GRAPH_STATUS.id,
           {
             graphStatusService,
-            loopInterval: 3000,
+            loopInterval: 10000,
           },
         )
       },

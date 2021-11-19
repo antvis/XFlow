@@ -1,6 +1,4 @@
-// IOC
-import * as ManaSyringe from '@antv/xflow-core'
-export { ManaSyringe }
+export { ManaSyringe } from '@antv/xflow-core'
 
 /** XFlow 基础 interface */
 export { NsGraph } from '@antv/xflow-core'

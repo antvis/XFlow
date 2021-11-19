@@ -85,8 +85,6 @@ async function getCSBData(opts: IPreviewerComponentProps) {
   const appFileName = `App${ext}`
   const entryFileName = `index${ext}`
 
-  console.log(opts)
-
   // generate dependencies
   Object.entries(opts.dependencies).forEach(([dep, { version }]) => {
     deps[dep] = version
@@ -149,7 +147,7 @@ document.getElementById('root'),
     const key = filename === '_' ? appFileName : filename
     cbsRawData[key] = tsx || jsx || content
   })
-  console.log(opts)
+
   const cbsData = cbsHook ? await cbsHook(cbsRawData, opts) : cbsRawData
 
   // append other imported local files
@@ -159,7 +157,7 @@ document.getElementById('root'),
       content: typeof value === 'string' ? value : JSON.stringify(value, null, 2),
     }
   })
-  console.log(cbsData)
+
   return serialize({ files })
 }
 

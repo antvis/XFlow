@@ -13,7 +13,7 @@ nav:
 
 ## DAG 图编辑解决方案
 
-<code src="./demos/basic/index.tsx" classname="dag-solution" />
+<code src="./demos/basic/index.tsx" compact transform classname="dag-solution" />
 
 ## DAG
 

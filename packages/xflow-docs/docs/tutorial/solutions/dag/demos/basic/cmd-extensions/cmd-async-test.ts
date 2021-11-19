@@ -40,8 +40,8 @@ export class TestAsyncCommand implements ICommand {
     const graph = await ctx.getX6Graph()
     const result = await hooks.testCmd.call(
       args,
-      async args => {
-        const { commandService, modelService, graphMeta, test } = args
+      async handlerArgs => {
+        const { commandService, modelService, graphMeta, test } = handlerArgs
         console.log(graph, commandService, modelService, graphMeta, test)
         return { test: true }
       },
