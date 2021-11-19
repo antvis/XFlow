@@ -1,13 +1,13 @@
 {
   "_chunksMap": {
     "umi": [
-      "/umi.2469abad.js"
+      "/umi.bd733a5d.js"
     ],
     "wrappers": [
       "/umi.styles.d7c18461.chunk.css",
       "/umi.styles.42a472ed.async.js",
       "/vendors.55ca897e.async.js",
-      "/wrappers.38621b62.async.js"
+      "/wrappers.e130dc63.async.js"
     ],
     "dumi_demos": [
       "/umi.styles.d7c18461.chunk.css",
@@ -555,8 +555,8 @@
   "docs__tutorial__solutions__dag__index.md.js": "/docs__tutorial__solutions__dag__index.md.5fc73faa.async.js",
   "docs__tutorial__solutions__er__index.md.js": "/docs__tutorial__solutions__er__index.md.2e9cc679.async.js",
   "docs__tutorial__solutions__flow__index.md.js": "/docs__tutorial__solutions__flow__index.md.f4e563db.async.js",
-  "umi.js": "/umi.2469abad.js",
-  "wrappers.js": "/wrappers.38621b62.async.js",
+  "umi.js": "/umi.bd733a5d.js",
+  "wrappers.js": "/wrappers.e130dc63.async.js",
   "/~demos/canvas-config-form-basic/index.html": "//~demos/canvas-config-form-basic/index.html",
   "/~demos/canvas-config-form-custom-render/index.html": "//~demos/canvas-config-form-custom-render/index.html",
   "/~demos/canvas-config-form-custom-shape/index.html": "//~demos/canvas-config-form-custom-shape/index.html",
@@ -647,8 +647,6 @@
   "docs/faq/faq/index.html": "/docs/faq/faq/index.html",
   "docs/faq/index.html": "/docs/faq/index.html",
   "docs/index.html": "/docs/index.html",
-  "docs/tutorial-02/getting-started/index.html": "/docs/tutorial-02/getting-started/index.html",
-  "docs/tutorial-02/index.html": "/docs/tutorial-02/index.html",
   "docs/tutorial-advanced/advanced/index.html": "/docs/tutorial-advanced/advanced/index.html",
   "docs/tutorial-advanced/command/index.html": "/docs/tutorial-advanced/command/index.html",
   "docs/tutorial-advanced/hook/index.html": "/docs/tutorial-advanced/hook/index.html",
@@ -718,8 +716,6 @@
   "en-US/docs/faq/faq/index.html": "/en-US/docs/faq/faq/index.html",
   "en-US/docs/faq/index.html": "/en-US/docs/faq/index.html",
   "en-US/docs/index.html": "/en-US/docs/index.html",
-  "en-US/docs/tutorial-02/getting-started/index.html": "/en-US/docs/tutorial-02/getting-started/index.html",
-  "en-US/docs/tutorial-02/index.html": "/en-US/docs/tutorial-02/index.html",
   "en-US/docs/tutorial-advanced/advanced/index.html": "/en-US/docs/tutorial-advanced/advanced/index.html",
   "en-US/docs/tutorial-advanced/command/index.html": "/en-US/docs/tutorial-advanced/command/index.html",
   "en-US/docs/tutorial-advanced/hook/index.html": "/en-US/docs/tutorial-advanced/hook/index.html",
@@ -795,8 +791,6 @@
   "zh-CN/docs/faq/faq/index.html": "/zh-CN/docs/faq/faq/index.html",
   "zh-CN/docs/faq/index.html": "/zh-CN/docs/faq/index.html",
   "zh-CN/docs/index.html": "/zh-CN/docs/index.html",
-  "zh-CN/docs/tutorial-02/getting-started/index.html": "/zh-CN/docs/tutorial-02/getting-started/index.html",
-  "zh-CN/docs/tutorial-02/index.html": "/zh-CN/docs/tutorial-02/index.html",
   "zh-CN/docs/tutorial-advanced/advanced/index.html": "/zh-CN/docs/tutorial-advanced/advanced/index.html",
   "zh-CN/docs/tutorial-advanced/command/index.html": "/zh-CN/docs/tutorial-advanced/command/index.html",
   "zh-CN/docs/tutorial-advanced/hook/index.html": "/zh-CN/docs/tutorial-advanced/hook/index.html",
