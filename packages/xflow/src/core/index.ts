@@ -1,4 +1,3 @@
-/** IOC */
 export { ManaSyringe } from '@antv/xflow-core'
 
 /** XFlow 基础 interface */
@@ -10,14 +9,15 @@ export { NsGraph } from '@antv/xflow-core'
  * 2. Application Extension：XFlowAppExtensionMoudle
  * 3. Graph：XFlowCanvas
  *****************************************************/
+
 export {
   // 组件
   XFlow,
   XFlowCanvas,
   XFlowAppExtensionMoudle,
   // app context
-  XFlowAppContext,
   XFlowAppProvider,
+  XFlowAppContext,
   useXFlowApp,
   // config provider context：使用全局Config
   useXflowPrefixCls,
@@ -30,10 +30,10 @@ export {
 /** widget：extension  */
 export { IExtensionModule, IModuleConfig } from '@antv/xflow-core'
 
-/** graphProvider: 注入Graph时 需要 */
+/** graphProvider：注入Graph时 需要 */
 export { IGraphConfig, IGraphProvider, createGraphConfig } from '@antv/xflow-core'
 
-/** app: 用于extension扩展*/
+/** app：用于extension扩展*/
 export {
   IApplication,
   IApplicationContribution,
@@ -43,7 +43,7 @@ export {
 } from '@antv/xflow-core'
 
 /*******************************************************
- *  Command Service: 命令模块
+ *  Command Service： 命令模块
  *****************************************************/
 
 /** Command 类型 */
@@ -51,15 +51,16 @@ export type {
   IArgsBase,
   IGraphCommand,
   ICommandConfig,
-  ICommandHandler,
   IGraphPipelineCommand,
-  IGraphCommandContribution,
 } from '@antv/xflow-core'
 
 /** Command Service */
 export {
+  ICommandHandler,
   IGraphCommandService,
   ICommandContextProvider,
+  IGraphCommandContribution,
+  IGraphCommandFactory,
   GraphCommandRegistry,
   commandRegistryModule,
 } from '@antv/xflow-core'
@@ -198,6 +199,8 @@ export { uuidv4 } from '@antv/xflow-core'
 /** utils：绝对定位 */
 export { IPosition, usePositionStyle } from '@antv/xflow-core'
 export { Simplify } from '@antv/xflow-core'
+/** utils：insertCss */
+export { insertCss } from '@antv/xflow-core'
 
 /*******************************************************
  * Icon：Antd Icon
@@ -205,5 +208,6 @@ export { Simplify } from '@antv/xflow-core'
 
 /** ICON */
 export { IconStore } from '@antv/xflow-core'
+
 /** 全局常量 */
 export { XFlowConstants } from '@antv/xflow-core'

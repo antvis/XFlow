@@ -1,6 +1,7 @@
 import { singleton, inject } from 'mana-syringe'
 import { IGraphCommandService } from '../../command/interface'
-import { COMMAND_REDOABLE, COMMAND_UNDOABLE } from '../constant'
+import type { GraphCommandRegistry } from '../../command/graph-command'
+import { COMMAND_REDOABLE, COMMAND_UNDOABLE, COMMAND_GLOBALS } from '../constant'
 import type { IModelService } from '../interface'
 import { IModelContribution } from '../interface'
 
@@ -31,6 +32,13 @@ export class CommandModelContribution implements IModelContribution {
           model.setValue(this.commands.isUndoable)
         })
         return disposable
+      },
+    })
+    /** command 执行结果 */
+    registry.registerModel<COMMAND_GLOBALS.IState>({
+      id: COMMAND_GLOBALS.id,
+      modelFactory: () => {
+        return (this.commands as GraphCommandRegistry).Globals
       },
     })
   }

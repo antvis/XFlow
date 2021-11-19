@@ -80,6 +80,12 @@ export interface IGraphCommandService {
     args: Args,
     hooks?: IRuntimeHook<Args, Result>,
   ) => Promise<ICommandHandler<Args, Result> | undefined>
+  /** 注册Command */
+  registerCommand: (command: IGraphCommand, factory: ICommandFactory) => Disposable
+  /** 注册Command */
+  setGlobal: (key: string, value: any) => void
+  /** 注册Command */
+  getGlobal: (key: string) => void
 }
 
 /**
@@ -149,22 +155,39 @@ export interface ICommandContextProvider<Args = any, Result = any, ICmdHooks = I
  * Command Context: 提供Command执行需要的各种api
  */
 export interface IContext<Args extends IArgsBase = any, Result = any, Hooks = IHooks> {
+  /** 执行undo */
   undo: () => Promise<void>
+  /** 添加undo */
   addUndo: (disposable: Disposable) => Disposable
+  /** 是否可以undo */
   isUndoable: () => boolean
+  /** 获取参数 */
   getArgs: () => { args: Args; hooks: IRuntimeHook<Args, Result> }
+  /** 设置参数 */
   setArgs: (
     args: Args,
     hooks: IRuntimeHook<Args, Result>,
   ) => { args: Args; hooks: IRuntimeHook<Args, Result> }
+  /** 获取结果 */
   getResult: () => Result
+  /** 设置结果 */
   setResult: (result: Result) => Result
+  /** 获取hooks */
   getHooks: () => Hooks
+  /** 获取Graph */
   getX6Graph: () => Promise<X6Graph>
+  /** 获取Graph配置 */
   getGraphConfig: () => Promise<IGraphConfig>
+  /** 获取Command */
   getCommands: () => IGraphCommandService
+  /** 获取ModelService */
   getModelService: () => IModelService
+  /** 获取Disposables */
   getDisposables: () => DisposableCollection
+  /** 设置command间的共享变量 */
+  setGlobal: <T extends unknown = any>(key: string, value: T) => void
+  /** 获取共享变量 */
+  getGlobal: <T extends unknown = any>(key: string) => T
 }
 
 /**
@@ -187,7 +210,7 @@ export interface IGraphCommandContribution {
   /**
    * Register commands and handlers.
    */
-  registerGraphCommands: (commands: ICommandRegistry) => void
+  registerGraphCommands: (commands: IGraphCommandService) => void
 }
 
 /** 执行command需要的参数  */
@@ -222,12 +245,7 @@ export interface IGenericCmdOptions<T = any, Args extends IArgsBase = any> {
   (item: T, modelService: IModelService, cmd: IGraphCommandService): Promise<ICommandConfig<Args>>
 }
 
-/** Command 扩展点 */
-export interface ICommandRegistry {
-  registerCommand: (command: IGraphCommand, factory: ICommandFactory) => Disposable
-}
-
 /** Command 注册函数 */
 export interface ICommandRegisterFunction {
-  (registry: ICommandRegistry): void
+  (registry: Pick<IGraphCommandService, 'registerCommand'>): void
 }

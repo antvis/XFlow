@@ -1,8 +1,9 @@
 ---
 title: 简介
 path: index
+order: -1
 group:
-  path: /tutorial-01
+  path: /tutorial
   title: 简介
   order: 1
 nav:

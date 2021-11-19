@@ -7,7 +7,6 @@ import type {
   IGraphCommand,
   ICommandFactory,
   IGraphPipelineCommand,
-  ICommandRegistry,
   ICommandRegisterFunction,
 } from './interface'
 import { IGraphCommandService, IGraphCommandContribution } from './interface'
@@ -74,13 +73,28 @@ export class GraphCommandRegistry
    * 监听cmdregistry的变化
    */
   private readonly cmdChangeEvent = new RxModel<null>(null)
+
   /**
    * 监听cmdregistry的变化
    */
   public get watchChange() {
     return this.cmdChangeEvent.watch
   }
-
+  /**
+   * 在Command实例间共享变量
+   */
+  readonly Globals = new RxModel(new Map())
+  /** 设置command间的共享变量 */
+  setGlobal = (key: string, value: any) => {
+    this.Globals.setValue(map => {
+      map.set(key, value)
+    })
+  }
+  /** 获取共享变量 */
+  getGlobal = (key: string) => {
+    const map = this.Globals.getValue() as Map<string, any>
+    return map.get(key)
+  }
   constructor(
     @contrib(IGraphCommandContribution)
     protected readonly contributionProvider: Contribution.Provider<IGraphCommandContribution>,
@@ -259,7 +273,7 @@ export class GraphCommandRegistry
    */
   registerDisposableCommand = (externalRegisterFn: ICommandRegisterFunction) => {
     const toDispose = new DisposableCollection()
-    const disposableRegistry: ICommandRegistry = {
+    const disposableRegistry: Pick<IGraphCommandService, 'registerCommand'> = {
       registerCommand: (command: IGraphCommand, factory: ICommandFactory) => {
         const disposable = this.registerCommand(command, factory)
         toDispose.push(disposable)

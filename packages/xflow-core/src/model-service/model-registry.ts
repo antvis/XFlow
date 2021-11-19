@@ -45,11 +45,16 @@ export class ModelRegistry implements IFrontendApplicationContribution, IModelSe
     const model = modelFactory
       ? modelFactory()
       : (new RxModel<T>(initialValue) as NsModel.IModel<T>)
+    if (NsModel.isValidValue<T>(initialValue)) {
+      defer.resolve(model)
+    }
     if (options.watchChange) {
       /** 绑定watch事件 */
       options.watchChange(model, this).then(d => {
         /** createModel 后 resolve */
-        defer.resolve(model)
+        if (!defer.isResolved) {
+          defer.resolve(model)
+        }
         this.toDispose.pushAll([d, toDispose])
         toDispose.push(d)
       })

@@ -12,9 +12,6 @@ export default defineConfig({
   resolve: {
     includes: ['docs'],
   },
-  ssr: {
-    devServerRender: false,
-  },
   outputPath: 'dist',
   hash: true,
   devtool: 'eval',
@@ -24,6 +21,9 @@ export default defineConfig({
     '@antv/xflow-extension',
     'dumi-theme-graphin',
   ],
+  ssr: {
+    devServerRender: false,
+  },
   dynamicImport: {},
   exportStatic: {},
   theme: {
@@ -31,6 +31,7 @@ export default defineConfig({
     '@primary-color': '#873bf4',
   },
   locales: [
+    ['zh', 'CN'],
     ['zh-CN', '中文'],
     ['en-US', 'English'],
   ],
@@ -51,4 +52,26 @@ export default defineConfig({
   links: [],
   /** js */
   scripts: [],
+  chunks: ['umi.styles', 'vendors', 'umi'],
+  chainWebpack: function (config, { webpack }) {
+    config.optimization.splitChunks({
+      ...config.optimization.get('splitChunks'),
+      cacheGroups: {
+        ...(config.optimization.get('splitChunks')?.cacheGroups || {}),
+        mergedStyles: {
+          name: 'umi.styles',
+          test: /\.(less|s?css)$/,
+          chunks: 'all',
+          reuseExistingChunk: true,
+          enforce: true,
+          priority: 11,
+        },
+        vendor: {
+          name: 'vendors',
+          test: /[\\/]node_modules[\\/]/,
+          priority: 10,
+        },
+      },
+    })
+  },
 })

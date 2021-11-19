@@ -78,7 +78,7 @@ if (Node.registry.exist(XFLOW_NODE_SHAPE)) {
             attrs: {
               r: 4,
               fill: '#fff',
-              stroke: '#808080',
+              stroke: '#d9d9d9',
               zIndex: 12,
             },
           },
@@ -88,8 +88,8 @@ if (Node.registry.exist(XFLOW_NODE_SHAPE)) {
             className: 'xflow-port-arrow',
             attrs: {
               points: '0,0 8,0 4,4 ',
-              fill: '#808080',
-              stroke: '#808080',
+              fill: '#d9d9d9',
+              stroke: '#d9d9d9',
               zIndex: 13,
               transform: 'translate(-4,0)',
             },

@@ -47,12 +47,13 @@ export class XFlowCommandContribution
 
   /** 注册画布节点命令 */
   registerGraphCommands(registry: GraphCommandRegistry): void {
+    /** 注册内置的命令 */
     hookhubList.forEach(({ command }) => {
       registry.registerCommand(command, {
         createCommand: this.commandFactory,
       })
     })
-
+    /** 注册外部传入的命令 */
     this.commandConfig.getConfig().then(({ getContributions }) => {
       const CommandContributions = getContributions()
       CommandContributions.forEach(cmd => {
@@ -62,7 +63,7 @@ export class XFlowCommandContribution
       })
     })
   }
-
+  /** 注册钩子 */
   registerHook = async (hooks: ICmdHooks) => {
     const d = hooks.x6Events.registerHook({
       name: 'bind group node move event',
@@ -163,7 +164,7 @@ export class XFlowCommandContribution
       d.dispose()
     })
   }
-
+  /** 注册钩子 */
   registerHookHub = async (registry: IHookService<ICmdHooks>) => {
     const toDispose = new DisposableCollection()
     hookhubList.forEach(({ hookKey, createHook = defaultHookFactory }) => {

@@ -1,14 +1,21 @@
 import type { IToolbarItemOptions } from '@antv/xflow'
-import { createToolbarConfig, XFlowGroupCommands, uuidv4 } from '@antv/xflow'
+import { createToolbarConfig, uuidv4 } from '@antv/xflow'
 import type { IModelService } from '@antv/xflow'
-import { XFlowGraphCommands, MODELS, IconStore } from '@antv/xflow'
+import {
+  XFlowGraphCommands,
+  XFlowGroupCommands,
+  XFlowDagCommands,
+  NsGraphStatusCommand,
+  MODELS,
+  IconStore,
+} from '@antv/xflow'
 import {
   UngroupOutlined,
   SaveOutlined,
   CloudSyncOutlined,
   GroupOutlined,
   GatewayOutlined,
-  ShareAltOutlined,
+  PlaySquareOutlined,
 } from '@ant-design/icons'
 import { MockApi } from './service'
 import { CustomCommands } from './cmd-extensions/constants'
@@ -17,13 +24,32 @@ import type { NsGraphCmd, NsGroupCmd } from '@antv/xflow'
 import { GROUP_NODE_RENDER_ID } from './constant'
 
 export namespace NSToolbarConfig {
+  let id = 0
+  const statusMap: any = {}
+  let graphStatus: NsGraphStatusCommand.StatusEnum
+  const graphStatusService: NsGraphStatusCommand.IArgs['graphStatusService'] = async () => {
+    if (id < 4) {
+      statusMap[`node${id}`] = { status: NsGraphStatusCommand.StatusEnum.SUCCESS }
+      statusMap[`node${id + 1}`] = { status: NsGraphStatusCommand.StatusEnum.PROCESSING }
+      id += 1
+      graphStatus = NsGraphStatusCommand.StatusEnum.PROCESSING
+    } else {
+      id = 0
+      statusMap.node4 = { status: NsGraphStatusCommand.StatusEnum.SUCCESS }
+      graphStatus = NsGraphStatusCommand.StatusEnum.SUCCESS
+    }
+    return {
+      graphStatus: graphStatus,
+      statusMap: statusMap,
+    }
+  }
   /** 注册icon 类型 */
   IconStore.set('SaveOutlined', SaveOutlined)
   IconStore.set('CloudSyncOutlined', CloudSyncOutlined)
   IconStore.set('GatewayOutlined', GatewayOutlined)
   IconStore.set('GroupOutlined', GroupOutlined)
   IconStore.set('UngroupOutlined', UngroupOutlined)
-  IconStore.set('ShareAltOutlined', ShareAltOutlined)
+  IconStore.set('PlaySquareOutlined', PlaySquareOutlined)
 
   /** toolbar依赖的状态 */
   export interface IToolbarState {
@@ -133,18 +159,15 @@ export namespace NSToolbarConfig {
     })
 
     toolbarGroup3.push({
-      id: XFlowGraphCommands.GRAPH_INSTANCE_COMMAND.id,
-      tooltip: '可以使用 x6 graph 的命令',
-      iconName: 'ShareAltOutlined',
-      onClick: async ({ commandService, modelService }) => {
-        commandService.executeCommand<NsGraphCmd.GraphInstanceCmd.IArgs>(
-          XFlowGraphCommands.GRAPH_INSTANCE_COMMAND.id,
+      id: XFlowDagCommands.QUERY_GRAPH_STATUS.id,
+      tooltip: '执行',
+      iconName: 'PlaySquareOutlined',
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphStatusCommand.IArgs>(
+          XFlowDagCommands.QUERY_GRAPH_STATUS.id,
           {
-            useGraph: async x6 => {
-              const node = x6.getCellById('node-1')
-              console.log(node, x6)
-              return node
-            },
+            graphStatusService,
+            loopInterval: 10000,
           },
         )
       },

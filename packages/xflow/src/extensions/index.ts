@@ -50,7 +50,12 @@ export {
 export { WorkspacePanel, usePanelContext, IWorkspacePanelProps } from '@antv/xflow-extension'
 
 /** DAG图扩展 */
-export { DagGraphExtension } from '@antv/xflow-extension'
+export {
+  DagGraphExtension,
+  GRAPH_STATUS_INFO,
+  XFlowDagCommands,
+  NsGraphStatusCommand,
+} from '@antv/xflow-extension'
 
 /** 流程图扩展 */
 export { FlowGraphExtension } from '@antv/xflow-extension'

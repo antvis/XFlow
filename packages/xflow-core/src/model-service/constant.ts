@@ -157,6 +157,13 @@ export namespace COMMAND_UNDOABLE {
   export const getModel = getModelUtil<IState>(id)
   export const useValue = useModelValueUtil<IState>(id)
 }
+/** COMMAND 执行结果的状态*/
+export namespace COMMAND_GLOBALS {
+  export const id = 'COMMAND_GLOBALS'
+  export type IState = Map<string, any>
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
 
 /** History Undo Redo */
 export namespace HISTORY_UNDOABLE {

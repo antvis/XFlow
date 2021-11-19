@@ -2,7 +2,7 @@ import type { IProps } from './index'
 import type { NsGraph } from '@antv/xflow'
 import { createHookConfig, DisposableCollection } from '@antv/xflow'
 import { DND_RENDER_ID, GROUP_NODE_RENDER_ID } from './constant'
-import { DndNode } from './react-node/dnd-node'
+import { AlgoNode } from './react-node/algo-node'
 import { GroupNode } from './react-node/group'
 
 export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
@@ -15,7 +15,7 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
       hooks.reactNodeRender.registerHook({
         name: 'add react node',
         handler: async renderMap => {
-          renderMap.set(DND_RENDER_ID, DndNode)
+          renderMap.set(DND_RENDER_ID, AlgoNode)
           renderMap.set(GROUP_NODE_RENDER_ID, GroupNode)
         },
       }),
@@ -24,7 +24,7 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
         name: 'custom-x6-options',
         // before: 'dag-extension-x6-options',
         handler: async options => {
-          options.grid = true
+          options.grid = false
           options.keyboard = {
             enabled: true,
           }
