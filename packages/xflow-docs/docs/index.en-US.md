@@ -13,7 +13,7 @@ banner:
     - type: Heavy Released
       title: AntV BPMN solution is coming～
       date: 2021.11.22
-      link: https://www.yuque.com/antv/x6/solution
+      link: https://www.yuque.com/antv/blog/2021xflow
     - type: First Try
       title: XFlow 1.0.0 will publish!
       date: 2021.11.22

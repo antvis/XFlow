@@ -2,24 +2,30 @@ import type { IAppLoad } from '@antv/xflow'
 import React, { useRef, useEffect } from 'react'
 /** 交互组件 */
 import {
+  /** XFlow核心组件 */
   XFlow,
-  KeyBindings,
-  /** 触发Command的交互组件 */
-  CanvasScaleToolbar,
-  CanvasContextMenu,
-  /** Graph的扩展交互组件 */
-  CanvasToolbar,
-  CanvasSnapline,
-  CanvasNodePortTooltip,
-  FlowchartExtension,
-  FlowchartNodePanel,
+  /** 流程图画布组件 */
   FlowchartCanvas,
+  /** 流程图配置扩展 */
+  FlowchartExtension,
+  /** 流程图节点组件 */
+  FlowchartNodePanel,
+  /** 流程图表单组件 */
   FlowchartFormPanel,
+  /** 通用组件：快捷键 */
+  KeyBindings,
+  /** 通用组件：画布缩放 */
+  CanvasScaleToolbar,
+  /** 通用组件：右键菜单 */
+  CanvasContextMenu,
+  /** 通用组件：工具栏 */
+  CanvasToolbar,
+  /** 通用组件：对齐线 */
+  CanvasSnapline,
+  /** 通用组件：节点连接桩 */
+  CanvasNodePortTooltip,
 } from '@antv/xflow'
-import { Graph } from '@antv/x6'
-/** app 组件配置  */
-/** 配置Command */
-// import { useCmdConfig, initGraphCmds } from './config-cmd'
+import type { Graph } from '@antv/x6'
 /** 配置Menu */
 import { useMenuConfig } from './config-menu'
 /** 配置Toolbar */
@@ -39,7 +45,6 @@ export const Demo: React.FC<IProps> = props => {
   const { meta } = props
   const toolbarConfig = useToolbarConfig()
   const menuConfig = useMenuConfig()
-  // const cmdConfig = useCmdConfig()
   const keybindingConfig = useKeybindingConfig()
   const graphRef = useRef<Graph>()
   /**
@@ -105,7 +110,3 @@ export const Demo: React.FC<IProps> = props => {
 }
 
 export default Demo
-
-Demo.defaultProps = {
-  meta: { flowId: 'test-meta-flowchart-id' },
-}

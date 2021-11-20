@@ -19,7 +19,43 @@ nav:
 
 ## 功能概览
 
-流程图功能和 DAG 类似，`KeyBindings`、`CanvasSnapline`、`CanvasToolbar` 可直接参考 DAG 解决方案，差异点在于内置了流程图特有的一些特性。
+流程图解决方案开发了 4 个组件：
+
+- FlowchartCanvas
+- FlowchartExtension
+- FlowchartNodePanel
+- FlowchartFormPanel
+
+并集成了以下的通用组件：
+
+- KeyBindings
+- CanvasContextMenu
+- CanvasToolbar
+- CanvasScaleToolbar
+- CanvasSnapline
+
+与 DAG 解决方案相比，差异点在于内置了流程图特有的`流程图节点`,`节点缩放`,`节点样式调节`,`边样式调节`等特性。
+
+### 节点交互（Node）
+
+图由节点和连接这些节点的边所构成, 图编辑的第一步需要实现节点的的新建和删除，XFlow 流程图解决方案内置节点面板组件和事件封装来实现节点的增删改查交互。
+
+<img src="https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ivjRTqegTV0AAAAAAAAAAAAAARQnAQ" style="display: block;padding: 12px 0;width: 61.88%;"/>
+
+### 连线交互（Edge）
+
+图编辑的第二步需要实现节点间连线的增，删，改，查的交互
+<img src="https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*56aISblpGsEAAAAAAAAAAAAAARQnAQ" style="display: block;padding: 12px 0;width: 61.88%;" />
+
+### 群组交互（Group）
+
+在节点和边的基础上我们还可以把有逻辑关系的节点组装成组
+<img src="https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*-xcrQ5GAQzcAAAAAAAAAAAAAARQnAQ" style="display: block;padding: 12px 0;width: 61.88%;" />
+
+### 画布交互（Graph）
+
+XFlow 内置累常用的画布缩放，复制粘贴，撤销重做，MiniMap 等能力。
+<img src="https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*CvWXToI0KuYAAAAAAAAAAAAAARQnAQ" style="display: block;padding: 12px 0;width: 61.88%;"/>
 
 ### 通用流程图组件-FlowchartNodePanel
 

@@ -11,11 +11,11 @@ banner:
       type: primary
   notifications:
     - type: Heavy Released
-      title: AntV BPMN solution is coming～
+      title: AntV 图编辑应用级解决方案发布啦！
       date: 2021.11.22
-      link: https://www.yuque.com/antv/x6/solution
+      link: https://www.yuque.com/antv/blog/2021xflow
     - type: First Try
-      title: XFlow 1.0.0 will publish!
+      title: XFlow 1.0.0 开源啦!
       date: 2021.11.22
       link: https://github.com/antvis/xflow
 ideas:

@@ -3,8 +3,8 @@ title: 快速上手
 path: index
 order: 1
 group:
-  path: /tutorial
-  title: 快速上手
+  path: /tutorial/intro
+  title: XFlow
   order: 1
 nav:
   title: 教程
@@ -183,11 +183,19 @@ const onLoad: IAppLoad = async app => {
 
 本章仅仅介绍了如何安装 XFlow 以及简单的使用场景, 在后续的教程中您可以了解更多 XFlow 的核心能力。
 
+解决方案：
+
 - [DAG 解决方案](/docs/tutorial/solutions/dag)
 - [ER 建模解决方案](/docs/tutorial/solutions/er)
 - [流程图解决方案](/docs/tutorial/solutions/flow)
+
+核心组件：
+
 - [XFlow 工作台组件](/docs/tutorial-core-components/xflow-component)
 - [XFlowCanvas 画布组件](/docs/tutorial-core-components/xflow-canvas-component)
+
+UI 交互组件：
+
 - [Toolbar 工具栏](/docs/tutorial-ext-components/canvas-toolbar)
 - [ScaleToolbar 缩放工具栏](/docs/tutorial-ext-components/canvas-scale-toolbar)
 - [ContextMenu 右键菜单](/docs/tutorial-ext-components/context-menu)
