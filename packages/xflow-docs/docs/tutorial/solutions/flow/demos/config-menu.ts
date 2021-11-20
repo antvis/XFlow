@@ -100,20 +100,6 @@ export namespace NsMenuItemConfig {
     iconName: 'DeleteOutlined',
   }
 
-  export const RENAME_NODE: IMenuOptions = {
-    id: CustomCommands.SHOW_RENAME_MODAL.id,
-    label: '重命名',
-    isVisible: true,
-    iconName: 'EditOutlined',
-    onClick: async ({ target, commandService }) => {
-      const nodeConfig = target.data as NsGraph.INodeConfig
-      commandService.executeCommand<NsRenameNodeCmd.IArgs>(CustomCommands.SHOW_RENAME_MODAL.id, {
-        nodeConfig,
-        updateNodeNameService: MockApi.renameNode,
-      })
-    },
-  }
-
   export const SEPARATOR: IMenuOptions = {
     id: 'separator',
     type: MenuItemType.Separator,
@@ -130,7 +116,7 @@ export const useMenuConfig = createCtxMenuConfig(config => {
         model.setValue({
           id: 'root',
           type: MenuItemType.Root,
-          submenu: [NsMenuItemConfig.DELETE_NODE, NsMenuItemConfig.RENAME_NODE],
+          submenu: [NsMenuItemConfig.DELETE_NODE],
         })
         break
       /** 边菜单 */
