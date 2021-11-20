@@ -3,15 +3,27 @@ import { Syringe } from 'mana-syringe'
 import type { Graph as X6Graph } from '@antv/x6'
 import { Deferred } from '../../common/deferred'
 import type { NsGraph } from '../../interface'
-import { MAX_ZOOM, MIN_ZOOM, XFLOW_DEFAULT_EDGE, XFLOW_DEFAULT_NODE } from '../../constants'
+import {
+  MAX_ZOOM,
+  MIN_ZOOM,
+  XFLOW_DEFAULT_EDGE,
+  XFLOW_DEFAULT_NODE,
+  XFLOW_DEFAULT_GROUP_NODE,
+} from '../../constants'
 import { uuidv4 } from '../../common/uuid'
-
+import { XFlowDefaultGroupNode } from './react-group-node'
+import { XFlowDefaultNode } from './react-node'
 export namespace NsGraphConfig {
   export const CONFIG_TYPE = 'GraphConfig'
   /** 默认的Node解析函数 */
   export const defaultNodeTypeParser = (nodeConfig: NsGraph.INodeConfig) => nodeConfig.renderKey
   /** 构造的Edge解析函数 */
   export const defaultEdgeTypeParser = (edgeConfig: NsGraph.IEdgeConfig) => edgeConfig.renderKey
+  /** XFlow默认的React组件 */
+  export const defaultNodeMapValue: [string, NsGraph.INodeRender<any>][] = [
+    [XFLOW_DEFAULT_NODE, XFlowDefaultNode],
+    [XFLOW_DEFAULT_GROUP_NODE, XFlowDefaultGroupNode],
+  ]
 }
 
 export class GraphConfig {
@@ -41,7 +53,7 @@ export class GraphConfig {
   /** 画布的dom节点 */
   private graphContainer: Deferred<HTMLElement> = new Deferred()
   /** 自定义节点 */
-  private nodeRender = new Map<string, React.FC>()
+  private nodeRender = new Map<string, NsGraph.INodeRender>(NsGraphConfig.defaultNodeMapValue)
   /** 自定义边 */
   private edgeRender = new Map<string, React.FC>()
   /** 解析node渲染类型的parser */
