@@ -61,7 +61,7 @@ export const initGraphCmds = (app: IApplication) => {
     /** 1. 从服务端获取数据 */
     {
       commandId: XFlowGraphCommands.LOAD_DATA.id,
-      getCommandOption: async ctx => {
+      getCommandOption: async () => {
         return {
           args: {
             loadDataService: MockApi.loadGraphData,
@@ -106,9 +106,9 @@ export const initGraphCmds = (app: IApplication) => {
     /** 4. 缩放画布 */
     {
       commandId: XFlowGraphCommands.GRAPH_ZOOM.id,
-      getCommandOption: async ctx => {
+      getCommandOption: async () => {
         return {
-          args: { factor: 'fit' },
+          args: { factor: 'fit', zoomOptions: { maxScale: 0.9 } },
         }
       },
     } as IGraphPipelineCommand<NsGraphCmd.GraphZoom.IArgs>,

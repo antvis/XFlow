@@ -16,12 +16,6 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true
   },
-  "include": [
-    "packages/**/src",
-    "packages/**/docs",
-    ".eslintrc.js",
-    ".eslintrc.js",
-    "typings.d.ts"
-  ],
-  "exclude": ["node_modules", "**/es", "**/lib"]
+  "include": ["packages/**/src", "packages/**/docs", "typings.d.ts"],
+  "exclude": [".eslintrc.js", "node_modules", "**/es/**/*", "**/lib/**/*"]
 }

@@ -169,6 +169,10 @@ export const dagOptions: Graph.Options = {
       },
     },
   },
+  scaling: {
+    max: 1.05,
+    min: 0.01,
+  },
 }
 
 /**
@@ -305,7 +309,7 @@ export class DagHooksContribution
       getInitialValue: () => ({
         statusMap: new Map(),
         subscription: new DisposableCollection(),
-        status: GRAPH_STATUS_INFO.StatusEnum.DEFAULT,
+        graphStatus: GRAPH_STATUS_INFO.StatusEnum.DEFAULT,
       }),
       watchChange: async self => {
         const { subscription } = await self.getValidValue()

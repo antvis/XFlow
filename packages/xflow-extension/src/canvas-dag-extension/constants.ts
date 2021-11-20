@@ -40,7 +40,7 @@ export namespace GRAPH_STATUS_INFO {
     [key: string]: any
   }
   export interface IState {
-    status: StatusEnum
+    graphStatus: StatusEnum
     statusMap: Map<string, INodeStatus>
     subscription: DisposableCollection
   }
