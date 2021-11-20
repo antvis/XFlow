@@ -25,12 +25,12 @@ nav:
 
 ## 基础使用
 
-<code src="./demos/basic/index.tsx" classname="canvas-minimap-basic-demo"   />
+<code src="./demos/basic/index.tsx" classname="canvas-minimap-basic-demo" transform   />
 
 ## 配置颜色
 
-<code src="./demos/color/index.tsx" classname="canvas-minimap-color-demo"   />
+<code src="./demos/color/index.tsx"  classname="canvas-minimap-color-demo" transform  />
 
 ## GraphOptions
 
-<code src="./demos/graph-options/index.tsx" classname="canvas-minimap-options-demo"   />
+<code src="./demos/graph-options/index.tsx" classname="canvas-minimap-options-demo"  transform  />
