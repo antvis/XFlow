@@ -52,10 +52,9 @@ export default defineConfig({
   links: [],
   /** js */
   scripts: [],
-  // chunks: process.env.NODE_ENV === 'production' ? ['umi.styles', 'vendors', 'umi'] : undefined,
-  chunks: ['umi.styles', 'vendors', 'umi'],
+  chunks: process.env.NODE_ENV === 'production' ? ['umi.styles', 'vendors', 'umi'] : undefined,
   chainWebpack: function (config, { webpack }) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV === 'production') {
       config.optimization.splitChunks({
         ...config.optimization.get('splitChunks'),
         cacheGroups: {

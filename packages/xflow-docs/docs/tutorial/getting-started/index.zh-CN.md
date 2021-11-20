@@ -40,9 +40,9 @@ $ yarn add @antv/xflow
 
 对于生产环境, 我们推荐使用一个明确的版本号, 以避免新版本升级造成不可预期的破坏:
 
-- https://unpkg.com/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
+- https://unpkg.com/@antv/xflow@1.0.0/dist/index.umd.js
 
-- https://cdn.jsdelivr.net/npm/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
+- https://cdn.jsdelivr.net/npm/@antv/xflow@1.0.0/dist/index.umd.js
 
 需要注意的是:
 
