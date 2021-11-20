@@ -1,7 +1,7 @@
 {
   "_chunksMap": {
     "umi": [
-      "/umi.f6c731ec.js"
+      "/umi.803ba4fa.js"
     ],
     "wrappers": [
       "/umi.styles.db2d6c2e.chunk.css",
@@ -547,7 +547,7 @@
   "docs__tutorial__solutions__dag__index.md.js": "/docs__tutorial__solutions__dag__index.md.9d7edf3f.async.js",
   "docs__tutorial__solutions__er__index.md.js": "/docs__tutorial__solutions__er__index.md.7754481d.async.js",
   "docs__tutorial__solutions__flow__index.md.js": "/docs__tutorial__solutions__flow__index.md.3d97e6f9.async.js",
-  "umi.js": "/umi.f6c731ec.js",
+  "umi.js": "/umi.803ba4fa.js",
   "wrappers.js": "/wrappers.9db0019f.async.js",
   "/~demos/canvas-config-form-basic/index.html": "//~demos/canvas-config-form-basic/index.html",
   "/~demos/canvas-config-form-custom-render/index.html": "//~demos/canvas-config-form-custom-render/index.html",
