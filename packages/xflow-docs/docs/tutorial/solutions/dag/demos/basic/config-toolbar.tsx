@@ -16,33 +16,17 @@ import {
   GroupOutlined,
   GatewayOutlined,
   PlaySquareOutlined,
+  StopOutlined,
 } from '@ant-design/icons'
 import { MockApi } from './service'
 import { CustomCommands } from './cmd-extensions/constants'
 import type { NsDeployDagCmd } from './cmd-extensions/cmd-deploy'
 import type { NsGraphCmd, NsGroupCmd } from '@antv/xflow'
 import { GROUP_NODE_RENDER_ID } from './constant'
+import { Popconfirm } from 'antd'
+import React from 'react'
 
 export namespace NSToolbarConfig {
-  let id = 0
-  const statusMap: any = {}
-  let graphStatus: NsGraphStatusCommand.StatusEnum
-  const graphStatusService: NsGraphStatusCommand.IArgs['graphStatusService'] = async () => {
-    if (id < 4) {
-      statusMap[`node${id}`] = { status: NsGraphStatusCommand.StatusEnum.SUCCESS }
-      statusMap[`node${id + 1}`] = { status: NsGraphStatusCommand.StatusEnum.PROCESSING }
-      id += 1
-      graphStatus = NsGraphStatusCommand.StatusEnum.PROCESSING
-    } else {
-      id = 0
-      statusMap.node4 = { status: NsGraphStatusCommand.StatusEnum.SUCCESS }
-      graphStatus = NsGraphStatusCommand.StatusEnum.SUCCESS
-    }
-    return {
-      graphStatus: graphStatus,
-      statusMap: statusMap,
-    }
-  }
   /** 注册icon 类型 */
   IconStore.set('SaveOutlined', SaveOutlined)
   IconStore.set('CloudSyncOutlined', CloudSyncOutlined)
@@ -50,18 +34,21 @@ export namespace NSToolbarConfig {
   IconStore.set('GroupOutlined', GroupOutlined)
   IconStore.set('UngroupOutlined', UngroupOutlined)
   IconStore.set('PlaySquareOutlined', PlaySquareOutlined)
+  IconStore.set('StopOutlined', StopOutlined)
 
   /** toolbar依赖的状态 */
   export interface IToolbarState {
     isMultiSelctionActive: boolean
     isNodeSelected: boolean
     isGroupSelected: boolean
+    isProcessing: boolean
   }
 
   export const getDependencies = async (modelService: IModelService) => {
     return [
       await MODELS.SELECTED_CELLS.getModel(modelService),
       await MODELS.GRAPH_ENABLE_MULTI_SELECT.getModel(modelService),
+      await NsGraphStatusCommand.MODEL.getModel(modelService),
     ]
   }
 
@@ -75,11 +62,14 @@ export namespace NSToolbarConfig {
     const isGroupSelected = await MODELS.IS_GROUP_SELECTED.useValue(modelService)
     // isNormalNodesSelected: node不能是GroupNode
     const isNormalNodesSelected = await MODELS.IS_NORMAL_NODES_SELECTED.useValue(modelService)
+    // statusInfo
+    const statusInfo = await NsGraphStatusCommand.MODEL.useValue(modelService)
 
     return {
       isNodeSelected: isNormalNodesSelected,
       isGroupSelected,
       isMultiSelctionActive,
+      isProcessing: statusInfo.graphStatus === NsGraphStatusCommand.StatusEnum.PROCESSING,
     } as NSToolbarConfig.IToolbarState
   }
 
@@ -159,16 +149,44 @@ export namespace NSToolbarConfig {
     })
 
     toolbarGroup3.push({
-      id: XFlowDagCommands.QUERY_GRAPH_STATUS.id,
-      tooltip: '执行',
+      id: XFlowDagCommands.QUERY_GRAPH_STATUS.id + 'play',
+      tooltip: '开始执行',
       iconName: 'PlaySquareOutlined',
+      isEnabled: !state.isProcessing,
       onClick: async ({ commandService }) => {
         commandService.executeCommand<NsGraphStatusCommand.IArgs>(
           XFlowDagCommands.QUERY_GRAPH_STATUS.id,
           {
-            graphStatusService,
-            loopInterval: 10000,
+            graphStatusService: MockApi.graphStatusService,
+            loopInterval: 3000,
           },
+        )
+      },
+    })
+    toolbarGroup3.push({
+      id: XFlowDagCommands.QUERY_GRAPH_STATUS.id + 'stop',
+      tooltip: '停止执行',
+      iconName: 'StopOutlined',
+      isEnabled: state.isProcessing,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphStatusCommand.IArgs>(
+          XFlowDagCommands.QUERY_GRAPH_STATUS.id,
+          {
+            graphStatusService: MockApi.stopGraphStatusService,
+            loopInterval: 5000,
+          },
+        )
+      },
+      render: props => {
+        return (
+          <Popconfirm
+            title="确定停止执行？"
+            onConfirm={() => {
+              props.onClick()
+            }}
+          >
+            {props.children}
+          </Popconfirm>
         )
       },
     })

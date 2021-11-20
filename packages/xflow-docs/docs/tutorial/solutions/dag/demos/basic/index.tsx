@@ -12,7 +12,7 @@ import {
   CanvasToolbar,
   /** Graph的扩展交互组件 */
   CanvasSnapline,
-  CanvasMiniMap,
+  // CanvasMiniMap,
   CanvasNodePortTooltip,
   DagGraphExtension,
 } from '@antv/xflow'
@@ -97,12 +97,12 @@ export const Demo: React.FC<IProps> = props => {
         className="xflow-workspace-toolbar-top"
         layout="horizontal"
         config={toolbarConfig}
-        position={{ top: 0, left: 230, right: 320, bottom: 0 }}
+        position={{ top: 0, left: 230, right: 290, bottom: 0 }}
       />
-      <XFlowCanvas position={{ top: 40, left: 230, right: 320, bottom: 0 }}>
+      <XFlowCanvas position={{ top: 40, left: 230, right: 290, bottom: 0 }}>
         <CanvasScaleToolbar position={{ top: 12, right: 12 }} />
         <CanvasContextMenu config={menuConfig} />
-        <CanvasMiniMap nodeFillColor="#c5c5c5" />
+        {/* <CanvasMiniMap nodeFillColor="#c5c5c5" /> */}
         <CanvasSnapline color="#faad14" />
         <CanvasNodePortTooltip />
       </XFlowCanvas>
@@ -111,7 +111,7 @@ export const Demo: React.FC<IProps> = props => {
         formSchemaService={formSchemaService}
         formValueUpdateService={formValueUpdateService}
         bodyPosition={{ top: 0, bottom: 0, right: 0 }}
-        position={{ width: 320, top: 0, bottom: 0, right: 0 }}
+        position={{ width: 290, top: 0, bottom: 0, right: 0 }}
         footerPosition={{ height: 0 }}
       />
       <KeyBindings config={keybindingConfig} />
