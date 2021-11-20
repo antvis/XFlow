@@ -1,6 +1,6 @@
 {
   "name": "@antv/xflow-docs",
-  "version": "0.3.2-beta.2",
+  "version": "0.5.1-beta.1",
   "description": "@antv/xflow-docs",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -19,7 +19,7 @@
     "start": "dumi dev",
     "build": "npm run docs:build",
     "deploy": "npm run docs:build && npm run docs:deploy",
-    "docs:build": "dumi build",
+    "docs:build": "cross-env NODE_ENV=development dumi build",
     "docs:deploy": "cp ./CNAME ./dist && gh-pages -d dist",
     "lint": "run-s lint:ts lint:style",
     "lint:ts": "eslint 'docs/**/*.{js,ts}?(x)' --fix",
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@antv/gatsby-theme-antv": "^1.1.8",
-    "@antv/xflow": "0.3.2-beta.2",
+    "@antv/xflow": "0.5.1-beta.1",
     "dumi-theme-graphin": "^0.1.4"
   },
   "devDependencies": {
@@ -51,6 +51,7 @@
     "@umijs/fabric": "^2.8.1",
     "antd": "^4.6.3",
     "babel-plugin-import": "^1.13.3",
+    "cross-env": "^7.0.3",
     "dumi": "^1.0.14",
     "dumi-theme-graphin": "^0.1.4",
     "less": "^4.1.2",
