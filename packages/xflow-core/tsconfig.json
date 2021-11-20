@@ -2,8 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "strict": false,
+    "allowJs": false,
     "importsNotUsedAsValues": "preserve",
     "rootDir": "./src"
   },
-  "include": ["src/**/*", ".eslintrc.js"]
+  "include": ["src/**/*", ".eslintrc.js"],
+  "exclude": ["es/**/*", "lib/**/*"]
 }

@@ -38,9 +38,9 @@ function compile(source, target) {
 function readdir(dir) {
   if (fs.existsSync(dir)) {
     const files = fs.readdirSync(dir)
+
     files.forEach(file => {
       const sub = path.join(dir, file)
-
       const stat = fs.statSync(sub)
       if (stat && stat.isDirectory()) {
         readdir(sub)
@@ -51,9 +51,10 @@ function readdir(dir) {
           const less = path.relative(src, sub)
           const name = less.substr(0, less.length - ext.length)
           console.log(name)
+          // copy less
           fse.copySync(sub, path.join(es, less))
           fse.copySync(sub, path.join(lib, less))
-
+          // compile less to css and compile
           compile(sub, path.join(es, `${name}.css`))
           compile(sub, path.join(lib, `${name}.css`))
         }
@@ -95,10 +96,12 @@ function rollup() {
 console.log('Build less files')
 
 fs.readdir(src, (err, files) => {
-  // compile less
   files.forEach(file => {
-    const dir = file === 'style' ? path.join(src, file) : path.join(src, file, 'style')
-    readdir(dir)
+    const dirPath = path.join(src, file)
+    const stat = fs.statSync(dirPath)
+    if (stat.isDirectory()) {
+      readdir(path.join(src, file))
+    }
   })
   // create dist for styles
   ensureDistIsCreated()

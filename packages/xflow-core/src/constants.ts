@@ -13,6 +13,9 @@ export const MAX_ZOOM = 1.5
 /** node render 的默认key值 */
 export const XFLOW_DEFAULT_NODE = 'XFLOW_DEFAULT_NODE'
 
+/** node render 的默认key值 */
+export const XFLOW_DEFAULT_GROUP_NODE = 'XFLOW_DEFAULT_GROUP_NODE'
+
 /** edge render 的默认key值 */
 export const XFLOW_DEFAULT_EDGE = 'XFLOW_DEFAULT_EDGE'
 
@@ -30,10 +33,10 @@ export type XFlowEventName = keyof XFlowEventRecord
 export const LOCAL_STORAGE_KEY = 'XFLOW_COPY_ITEMS'
 
 /** node height */
-export const DEFAULT_NODE_HEIGHT = 40
+export const DEFAULT_NODE_HEIGHT = 36
 
 /** node width */
-export const DEFAULT_NODE_WIDTH = 200
+export const DEFAULT_NODE_WIDTH = 180
 
 /** default group size */
 export const XFLOW_GROUP_DEFAULT_COLLAPSED_SIZE = {
