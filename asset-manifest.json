@@ -1,554 +1,554 @@
 {
   "_chunksMap": {
     "umi": [
-      "/umi.7ad06e1a.js"
+      "/umi.js"
     ],
     "wrappers": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/wrappers.39b51713.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/wrappers.js"
     ],
     "dumi_demos": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js"
     ],
     "docs__index.en-US.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__index.en-US.md.a699aada.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__index.en-US.md.js"
     ],
     "docs__index.zh-CN.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__index.zh-CN.md.2638c551.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__index.zh-CN.md.js"
     ],
     "docs__index.zh.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__index.zh.md.b316dc38.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__index.zh.md.js"
     ],
     "docs__api__commands__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__index.md.eb641917.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__index.md.js"
     ],
     "docs__api__commands__edges__edge-add__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__edges__edge-add__index.md.6545dfc6.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__edges__edge-add__index.md.js"
     ],
     "docs__api__commands__edges__edge-back__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__edges__edge-back__index.md.3b524142.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__edges__edge-back__index.md.js"
     ],
     "docs__api__commands__edges__edge-delete__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__edges__edge-delete__index.md.476eaf00.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__edges__edge-delete__index.md.js"
     ],
     "docs__api__commands__edges__edge-front__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__edges__edge-front__index.md.c734ff33.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__edges__edge-front__index.md.js"
     ],
     "docs__api__commands__edges__edge-highlight__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__edges__edge-highlight__index.md.f46189df.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__edges__edge-highlight__index.md.js"
     ],
     "docs__api__commands__edges__edge-update__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__edges__edge-update__index.md.bc6a07a3.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__edges__edge-update__index.md.js"
     ],
     "docs__api__commands__graph__graph-layout__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__graph__graph-layout__index.md.680fff09.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__graph__graph-layout__index.md.js"
     ],
     "docs__api__commands__graph__graph-load-data__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__graph__graph-load-data__index.md.197721e7.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__graph__graph-load-data__index.md.js"
     ],
     "docs__api__commands__graph__graph-meta__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__graph__graph-meta__index.md.21ba77ca.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__graph__graph-meta__index.md.js"
     ],
     "docs__api__commands__graph__graph-render__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__graph__graph-render__index.md.36774db6.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__graph__graph-render__index.md.js"
     ],
     "docs__api__commands__graph__graph-zoom__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__graph__graph-zoom__index.md.2961ba6c.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__graph__graph-zoom__index.md.js"
     ],
     "docs__api__commands__group__group-add__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__group__group-add__index.md.6117ccbc.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__group__group-add__index.md.js"
     ],
     "docs__api__commands__group__group-collapse__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__group__group-collapse__index.md.98a92cbb.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__group__group-collapse__index.md.js"
     ],
     "docs__api__commands__group__group-del__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__group__group-del__index.md.661584ff.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__group__group-del__index.md.js"
     ],
     "docs__api__commands__nodes__node-add__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-add__index.md.9d68be28.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-add__index.md.js"
     ],
     "docs__api__commands__nodes__node-back__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-back__index.md.5c51b479.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-back__index.md.js"
     ],
     "docs__api__commands__nodes__node-center__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-center__index.md.637347d2.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-center__index.md.js"
     ],
     "docs__api__commands__nodes__node-delete__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-delete__index.md.b2957115.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-delete__index.md.js"
     ],
     "docs__api__commands__nodes__node-front__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-front__index.md.3c7e01e5.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-front__index.md.js"
     ],
     "docs__api__commands__nodes__node-highlight__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-highlight__index.md.776153ee.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-highlight__index.md.js"
     ],
     "docs__api__commands__nodes__node-move__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-move__index.md.973647ec.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-move__index.md.js"
     ],
     "docs__api__commands__nodes__node-select__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-select__index.md.41c84e0c.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-select__index.md.js"
     ],
     "docs__api__commands__nodes__node-update__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__commands__nodes__node-update__index.md.be0b4f70.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__commands__nodes__node-update__index.md.js"
     ],
     "docs__api__graph__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__graph__index.md.021dc160.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__graph__index.md.js"
     ],
     "docs__api__hooks__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__hooks__index.md.335c80cd.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__hooks__index.md.js"
     ],
     "docs__api__interface__application.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__interface__application.md.4bafdf35.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__interface__application.md.js"
     ],
     "docs__api__interface__command.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__interface__command.md.b1607f75.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__interface__command.md.js"
     ],
     "docs__api__interface__config.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__interface__config.md.d7ed2608.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__interface__config.md.js"
     ],
     "docs__api__interface__graph.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__interface__graph.md.d7040666.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__interface__graph.md.js"
     ],
     "docs__api__interface__hook.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__interface__hook.md.5a34328e.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__interface__hook.md.js"
     ],
     "docs__api__interface__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__interface__index.md.b3c1f8df.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__interface__index.md.js"
     ],
     "docs__api__interface__model.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__interface__model.md.8b43734e.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__interface__model.md.js"
     ],
     "docs__api__models__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__api__models__index.md.f1ce74fb.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__api__models__index.md.js"
     ],
     "docs__tutorial__change-log.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__change-log.md.1292e0d7.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__change-log.md.js"
     ],
     "docs__tutorial__contact.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__contact.md.b57325ae.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__contact.md.js"
     ],
     "docs__tutorial__faq.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__faq.md.ed857bdc.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__faq.md.js"
     ],
     "docs__tutorial__about__index.en-US.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__about__index.en-US.md.4b319006.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__about__index.en-US.md.js"
     ],
     "docs__tutorial__about__index.zh-CN.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__about__index.zh-CN.md.c9660ad9.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__about__index.zh-CN.md.js"
     ],
     "docs__tutorial__about__index.zh.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__about__index.zh.md.98f0d8fe.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__about__index.zh.md.js"
     ],
     "docs__tutorial__advanced__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__advanced__index.md.1de0bfb1.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__advanced__index.md.js"
     ],
     "docs__tutorial__advanced__command__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__advanced__command__index.md.957a7bf4.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__advanced__command__index.md.js"
     ],
     "docs__tutorial__advanced__hook__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__advanced__hook__index.md.dd309099.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__advanced__hook__index.md.js"
     ],
     "docs__tutorial__advanced__model__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__advanced__model__index.md.29c9315f.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__advanced__model__index.md.js"
     ],
     "docs__tutorial__core-components__xflow-canvas-component__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__core-components__xflow-canvas-component__index.md.475c071e.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__core-components__xflow-canvas-component__index.md.js"
     ],
     "docs__tutorial__core-components__xflow-component__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__core-components__xflow-component__index.md.df997648.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__core-components__xflow-component__index.md.js"
     ],
     "docs__tutorial__extension-components__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__index.md.3f02c770.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__index.md.js"
     ],
     "docs__tutorial__extension-components__canvas-config-form__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__canvas-config-form__index.md.660908d6.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__canvas-config-form__index.md.js"
     ],
     "docs__tutorial__extension-components__canvas-keybinding__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__canvas-keybinding__index.md.5c00002f.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__canvas-keybinding__index.md.js"
     ],
     "docs__tutorial__extension-components__canvas-mini-map__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__canvas-mini-map__index.md.6b7c195c.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__canvas-mini-map__index.md.js"
     ],
     "docs__tutorial__extension-components__canvas-node-panel__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__canvas-node-panel__index.md.d45a395e.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__canvas-node-panel__index.md.js"
     ],
     "docs__tutorial__extension-components__canvas-scale-toolbar__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__canvas-scale-toolbar__index.md.445f56fd.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__canvas-scale-toolbar__index.md.js"
     ],
     "docs__tutorial__extension-components__canvas-snapline__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__canvas-snapline__index.md.cb626e6e.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__canvas-snapline__index.md.js"
     ],
     "docs__tutorial__extension-components__canvas-toolbar__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__canvas-toolbar__index.md.d3c40f0b.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__canvas-toolbar__index.md.js"
     ],
     "docs__tutorial__extension-components__context-menu__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__context-menu__index.md.2b2f555d.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__context-menu__index.md.js"
     ],
     "docs__tutorial__extension-components__workspace-panel__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__extension-components__workspace-panel__index.md.41daf389.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__extension-components__workspace-panel__index.md.js"
     ],
     "docs__tutorial__getting-started__index.en-US.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__getting-started__index.en-US.md.695c617b.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__getting-started__index.en-US.md.js"
     ],
     "docs__tutorial__getting-started__index.zh-CN.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__getting-started__index.zh-CN.md.1fc6190b.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__getting-started__index.zh-CN.md.js"
     ],
     "docs__tutorial__getting-started__index.zh.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__getting-started__index.zh.md.c37f2696.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__getting-started__index.zh.md.js"
     ],
     "docs__tutorial__solutions__dag__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__solutions__dag__index.md.7e6c0cfa.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__solutions__dag__index.md.js"
     ],
     "docs__tutorial__solutions__er__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__solutions__er__index.md.ab8b9a7c.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__solutions__er__index.md.js"
     ],
     "docs__tutorial__solutions__flow__index.md": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/dumi_demos.61ccf57f.async.js",
-      "/docs__tutorial__solutions__flow__index.md.cc935549.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/dumi_demos.js",
+      "/docs__tutorial__solutions__flow__index.md.js"
     ],
     "demos_no_comp": [
-      "/umi.styles.d7c18461.chunk.css",
-      "/umi.styles.42a472ed.async.js",
-      "/vendors.55ca897e.async.js",
-      "/demos_no_comp.eb2645b4.async.js"
+      "/umi.styles.chunk.css",
+      "/umi.styles.js",
+      "/vendors.js",
+      "/demos_no_comp.js"
     ]
   },
-  "umi.styles.css": "/umi.styles.d7c18461.chunk.css",
-  "umi.styles.js": "/umi.styles.42a472ed.async.js",
-  "vendors.js": "/vendors.55ca897e.async.js",
-  "dumi_demos.js": "/dumi_demos.61ccf57f.async.js",
-  "demos_no_comp.js": "/demos_no_comp.eb2645b4.async.js",
-  "docs__api__commands__edges__edge-add__index.md.js": "/docs__api__commands__edges__edge-add__index.md.6545dfc6.async.js",
-  "docs__api__commands__edges__edge-back__index.md.js": "/docs__api__commands__edges__edge-back__index.md.3b524142.async.js",
-  "docs__api__commands__edges__edge-delete__index.md.js": "/docs__api__commands__edges__edge-delete__index.md.476eaf00.async.js",
-  "docs__api__commands__edges__edge-front__index.md.js": "/docs__api__commands__edges__edge-front__index.md.c734ff33.async.js",
-  "docs__api__commands__edges__edge-highlight__index.md.js": "/docs__api__commands__edges__edge-highlight__index.md.f46189df.async.js",
-  "docs__api__commands__edges__edge-update__index.md.js": "/docs__api__commands__edges__edge-update__index.md.bc6a07a3.async.js",
-  "docs__api__commands__graph__graph-layout__index.md.js": "/docs__api__commands__graph__graph-layout__index.md.680fff09.async.js",
-  "docs__api__commands__graph__graph-load-data__index.md.js": "/docs__api__commands__graph__graph-load-data__index.md.197721e7.async.js",
-  "docs__api__commands__graph__graph-meta__index.md.js": "/docs__api__commands__graph__graph-meta__index.md.21ba77ca.async.js",
-  "docs__api__commands__graph__graph-render__index.md.js": "/docs__api__commands__graph__graph-render__index.md.36774db6.async.js",
-  "docs__api__commands__graph__graph-zoom__index.md.js": "/docs__api__commands__graph__graph-zoom__index.md.2961ba6c.async.js",
-  "docs__api__commands__group__group-add__index.md.js": "/docs__api__commands__group__group-add__index.md.6117ccbc.async.js",
-  "docs__api__commands__group__group-collapse__index.md.js": "/docs__api__commands__group__group-collapse__index.md.98a92cbb.async.js",
-  "docs__api__commands__group__group-del__index.md.js": "/docs__api__commands__group__group-del__index.md.661584ff.async.js",
-  "docs__api__commands__index.md.js": "/docs__api__commands__index.md.eb641917.async.js",
-  "docs__api__commands__nodes__node-add__index.md.js": "/docs__api__commands__nodes__node-add__index.md.9d68be28.async.js",
-  "docs__api__commands__nodes__node-back__index.md.js": "/docs__api__commands__nodes__node-back__index.md.5c51b479.async.js",
-  "docs__api__commands__nodes__node-center__index.md.js": "/docs__api__commands__nodes__node-center__index.md.637347d2.async.js",
-  "docs__api__commands__nodes__node-delete__index.md.js": "/docs__api__commands__nodes__node-delete__index.md.b2957115.async.js",
-  "docs__api__commands__nodes__node-front__index.md.js": "/docs__api__commands__nodes__node-front__index.md.3c7e01e5.async.js",
-  "docs__api__commands__nodes__node-highlight__index.md.js": "/docs__api__commands__nodes__node-highlight__index.md.776153ee.async.js",
-  "docs__api__commands__nodes__node-move__index.md.js": "/docs__api__commands__nodes__node-move__index.md.973647ec.async.js",
-  "docs__api__commands__nodes__node-select__index.md.js": "/docs__api__commands__nodes__node-select__index.md.41c84e0c.async.js",
-  "docs__api__commands__nodes__node-update__index.md.js": "/docs__api__commands__nodes__node-update__index.md.be0b4f70.async.js",
-  "docs__api__graph__index.md.js": "/docs__api__graph__index.md.021dc160.async.js",
-  "docs__api__hooks__index.md.js": "/docs__api__hooks__index.md.335c80cd.async.js",
-  "docs__api__interface__application.md.js": "/docs__api__interface__application.md.4bafdf35.async.js",
-  "docs__api__interface__command.md.js": "/docs__api__interface__command.md.b1607f75.async.js",
-  "docs__api__interface__config.md.js": "/docs__api__interface__config.md.d7ed2608.async.js",
-  "docs__api__interface__graph.md.js": "/docs__api__interface__graph.md.d7040666.async.js",
-  "docs__api__interface__hook.md.js": "/docs__api__interface__hook.md.5a34328e.async.js",
-  "docs__api__interface__index.md.js": "/docs__api__interface__index.md.b3c1f8df.async.js",
-  "docs__api__interface__model.md.js": "/docs__api__interface__model.md.8b43734e.async.js",
-  "docs__api__models__index.md.js": "/docs__api__models__index.md.f1ce74fb.async.js",
-  "docs__index.en-US.md.js": "/docs__index.en-US.md.a699aada.async.js",
-  "docs__index.zh-CN.md.js": "/docs__index.zh-CN.md.2638c551.async.js",
-  "docs__index.zh.md.js": "/docs__index.zh.md.b316dc38.async.js",
-  "docs__tutorial__about__index.en-US.md.js": "/docs__tutorial__about__index.en-US.md.4b319006.async.js",
-  "docs__tutorial__about__index.zh-CN.md.js": "/docs__tutorial__about__index.zh-CN.md.c9660ad9.async.js",
-  "docs__tutorial__about__index.zh.md.js": "/docs__tutorial__about__index.zh.md.98f0d8fe.async.js",
-  "docs__tutorial__advanced__command__index.md.js": "/docs__tutorial__advanced__command__index.md.957a7bf4.async.js",
-  "docs__tutorial__advanced__hook__index.md.js": "/docs__tutorial__advanced__hook__index.md.dd309099.async.js",
-  "docs__tutorial__advanced__index.md.js": "/docs__tutorial__advanced__index.md.1de0bfb1.async.js",
-  "docs__tutorial__advanced__model__index.md.js": "/docs__tutorial__advanced__model__index.md.29c9315f.async.js",
-  "docs__tutorial__change-log.md.js": "/docs__tutorial__change-log.md.1292e0d7.async.js",
-  "docs__tutorial__contact.md.js": "/docs__tutorial__contact.md.b57325ae.async.js",
-  "docs__tutorial__core-components__xflow-canvas-component__index.md.js": "/docs__tutorial__core-components__xflow-canvas-component__index.md.475c071e.async.js",
-  "docs__tutorial__core-components__xflow-component__index.md.js": "/docs__tutorial__core-components__xflow-component__index.md.df997648.async.js",
-  "docs__tutorial__extension-components__canvas-config-form__index.md.js": "/docs__tutorial__extension-components__canvas-config-form__index.md.660908d6.async.js",
-  "docs__tutorial__extension-components__canvas-keybinding__index.md.js": "/docs__tutorial__extension-components__canvas-keybinding__index.md.5c00002f.async.js",
-  "docs__tutorial__extension-components__canvas-mini-map__index.md.js": "/docs__tutorial__extension-components__canvas-mini-map__index.md.6b7c195c.async.js",
-  "docs__tutorial__extension-components__canvas-node-panel__index.md.js": "/docs__tutorial__extension-components__canvas-node-panel__index.md.d45a395e.async.js",
-  "docs__tutorial__extension-components__canvas-scale-toolbar__index.md.js": "/docs__tutorial__extension-components__canvas-scale-toolbar__index.md.445f56fd.async.js",
-  "docs__tutorial__extension-components__canvas-snapline__index.md.js": "/docs__tutorial__extension-components__canvas-snapline__index.md.cb626e6e.async.js",
-  "docs__tutorial__extension-components__canvas-toolbar__index.md.js": "/docs__tutorial__extension-components__canvas-toolbar__index.md.d3c40f0b.async.js",
-  "docs__tutorial__extension-components__context-menu__index.md.js": "/docs__tutorial__extension-components__context-menu__index.md.2b2f555d.async.js",
-  "docs__tutorial__extension-components__index.md.js": "/docs__tutorial__extension-components__index.md.3f02c770.async.js",
-  "docs__tutorial__extension-components__workspace-panel__index.md.js": "/docs__tutorial__extension-components__workspace-panel__index.md.41daf389.async.js",
-  "docs__tutorial__faq.md.js": "/docs__tutorial__faq.md.ed857bdc.async.js",
-  "docs__tutorial__getting-started__index.en-US.md.js": "/docs__tutorial__getting-started__index.en-US.md.695c617b.async.js",
-  "docs__tutorial__getting-started__index.zh-CN.md.js": "/docs__tutorial__getting-started__index.zh-CN.md.1fc6190b.async.js",
-  "docs__tutorial__getting-started__index.zh.md.js": "/docs__tutorial__getting-started__index.zh.md.c37f2696.async.js",
-  "docs__tutorial__solutions__dag__index.md.js": "/docs__tutorial__solutions__dag__index.md.7e6c0cfa.async.js",
-  "docs__tutorial__solutions__er__index.md.js": "/docs__tutorial__solutions__er__index.md.ab8b9a7c.async.js",
-  "docs__tutorial__solutions__flow__index.md.js": "/docs__tutorial__solutions__flow__index.md.cc935549.async.js",
-  "umi.js": "/umi.7ad06e1a.js",
-  "wrappers.js": "/wrappers.39b51713.async.js",
+  "demos_no_comp.js": "/demos_no_comp.js",
+  "docs__api__commands__edges__edge-add__index.md.js": "/docs__api__commands__edges__edge-add__index.md.js",
+  "docs__api__commands__edges__edge-back__index.md.js": "/docs__api__commands__edges__edge-back__index.md.js",
+  "docs__api__commands__edges__edge-delete__index.md.js": "/docs__api__commands__edges__edge-delete__index.md.js",
+  "docs__api__commands__edges__edge-front__index.md.js": "/docs__api__commands__edges__edge-front__index.md.js",
+  "docs__api__commands__edges__edge-highlight__index.md.js": "/docs__api__commands__edges__edge-highlight__index.md.js",
+  "docs__api__commands__edges__edge-update__index.md.js": "/docs__api__commands__edges__edge-update__index.md.js",
+  "docs__api__commands__graph__graph-layout__index.md.js": "/docs__api__commands__graph__graph-layout__index.md.js",
+  "docs__api__commands__graph__graph-load-data__index.md.js": "/docs__api__commands__graph__graph-load-data__index.md.js",
+  "docs__api__commands__graph__graph-meta__index.md.js": "/docs__api__commands__graph__graph-meta__index.md.js",
+  "docs__api__commands__graph__graph-render__index.md.js": "/docs__api__commands__graph__graph-render__index.md.js",
+  "docs__api__commands__graph__graph-zoom__index.md.js": "/docs__api__commands__graph__graph-zoom__index.md.js",
+  "docs__api__commands__group__group-add__index.md.js": "/docs__api__commands__group__group-add__index.md.js",
+  "docs__api__commands__group__group-collapse__index.md.js": "/docs__api__commands__group__group-collapse__index.md.js",
+  "docs__api__commands__group__group-del__index.md.js": "/docs__api__commands__group__group-del__index.md.js",
+  "docs__api__commands__index.md.js": "/docs__api__commands__index.md.js",
+  "docs__api__commands__nodes__node-add__index.md.js": "/docs__api__commands__nodes__node-add__index.md.js",
+  "docs__api__commands__nodes__node-back__index.md.js": "/docs__api__commands__nodes__node-back__index.md.js",
+  "docs__api__commands__nodes__node-center__index.md.js": "/docs__api__commands__nodes__node-center__index.md.js",
+  "docs__api__commands__nodes__node-delete__index.md.js": "/docs__api__commands__nodes__node-delete__index.md.js",
+  "docs__api__commands__nodes__node-front__index.md.js": "/docs__api__commands__nodes__node-front__index.md.js",
+  "docs__api__commands__nodes__node-highlight__index.md.js": "/docs__api__commands__nodes__node-highlight__index.md.js",
+  "docs__api__commands__nodes__node-move__index.md.js": "/docs__api__commands__nodes__node-move__index.md.js",
+  "docs__api__commands__nodes__node-select__index.md.js": "/docs__api__commands__nodes__node-select__index.md.js",
+  "docs__api__commands__nodes__node-update__index.md.js": "/docs__api__commands__nodes__node-update__index.md.js",
+  "docs__api__graph__index.md.js": "/docs__api__graph__index.md.js",
+  "docs__api__hooks__index.md.js": "/docs__api__hooks__index.md.js",
+  "docs__api__interface__application.md.js": "/docs__api__interface__application.md.js",
+  "docs__api__interface__command.md.js": "/docs__api__interface__command.md.js",
+  "docs__api__interface__config.md.js": "/docs__api__interface__config.md.js",
+  "docs__api__interface__graph.md.js": "/docs__api__interface__graph.md.js",
+  "docs__api__interface__hook.md.js": "/docs__api__interface__hook.md.js",
+  "docs__api__interface__index.md.js": "/docs__api__interface__index.md.js",
+  "docs__api__interface__model.md.js": "/docs__api__interface__model.md.js",
+  "docs__api__models__index.md.js": "/docs__api__models__index.md.js",
+  "docs__index.en-US.md.js": "/docs__index.en-US.md.js",
+  "docs__index.zh-CN.md.js": "/docs__index.zh-CN.md.js",
+  "docs__index.zh.md.js": "/docs__index.zh.md.js",
+  "docs__tutorial__about__index.en-US.md.js": "/docs__tutorial__about__index.en-US.md.js",
+  "docs__tutorial__about__index.zh-CN.md.js": "/docs__tutorial__about__index.zh-CN.md.js",
+  "docs__tutorial__about__index.zh.md.js": "/docs__tutorial__about__index.zh.md.js",
+  "docs__tutorial__advanced__command__index.md.js": "/docs__tutorial__advanced__command__index.md.js",
+  "docs__tutorial__advanced__hook__index.md.js": "/docs__tutorial__advanced__hook__index.md.js",
+  "docs__tutorial__advanced__index.md.js": "/docs__tutorial__advanced__index.md.js",
+  "docs__tutorial__advanced__model__index.md.js": "/docs__tutorial__advanced__model__index.md.js",
+  "docs__tutorial__change-log.md.js": "/docs__tutorial__change-log.md.js",
+  "docs__tutorial__contact.md.js": "/docs__tutorial__contact.md.js",
+  "docs__tutorial__core-components__xflow-canvas-component__index.md.js": "/docs__tutorial__core-components__xflow-canvas-component__index.md.js",
+  "docs__tutorial__core-components__xflow-component__index.md.js": "/docs__tutorial__core-components__xflow-component__index.md.js",
+  "docs__tutorial__extension-components__canvas-config-form__index.md.js": "/docs__tutorial__extension-components__canvas-config-form__index.md.js",
+  "docs__tutorial__extension-components__canvas-keybinding__index.md.js": "/docs__tutorial__extension-components__canvas-keybinding__index.md.js",
+  "docs__tutorial__extension-components__canvas-mini-map__index.md.js": "/docs__tutorial__extension-components__canvas-mini-map__index.md.js",
+  "docs__tutorial__extension-components__canvas-node-panel__index.md.js": "/docs__tutorial__extension-components__canvas-node-panel__index.md.js",
+  "docs__tutorial__extension-components__canvas-scale-toolbar__index.md.js": "/docs__tutorial__extension-components__canvas-scale-toolbar__index.md.js",
+  "docs__tutorial__extension-components__canvas-snapline__index.md.js": "/docs__tutorial__extension-components__canvas-snapline__index.md.js",
+  "docs__tutorial__extension-components__canvas-toolbar__index.md.js": "/docs__tutorial__extension-components__canvas-toolbar__index.md.js",
+  "docs__tutorial__extension-components__context-menu__index.md.js": "/docs__tutorial__extension-components__context-menu__index.md.js",
+  "docs__tutorial__extension-components__index.md.js": "/docs__tutorial__extension-components__index.md.js",
+  "docs__tutorial__extension-components__workspace-panel__index.md.js": "/docs__tutorial__extension-components__workspace-panel__index.md.js",
+  "docs__tutorial__faq.md.js": "/docs__tutorial__faq.md.js",
+  "docs__tutorial__getting-started__index.en-US.md.js": "/docs__tutorial__getting-started__index.en-US.md.js",
+  "docs__tutorial__getting-started__index.zh-CN.md.js": "/docs__tutorial__getting-started__index.zh-CN.md.js",
+  "docs__tutorial__getting-started__index.zh.md.js": "/docs__tutorial__getting-started__index.zh.md.js",
+  "docs__tutorial__solutions__dag__index.md.js": "/docs__tutorial__solutions__dag__index.md.js",
+  "docs__tutorial__solutions__er__index.md.js": "/docs__tutorial__solutions__er__index.md.js",
+  "docs__tutorial__solutions__flow__index.md.js": "/docs__tutorial__solutions__flow__index.md.js",
+  "dumi_demos.js": "/dumi_demos.js",
+  "umi.js": "/umi.js",
+  "umi.styles.css": "/umi.styles.chunk.css",
+  "umi.styles.js": "/umi.styles.js",
+  "vendors.js": "/vendors.js",
+  "wrappers.js": "/wrappers.js",
   "/~demos/canvas-config-form-basic/index.html": "//~demos/canvas-config-form-basic/index.html",
   "/~demos/canvas-config-form-custom-render/index.html": "//~demos/canvas-config-form-custom-render/index.html",
   "/~demos/canvas-config-form-custom-shape/index.html": "//~demos/canvas-config-form-custom-shape/index.html",
