@@ -13,6 +13,8 @@ type ICommand = ICommandHandler<
 >
 
 export namespace NsGraphStatusCommand {
+  /** Command: 获取执行状态 */
+  export const MODEL = GRAPH_STATUS_INFO
   /** Command: 用于注册 named factory */
   export const command = XFlowDagCommands.QUERY_GRAPH_STATUS
   /** hookName */
@@ -127,6 +129,8 @@ export class QueryGraphStatusCommand implements ICommand {
     const { subscription } = await statusModel.getValidValue()
     subscription.push({
       dispose: () => {
+        /** 重制processing的边的状态 */
+        this.updateEdges(this.statusInfo, NsGraphStatusCommand.initStatusMap())
         this.isLooping = false
       },
     })
@@ -225,6 +229,7 @@ export class QueryGraphStatusCommand implements ICommand {
             Object.entries(data.statusMap).forEach(([key, value]) => {
               state.statusMap.set(key, value)
             })
+            state.graphStatus = data.graphStatus
           })
           // 更新图上状态
           const statusGroupMap = NsGraphStatusCommand.groupByStatus(data.statusMap)

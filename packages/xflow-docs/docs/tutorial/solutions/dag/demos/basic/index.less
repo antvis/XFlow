@@ -1,5 +1,5 @@
 @body-bg: #fafafa;
-@primaryColor: #1890ff;
+@primaryColor: #3056e3;
 @light-border: 1px solid #d9d9d9;
 
 .dag-solution {
@@ -15,6 +15,21 @@
   .xflow-x6-canvas {
     background: @body-bg;
   }
+  .x6-edge {
+    &:hover {
+      path:nth-child(2) {
+        stroke: @primaryColor;
+        stroke-width: 2px;
+      }
+    }
+    &.x6-edge-selected {
+      path:nth-child(2) {
+        stroke: @primaryColor;
+        stroke-width: 2px;
+      }
+    }
+  }
+
   .xflow-node-dnd-panel-node-wrapper {
     .xflow-algo-node {
       width: 180px;
@@ -70,7 +85,8 @@
   }
   .xflow-json-schema-form {
     .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-      color: #262626;
+      color: #525252;
+      font-weight: 300 !important;
     }
     .xflow-json-schema-form-footer {
       display: none;

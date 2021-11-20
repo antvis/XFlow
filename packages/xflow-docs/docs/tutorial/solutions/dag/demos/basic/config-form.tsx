@@ -29,7 +29,7 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                   disabled: false,
                   required: true,
                   tooltip: '图的业务项目名',
-                  extra: 'hello world extra',
+                  extra: '和图的ID对应',
                   placeholder: 'please write something',
                   value: '',
                   defaultValue: '', // 可以认为是默认值
@@ -45,6 +45,21 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                   disabled: false,
                   required: true,
                   tooltip: 'JSON 数据',
+                  placeholder: 'please write something',
+                  value: '',
+                  defaultValue: '', // 可以认为是默认值
+                  hidden: false,
+                  options: [{ title: '', value: '' }],
+                  originData: {}, // 原始数据
+                },
+                {
+                  label: '查看日志链接',
+                  name: 'Tab1-1',
+                  /** 使用自定义shape */
+                  shape: ControlShapeEnum.LINKSHAPE,
+                  disabled: false,
+                  required: true,
+                  tooltip: 'hello world',
                   placeholder: 'please write something',
                   value: '',
                   defaultValue: '', // 可以认为是默认值
@@ -84,33 +99,15 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 originData: {}, // 原始数据
               },
               {
-                label: '这是一个超链接',
-                name: 'Tab1-1',
-                /** 使用自定义shape */
-                shape: ControlShapeEnum.LINKSHAPE,
-                disabled: false,
-                required: true,
-                tooltip: 'hello world',
-                extra: 'hello world extra',
-                placeholder: 'please write something',
-                value: '',
-                defaultValue: '', // 可以认为是默认值
-                hidden: false,
-                options: [{ title: '', value: '' }],
-                originData: {}, // 原始数据
-              },
-              {
                 label: 'Tab1-2',
                 name: 'Tab1-2',
                 shape: 'Input',
                 disabled: false,
                 required: true,
                 tooltip: 'hello world',
-                extra: 'hello world extra',
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
-
                 hidden: false,
                 options: [{ title: '', value: '' }],
                 originData: {}, // 原始数据
@@ -122,11 +119,9 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 disabled: false,
                 required: true,
                 tooltip: 'hello world',
-                extra: 'hello world extra',
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
-
                 hidden: false,
                 options: [{ title: '', value: '' }],
                 originData: {}, // 原始数据
@@ -138,7 +133,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 disabled: false,
                 required: true,
                 tooltip: 'hello world',
-                extra: 'hello world extra',
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
@@ -163,7 +157,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 disabled: false,
                 required: true,
                 tooltip: 'hello world',
-                extra: 'hello world extra',
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
@@ -178,7 +171,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 disabled: false,
                 required: true,
                 tooltip: 'hello world',
-                extra: 'hello world extra',
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
@@ -193,7 +185,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                 disabled: false,
                 required: true,
                 tooltip: 'hello world',
-                extra: 'hello world extra',
                 placeholder: 'please write something',
                 value: '',
                 defaultValue: '', // 可以认为是默认值
@@ -231,7 +222,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                   disabled: false,
                   required: true,
                   tooltip: '算法配置1',
-                  extra: 'hello world extra',
                   placeholder: 'please write something',
                   value: '',
                   defaultValue: '', // 可以认为是默认值
@@ -246,7 +236,6 @@ export const formSchemaService: NsJsonSchemaForm.IFormSchemaService = async args
                   disabled: false,
                   required: true,
                   tooltip: '算法配置2',
-                  extra: 'hello world extra',
                   placeholder: 'please write something',
                   value: '',
                   defaultValue: '', // 可以认为是默认值

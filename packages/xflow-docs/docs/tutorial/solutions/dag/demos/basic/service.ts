@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { DND_RENDER_ID, NODE_WIDTH, NODE_HEIGHT } from './constant'
-import { uuidv4, NsGraph } from '@antv/xflow'
+import { uuidv4, NsGraph, NsGraphStatusCommand } from '@antv/xflow'
 import type { NsRenameNodeCmd } from './cmd-extensions/cmd-rename-node-modal'
 import type { NsNodeCmd, NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
 import type { NsDeployDagCmd } from './cmd-extensions/cmd-deploy'
@@ -165,6 +165,11 @@ export namespace MockApi {
         tooltip: '输入桩2',
       },
       {
+        type: NsGraph.AnchorType.INPUT,
+        group: NsGraph.AnchorGroup.TOP,
+        tooltip: '输入桩3',
+      },
+      {
         type: NsGraph.AnchorType.OUTPUT,
         group: NsGraph.AnchorGroup.BOTTOM,
         tooltip: '输出桩',
@@ -175,8 +180,7 @@ export namespace MockApi {
     const nodeId = id || uuidv4()
     /** 这里添加连线桩 */
     const node: NsNodeCmd.AddNode.IArgs['nodeConfig'] = {
-      width: 190,
-      height: 40,
+      ...NODE_COMMON_PROPS,
       ...args.nodeConfig,
       id: nodeId,
       ports: (ports as NsGraph.INodeAnchor[]).map(port => {
@@ -221,4 +225,37 @@ export namespace MockApi {
     console.info('delEdge service running, del edge:', args)
     return true
   }
+
+  let runningNodeId = 0
+  const statusMap = {} as NsGraphStatusCommand.IStatusInfo['statusMap']
+  let graphStatus: NsGraphStatusCommand.StatusEnum = NsGraphStatusCommand.StatusEnum.DEFAULT
+  export const graphStatusService: NsGraphStatusCommand.IArgs['graphStatusService'] = async () => {
+    if (runningNodeId < 4) {
+      statusMap[`node${runningNodeId}`] = { status: NsGraphStatusCommand.StatusEnum.SUCCESS }
+      statusMap[`node${runningNodeId + 1}`] = { status: NsGraphStatusCommand.StatusEnum.PROCESSING }
+      runningNodeId += 1
+      graphStatus = NsGraphStatusCommand.StatusEnum.PROCESSING
+    } else {
+      runningNodeId = 0
+      statusMap.node4 = { status: NsGraphStatusCommand.StatusEnum.SUCCESS }
+      graphStatus = NsGraphStatusCommand.StatusEnum.SUCCESS
+    }
+    return {
+      graphStatus: graphStatus,
+      statusMap: statusMap,
+    }
+  }
+  export const stopGraphStatusService: NsGraphStatusCommand.IArgs['graphStatusService'] =
+    async () => {
+      Object.entries(statusMap).forEach(([, val]) => {
+        const { status } = val as { status: NsGraphStatusCommand.StatusEnum }
+        if (status === NsGraphStatusCommand.StatusEnum.PROCESSING) {
+          val.status = NsGraphStatusCommand.StatusEnum.ERROR
+        }
+      })
+      return {
+        graphStatus: NsGraphStatusCommand.StatusEnum.ERROR,
+        statusMap: statusMap,
+      }
+    }
 }

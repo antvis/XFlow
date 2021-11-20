@@ -3,6 +3,7 @@ import { createToolbarConfig } from '@antv/xflow'
 import { MODELS, XFlowNodeCommands, IconStore } from '@antv/xflow'
 import { SaveOutlined, PlusCircleOutlined, DeleteOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
+import React from 'react'
 export namespace NSToolbarConfig {
   /** 注册icon 类型 */
   IconStore.set('PlusCircleOutlined', PlusCircleOutlined)
