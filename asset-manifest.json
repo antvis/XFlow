@@ -1,474 +1,467 @@
 {
   "_chunksMap": {
     "umi": [
-      "/umi.f29f09e9.js"
+      "/umi.f34c42d7.js"
     ],
     "wrappers": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/wrappers.ec839ebf.async.js"
+      "/wrappers.9af97f61.async.js"
     ],
     "dumi_demos": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js"
+      "/dumi_demos.11ed1fbb.async.js"
     ],
     "docs__index.en-US.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__index.en-US.md.369d92df.async.js"
     ],
     "docs__index.zh-CN.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__index.zh-CN.md.e7494b4c.async.js"
     ],
     "docs__index.zh.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__index.zh.md.319cee6d.async.js"
     ],
     "docs__api__commands__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__index.md.722daa16.async.js"
     ],
     "docs__api__commands__edges__edge-add__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__edges__edge-add__index.md.4fb1f347.async.js"
     ],
     "docs__api__commands__edges__edge-back__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__edges__edge-back__index.md.3fe2281b.async.js"
     ],
     "docs__api__commands__edges__edge-delete__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__edges__edge-delete__index.md.52d7bc45.async.js"
     ],
     "docs__api__commands__edges__edge-front__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__edges__edge-front__index.md.81c64ffb.async.js"
     ],
     "docs__api__commands__edges__edge-highlight__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__edges__edge-highlight__index.md.62d32cdd.async.js"
     ],
     "docs__api__commands__edges__edge-update__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__edges__edge-update__index.md.ddc2ea27.async.js"
     ],
     "docs__api__commands__graph__graph-layout__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__graph__graph-layout__index.md.25975809.async.js"
     ],
     "docs__api__commands__graph__graph-load-data__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__graph__graph-load-data__index.md.a1daa34f.async.js"
     ],
     "docs__api__commands__graph__graph-meta__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__graph__graph-meta__index.md.03251dca.async.js"
     ],
     "docs__api__commands__graph__graph-render__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__graph__graph-render__index.md.f343409d.async.js"
     ],
     "docs__api__commands__graph__graph-zoom__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__graph__graph-zoom__index.md.378871e9.async.js"
     ],
     "docs__api__commands__group__group-add__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__group__group-add__index.md.76aa2eda.async.js"
     ],
     "docs__api__commands__group__group-collapse__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__group__group-collapse__index.md.2230c67b.async.js"
     ],
     "docs__api__commands__group__group-del__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__group__group-del__index.md.ab9ad34d.async.js"
     ],
     "docs__api__commands__nodes__node-add__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-add__index.md.b233f2ae.async.js"
     ],
     "docs__api__commands__nodes__node-back__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-back__index.md.cfef0511.async.js"
     ],
     "docs__api__commands__nodes__node-center__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-center__index.md.00b78f99.async.js"
     ],
     "docs__api__commands__nodes__node-delete__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-delete__index.md.66a5a9eb.async.js"
     ],
     "docs__api__commands__nodes__node-front__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-front__index.md.175704de.async.js"
     ],
     "docs__api__commands__nodes__node-highlight__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-highlight__index.md.77c3a366.async.js"
     ],
     "docs__api__commands__nodes__node-move__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-move__index.md.5eb4370c.async.js"
     ],
     "docs__api__commands__nodes__node-select__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-select__index.md.5fb630c1.async.js"
     ],
     "docs__api__commands__nodes__node-update__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__commands__nodes__node-update__index.md.aa239a2d.async.js"
     ],
     "docs__api__graph__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__graph__index.md.36596d07.async.js"
     ],
     "docs__api__hooks__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__hooks__index.md.0ea8a6e3.async.js"
     ],
     "docs__api__interface__application.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__interface__application.md.870112b6.async.js"
     ],
     "docs__api__interface__command.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__interface__command.md.b8dfa97b.async.js"
     ],
     "docs__api__interface__config.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__interface__config.md.8b91cc7e.async.js"
     ],
     "docs__api__interface__graph.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__interface__graph.md.903e1148.async.js"
     ],
     "docs__api__interface__hook.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__interface__hook.md.d3ef0c18.async.js"
     ],
     "docs__api__interface__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__interface__index.md.002102ab.async.js"
     ],
     "docs__api__interface__model.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__interface__model.md.ca782c11.async.js"
     ],
     "docs__api__models__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__api__models__index.md.02f9633e.async.js"
     ],
     "docs__tutorial__change-log.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__tutorial__change-log.md.784a0d3a.async.js"
-    ],
-    "docs__tutorial__contact.md": [
-      "/umi.styles.db2d6c2e.chunk.css",
-      "/umi.styles.c324c3a9.async.js",
-      "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__contact.md.8077f655.async.js"
     ],
     "docs__tutorial__faq.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__faq.md.7147318d.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__faq.md.be7ba92d.async.js"
     ],
     "docs__tutorial__about__index.en-US.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__tutorial__about__index.en-US.md.6d4346df.async.js"
     ],
     "docs__tutorial__about__index.zh-CN.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__tutorial__about__index.zh-CN.md.cff5a1aa.async.js"
     ],
     "docs__tutorial__about__index.zh.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__tutorial__about__index.zh.md.b05b9842.async.js"
     ],
     "docs__tutorial__advanced__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__tutorial__advanced__index.md.c965b8c0.async.js"
     ],
     "docs__tutorial__advanced__command__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__tutorial__advanced__command__index.md.1b3610d1.async.js"
     ],
     "docs__tutorial__advanced__hook__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
+      "/dumi_demos.11ed1fbb.async.js",
       "/docs__tutorial__advanced__hook__index.md.5eaed7dd.async.js"
     ],
     "docs__tutorial__advanced__model__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__advanced__model__index.md.fd67e40b.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__advanced__model__index.md.1ef1ba00.async.js"
     ],
     "docs__tutorial__core-components__xflow-canvas-component__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__core-components__xflow-canvas-component__index.md.e53f092f.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__core-components__xflow-canvas-component__index.md.19d21195.async.js"
     ],
     "docs__tutorial__core-components__xflow-component__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__core-components__xflow-component__index.md.fef68fd2.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__core-components__xflow-component__index.md.f455af9c.async.js"
     ],
     "docs__tutorial__extension-components__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__index.md.f100859f.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__index.md.b8e846c8.async.js"
     ],
     "docs__tutorial__extension-components__canvas-config-form__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__canvas-config-form__index.md.e1d1bdc7.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__canvas-config-form__index.md.bbb301d8.async.js"
     ],
     "docs__tutorial__extension-components__canvas-keybinding__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__canvas-keybinding__index.md.e767ba5d.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__canvas-keybinding__index.md.d0a852df.async.js"
     ],
     "docs__tutorial__extension-components__canvas-mini-map__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__canvas-mini-map__index.md.8ad9ace9.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__canvas-mini-map__index.md.d70a57aa.async.js"
     ],
     "docs__tutorial__extension-components__canvas-node-panel__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__canvas-node-panel__index.md.39d1dc76.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__canvas-node-panel__index.md.fd1e08ff.async.js"
     ],
     "docs__tutorial__extension-components__canvas-scale-toolbar__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__canvas-scale-toolbar__index.md.038116ae.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__canvas-scale-toolbar__index.md.4f059855.async.js"
     ],
     "docs__tutorial__extension-components__canvas-snapline__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__canvas-snapline__index.md.bce0c558.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__canvas-snapline__index.md.13d7c006.async.js"
     ],
     "docs__tutorial__extension-components__canvas-toolbar__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__canvas-toolbar__index.md.dbe109e7.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__canvas-toolbar__index.md.6b944b72.async.js"
     ],
     "docs__tutorial__extension-components__context-menu__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__context-menu__index.md.30a7d3ab.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__context-menu__index.md.ba0e6cb8.async.js"
     ],
     "docs__tutorial__extension-components__workspace-panel__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__extension-components__workspace-panel__index.md.1f9550f8.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__extension-components__workspace-panel__index.md.e6f703d5.async.js"
     ],
     "docs__tutorial__getting-started__index.en-US.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__getting-started__index.en-US.md.4b5c8487.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__getting-started__index.en-US.md.a1b67e78.async.js"
     ],
     "docs__tutorial__getting-started__index.zh-CN.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__getting-started__index.zh-CN.md.566aab89.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__getting-started__index.zh-CN.md.c30b5dc1.async.js"
     ],
     "docs__tutorial__getting-started__index.zh.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__getting-started__index.zh.md.0be18573.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__getting-started__index.zh.md.5a6de16f.async.js"
     ],
     "docs__tutorial__solutions__dag__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__solutions__dag__index.md.9d7edf3f.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__solutions__dag__index.md.256ec364.async.js"
     ],
     "docs__tutorial__solutions__er__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__solutions__er__index.md.7754481d.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__solutions__er__index.md.cbf5a528.async.js"
     ],
     "docs__tutorial__solutions__flow__index.md": [
       "/umi.styles.db2d6c2e.chunk.css",
       "/umi.styles.c324c3a9.async.js",
       "/vendors.bf52b30a.async.js",
-      "/dumi_demos.2f3e726d.async.js",
-      "/docs__tutorial__solutions__flow__index.md.3d97e6f9.async.js"
+      "/dumi_demos.11ed1fbb.async.js",
+      "/docs__tutorial__solutions__flow__index.md.4ec24484.async.js"
     ],
     "demos_no_comp": [
       "/umi.styles.db2d6c2e.chunk.css",
@@ -480,7 +473,7 @@
   "umi.styles.css": "/umi.styles.db2d6c2e.chunk.css",
   "umi.styles.js": "/umi.styles.c324c3a9.async.js",
   "vendors.js": "/vendors.bf52b30a.async.js",
-  "dumi_demos.js": "/dumi_demos.2f3e726d.async.js",
+  "dumi_demos.js": "/dumi_demos.11ed1fbb.async.js",
   "demos_no_comp.js": "/demos_no_comp.85e3e135.async.js",
   "docs__api__commands__edges__edge-add__index.md.js": "/docs__api__commands__edges__edge-add__index.md.4fb1f347.async.js",
   "docs__api__commands__edges__edge-back__index.md.js": "/docs__api__commands__edges__edge-back__index.md.3fe2281b.async.js",
@@ -525,30 +518,29 @@
   "docs__tutorial__advanced__command__index.md.js": "/docs__tutorial__advanced__command__index.md.1b3610d1.async.js",
   "docs__tutorial__advanced__hook__index.md.js": "/docs__tutorial__advanced__hook__index.md.5eaed7dd.async.js",
   "docs__tutorial__advanced__index.md.js": "/docs__tutorial__advanced__index.md.c965b8c0.async.js",
-  "docs__tutorial__advanced__model__index.md.js": "/docs__tutorial__advanced__model__index.md.fd67e40b.async.js",
+  "docs__tutorial__advanced__model__index.md.js": "/docs__tutorial__advanced__model__index.md.1ef1ba00.async.js",
   "docs__tutorial__change-log.md.js": "/docs__tutorial__change-log.md.784a0d3a.async.js",
-  "docs__tutorial__contact.md.js": "/docs__tutorial__contact.md.8077f655.async.js",
-  "docs__tutorial__core-components__xflow-canvas-component__index.md.js": "/docs__tutorial__core-components__xflow-canvas-component__index.md.e53f092f.async.js",
-  "docs__tutorial__core-components__xflow-component__index.md.js": "/docs__tutorial__core-components__xflow-component__index.md.fef68fd2.async.js",
-  "docs__tutorial__extension-components__canvas-config-form__index.md.js": "/docs__tutorial__extension-components__canvas-config-form__index.md.e1d1bdc7.async.js",
-  "docs__tutorial__extension-components__canvas-keybinding__index.md.js": "/docs__tutorial__extension-components__canvas-keybinding__index.md.e767ba5d.async.js",
-  "docs__tutorial__extension-components__canvas-mini-map__index.md.js": "/docs__tutorial__extension-components__canvas-mini-map__index.md.8ad9ace9.async.js",
-  "docs__tutorial__extension-components__canvas-node-panel__index.md.js": "/docs__tutorial__extension-components__canvas-node-panel__index.md.39d1dc76.async.js",
-  "docs__tutorial__extension-components__canvas-scale-toolbar__index.md.js": "/docs__tutorial__extension-components__canvas-scale-toolbar__index.md.038116ae.async.js",
-  "docs__tutorial__extension-components__canvas-snapline__index.md.js": "/docs__tutorial__extension-components__canvas-snapline__index.md.bce0c558.async.js",
-  "docs__tutorial__extension-components__canvas-toolbar__index.md.js": "/docs__tutorial__extension-components__canvas-toolbar__index.md.dbe109e7.async.js",
-  "docs__tutorial__extension-components__context-menu__index.md.js": "/docs__tutorial__extension-components__context-menu__index.md.30a7d3ab.async.js",
-  "docs__tutorial__extension-components__index.md.js": "/docs__tutorial__extension-components__index.md.f100859f.async.js",
-  "docs__tutorial__extension-components__workspace-panel__index.md.js": "/docs__tutorial__extension-components__workspace-panel__index.md.1f9550f8.async.js",
-  "docs__tutorial__faq.md.js": "/docs__tutorial__faq.md.7147318d.async.js",
-  "docs__tutorial__getting-started__index.en-US.md.js": "/docs__tutorial__getting-started__index.en-US.md.4b5c8487.async.js",
-  "docs__tutorial__getting-started__index.zh-CN.md.js": "/docs__tutorial__getting-started__index.zh-CN.md.566aab89.async.js",
-  "docs__tutorial__getting-started__index.zh.md.js": "/docs__tutorial__getting-started__index.zh.md.0be18573.async.js",
-  "docs__tutorial__solutions__dag__index.md.js": "/docs__tutorial__solutions__dag__index.md.9d7edf3f.async.js",
-  "docs__tutorial__solutions__er__index.md.js": "/docs__tutorial__solutions__er__index.md.7754481d.async.js",
-  "docs__tutorial__solutions__flow__index.md.js": "/docs__tutorial__solutions__flow__index.md.3d97e6f9.async.js",
-  "umi.js": "/umi.f29f09e9.js",
-  "wrappers.js": "/wrappers.ec839ebf.async.js",
+  "docs__tutorial__core-components__xflow-canvas-component__index.md.js": "/docs__tutorial__core-components__xflow-canvas-component__index.md.19d21195.async.js",
+  "docs__tutorial__core-components__xflow-component__index.md.js": "/docs__tutorial__core-components__xflow-component__index.md.f455af9c.async.js",
+  "docs__tutorial__extension-components__canvas-config-form__index.md.js": "/docs__tutorial__extension-components__canvas-config-form__index.md.bbb301d8.async.js",
+  "docs__tutorial__extension-components__canvas-keybinding__index.md.js": "/docs__tutorial__extension-components__canvas-keybinding__index.md.d0a852df.async.js",
+  "docs__tutorial__extension-components__canvas-mini-map__index.md.js": "/docs__tutorial__extension-components__canvas-mini-map__index.md.d70a57aa.async.js",
+  "docs__tutorial__extension-components__canvas-node-panel__index.md.js": "/docs__tutorial__extension-components__canvas-node-panel__index.md.fd1e08ff.async.js",
+  "docs__tutorial__extension-components__canvas-scale-toolbar__index.md.js": "/docs__tutorial__extension-components__canvas-scale-toolbar__index.md.4f059855.async.js",
+  "docs__tutorial__extension-components__canvas-snapline__index.md.js": "/docs__tutorial__extension-components__canvas-snapline__index.md.13d7c006.async.js",
+  "docs__tutorial__extension-components__canvas-toolbar__index.md.js": "/docs__tutorial__extension-components__canvas-toolbar__index.md.6b944b72.async.js",
+  "docs__tutorial__extension-components__context-menu__index.md.js": "/docs__tutorial__extension-components__context-menu__index.md.ba0e6cb8.async.js",
+  "docs__tutorial__extension-components__index.md.js": "/docs__tutorial__extension-components__index.md.b8e846c8.async.js",
+  "docs__tutorial__extension-components__workspace-panel__index.md.js": "/docs__tutorial__extension-components__workspace-panel__index.md.e6f703d5.async.js",
+  "docs__tutorial__faq.md.js": "/docs__tutorial__faq.md.be7ba92d.async.js",
+  "docs__tutorial__getting-started__index.en-US.md.js": "/docs__tutorial__getting-started__index.en-US.md.a1b67e78.async.js",
+  "docs__tutorial__getting-started__index.zh-CN.md.js": "/docs__tutorial__getting-started__index.zh-CN.md.c30b5dc1.async.js",
+  "docs__tutorial__getting-started__index.zh.md.js": "/docs__tutorial__getting-started__index.zh.md.5a6de16f.async.js",
+  "docs__tutorial__solutions__dag__index.md.js": "/docs__tutorial__solutions__dag__index.md.256ec364.async.js",
+  "docs__tutorial__solutions__er__index.md.js": "/docs__tutorial__solutions__er__index.md.cbf5a528.async.js",
+  "docs__tutorial__solutions__flow__index.md.js": "/docs__tutorial__solutions__flow__index.md.4ec24484.async.js",
+  "umi.js": "/umi.f34c42d7.js",
+  "wrappers.js": "/wrappers.9af97f61.async.js",
   "/~demos/canvas-config-form-basic/index.html": "//~demos/canvas-config-form-basic/index.html",
   "/~demos/canvas-config-form-custom-render/index.html": "//~demos/canvas-config-form-custom-render/index.html",
   "/~demos/canvas-config-form-custom-shape/index.html": "//~demos/canvas-config-form-custom-shape/index.html",
@@ -634,8 +626,6 @@
   "api/models/index.html": "/api/models/index.html",
   "docs/changelog/change-log/index.html": "/docs/changelog/change-log/index.html",
   "docs/changelog/index.html": "/docs/changelog/index.html",
-  "docs/contact/contact/index.html": "/docs/contact/contact/index.html",
-  "docs/contact/index.html": "/docs/contact/index.html",
   "docs/faq/faq/index.html": "/docs/faq/faq/index.html",
   "docs/faq/index.html": "/docs/faq/index.html",
   "docs/index.html": "/docs/index.html",
@@ -703,8 +693,6 @@
   "en-US/api/models/index.html": "/en-US/api/models/index.html",
   "en-US/docs/changelog/change-log/index.html": "/en-US/docs/changelog/change-log/index.html",
   "en-US/docs/changelog/index.html": "/en-US/docs/changelog/index.html",
-  "en-US/docs/contact/contact/index.html": "/en-US/docs/contact/contact/index.html",
-  "en-US/docs/contact/index.html": "/en-US/docs/contact/index.html",
   "en-US/docs/faq/faq/index.html": "/en-US/docs/faq/faq/index.html",
   "en-US/docs/faq/index.html": "/en-US/docs/faq/index.html",
   "en-US/docs/index.html": "/en-US/docs/index.html",
@@ -778,8 +766,6 @@
   "zh-CN/api/models/index.html": "/zh-CN/api/models/index.html",
   "zh-CN/docs/changelog/change-log/index.html": "/zh-CN/docs/changelog/change-log/index.html",
   "zh-CN/docs/changelog/index.html": "/zh-CN/docs/changelog/index.html",
-  "zh-CN/docs/contact/contact/index.html": "/zh-CN/docs/contact/contact/index.html",
-  "zh-CN/docs/contact/index.html": "/zh-CN/docs/contact/index.html",
   "zh-CN/docs/faq/faq/index.html": "/zh-CN/docs/faq/faq/index.html",
   "zh-CN/docs/faq/index.html": "/zh-CN/docs/faq/index.html",
   "zh-CN/docs/index.html": "/zh-CN/docs/index.html",
