@@ -16,7 +16,7 @@ export namespace NsModel {
   export interface IModel<T> {
     /** 传入一个回调函数来订阅model的变化 */
     watch: IWatch<T>
-    /** 更新model：有两种更新模式 */
+    /** 更新model: 支持传值或者传入更新函数 */
     setValue: ISetValue<T>
     /** 获取model的值 */
     getValue: () => T | EmptyType

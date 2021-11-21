@@ -17,10 +17,13 @@ nav:
 /** 如何引入？ */
 import { IHookService } from '@antv/xflow'
 
-/** 边数据 */
+/** 钩子服务 */
 export interface IHookService<T = IHooks> {
+  /** 注册一个新的插槽 */
   registerHookHub: (hookName: string, hook: HookHub) => Disposable
+  /** 在插槽中插入一个钩子 */
   registerHook: (registerHookFunc: IRegsiterHookFn<T>) => Disposable
+  /** 钩子服务返回所有钩子 */
   hookProvider: () => T
 }
 ```

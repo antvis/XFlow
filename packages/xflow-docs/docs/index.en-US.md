@@ -7,7 +7,7 @@ banner:
   image: https://gw.alipayobjects.com/mdn/rms_00edcb/afts/img/A*Gix7Rry3-5wAAAAAAAAAAABkARQnAQ
   actions:
     - text: 快速开始 ->
-      link: /docs/tutorial/quick-start
+      link: /docs/tutorial/intro/getting-started
       type: primary
   notifications:
     - type: Heavy Released
