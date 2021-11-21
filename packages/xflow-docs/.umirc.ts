@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi'
+const isProduction = process.env.NODE_ENV === 'production'
 
 // dumi（用于组件开发、Demo 编写）的配置项，请访问:
 // https://d.umijs.org/config
@@ -22,6 +23,7 @@ export default defineConfig({
     '@antv/xflow-extension',
     'dumi-theme-graphin',
   ],
+  analytics: isProduction ? { ga: 'G-32VJDHHH69' } : false,
   ssr: {
     devServerRender: false,
   },
@@ -46,9 +48,9 @@ export default defineConfig({
   links: [],
   /** js */
   scripts: [],
-  chunks: process.env.NODE_ENV === 'production' ? ['umi.styles', 'vendors', 'umi'] : undefined,
+  chunks: isProduction ? ['umi.styles', 'vendors', 'umi'] : undefined,
   chainWebpack: function (config, { webpack }) {
-    if (process.env.NODE_ENV === 'production') {
+    if (isProduction) {
       config.optimization.splitChunks({
         ...config.optimization.get('splitChunks'),
         cacheGroups: {
