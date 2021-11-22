@@ -40,7 +40,7 @@ export interface IArgs extends IArgsBase {
 
 #### nodeConfig
 
-节点的元数据，参考数据格式 [NsGraph.INodeConfig](/docs/api/interface#inodeconfig)
+节点的元数据，参考数据格式 [NsGraph.INodeConfig](/api/interface#inodeconfig)
 
 ### createNodeService (可选)
 
@@ -54,7 +54,7 @@ export interface ICreateNodeService {
 ```
 
 - 入参类型：[IArgs](#命令参数iargs)
-- 返回类型：[NsGraph.INodeConfig](/docs/api/interface#inodeconfig)
+- 返回类型：[NsGraph.INodeConfig](/api/interface#inodeconfig)
 
 #### cellFactory (可选)
 
@@ -68,10 +68,10 @@ export interface INodeCellFactory {
 ```
 
 - 入参类型：
-  - node: [NsGraph.INodeConfig](/docs/api/interface#inodeconfig) 节点数据
+  - node: [NsGraph.INodeConfig](/api/interface#inodeconfig) 节点数据
   - self: AddNodeCommand 方便使用 AddNodeCommand 实例上的方法
 - 返回类型：
-  - [NsGraph.INodeConfig](/docs/api/interface#inodeconfig) 节点数据
+  - [NsGraph.INodeConfig](/api/interface#inodeconfig) 节点数据
 
 ### 配置全局 Hook(可选)
 

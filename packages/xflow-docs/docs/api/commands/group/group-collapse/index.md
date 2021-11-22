@@ -55,7 +55,7 @@ export interface ICreateNodeService {
 ```
 
 - 入参类型：[IArgs](#命令参数iargs)
-- 返回类型：[NsGraph.IGroupConfig](/docs/api/interface#igroupconfig)
+- 返回类型：[NsGraph.IGroupConfig](/api/interface#igroupconfig)
 
 ### 配置全局 Hook (可选)
 

@@ -19,7 +19,7 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
           renderMap.set(GROUP_NODE_RENDER_ID, GroupNode)
         },
       }),
-      // 注册增加 graph options
+      // 注册修改graphOptions配置的钩子
       hooks.graphOptions.registerHook({
         name: 'custom-x6-options',
         // before: 'dag-extension-x6-options',

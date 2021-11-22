@@ -50,7 +50,7 @@ app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
 
 ### graphData (必选)
 
-画布渲染数据, 具体请参考数据格式 [NSGraph.IGraphData](/docs/api/interface#inodeconfig)。
+画布渲染数据, 具体请参考数据格式 [NSGraph.IGraphData](/api/interface#inodeconfig)。
 
 ### beforeRender (可选)
 
@@ -86,12 +86,12 @@ GraphRender 内置画布内容 Diff 操作, 默认使用边数据进行比较。
 isEdgeEqual?: (curEdgeConfig: NsGraph.IEdgeConfig, nextEdgeConfig: NsGraph.IEdgeConfig) => boolean
 ```
 
-## 画布内容如何Diff
+## 画布内容如何 Diff
 
-XFlow 会自动进行画布内容的Diff, 这对于画布内容动态更新、画布内容清空并重新渲染等应用场景非常有用。
+XFlow 会自动进行画布内容的 Diff, 这对于画布内容动态更新、画布内容清空并重新渲染等应用场景非常有用。
 
 举例:
 
-1. 用户第一次传入节点1,2,3, 第二次传入节点2,3,4, 那么第二次渲染时, 节点1会被删除, 节点2,3保留不动, 节点4会新增。
+1. 用户第一次传入节点 1,2,3, 第二次传入节点 2,3,4, 那么第二次渲染时, 节点 1 会被删除, 节点 2,3 保留不动, 节点 4 会新增。
 
-2. 如果第二次传入的节点2,3数据有更新, 那么节点2,3会重新渲染, 以展示最新数据。
+2. 如果第二次传入的节点 2,3 数据有更新, 那么节点 2,3 会重新渲染, 以展示最新数据。

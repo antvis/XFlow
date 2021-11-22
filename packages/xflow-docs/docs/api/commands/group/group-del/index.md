@@ -21,10 +21,10 @@ XFlow 提供节点添加的命令 `XFlowGroupCommands.DEL_GROUP`, 通过该命�
 
 ### 命令参数（IArgs）
 
-|          名称 |                                                     类型 | 必选 | 默认值 | 描述                     |
-| ------------: | -------------------------------------------------------: | ---: | -----: | ------------------------ |
-|    nodeConfig | [NsGraph.IGroupConfig](/docs/api/interface#igroupconfig) |    ✓ |      - | 待删除节点的配置数据     |
-| deleteService |                                      IDeleteGroupService |      |      - | 持久化删除节点的异步方法 |
+|          名称 |                                                类型 | 必选 | 默认值 | 描述                     |
+| ------------: | --------------------------------------------------: | ---: | -----: | ------------------------ |
+|    nodeConfig | [NsGraph.IGroupConfig](/api/interface#igroupconfig) |    ✓ |      - | 待删除节点的配置数据     |
+| deleteService |                                 IDeleteGroupService |      |      - | 持久化删除节点的异步方法 |
 
 ```tsx | pure
 export interface IArgs extends IArgsBase {
@@ -37,7 +37,7 @@ export interface IArgs extends IArgsBase {
 
 #### nodeConfig
 
-节点的元数据，参考数据格式 [NsGraph.IGroupConfig](/docs/api/interface#igroupconfig)
+节点的元数据，参考数据格式 [NsGraph.IGroupConfig](/api/interface#igroupconfig)
 
 ### deleteService (可选)
 

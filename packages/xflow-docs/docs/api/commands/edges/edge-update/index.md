@@ -23,20 +23,18 @@ XFlow 提供更新连线的命令 `XFlowEdgeCommands.UPDATE_EDGE`, 通过该命�
 
 |              名称 |                类型 | 必选 | 默认值 | 描述               |
 | ----------------: | ------------------: | ---: | -----: | ------------------ |
-| edgeConfig        | NsGraph.IEdgeConfig |    ✓ |      - | 更新连线的配置数据 |
-| updateEdgeService | IUpdateEdgeService  |      |      - | 更新连线内容的服务   |
-
+|        edgeConfig | NsGraph.IEdgeConfig |    ✓ |      - | 更新连线的配置数据 |
+| updateEdgeService |  IUpdateEdgeService |      |      - | 更新连线内容的服务 |
 
 ### edgeConfig
 
-连线的元数据，参考数据格式 [NsGraph.IEdgeConfig](/docs/api/interface#iedgeconfig)
+连线的元数据，参考数据格式 [NsGraph.IEdgeConfig](/api/interface#iedgeconfig)
 
 ### updateEdgeService (可选)
 
  复杂情况下, 连线内容的更新需要与服务端做交互, 将最新数据更新到服务端。XFlow 在执行 UpdateEdge 命令时会自动执行 `updateEdgeService` 方法。因此如果业务场景中连线内容的更新需要存储在服务端, 就可以使用 `updateEdgeService`。
 
  建议在 UpdateEdge 的 hook 中配置这个异步方法。
-
 
 ```tsx | pure
 export interface IUpdateEdgeService {

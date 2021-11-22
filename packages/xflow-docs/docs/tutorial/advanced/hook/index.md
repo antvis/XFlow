@@ -33,10 +33,9 @@ import { XFlow, createHookConfig, DisposableCollection } from '@antv/xflow'
 export const useGraphHookConfig = createHookConfig(config => {
   config.setRegisterHook(hooks => {
     const disposableList = [
-      // 注册增加 graph options
+      // 注册修改graphOptions配置的钩子
       hooks.graphOptions.registerHook({
         name: 'custom-x6-options',
-        // before: 'dag-extension-x6-options',
         handler: async options => {
           options.grid = false
           options.keyboard = {

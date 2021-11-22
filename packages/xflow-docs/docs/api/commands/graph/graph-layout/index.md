@@ -42,7 +42,7 @@ app.executeCommand(XFlowGraphCommands.GRAPH_LAYOUT.id, {
 
 XFlow 也支持用户自定义布局算法, 只需要返回 [NSGraph.IGraphData](/api/interface) 类型的数据即可。
 
-自定义布局算法接收原始graphData, 返回新graphData(每一个节点都被赋予计算好的x, y值, x, y决定了节点在画布中的渲染位置)。
+自定义布局算法接收原始 graphData, 返回新 graphData(每一个节点都被赋予计算好的 x, y 值, x, y 决定了节点在画布中的渲染位置)。
 
 ```tsx | pure
 app.executeCommand(XFlowGraphCommands.GRAPH_LAYOUT.id, {
@@ -65,7 +65,7 @@ app.executeCommand(XFlowGraphCommands.GRAPH_LAYOUT.id, {
 
 ### graphData (必选)
 
-画布渲染数据, 具体请参考数据格式 [NSGraph.IGraphData](/docs/api/interface#inodeconfig)。
+画布渲染数据, 具体请参考数据格式 [NSGraph.IGraphData](/api/interface#inodeconfig)。
 
 ### layoutType (可选)
 
@@ -77,4 +77,4 @@ app.executeCommand(XFlowGraphCommands.GRAPH_LAYOUT.id, {
 
 ### customLayout (可选)
 
-自定义布局算法接收原始graphData, 返回新graphData(每一个节点都被赋予计算好的x, y值, x, y决定了节点在画布中的渲染位置)。
+自定义布局算法接收原始 graphData, 返回新 graphData(每一个节点都被赋予计算好的 x, y 值, x, y 决定了节点在画布中的渲染位置)。

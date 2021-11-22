@@ -65,7 +65,7 @@ export const useGraphConfig = createGraphConfig(graphConfig => {
 
 #### nodeConfig (必选)
 
-节点最新数据, 具体请参考数据格式 [NSGraph.INodeConfig](/docs/api/interface#inodeconfig)
+节点最新数据, 具体请参考数据格式 [NSGraph.INodeConfig](/api/interface#inodeconfig)
 
 #### updateNodeService (可选)
 

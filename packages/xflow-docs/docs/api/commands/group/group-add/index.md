@@ -21,11 +21,11 @@ XFlow 提供添加群组的命令 `XFlowGroupCommands.ADD_GROUP`, 通过该命�
 
 ### 命令参数（IArgs）
 
-|          名称 |                                                     类型 | 必选 | 默认值 | 描述               |
-| ------------: | -------------------------------------------------------: | ---: | -----: | ------------------ |
-|    nodeConfig | [NsGraph.IGroupConfig](/docs/api/interface#igroupconfig) |    ✓ |      - | 新建群组的配置数据 |
-|   cellFactory |                                        IGroupCellFactory |      |      - | cell 工厂方法      |
-| createService |                                           ICreateService |      |      - | 获取元数据的服务   |
+|          名称 |                                                类型 | 必选 | 默认值 | 描述               |
+| ------------: | --------------------------------------------------: | ---: | -----: | ------------------ |
+|    nodeConfig | [NsGraph.IGroupConfig](/api/interface#igroupconfig) |    ✓ |      - | 新建群组的配置数据 |
+|   cellFactory |                                   IGroupCellFactory |      |      - | cell 工厂方法      |
+| createService |                                      ICreateService |      |      - | 获取元数据的服务   |
 
 ```tsx | pure
 /** 参数类型 */
@@ -41,7 +41,7 @@ export interface IArgs extends IArgsBase {
 
 #### nodeConfig
 
-group 群组节点的元数据，参考数据格式 [NsGraph.IGroupConfig](/docs/api/interface#igroupconfig)
+group 群组节点的元数据，参考数据格式 [NsGraph.IGroupConfig](/api/interface#igroupconfig)
 
 ```tsx | pure
 /** nodeConfig 中 group相关的配置 */
@@ -73,7 +73,7 @@ export interface ICreateNodeService {
 ```
 
 - 入参类型：[IArgs](#命令参数iargs)
-- 返回类型：[NsGraph.IGroupConfig](/docs/api/interface#igroupconfig)
+- 返回类型：[NsGraph.IGroupConfig](/api/interface#igroupconfig)
 
 #### cellFactory (可选)
 
@@ -87,10 +87,10 @@ export interface IGroupCellFactory {
 ```
 
 - 入参类型：
-  - node: [NsGraph.IGroupConfig](/docs/api/interface#igroupconfig) 节点数据
+  - node: [NsGraph.IGroupConfig](/api/interface#igroupconfig) 节点数据
   - self: AddGroupCommand 方便使用 AddGroupCommand 实例上的方法
 - 返回类型：
-  - [X6.Node](/docs/api/interface#igroupconfig) Cell
+  - [X6.Node](/api/interface#igroupconfig) Cell
 
 ### 配置全局 Hook (可选)
 

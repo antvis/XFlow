@@ -37,7 +37,7 @@ export interface IArgs extends IArgsBase {
 
 #### nodeConfig
 
-节点的元数据，参考数据格式 [NsGraph.INodeConfig](/docs/api/interface#inodeconfig)
+节点的元数据，参考数据格式 [NsGraph.INodeConfig](/api/interface#inodeconfig)
 
 ### deleteNodeService (可选)
 
@@ -51,7 +51,7 @@ export interface IDeleteNodeService {
 ```
 
 - 入参类型：[IArgs](#命令参数iargs)
-- 返回类型：[NsGraph.INodeConfig](/docs/api/interface#inodeconfig)
+- 返回类型：[NsGraph.INodeConfig](/api/interface#inodeconfig)
 
 ### 配置全局 Hook(可选)
 
