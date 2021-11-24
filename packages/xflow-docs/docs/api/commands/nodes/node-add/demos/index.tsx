@@ -30,7 +30,7 @@ const NodeAddDemo: React.FC<{}> = () => {
   }
 
   return (
-    <XFlow meta={{ flowId: 'add-node-demo' }} onLoad={onLoad} className="xflow-workspace">
+    <XFlow onLoad={onLoad} className="xflow-workspace">
       <FormPanel />
       <XFlowCanvas
         className="app-main-content"

@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "xflow",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "start": "npm run dev:docs",
     "bootstrap": "lerna bootstrap",
@@ -57,11 +57,11 @@
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-preset-react-app": "^10.0.0",
-    "dumi": "^1.0.23",
+    "dumi": "^1.0.33",
     "eslint": "^7.15.0",
     "eslint-plugin-deprecation": "^1.2.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-no-null": "^1.0.2",
+    "eslint-plugin-no-null": "^1.0.3",
     "gh-pages": "^3.0.0",
     "jest": "^27.2.4",
     "lerna": "3.22.1",

@@ -20,7 +20,7 @@ XFlow 提供节点更新的命令 `XFlowNodeCommands.NODE_UPDATE`, 通过该命�
 
 ### NodeUpdate 示例
 
-<code src="./demos/index.tsx" />
+<code src="./demos/index.tsx" classname="cmd-demo"  />
 
 ### 如何更新节点内容
 

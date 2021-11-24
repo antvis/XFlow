@@ -51,6 +51,7 @@ export const CmdForm = () => {
   React.useEffect(() => {
     if (selectNode) {
       const nodeConfig = selectNode.getData()
+      console.log(nodeConfig)
       form.setFieldsValue({
         id: nodeConfig.id,
         label: nodeConfig.label,

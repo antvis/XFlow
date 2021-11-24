@@ -19,7 +19,7 @@ const Demo: React.FC<{}> = () => {
   }
 
   return (
-    <XFlow onLoad={onLoad} className="xflow-node-update-demo" meta={{ flowId: 'node-update-demo' }}>
+    <XFlow onLoad={onLoad} meta={{ flowId: 'node-update-demo' }} className="xflow-workspace">
       <FormPanel />
       <XFlowCanvas
         config={useGraphConfig()}

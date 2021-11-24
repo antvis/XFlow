@@ -18,7 +18,7 @@ export namespace NsUpdateNode {
     /** 节点的新元数据 */
     nodeConfig: NsGraph.INodeConfig
     /** setOptions:https://x6.antv.vision/zh/docs/api/model/cell/#setdata */
-    options: X6Node.SetOptions
+    options?: X6Node.SetOptions
     /** 更新节点的服务 */
     updateNodeService?: IUpdateNodeService
   }
