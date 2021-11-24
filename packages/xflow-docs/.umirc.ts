@@ -9,7 +9,7 @@ export default defineConfig({
   logo: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
   favicon: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
   // publicPath: process.env.NODE_ENV === 'production' ? basementPublicPath : '/',
-
+  esbuild: {},
   runtimePublicPath: true,
   resolve: {
     includes: ['docs'],

@@ -49,6 +49,7 @@
     "@testing-library/react": "^9.5.0",
     "@types/jest": "^25.2.1",
     "@umijs/fabric": "^2.8.1",
+    "@umijs/plugin-esbuild": "^1.4.1",
     "antd": "^4.6.3",
     "babel-plugin-import": "^1.13.3",
     "cross-env": "^7.0.3",
