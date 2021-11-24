@@ -1,6 +1,6 @@
 {
   "name": "@antv/xflow-docs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "@antv/xflow-docs",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@antv/gatsby-theme-antv": "^1.1.8",
-    "@antv/xflow": "1.0.1",
+    "@antv/xflow": "1.0.2",
     "dumi-theme-graphin": "^0.1.4"
   },
   "devDependencies": {
@@ -53,7 +53,7 @@
     "antd": "^4.6.3",
     "babel-plugin-import": "^1.13.3",
     "cross-env": "^7.0.3",
-    "dumi": "^1.0.14",
+    "dumi": "^1.0.24",
     "dumi-theme-graphin": "^0.1.4",
     "less": "^4.1.2",
     "lodash": "^4.17.20",

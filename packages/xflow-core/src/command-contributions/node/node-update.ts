@@ -17,10 +17,13 @@ export namespace NsUpdateNode {
   export interface IArgs extends IArgsBase {
     /** 节点的新元数据 */
     nodeConfig: NsGraph.INodeConfig
+    /** setOptions:https://x6.antv.vision/zh/docs/api/model/cell/#setdata */
+    options: X6Node.SetOptions
     /** 更新节点的服务 */
     updateNodeService?: IUpdateNodeService
   }
 
+  export const XFlowNodeSetOptions: X6Node.SetOptions = { overwrite: true }
   export interface IResult {
     nodeConfig: NsGraph.INodeConfig
     nodeCell: X6Node
@@ -60,10 +63,10 @@ export class UpdateNodeCommand implements ICommand {
       args,
       async handlerArgs => {
         const x6Graph = await this.ctx.getX6Graph()
-        const { nodeConfig } = handlerArgs
+        const { nodeConfig, options = NsUpdateNode.XFlowNodeSetOptions } = handlerArgs
 
         const x6Node = x6Graph?.getCellById(nodeConfig?.id) as X6Node
-        x6Node.setData(nodeConfig)
+        x6Node.setData(nodeConfig, options)
         x6Node.setPosition(nodeConfig?.x || 0, nodeConfig?.y || 0)
         x6Node.setSize(
           nodeConfig?.width || NsUpdateNode.NODE_WIDTH,
