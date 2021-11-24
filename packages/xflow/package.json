@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist es lib",
@@ -49,9 +49,9 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@antv/xflow-core": "1.0.0",
-    "@antv/xflow-extension": "1.0.0",
-    "@antv/xflow-hook": "1.0.0",
+    "@antv/xflow-core": "1.0.1",
+    "@antv/xflow-extension": "1.0.1",
+    "@antv/xflow-hook": "1.0.1",
     "@antv/layout": "^0.0.5",
     "@antv/x6": "^1.12.11",
     "@antv/x6-react-components": "^1.1.15",

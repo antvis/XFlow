@@ -11,6 +11,7 @@ import { IGraphProvider } from '../xflow-main/graph/graph-provider'
 import { IGraphCommandService } from '../command/interface'
 import { IModelService } from '../model-service'
 import { IFrontendApplicationContribution } from './interface'
+import { cellsToJson } from '../common/graph-utils'
 
 export { IFrontendApplicationContribution } from './interface'
 
@@ -48,6 +49,13 @@ export class FrontendApplication {
   /** 获取画布配置项 */
   public getGraphConfig() {
     return this.graphProvider.getGraphOptions()
+  }
+
+  /** 获取画布配置项 */
+  public getGraphData = async () => {
+    const graph = await this.graphProvider.getGraphInstance()
+    const cells = graph.getCells()
+    return cellsToJson(cells)
   }
 
   /** 获取画布所有节点 */
