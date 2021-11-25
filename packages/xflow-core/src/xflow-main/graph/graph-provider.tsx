@@ -65,9 +65,11 @@ export class GraphManager implements IGraphManager {
       /** 执行hooks：获取graphOptions */
       const mergedOptions = await hooks.graphOptions.call(options.x6Options)
 
-      const { graphContainer, edgeRender, edgeTypeParser } = options
+      const { graphContainer, edgeRender, nodeRender, edgeTypeParser } = options
       /** 执行hooks：获取edge label render */
       const edgeRenderMap = await hooks.reactEdgeLabelRender.call(edgeRender)
+      /** 执行hooks：更新nodeRender */
+      await hooks.reactNodeRender.call(nodeRender)
       const { clientHeight, clientWidth } = graphContainer
 
       const commandService = await this.commandServiceProvider.getCommandService()

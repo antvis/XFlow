@@ -10,6 +10,7 @@ export default defineConfig({
   favicon: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
   // publicPath: process.env.NODE_ENV === 'production' ? basementPublicPath : '/',
   esbuild: {},
+  // mfsu: {},
   runtimePublicPath: true,
   resolve: {
     includes: ['docs'],
