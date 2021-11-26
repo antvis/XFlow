@@ -1,5 +1,4 @@
-import type { IApplication, NsGraphCmd } from '@antv/xflow-core'
-import { XFlowGraphCommands } from '@antv/xflow-core'
+import type { IApplication } from '@antv/xflow-core'
 import type { Graph } from '@antv/x6'
 import { debounce } from 'lodash'
 
@@ -34,13 +33,7 @@ export const getAppInstance = () => {
 
 export const getGraphData = async () => {
   const app = getAppInstance()
-  let data
-  await app.executeCommand(XFlowGraphCommands.SAVE_GRAPH_DATA.id, {
-    saveGraphDataService: async (graphMeta, graphData) => {
-      data = graphData
-    },
-  } as NsGraphCmd.SaveGraphData.IArgs)
-  return data
+  return app.getGraphData()
 }
 
 /** 更新配置时通知上传执行保存 */

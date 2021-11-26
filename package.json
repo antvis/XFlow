@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "xflow",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "scripts": {
     "start": "npm run dev:docs",
     "bootstrap": "lerna bootstrap",
@@ -10,15 +10,14 @@
     "dev:core": "cd ./packages/xflow-core && yarn start",
     "dev:ext": "cd ./packages/xflow-extension && yarn start",
     "dev:docs": "cd ./packages/xflow-docs && yarn start",
-    "test": "lerna run test --scope=@ali/{xflow-hook,xflow-core}",
     "build": "lerna run build --scope=@antv/xflow --include-dependencies --stream",
     "build:less": "lerna run build:less --scope=@antv/xflow --include-dependencies --stream",
     "build:pkg": "lerna run build --scope=@antv/xflow --include-dependencies --stream",
     "release:pkg": "lerna run release --scope=@antv/xflow --include-dependencies --stream",
     "clean": "lerna clean --yes && rm -rf ./node_modules",
-    "docs:deploy": "gh-pages -d docs-dist",
+    "deploy:docs": "lerna run deploy --scope=@antv/xflow-docs",
     "ci": "echo 'no-ci'",
-    "deploy": "npm run docs:build && npm run docs:deploy",
+    "test": "lerna run test --scope=@ali/{xflow-hook,xflow-core}",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
   },
   "workspaces": [

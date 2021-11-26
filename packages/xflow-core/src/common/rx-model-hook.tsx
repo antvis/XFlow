@@ -3,16 +3,16 @@ import type { Disposable } from '../common/disposable'
 import { RxModel, NsModel } from './rx-model'
 
 /** 判断model是否Mount */
-const isRefMounted = (ref: React.RefObject<{ isMounted: boolean }>) => {
-  return ref && ref.current && ref.current.isMounted
+const isRefMounted = (ref: React.RefObject<boolean>) => {
+  return ref && ref.current
 }
 /** 用于判断model是否Mount */
 export const useIsMountedRef = () => {
   /** 记录当前组件的加载状态 */
-  const ref = React.useRef({ isMounted: true })
+  const ref = React.useRef(true)
   React.useEffect(() => {
     return () => {
-      ref.current.isMounted = false
+      ref.current = false
     }
   }, [])
   return ref
@@ -82,12 +82,12 @@ export const useModelAsync = <T extends any, InitialState = T>(args: {
     getModel().then(async model => {
       modelRef.current = model
       const newState = await model.getValidValue()
-      if (!isMountedRef.current.isMounted) {
+      if (!isMountedRef.current) {
         return
       }
       setState(newState)
       d = model.watch(val => {
-        if (isMountedRef.current.isMounted) {
+        if (isMountedRef.current) {
           setState(val)
         }
       })

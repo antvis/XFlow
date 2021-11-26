@@ -5,5 +5,5 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: 'tsconfig.json',
   },
-  rules: { 'react-hooks/exhaustive-deps': 'warn', '@typescript-eslint/no-empty-interface': 'off' },
+  rules: { 'react-hooks/exhaustive-deps': 'error', '@typescript-eslint/no-empty-interface': 'off' },
 }
