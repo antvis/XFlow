@@ -7,8 +7,6 @@ import { defaultControlMapService } from './control-map-service'
 
 import type { IFlowchartFormPanelProps } from './interface'
 
-import './style.less'
-
 export const CONTAINER_CLASS = 'xflow-editor-panel-collpase'
 
 export const FlowchartFormPanel: React.FC<IFlowchartFormPanelProps> = props => {

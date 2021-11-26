@@ -15,8 +15,6 @@ export * from './constants'
 export * from './utils'
 export * from './interface'
 
-import './style/index'
-
 export const NodePanelMain: React.FC<IProps> = props => {
   const {
     prefixClz,

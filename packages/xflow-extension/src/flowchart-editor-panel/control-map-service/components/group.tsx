@@ -6,8 +6,6 @@ import type { IConfig } from './node'
 
 import { PREFIX } from './constants'
 
-import './style.less'
-
 const GroupComponent = props => {
   const { config, plugin = {} } = props
   const { updateGroup } = plugin

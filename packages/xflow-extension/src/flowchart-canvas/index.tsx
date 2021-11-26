@@ -4,7 +4,6 @@ import { useGraphConfig } from './config-graph'
 import { setInstance } from './utils'
 export { FlowchartExtension } from './extension/module'
 import type { IFlowchartGraphProps } from './interface'
-import './index.less'
 export * from './interface'
 
 export const FlowchartCanvas: React.FC<IFlowchartGraphProps> = props => {

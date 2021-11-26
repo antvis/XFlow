@@ -2,7 +2,6 @@ import React from 'react'
 import type { IModuleConfig } from '@antv/xflow-core'
 import { useExtensionRegistry } from '@antv/xflow-core'
 import { createFlowchartExtensionModule } from '../module'
-import './index.less'
 
 export const FlowchartExtension: React.FC<{}> = () => {
   /** 获取扩展Registry */
