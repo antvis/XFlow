@@ -4,8 +4,6 @@ import { FlowchartFormWrapper } from '../../form-wrapper'
 import { InputFiled, ColorPicker, Position, InputNumberFiled, Size } from './fields'
 import { PREFIX } from './constants'
 
-import './style.less'
-
 export interface IConfig {
   x?: number
   y?: number

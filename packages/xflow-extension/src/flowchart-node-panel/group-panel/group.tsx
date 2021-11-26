@@ -2,7 +2,6 @@ import React from 'react'
 import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons'
 import type { NsGraph } from '@antv/xflow-core'
 import { useXFlowApp, XFlowGroupCommands } from '@antv/xflow-core'
-import './group.less'
 
 export const GroupNode: NsGraph.INodeRender = props => {
   const {
