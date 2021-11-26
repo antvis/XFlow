@@ -2,20 +2,22 @@ import React from 'react'
 import { RxModel, NsModel } from '../common/rx-model'
 
 /** 判断model是否Mount */
-const isRefMounted = (ref: React.RefObject<{ isMounted: boolean }>) => {
-  return ref && ref.current && ref.current.isMounted
+const isRefMounted = (ref: React.RefObject<boolean>) => {
+  return ref && ref.current
 }
+
 /** 用于判断model是否Mount */
 const useIsMoutedRef = () => {
   /** 记录当前组件的加载状态 */
-  const ref = React.useRef({ isMounted: true })
+  const ref = React.useRef(true)
   React.useEffect(() => {
     return () => {
-      ref.current.isMounted = false
+      ref.current = false
     }
   }, [])
   return ref
 }
+
 /** 将model和react绑定 */
 export const useModel = <T,>(model: RxModel<T>) => {
   /** 记录当前组件的加载状态 */

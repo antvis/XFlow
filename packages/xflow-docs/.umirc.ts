@@ -18,17 +18,12 @@ export default defineConfig({
   outputPath: 'dist',
   hash: true,
   devtool: 'eval',
-  extraBabelIncludes: [
-    '@antv/xflow',
-    '@antv/xflow-core',
-    '@antv/xflow-extension',
-    'dumi-theme-graphin',
-  ],
+  extraBabelIncludes: [],
   analytics: isProduction ? { ga: 'G-32VJDHHH69' } : false,
   ssr: {
     devServerRender: false,
   },
-  dynamicImport: {},
+  // dynamicImport: {},
   exportStatic: {},
   theme: {
     '@s-site-menu-width': '280px',
@@ -49,28 +44,28 @@ export default defineConfig({
   links: [],
   /** js */
   scripts: [],
-  chunks: isProduction ? ['umi.styles', 'vendors', 'umi'] : undefined,
-  chainWebpack: function (config, { webpack }) {
-    if (isProduction) {
-      config.optimization.splitChunks({
-        ...config.optimization.get('splitChunks'),
-        cacheGroups: {
-          ...(config.optimization.get('splitChunks')?.cacheGroups || {}),
-          mergedStyles: {
-            name: 'umi.styles',
-            test: /\.(less|s?css)$/,
-            chunks: 'all',
-            reuseExistingChunk: true,
-            enforce: true,
-            priority: 11,
-          },
-          vendor: {
-            name: 'vendors',
-            test: /[\\/]node_modules[\\/]/,
-            priority: 10,
-          },
-        },
-      })
-    }
-  },
+  // chunks: isProduction ? ['umi.styles', 'vendors', 'umi'] : undefined,
+  // chainWebpack: function (config, { webpack }) {
+  //   if (isProduction) {
+  //     config.optimization.splitChunks({
+  //       ...config.optimization.get('splitChunks'),
+  //       cacheGroups: {
+  //         ...(config.optimization.get('splitChunks')?.cacheGroups || {}),
+  //         mergedStyles: {
+  //           name: 'umi.styles',
+  //           test: /\.(less|s?css)$/,
+  //           chunks: 'all',
+  //           reuseExistingChunk: true,
+  //           enforce: true,
+  //           priority: 11,
+  //         },
+  //         vendor: {
+  //           name: 'vendors',
+  //           test: /[\\/]node_modules[\\/]/,
+  //           priority: 10,
+  //         },
+  //       },
+  //     })
+  //   }
+  // },
 })

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 export type PromiseType<P extends Promise<any>> = P extends Promise<infer T> ? T : never
 
@@ -9,7 +9,7 @@ export default function useAsync<T extends FunctionReturningPromise>(fn: T) {
     loading: true,
   })
 
-  const callback = () => {
+  const callback = useCallback(() => {
     fn().then(
       value => {
         set({
@@ -24,11 +24,11 @@ export default function useAsync<T extends FunctionReturningPromise>(fn: T) {
         console.error(error)
       },
     )
-  }
+  }, [fn])
 
   useEffect(() => {
     callback()
-  }, [callback, fn])
+  }, [callback])
 
   return state
 }

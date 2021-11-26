@@ -20,7 +20,7 @@ module.exports = {
     'global-require': 'off',
     'no-plusplus': 'off',
     'import/export': 'off',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
     'import/no-extraneous-dependencies': 0,
   },
 }

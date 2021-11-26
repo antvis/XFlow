@@ -34,7 +34,7 @@ export const FlowchartFormWrapper: React.FC<IFlowchartFormWrapperProps & { type:
           return { err: null, data: graph, meta }
         },
       } as NsGraphCmd.SaveGraphData.IArgs)
-    }, [commandService, props])
+    }, [commandService])
 
     const updateNode = async (value: object) => {
       const currentNodeData = await getSelectNode()
