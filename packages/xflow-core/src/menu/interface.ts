@@ -92,7 +92,7 @@ export interface IMenuOptions<T = any> {
   /** data. */
   data?: T
   /** 自定义渲染 */
-  render?: React.FC<{
+  render?: React.ComponentType<{
     menuItem: IMenuOptions
     target: IMenuTarget
     commandService: IGraphCommandService

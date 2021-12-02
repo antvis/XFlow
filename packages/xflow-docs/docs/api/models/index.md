@@ -10,74 +10,15 @@ nav:
   order: 2
 ---
 
-## MODELS
+## MODELS 是什么？
 
-通过事件监听系统状态，如果 MODEL 更新则触发 UI 组件的更新
-
-```tsx | pure
-// 如何使用？
-import { MODELS } from '@antv/xflow'
-// 使用models
-const getModel = async () => {
-  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
-  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
-  console.log(graphScale, graphScaleModel)
-}
-```
-
-## MODEL HOOKS
-
-```tsx | pure
-// 如何使用？
-import { MODELS } from '@antv/xflow'
-// 使用models
-const getModel = async () => {
-  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
-  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
-  console.log(graphScale, graphScaleModel)
-}
-```
-
-### useModelAsync
-
-```tsx | pure
-// 如何使用？
-import { MODELS } from '@antv/xflow'
-// 使用models
-const getModel = async () => {
-  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
-  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
-  console.log(graphScale, graphScaleModel)
-}
-```
-
-### useModel
-
-```tsx | pure
-// 如何使用？
-import { MODELS } from '@antv/xflow'
-// 使用models
-const getModel = async () => {
-  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
-  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
-  console.log(graphScale, graphScaleModel)
-}
-```
+XFlow 内置了常用的 Model 在事件回调和渲染 UI 组件时使用， Model 通过监听画布（X6）的事件来更新内部的值，组件通过订阅 Model 的变化可以实现组件渲染的更新。
 
 ## XFlow MODELS
 
- 内置开箱即用的 Models
+内置了以下这些 Model
 
-````tsx | pure
-// 如何使用？
-import { MODELS } from '@antv/xflow'
-// 使用models
-const getModel= async()=>{
-  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
-  const graphScaleModel = await MODELS.GRAPH_SCALE.getModel(modelService)
-  console.log(graphScale,graphScaleModel)
-}
-
+```tsx | pure
 /** 画布是否已开启多选 */
 export namespace GRAPH_ENABLE_MULTI_SELECT {
   export const id = 'GRAPH_ENABLE_MULTI_SELECT'
@@ -227,6 +168,73 @@ export namespace HISTORY_REDOABLE {
   export const getModel = getModelUtil<IState>(id)
   export const useValue = useModelValueUtil<IState>(id)
 }
-
 ```
-````
+
+## 如何获取内置的 Model？
+
+```tsx | pure
+// 如何使用？
+import { MODELS } from '@antv/xflow'
+// 使用models
+const getModel = async () => {
+  // 使用model中的值，类型是：MODELS.GRAPH_SCALE.IState
+  const graphScaleModel = await MODELS.GRAPH_SCALE.useModel(modelService)
+}
+```
+
+Model 的类型如下：
+
+```tsx | pure
+import { NsModel } from '@ali/xflow'
+
+/** NsModel.IModel的类型 */
+export interface IModel<T> {
+  /** 传入一个回调函数来订阅model的变化 */
+  watch: IWatch<T>
+  /** 更新model: 支持传值或者传入更新函数 */
+  setValue: ISetValue<T>
+  /** 获取model的值 */
+  getValue: () => T | EmptyType
+  /** 是否有非空的值 */
+  hasValidValue: () => boolean
+  /** 通过Promise获取一个非空值 */
+  getValidValue: () => Promise<T>
+}
+```
+
+## 如何获取内置 Model 的值？
+
+使用 useValue 来获取 Model 中的值
+
+```tsx | pure
+// 如何使用？
+import { MODELS } from '@antv/xflow'
+// 使用models
+const getModel = async () => {
+  // 使用model中的值
+  const graphScale = await MODELS.GRAPH_SCALE.useValue(modelService)
+  // graphScale的类型是：MODELS.GRAPH_SCALE.IState
+  console.log(graphScale)
+}
+```
+
+## 如何在 UI 中订阅 Model 的变化？
+
+### useModelAsync
+
+下面通过 useModelAsync 的 Hook 在 UI 组件中订阅了 XFlow 内部的状态
+
+```tsx | pure
+// 如何使用？
+import { MODELS, useXFlowApp, useModelAsync } from '@antv/xflow'
+export const Demo: React.FC = () => {
+  const app = useXFlowApp()
+  const [modelValue] = useModelAsync<MODELS.SELECTED_NODES.IState>({
+    // 异步获取Model
+    getModel: async () => MODELS.SELECTED_NODES.getModel(app.modelService),
+    // 初始值
+    initialState: [],
+  })
+  return <div>选中节点数量：{modelValue.length} </div>
+}
+```

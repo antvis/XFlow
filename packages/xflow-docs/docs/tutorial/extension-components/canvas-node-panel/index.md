@@ -58,9 +58,17 @@ export interface ITreeNode {
    * Dnd节点的popover的提示内容，可选
    */
   readonly popoverContent?: React.ReactNode
+  /**
+   * 支持自定义渲染
+   */
+  render?: React.ComponentType<{ data: ITreeNode; isNodeTreePanel: boolean }>
 }
 ```
 
 ## 支持搜索
 
-<code src="./demos/search/index.tsx" classname="dnd-node-demo"   />
+<code src="./demos/search/index.tsx" classname="dnd-search-demo"   />
+
+## 支持自定义节点渲染
+
+<code src="./demos/custom/index.tsx" classname="dnd-custom-demo"   />

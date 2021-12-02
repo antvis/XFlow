@@ -76,6 +76,10 @@ export interface ITreeNode {
    */
   readonly popoverContent?: React.ReactNode
   /**
+   * 支持自定义渲染
+   */
+  render?: React.ComponentType<{ data: ITreeNode; isNodeTreePanel: boolean }>
+  /**
    * 【内部渲染用】文件夹的标识.
    */
   isDirectory?: boolean
