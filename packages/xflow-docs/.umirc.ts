@@ -8,9 +8,7 @@ export default defineConfig({
   mode: 'site',
   logo: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
   favicon: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
-  // publicPath: process.env.NODE_ENV === 'production' ? basementPublicPath : '/',
   esbuild: {},
-  // mfsu: {},
   runtimePublicPath: true,
   resolve: {
     includes: ['docs'],
@@ -20,10 +18,9 @@ export default defineConfig({
   devtool: 'eval',
   extraBabelIncludes: [],
   analytics: isProduction ? { ga: 'G-32VJDHHH69' } : false,
-  ssr: {
-    devServerRender: false,
-  },
-  // dynamicImport: {},
+  // ssr: {
+  //   devServerRender: false,
+  // },
   exportStatic: {},
   theme: {
     '@s-site-menu-width': '280px',
@@ -44,28 +41,4 @@ export default defineConfig({
   links: [],
   /** js */
   scripts: [],
-  // chunks: isProduction ? ['umi.styles', 'vendors', 'umi'] : undefined,
-  // chainWebpack: function (config, { webpack }) {
-  //   if (isProduction) {
-  //     config.optimization.splitChunks({
-  //       ...config.optimization.get('splitChunks'),
-  //       cacheGroups: {
-  //         ...(config.optimization.get('splitChunks')?.cacheGroups || {}),
-  //         mergedStyles: {
-  //           name: 'umi.styles',
-  //           test: /\.(less|s?css)$/,
-  //           chunks: 'all',
-  //           reuseExistingChunk: true,
-  //           enforce: true,
-  //           priority: 11,
-  //         },
-  //         vendor: {
-  //           name: 'vendors',
-  //           test: /[\\/]node_modules[\\/]/,
-  //           priority: 10,
-  //         },
-  //       },
-  //     })
-  //   }
-  // },
 })
