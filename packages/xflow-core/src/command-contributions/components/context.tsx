@@ -20,7 +20,7 @@ export const AppContext = React.createContext<IAppContext>({
 export const useAppContext = () => React.useContext(AppContext)
 
 export function getNodeReactComponent(
-  Component: React.FC,
+  Component: React.ComponentType<NsGraph.IReactNodeProps>,
   commands: IGraphCommandService,
   modelService: IModelService,
 ) {
@@ -55,7 +55,7 @@ export function getNodeReactComponent(
 }
 
 export function getEdgeReactComponent(
-  Component: React.FC,
+  Component: React.ComponentType<NsGraph.IReactEdgeProps>,
   commands: IGraphCommandService,
   modelService: IModelService,
 ) {

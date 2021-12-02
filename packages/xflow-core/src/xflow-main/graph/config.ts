@@ -55,7 +55,7 @@ export class GraphConfig {
   /** 自定义节点 */
   private nodeRender = new Map<string, NsGraph.INodeRender>(NsGraphConfig.defaultNodeMapValue)
   /** 自定义边 */
-  private edgeRender = new Map<string, React.FC>()
+  private edgeRender = new Map<string, NsGraph.IEdgeRender>()
   /** 解析node渲染类型的parser */
   private nodeTypeParser: (nodeConfig: NsGraph.INodeConfig) => string =
     NsGraphConfig.defaultNodeTypeParser
@@ -240,9 +240,9 @@ export interface IGraphConfig {
   /** 画布的dom节点 */
   graphContainer: HTMLElement
   /** 自定节点的渲染 */
-  nodeRender: Map<string, React.FC<any>>
+  nodeRender: Map<string, React.ComponentType<any>>
   /** 自定义边label的渲染 */
-  edgeRender: Map<string, React.FC<any>>
+  edgeRender: Map<string, React.ComponentType<any>>
   /** 自定义X6事件 */
   events: NsGraph.IEvent[]
   /** 解析node类型：从nodeConfig 中解析 ReactComponent类型 */

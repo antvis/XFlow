@@ -141,14 +141,18 @@ export namespace NsGraph {
     position: { x: number; y: number }
     [key: string]: any
   }
-  export type INodeRender<T extends NsGraph.INodeConfig = any> = React.FC<IReactNodeProps<T>>
+  export type INodeRender<T extends NsGraph.INodeConfig = any> = React.ComponentType<
+    IReactNodeProps<T>
+  >
 
   /** XFlow Edge Props */
   export interface IReactEdgeProps<T = any> {
     data: T
   }
   /** XFlow Edge label 组件类型 */
-  export type IEdgeRender<T extends NsGraph.IEdgeConfig = any> = React.FC<IReactEdgeProps<T>>
+  export type IEdgeRender<T extends NsGraph.IEdgeConfig = any> = React.ComponentType<
+    IReactEdgeProps<T>
+  >
 
   /** xflow 封装的 X6 event */
   export interface IEvent<Key extends keyof EventArgs = any> {
