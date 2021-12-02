@@ -78,7 +78,7 @@ export interface ITreeNode {
   /**
    * 支持自定义渲染
    */
-  render?: React.ComponentType<{ data: NsGraph.INodeConfig; isNodeTreePanel: boolean }>
+  render?: React.ComponentType<{ data: ITreeNode; isNodeTreePanel: boolean }>
   /**
    * 【内部渲染用】文件夹的标识.
    */
