@@ -64,3 +64,7 @@ export interface ITreeNode {
 ## 支持搜索
 
 <code src="./demos/search/index.tsx" classname="dnd-node-demo"   />
+
+## 支持自定义节点渲染
+
+<code src="./demos/search/index.tsx" classname="dnd-custom-demo"   />
