@@ -25,7 +25,7 @@ export const defaultNodeFactory = (args: INodeFactoryArgs) => {
 
 interface IConfigRenderOptions {
   graphConfig: IGraphConfig
-  nodeConfig: NsGraph.INodeConfig
+  nodeConfig: ITreeNode
   modelService: IModelService
   commandService: IGraphCommandService
   onMouseDown: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
@@ -38,6 +38,16 @@ export const renderNode = (props: IConfigRenderOptions) => {
     return <div />
   }
 
+  if (nodeConfig.render) {
+    return (
+      <div onMouseDown={onMouseDown}>
+        {React.createElement(nodeConfig.render, {
+          data: nodeConfig,
+          isNodeTreePanel: true,
+        })}
+      </div>
+    )
+  }
   const renderKey = graphConfig.nodeTypeParser(nodeConfig) || XFlowConstants.XFLOW_DEFAULT_NODE
   const reactComponent = graphConfig.nodeRender.get(renderKey)
 
@@ -55,7 +65,7 @@ export const renderNode = (props: IConfigRenderOptions) => {
 
 interface ITitleProps {
   prefixClz: string
-  item: any
+  item: ITreeNode
   graphConfig: any
   modelService: IModelService
   commandService: IGraphCommandService

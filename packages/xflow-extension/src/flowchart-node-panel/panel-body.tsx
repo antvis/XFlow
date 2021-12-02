@@ -1,12 +1,13 @@
+import type { Graph } from '@antv/x6'
+import type { NsGraph } from '@antv/xflow-core'
+import type { NsPanelData } from './service'
+import type { IProps, IFlowchartNode } from './interface'
+import type { ITreeNode } from '../canvas-node-tree-panel/interface'
 import React, { useCallback } from 'react'
 import { Empty, Collapse } from 'antd'
 import { get } from 'lodash'
-import type { IProps, IFlowchartNode } from './interface'
-import type { Graph } from '@antv/x6'
 import { Addon } from '@antv/x6'
-import type { NsGraph } from '@antv/xflow-core'
 import { getNodeReactComponent, useXFlowApp, uuidv4, XFlowNodeCommands } from '@antv/xflow-core'
-import type { NsPanelData } from './service'
 import { setNodeRender } from './utils'
 import { getProps } from '../flowchart-canvas/utils'
 import { NodeTitle, defaultNodeFactory } from '../canvas-node-tree-panel/panel-body'
@@ -122,7 +123,7 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
         const { popoverContent } = item
         return (
           <NodeTitle
-            item={item}
+            item={item as ITreeNode}
             key={item.id}
             onMouseDown={onMouseDown(item)}
             popoverContent={popoverContent}
