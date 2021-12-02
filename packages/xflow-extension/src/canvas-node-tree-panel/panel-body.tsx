@@ -41,7 +41,7 @@ export const renderNode = (props: IConfigRenderOptions) => {
   if (nodeConfig.renderComponent) {
     return (
       <div onMouseDown={onMouseDown}>
-        {React.createElement(nodeConfig.render, {
+        {React.createElement(nodeConfig.renderComponent, {
           data: nodeConfig,
           isNodeTreePanel: true,
         })}
