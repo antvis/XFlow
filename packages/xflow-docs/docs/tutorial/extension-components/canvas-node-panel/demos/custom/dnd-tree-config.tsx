@@ -30,14 +30,14 @@ export const treeDataService: NsNodeTreePanel.ITreeDataService = async (meta, mo
       height: 32,
       renderKey: XFlowConstants.XFLOW_DEFAULT_NODE,
       popoverContent: <div> test </div>,
-      render: props => <div className="react-custom-node-1"> {props.data.label} </div>,
+      renderComponent: props => <div className="react-custom-node-1"> {props.data.label} </div>,
     },
     {
       id: '3',
       label: '算法组件2',
       parentId: '1',
       renderKey: XFlowConstants.XFLOW_DEFAULT_NODE,
-      render: props => <div className="react-custom-node-2"> {props.data.label} </div>,
+      renderComponent: props => <div className="react-custom-node-2"> {props.data.label} </div>,
     },
     {
       id: '4',

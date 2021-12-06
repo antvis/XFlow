@@ -59,9 +59,9 @@ export interface ITreeNode {
    */
   readonly popoverContent?: React.ReactNode
   /**
-   * 支持自定义渲染
+   * 支持自定义需要渲染的组件
    */
-  render?: React.ComponentType<{ data: ITreeNode; isNodeTreePanel: boolean }>
+  renderComponent?: React.ComponentType<{ data: ITreeNode; isNodeTreePanel: boolean }>
 }
 ```
 

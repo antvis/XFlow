@@ -38,7 +38,7 @@ export const renderNode = (props: IConfigRenderOptions) => {
     return <div />
   }
 
-  if (nodeConfig.render) {
+  if (nodeConfig.renderComponent) {
     return (
       <div onMouseDown={onMouseDown}>
         {React.createElement(nodeConfig.render, {
