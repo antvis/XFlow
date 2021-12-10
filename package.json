@@ -1,11 +1,7 @@
 {
   "private": true,
   "name": "xflow",
-<<<<<<< HEAD
   "version": "1.0.8",
-=======
-  "version": "1.0.7",
->>>>>>> chore: release 1.0.7
   "scripts": {
     "start": "npm run dev:docs",
     "bootstrap": "lerna bootstrap",
