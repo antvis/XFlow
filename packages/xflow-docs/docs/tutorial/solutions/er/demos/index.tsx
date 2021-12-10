@@ -35,7 +35,7 @@ let cursorTipRef: HTMLDivElement
 /** 鼠标在画布的位置 */
 let cursorLocation: any
 
-const Demo: React.FC<IProps> = (props: IProps) => {
+const Demo: React.FC<IProps> = (demoProps: IProps) => {
   /** XFlow应用实例 */
   const app = useXFlowApp()
 
@@ -142,7 +142,7 @@ const Demo: React.FC<IProps> = (props: IProps) => {
         entityId: values?.name,
         entityName: values?.displayName,
         entityType: 'FACT',
-      }
+      },
     } as NsNodeCmd.AddNode.IArgs)
 
     if (res) {
@@ -229,7 +229,7 @@ const Demo: React.FC<IProps> = (props: IProps) => {
           configCursorTip({
             left: '0px',
             top: '0px',
-            display:'none',
+            display: 'none',
           })
           setGraphStatus('NORMAL')
         }
@@ -239,16 +239,12 @@ const Demo: React.FC<IProps> = (props: IProps) => {
           configCursorTip({
             left: '0px',
             top: '0px',
-            display:'none',
+            display: 'none',
           })
         }
       }}
     >
-      <XFlow
-        className="xflow-er-solution-container"
-        commandConfig={cmdConfig}
-        onLoad={onLoad}
-      >
+      <XFlow className="xflow-er-solution-container" commandConfig={cmdConfig} onLoad={onLoad}>
         <GraphToolbar
           onAddNodeClick={() => {
             message.info('鼠标移动到画布空白位置, 再次点击鼠标完成创建', 2)
@@ -266,10 +262,7 @@ const Demo: React.FC<IProps> = (props: IProps) => {
           }}
         />
         <XFlowCanvas config={graphConfig}>
-          <CanvasMiniMap
-            nodeFillColor='#ced4de'
-            minimapOptions={{}} 
-          />
+          <CanvasMiniMap nodeFillColor="#ced4de" minimapOptions={{}} />
           <CanvasScaleToolbar position={{ top: 12, left: 20 }} />
           <CanvasSnapline />
         </XFlowCanvas>

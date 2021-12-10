@@ -1,7 +1,11 @@
-import { inject, injectable } from 'mana-syringe'
-import type { NsGraphCmd, ICmdHooks as IHooks, NsGraph } from '@antv/xflow'
-import type { HookHub } from '@antv/xflow-hook'
-import type { IArgsBase, ICommandHandler } from '@antv/xflow'
+import type {
+  NsGraphCmd,
+  ICmdHooks as IHooks,
+  NsGraph,
+  IArgsBase,
+  ICommandHandler,
+  HookHub,
+} from '@antv/xflow'
 import { XFlowGraphCommands, ManaSyringe } from '@antv/xflow'
 import { ICommandContextProvider } from '@antv/xflow'
 import { CustomCommands } from './constants'
@@ -43,20 +47,19 @@ export class DeployDagCommand implements ICommand {
   /** 执行Cmd */
   execute = async () => {
     const ctx = this.contextProvider()
-    const { args, hooks: runtimeHook } = ctx.getArgs()
+    const { args } = ctx.getArgs()
     const hooks = ctx.getHooks()
 
-    const result = await hooks.deployDag.call(args, async args => {
-      const { commandService, deployDagService } = args
+    const result = await hooks.deployDag.call(args, async handlerArgs => {
+      const { commandService, deployDagService } = handlerArgs
       /** 执行Command */
-      await commandService.executeCommand(
+      await commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(
         XFlowGraphCommands.SAVE_GRAPH_DATA.id,
         {
           saveGraphDataService: async (meta, graph) => {
             await deployDagService(meta, graph)
           },
-        } as NsGraphCmd.SaveGraphData.IArgs,
-        runtimeHook,
+        },
       )
       return { success: true }
     })
