@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^4.6.0",
-    "@antv/layout": "^0.0.5",
+    "@antv/layout": "^0.1.17",
     "@antv/x6": "^1.12.11",
     "@antv/x6-react-components": "^1.1.15",
     "@antv/x6-react-shape": "^1.2.5",
@@ -57,7 +57,7 @@
     "dumi-theme-graphin": "^0.1.4",
     "less": "^4.1.2",
     "lodash": "^4.17.20",
-    "parse-github-url": "^1.0.3",
+    "parse-github-url": "^1.0.2",
     "prettier": "^2.3.1",
     "rc-footer": "^0.6.6",
     "react": "^16.8.0  || ^17.0.0",
