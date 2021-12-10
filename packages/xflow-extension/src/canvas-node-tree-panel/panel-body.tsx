@@ -38,7 +38,7 @@ export const renderNode = (props: IConfigRenderOptions) => {
     return <div />
   }
 
-  if (nodeConfig.render) {
+  if (nodeConfig.renderComponent) {
     return (
       <div onMouseDown={onMouseDown}>
         {React.createElement(nodeConfig.render, {
@@ -185,13 +185,12 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
         return
       }
       const renderKey = graphConfig.nodeTypeParser(nodeConfig)
-      const reactComponent = graphConfig.nodeRender.get(renderKey)
+      const reactComponent = nodeConfig.renderComponent ? nodeConfig.renderComponent : graphConfig.nodeRender.get(renderKey)
       const wrappedComponent = getNodeReactComponent(reactComponent, commandService, modelService)
       const nodeData = {
         data: nodeConfig,
         width: nodeConfig.width || 180,
         height: nodeConfig.height || 40,
-        // X6_NODE_PORTAL_NODE_VIEW
         view: graphConfig.graphId,
         component: wrappedComponent,
       }
