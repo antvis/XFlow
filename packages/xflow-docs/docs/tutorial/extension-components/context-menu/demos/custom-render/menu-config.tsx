@@ -5,6 +5,7 @@ import { MenuItemType } from '@antv/xflow'
 import { createCtxMenuConfig } from '@antv/xflow'
 import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
 import { DeleteOutlined, EditOutlined, StopOutlined } from '@ant-design/icons'
+import React from 'react'
 
 /** menuitem 配置 */
 export namespace NsCustomMenuItems {
