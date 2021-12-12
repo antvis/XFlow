@@ -1,8 +1,8 @@
 /**
  * title: 自定义渲染节点
  * desc: |
- *  如果需要左侧面板和画布的节点表现一致则使用renderkey来实现自定义React数据 <br>
- *  如果需要左侧面板节点和画布节点的渲染不一致，可以使用treeDataService返回的render字段来传入自定义的React组件 <br>
+ *  如果左侧面板和画布的节点表现一致则使用renderkey来自定义 <br>
+ *  如果左侧面板节点和画布节点的渲染不一致，可以使用treeDataService返回的renderComponent字段来自定义 <br>
  */
 import React from 'react'
 import { XFlow, XFlowCanvas, NodeTreePanel } from '@antv/xflow'

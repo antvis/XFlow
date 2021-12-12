@@ -77,11 +77,7 @@
     "typescript": "^4.4.3"
   },
   "peerDependencies": {
-    "@antv/layout": "^0.0.5",
     "@ant-design/icons": "^4.6.0",
-    "@antv/x6": "^1.12.11",
-    "@antv/x6-react-components": "^1.1.15",
-    "@antv/x6-react-shape": "^1.2.5",
     "antd": "^4.6.3",
     "lodash": "^4.17.20",
     "react": "^16.8.0  || ^17.0.0",

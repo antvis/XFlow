@@ -1,9 +1,10 @@
 import { inject, injectable, postConstruct } from 'mana-syringe'
-import { Registy } from '@antv/layout'
+import type { ILayout } from '@antv/layout/es/layout/types'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IHooks } from '../../hooks/interface'
 import type { NsGraph } from '../../interface'
 import type { IContext, IArgsBase } from '../../command/interface'
+import * as AntvLayout from '@antv/layout'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
 import { XFlowGraphCommands } from '../constant'
 
@@ -18,9 +19,9 @@ export namespace NsGraphLayout {
 
   export interface IArgs extends IArgsBase {
     /** XFlow自带AntV布局类型 */
-    layoutType?: Registy.LayoutTypes
+    layoutType?: ILayout.LayoutTypes
     /** XFlow自带AntV布局对应参数 */
-    layoutOptions?: Registy.LayoutOptions
+    layoutOptions?: ILayout.LayoutOptions
     /** 需要执行布局算法的数据 */
     graphData?: NsGraph.IGraphData
     /** 用户自定义布局 */
@@ -63,8 +64,10 @@ export class GraphLayoutCommand implements ICommand {
         const { layoutType, layoutOptions, customLayout } = handlerArgs
         /** XFlow内置AntV通用布局 */
         const innerLayout = (graphData: NsGraph.IGraphData) => {
-          const AntVLayout = Registy.getLayoutByName(layoutType)
-          const antVLayout = new AntVLayout(layoutOptions)
+          const clz = AntvLayout.Layouts[layoutType]
+          const antVLayout = new clz({
+            ...layoutOptions,
+          })
           return antVLayout.layout(graphData)
         }
         const layoutFunc = customLayout || innerLayout
