@@ -33,7 +33,7 @@ export const renderMenuOptions = (props: IRenderProps) => {
     submenu = [],
     active,
     hotkey,
-    render,
+    renderComponent,
     onClick,
   } = menuItem
 
@@ -93,17 +93,21 @@ export const renderMenuOptions = (props: IRenderProps) => {
 
   /** 叶子节点 */
   const Icon = IconStore.get(iconName)
-  if (render) {
-    return React.createElement(render, { menuItem, target, commandService, modelService, onHide }, [
-      <Menu.Item
-        key={String(id)}
-        text={label}
-        disabled={!isEnabled}
-        icon={Icon ? <Icon /> : null}
-        active={active}
-        hotkey={hotkey}
-      />,
-    ])
+  if (renderComponent) {
+    return React.createElement(
+      renderComponent,
+      { menuItem, target, commandService, modelService, onHide },
+      [
+        <Menu.Item
+          key={String(id)}
+          text={label}
+          disabled={!isEnabled}
+          icon={Icon ? <Icon /> : null}
+          active={active}
+          hotkey={hotkey}
+        />,
+      ],
+    )
   }
   return (
     <Menu.Item
