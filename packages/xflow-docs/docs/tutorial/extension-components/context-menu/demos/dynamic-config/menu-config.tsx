@@ -1,37 +1,13 @@
-import type { NsNodeCmd, NsEdgeCmd, IMenuOptions, MODELS, NsGraph } from '@antv/xflow'
+import type { NsNodeCmd, IMenuOptions, MODELS, NsGraph } from '@antv/xflow'
 import { createCtxMenuConfig, MenuItemType } from '@antv/xflow'
 import {} from '@antv/xflow'
-import { IconStore, XFlowNodeCommands, XFlowEdgeCommands } from '@antv/xflow'
+import { IconStore, XFlowNodeCommands } from '@antv/xflow'
 import {
   DeleteOutlined,
   EditOutlined,
   StopOutlined,
   UnorderedListOutlined,
 } from '@ant-design/icons'
-
-export const useMenuConfig = createCtxMenuConfig(config => {
-  config.setMenuModelService(async (data, model, modelService, toDispose) => {
-    const { type, cell } = data
-    console.log(type)
-    switch (type) {
-      case 'node':
-        model.setValue({
-          id: 'root',
-          type: MenuItemType.Root,
-          submenu: [NsCustomMenuItems.DELETE_NODE, NsCustomMenuItems.getDynamicMenuItems(data)],
-        })
-        break
-
-      default:
-        model.setValue({
-          id: 'root',
-          type: MenuItemType.Root,
-          submenu: [NsCustomMenuItems.EMPTY_MENU],
-        })
-        break
-    }
-  })
-})
 
 /** menuitem 配置 */
 export namespace NsCustomMenuItems {
@@ -94,3 +70,27 @@ export namespace NsCustomMenuItems {
     type: MenuItemType.Separator,
   }
 }
+
+export const useMenuConfig = createCtxMenuConfig(config => {
+  config.setMenuModelService(async (data, model, modelService, toDispose) => {
+    const { type, cell } = data
+    console.log(type, cell, modelService, toDispose)
+    switch (type) {
+      case 'node':
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsCustomMenuItems.DELETE_NODE, NsCustomMenuItems.getDynamicMenuItems(data)],
+        })
+        break
+
+      default:
+        model.setValue({
+          id: 'root',
+          type: MenuItemType.Root,
+          submenu: [NsCustomMenuItems.EMPTY_MENU],
+        })
+        break
+    }
+  })
+})
