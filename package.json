@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "xflow",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "scripts": {
     "start": "npm run dev:docs",
     "bootstrap": "lerna bootstrap",
