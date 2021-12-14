@@ -32,23 +32,44 @@ nav:
 #### 支持的表单项的配置：
 
 ```tsx | pure
-interface ControlSchema {
-  shape: string // 控件类型
-  name: string | number | (string | number)[] // 控件名称
-  label: string // 控件标签
-  defaultValue: string | number | boolean // 默认值
-  value: string | number | boolean // 当前值
-  disabled: boolean // 是否禁用
-  required: boolean // 是否必填
-  tooltip?: string // 辅助说明
-  extra?: string // 固定帮助文案
-  placeholder?: string // placeholder
-  hidden: boolean // 是否隐藏
-  options?: TOption[] // 一般用于 select 组件的可选项
-  originData?: Record<string, any> // 原始数据，可透传到控件
-  dependencies?: TDependency[] // 依赖的字段
+/** Form控件 */
+export interface IControlSchema {
+  /** form表单显示的控件名 */
+  label: string
+  /** form store中的字段名 */
+  name: NamePath
+  /** controlmap中对应的 control id */
+  shape: ControlShape | string
+  /** 默认值 */
+  defaultValue?: string | number | boolean
+  /** 用户保存的值 */
+  value?: string | number | boolean
+  /** 是否禁用输入，需要控件支持 */
+  disabled?: boolean
+  /** 是否显示必选 */
+  required?: boolean
+  /** label中问号的提示内容 */
+  tooltip?: string
+  /** 控件后显示的文本 */
+  extra?: string
+  /** 没有输入时控件的提示 */
+  placeholder?: string
+  /** 隐藏 */
+  hidden?: boolean
+  /** 下拉控件的选项 */
+  options?: IOption[]
+  /** 原始数据 */
+  originData?: Record<string, any>
+  /** 控件联动的规则 */
+  dependencies?: IDependency[]
+  /** 表单校验规则 */
+  rules?: Rule[]
 }
 ```
+
+## 字段间联动
+
+<code src="./demos/deps/index.tsx" classname="json-form-demo-deps"  />
 
 ## 自定义 shape
 
