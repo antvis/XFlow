@@ -10,7 +10,7 @@ interface Props {
 
 export const Checkbox: React.FC<Props> = props => {
   const { controlSchema } = props
-  const { required, tooltip, extra, name, label } = controlSchema
+  const { required, tooltip, extra, name, label, rules } = controlSchema
 
   return (
     <FormItemWrapper schema={controlSchema}>
@@ -19,6 +19,7 @@ export const Checkbox: React.FC<Props> = props => {
           <Form.Item
             className="xflow-form-checkbox"
             name={name}
+            rules={rules}
             initialValue={initialValue}
             tooltip={tooltip}
             extra={renderFormItemExtra(extra)}

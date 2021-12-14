@@ -10,7 +10,7 @@ interface Props {
 
 export const Select: React.FC<Props> = props => {
   const { controlSchema } = props
-  const { required, tooltip, extra, name, label, placeholder, options = [] } = controlSchema
+  const { required, tooltip, extra, name, label, placeholder, options = [], rules } = controlSchema
 
   return (
     <FormItemWrapper schema={controlSchema}>
@@ -24,6 +24,7 @@ export const Select: React.FC<Props> = props => {
             extra={renderFormItemExtra(extra)}
             required={required}
             hidden={hidden}
+            rules={rules}
           >
             <ASelect disabled={disabled} placeholder={placeholder}>
               {options.map(option => {

@@ -1,7 +1,7 @@
 import type React from 'react'
-import type { IPosition, NsGraph, IModelService, IGraphCommandService } from '@antv/xflow-core'
 import type { FormInstance } from 'antd'
-import type { FieldData } from 'rc-field-form/es/interface'
+import type { FieldData, Rule } from 'rc-field-form/es/interface'
+import type { IPosition, NsGraph, IModelService, IGraphCommandService } from '@antv/xflow-core'
 import type { Cell } from '@antv/x6'
 
 export { FieldData }
@@ -211,6 +211,8 @@ export interface IControlSchema {
   originData?: Record<string, any>
   /** 控件联动的规则 */
   dependencies?: IDependency[]
+  /** 表单校验规则 */
+  rules?: Rule[]
 }
 
 /** Tab下的Group控件 */
