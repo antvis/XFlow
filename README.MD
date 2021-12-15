@@ -1,32 +1,33 @@
 # XFlow: 专业的图编辑应用级解决方案
 
-## 什么是XFlow？
+## 什么是 XFlow？
 
 XFlow 是 AntV 旗下, 基于 X6 图编辑引擎、面向 React 技术栈用户的图编辑应用级解决方案, 旨在让复杂的图编辑应用开发变得简单高效。XFlow 源自蚂蚁体验技术部数据智能团队, 已经在蚂蚁大数据部、人工智能中台业务场景深度打磨验证, 值得信赖！
 
-
 ## 特性
 
-- 🌱　极易定制：支持使用 React 组件 开发节点/连线样式。
-- 🚀　开箱即用：内置1个快速上手 + 3个解决方案, 内置若干 React 交互组件, 如小地图、对齐线、右键菜单等。
-- 💯　生产可用：源自蚂蚁体验技术部数据智能团队, 在蚂蚁大数据部、人工智能中台业务场景深度打磨验证。
-- 🧲　 一切皆可扩展：内置统一的扩展模式, 可按照自己的业务需求扩展图交互, 所有组件皆可扩展。
-
+- 🌱 　极易定制：支持使用 React 组件 开发节点/连线样式。
+- 🚀 　开箱即用：内置 1 个快速上手 + 3 个解决方案, 内置若干 React 交互组件, 如小地图、对齐线、右键菜单等。
+- 💯 　生产可用：源自蚂蚁体验技术部数据智能团队, 在蚂蚁大数据部、人工智能中台业务场景深度打磨验证。
+- 🧲 　 一切皆可扩展：内置统一的扩展模式, 可按照自己的业务需求扩展图交互, 所有组件皆可扩展。
 
 ## 应用案例
 
 ### 简单示例
+
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*S8LGR6I1SqsAAAAAAAAAAAAAARQnAQ />
 
 ### 流程图解决方案
+
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*ixVAQrEoCTcAAAAAAAAAAAAAARQnAQ />
 
-### DAG解决方案
+### DAG 解决方案
+
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*mFc0SLQOW44AAAAAAAAAAAAAARQnAQ />
 
-### ER图解决方案
-<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*kp-AQ7_GKi0AAAAAAAAAAAAAARQnAQ />
+### ER 图解决方案
 
+<img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*kp-AQ7_GKi0AAAAAAAAAAAAAARQnAQ />
 
 ## 安装
 
@@ -41,13 +42,13 @@ $ yarn add @antv/xflow
 
 ```
 
-### 使用cdn:
+### 使用 cdn:
 
 通过 script 标签引入, 可以使用下面两个 CDN 中的任何一个, 默认返回 XFlow 的最新版:
 
-* https://unpkg.com/@antv/xflow/dist/index.umd.js
+- https://unpkg.com/@antv/xflow/dist/index.umd.js
 
-* https://cdn.jsdelivr.net/npm/@antv/xflow/dist/index.umd.js
+- https://cdn.jsdelivr.net/npm/@antv/xflow/dist/index.umd.js
 
 ```tsx | pure
 <script src="https://unpkg.com/@antv/xflow/dist/index.umd.js"></script>
@@ -55,11 +56,9 @@ $ yarn add @antv/xflow
 
 对于生产环境, 我们推荐使用一个明确的版本号, 以避免新版本升级造成不可预期的破坏:
 
-* https://unpkg.com/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
+- https://unpkg.com/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
 
-* https://cdn.jsdelivr.net/npm/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
-
-
+- https://cdn.jsdelivr.net/npm/@antv/xflow@0.3.2-beta.1/dist/index.umd.js
 
 ## 开始使用
 
@@ -169,7 +168,7 @@ const onLoad: IAppLoad = async app => {
     const nodeData: NsGraph.INodeConfig = node.getData()
     message.success(`${nodeData.id}节点被点击了`)
   })
-  graph .on('edge:click', ({ e, x, y, edge, view }) => {
+  graph.on('edge:click', ({ e, x, y, edge, view }) => {
     edge.toFront()
     const edgeData: NsGraph.IEdgeConfig = edge.getData()
     message.success(`${edgeData.id}连线被点击了`)
@@ -181,15 +180,12 @@ const onLoad: IAppLoad = async app => {
 
 另外 XFlow 真正强大之处在于:
 
-* 画布组件与交互组件的联动机制。
-* XFlow 提供的扩展机制允许定制任意业务需要的交互组件。您可以在后面的教程中详细了解。
-
-
+- 画布组件与交互组件的联动机制。
+- XFlow 提供的扩展机制允许定制任意业务需要的交互组件。您可以在后面的教程中详细了解。
 
 ## 使用文档
 
-[XFlow 使用文档](https://xflow.antv.vision/zh/docs/tutorial-01/about)
-
+[XFlow 使用文档](https://xflow.antv.vision/docs/tutorial/intro/about)
 
 ## 如何交流
 
@@ -200,7 +196,6 @@ const onLoad: IAppLoad = async app => {
 <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,rOHuvgq5s0EHDktyyQJffDE3ZAmHnbB2e6iwn/w4BKs=&_dt_no_comment=1&origin=11" target="_blank" rel="noopener noreferrer">
   <img src="https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*KuL6R7t0Xw0AAAAAAAAAAAAAARQnAQ" alt="X6/XFlow 图可视化交流群1" width="375" />
 </a>
-
 
 ## 如何开发
 
@@ -256,7 +251,6 @@ $ yarn --registry=https://registry.npmjs.org
 $ yarn run dev:docs
 ```
 
-
 ## 如何贡献
 
 如果你在使用的过程中碰到问题，可以先通过 [issues](https://github.com/antvis/xflow/issues) 看看有没有类似的 bug 或者建议。
@@ -266,4 +260,3 @@ $ yarn run dev:docs
 <a href="https://github.com/antvis/xflow/graphs/contributors">
   <img src="/CONTRIBUTORS.svg" alt="Contributors" width="740" />
 </a>
-

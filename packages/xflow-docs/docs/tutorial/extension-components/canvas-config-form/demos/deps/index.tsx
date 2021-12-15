@@ -1,11 +1,10 @@
 /**
- * title: 基础使用
+ * title: 字段联动
  * desc: |
- *  使用 formSchemaService 函数返回的数据作为form的schema <br>
- *  schema 中的 shape 字段决定渲染的组件 <br>
- *  用户修改表单项后会触发 formValueUpdateService 的回调，回调中可以保存数据 <br>
+ *  使用 dependencies 字段来控制表单控件的enable和visible状态 <br>
  */
 import React from 'react'
+import type { NsNodeCmd, NsGraph } from '@antv/xflow'
 import {
   XFlow,
   XFlowCanvas,
@@ -16,7 +15,6 @@ import {
 } from '@antv/xflow'
 import { set } from 'lodash'
 import { onLoad } from './graph-config'
-import type { NsNodeCmd, NsGraph } from '@antv/xflow'
 import '@antv/xflow/dist/index.css'
 import './index.less'
 
@@ -64,8 +62,48 @@ namespace NsJsonForm {
         tabs: [
           {
             /** Tab的title */
-            name: '画布配置',
-            groups: [],
+            name: '字段联动显隐',
+            groups: [
+              {
+                name: 'Group1',
+                controls: [
+                  {
+                    name: 'isDisabled',
+                    tooltip: '是否禁用联动',
+                    label: '是否禁用联动',
+                    shape: ControlShape.CHECKBOX,
+                    defaultValue: false,
+                  },
+                  {
+                    name: 'col2',
+                    label: '根据Checkbox状态联动Disable状态',
+                    shape: ControlShape.INPUT,
+                    // 联动规则
+                    dependencies: [
+                      { name: 'isDisabled', condition: true, disabled: true, hidden: false },
+                      { name: 'isDisabled', condition: false, disabled: false, hidden: false },
+                    ],
+                  },
+                  {
+                    name: 'isHidden',
+                    tooltip: '是否显示/隐藏字段',
+                    label: '是否隐藏字段',
+                    shape: ControlShape.CHECKBOX,
+                    defaultValue: true,
+                  },
+                  {
+                    name: 'col2',
+                    label: '根据Checkbox状态联动显示状态',
+                    shape: ControlShape.INPUT,
+                    // 联动规则
+                    dependencies: [
+                      { name: 'isHidden', condition: false, disabled: false, hidden: false },
+                      { name: 'isHidden', condition: true, disabled: false, hidden: true },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
         ],
       }
@@ -77,31 +115,7 @@ namespace NsJsonForm {
         {
           /** Tab的title */
           name: '节点配置',
-          groups: [
-            {
-              name: 'group1',
-              controls: [
-                {
-                  name: 'label',
-                  label: '节点Label',
-                  shape: ControlShape.INPUT,
-                  value: targetData.label,
-                },
-                {
-                  name: 'x',
-                  label: 'x',
-                  shape: ControlShape.FLOAT,
-                  value: targetData.x,
-                },
-                {
-                  name: 'y',
-                  label: 'y',
-                  shape: ControlShape.FLOAT,
-                  value: targetData.y,
-                },
-              ],
-            },
-          ],
+          groups: [],
         },
       ],
     }

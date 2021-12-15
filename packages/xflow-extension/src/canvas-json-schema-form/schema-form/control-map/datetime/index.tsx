@@ -11,7 +11,7 @@ interface Props {
 
 export const Datetime: React.FC<Props> = props => {
   const { controlSchema } = props
-  const { required, tooltip, extra, name, label } = controlSchema
+  const { required, tooltip, extra, name, label, rules } = controlSchema
 
   return (
     <FormItemWrapper schema={controlSchema}>
@@ -25,6 +25,7 @@ export const Datetime: React.FC<Props> = props => {
             extra={renderFormItemExtra(extra)}
             required={required}
             hidden={hidden}
+            rules={rules}
           >
             <DatetimePicker style={{ width: '100%' }} disabled={disabled} />
           </Form.Item>

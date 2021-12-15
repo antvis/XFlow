@@ -10,7 +10,7 @@ interface Props {
 
 export const StringInput: React.FC<Props> = props => {
   const { controlSchema } = props
-  const { required, tooltip, extra, name, label, placeholder } = controlSchema
+  const { required, tooltip, extra, name, label, placeholder, rules } = controlSchema
 
   return (
     <FormItemWrapper schema={controlSchema}>
@@ -24,6 +24,7 @@ export const StringInput: React.FC<Props> = props => {
             extra={renderFormItemExtra(extra)}
             required={required}
             hidden={hidden}
+            rules={rules}
           >
             <Input
               className={'xflow-form-input'}

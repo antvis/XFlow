@@ -1,11 +1,11 @@
 /**
- * title: 基础使用
+ * title: 校验规则
  * desc: |
- *  使用 formSchemaService 函数返回的数据作为form的schema <br>
- *  schema 中的 shape 字段决定渲染的组件 <br>
- *  用户修改表单项后会触发 formValueUpdateService 的回调，回调中可以保存数据 <br>
+ *  支持rules，参考antd rules 配置 https://ant.design/components/form-cn/#Rule  <br>
+ *  校验错误可以在formValueUpdateService中通过allFields数组的errors字段获取到
  */
 import React from 'react'
+import type { NsNodeCmd, NsGraph } from '@antv/xflow'
 import {
   XFlow,
   XFlowCanvas,
@@ -16,7 +16,6 @@ import {
 } from '@antv/xflow'
 import { set } from 'lodash'
 import { onLoad } from './graph-config'
-import type { NsNodeCmd, NsGraph } from '@antv/xflow'
 import '@antv/xflow/dist/index.css'
 import './index.less'
 
@@ -64,8 +63,26 @@ namespace NsJsonForm {
         tabs: [
           {
             /** Tab的title */
-            name: '画布配置',
-            groups: [],
+            name: '配置字段规则',
+            groups: [
+              {
+                name: 'Group1',
+                controls: [
+                  {
+                    name: 'field1',
+                    label: '长度校验 ',
+                    shape: ControlShape.INPUT,
+                    rules: [{ message: 'min > 3 and max < 10', min: 3, max: 10 }],
+                  },
+                  {
+                    name: 'field2',
+                    label: 'email',
+                    shape: ControlShape.INPUT,
+                    rules: [{ type: 'email', message: '请输入email' }],
+                  },
+                ],
+              },
+            ],
           },
         ],
       }
@@ -77,31 +94,7 @@ namespace NsJsonForm {
         {
           /** Tab的title */
           name: '节点配置',
-          groups: [
-            {
-              name: 'group1',
-              controls: [
-                {
-                  name: 'label',
-                  label: '节点Label',
-                  shape: ControlShape.INPUT,
-                  value: targetData.label,
-                },
-                {
-                  name: 'x',
-                  label: 'x',
-                  shape: ControlShape.FLOAT,
-                  value: targetData.x,
-                },
-                {
-                  name: 'y',
-                  label: 'y',
-                  shape: ControlShape.FLOAT,
-                  value: targetData.y,
-                },
-              ],
-            },
-          ],
+          groups: [],
         },
       ],
     }

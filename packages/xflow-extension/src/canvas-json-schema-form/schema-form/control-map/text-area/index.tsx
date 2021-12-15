@@ -10,7 +10,7 @@ interface Props {
 
 export const TextArea: React.FC<Props> = props => {
   const { controlSchema } = props
-  const { required, tooltip, extra, name, label, placeholder } = controlSchema
+  const { required, tooltip, extra, name, label, placeholder, rules } = controlSchema
 
   return (
     <FormItemWrapper schema={controlSchema}>
@@ -24,6 +24,7 @@ export const TextArea: React.FC<Props> = props => {
             extra={renderFormItemExtra(extra)}
             required={required}
             hidden={hidden}
+            rules={rules}
           >
             <Input.TextArea allowClear placeholder={placeholder} rows={3} disabled={disabled} />
           </Form.Item>
