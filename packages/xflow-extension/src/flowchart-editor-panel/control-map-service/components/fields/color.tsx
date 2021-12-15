@@ -1,4 +1,5 @@
 import React, { useState, useRef, memo } from 'react'
+import { render, createPortal } from 'react-dom'
 import type { IGraphConfig } from '@antv/xflow-core'
 import { useXFlowApp } from '@antv/xflow-core'
 import { Button } from 'antd'
@@ -53,6 +54,20 @@ const ColorPicker: React.FC<IProps> = props => {
     )
   }
 
+  const createPickColorContainer = (visible: boolean) => {
+    const existElements = document.getElementsByClassName(`${PREFIX}-pick-color-container`)
+    if (existElements.length) {
+      Array.from(existElements).forEach(ele => {
+        ele.parentNode?.removeChild(ele)
+      })
+    }
+    if (!visible) {
+      return
+    }
+    const div = document.createElement('div')
+    render(createPortal(<PickContainer />, document.getElementsByTagName('body')[0]), div)
+  }
+
   return (
     <div className="group">
       {label && <label>{label}</label>}
@@ -70,7 +85,7 @@ const ColorPicker: React.FC<IProps> = props => {
           }}
         />
       </div>
-      {show && <PickContainer />}
+      {createPickColorContainer(show)}
     </div>
   )
 }
