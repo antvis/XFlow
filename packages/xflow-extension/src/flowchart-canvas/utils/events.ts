@@ -12,18 +12,17 @@ export const movedNode = async (e: any, cmds: IGraphCommandService) => {
   }
 
   const { data } = node
-  // 更新组内元素
+  // 更新组内元素，边信息无需更新
   if (data?.groupChildren) {
     const x6Graph = getGraphInstance()
     data?.groupChildren.forEach(async (id: string) => {
       const currentNode = x6Graph.getCellById(id) as Node
-      const position = currentNode.getPosition?.()
-      if (currentNode && position) {
+      if (currentNode && currentNode.isNode()) {
         await cmds.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
           nodeConfig: {
             ...currentNode.data,
-            ...position,
-            ...currentNode.getSize(),
+            ...currentNode.getSize?.(),
+            ...currentNode.getPosition?.(),
           },
         })
       }
