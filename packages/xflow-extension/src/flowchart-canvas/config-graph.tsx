@@ -15,6 +15,8 @@ import {
 } from '../flowchart-node-panel'
 import { movedNode, resizeNode, changePortsVisible, addTools, removeTools, setProps } from './utils'
 
+/** 临时边 */
+const TEMP_EGDE = 'flowchart-connecting-edge'
 /** 自定义React节点 */
 const ANT_PREFIX = 'ant'
 export namespace NsAddEdgeEvent {
@@ -33,8 +35,7 @@ const XFlowEdge = Shape.Edge.registry.register(
   Shape.Edge.define({
     zIndex: 1,
     highlight: true,
-    shape: 'EDGE1',
-    name: 'custom-edge',
+    name: TEMP_EGDE,
     label: '',
     anchor: {
       name: 'midSide',
