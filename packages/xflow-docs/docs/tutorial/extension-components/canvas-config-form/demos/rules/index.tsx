@@ -1,7 +1,8 @@
 /**
- * title: 字段联动
+ * title: 校验规则
  * desc: |
- *  使用 dependencies 字段来控制表单控件的enable和visible状态 <br>
+ *  支持rules，参考antd rules 配置 https://ant.design/components/form-cn/#Rule  <br>
+ *  校验错误可以在formValueUpdateService中通过allFields数组的errors字段获取到
  */
 import React from 'react'
 import type { NsNodeCmd, NsGraph } from '@antv/xflow'
@@ -62,44 +63,22 @@ namespace NsJsonForm {
         tabs: [
           {
             /** Tab的title */
-            name: '字段联动显隐',
+            name: '配置字段规则',
             groups: [
               {
                 name: 'Group1',
                 controls: [
                   {
-                    name: 'isDisabled',
-                    tooltip: '是否禁用联动',
-                    label: '是否禁用联动',
-                    shape: ControlShape.CHECKBOX,
-                    defaultValue: false,
-                  },
-                  {
-                    name: 'col2',
-                    label: '根据Checkbox状态联动Disable状态',
+                    name: 'field1',
+                    label: '长度校验 ',
                     shape: ControlShape.INPUT,
-                    // 联动规则
-                    dependencies: [
-                      { name: 'isDisabled', condition: true, disabled: true, hidden: false },
-                      { name: 'isDisabled', condition: false, disabled: false, hidden: false },
-                    ],
+                    rules: [{ message: 'min > 3 and max < 10', min: 3, max: 10 }],
                   },
                   {
-                    name: 'isHidden',
-                    tooltip: '是否显示/隐藏字段',
-                    label: '是否隐藏字段',
-                    shape: ControlShape.CHECKBOX,
-                    defaultValue: true,
-                  },
-                  {
-                    name: 'col2',
-                    label: '根据Checkbox状态联动显示状态',
+                    name: 'field2',
+                    label: 'email',
                     shape: ControlShape.INPUT,
-                    // 联动规则
-                    dependencies: [
-                      { name: 'isHidden', condition: false, disabled: false, hidden: false },
-                      { name: 'isHidden', condition: true, disabled: false, hidden: true },
-                    ],
+                    rules: [{ type: 'email', message: '请输入email' }],
                   },
                 ],
               },

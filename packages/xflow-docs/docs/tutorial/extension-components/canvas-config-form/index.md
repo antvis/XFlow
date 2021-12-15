@@ -67,9 +67,13 @@ export interface IControlSchema {
 }
 ```
 
-## 字段间联动
+## 字段联动
 
 <code src="./demos/deps/index.tsx" classname="json-form-demo-deps"  />
+
+## 校验规则
+
+<code src="./demos/rules/index.tsx" classname="json-form-demo-deps"  />
 
 ## 自定义 shape
 
