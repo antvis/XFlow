@@ -35,7 +35,6 @@ const XFlowEdge = Shape.Edge.registry.register(
   Shape.Edge.define({
     zIndex: 1,
     highlight: true,
-    shape: TEMP_EGDE,
     name: TEMP_EGDE,
     label: '',
     anchor: {
