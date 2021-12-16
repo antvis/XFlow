@@ -13,6 +13,7 @@ export namespace NsGraph {
   export interface IGraphMeta {
     /** 元数据，除了flowId之外，可能包括这些业务属性：画布名称/创建时间/更新时间/用户权限/画布 */
     flowId: string
+    /** 自定义字段 */
     [key: string]: any
   }
 

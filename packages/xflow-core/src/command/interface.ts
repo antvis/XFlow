@@ -11,6 +11,7 @@ import type { IModelService } from '../model-service'
 import type { IHooks } from '../command-contributions/interface'
 import type { IRuntimeHook } from '@antv/xflow-hook/es/interface'
 import type { GRAPH_META } from '../model-service/constant'
+import type { NsGraph } from '../interface'
 
 /**
  * A command is a unique identifier of a function
@@ -176,6 +177,8 @@ export interface IContext<Args extends IArgsBase = any, Result = any, Hooks = IH
   getHooks: () => Hooks
   /** 获取Graph */
   getX6Graph: () => Promise<X6Graph>
+  /** 获取GraphMeta */
+  getGraphMeta: () => Promise<NsGraph.IGraphMeta>
   /** 获取Graph配置 */
   getGraphConfig: () => Promise<IGraphConfig>
   /** 获取Command */

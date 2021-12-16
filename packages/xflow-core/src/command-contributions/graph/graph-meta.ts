@@ -21,8 +21,8 @@ export namespace NsGraphMeta {
     graphMetaService?: IGraphMetaService
   }
   /** hook handler 返回类型 */
-  export interface IResult {
-    graphMeta: NsGraph.IGraphMeta
+  export interface IResult extends NsGraph.IGraphMeta {
+    flowId: string
   }
   /** api service 类型 */
   export interface IGraphMetaService {
@@ -62,7 +62,7 @@ export class GraphMetaCommand implements ICommand {
         const meta = graphMetaService
           ? await graphMetaService(handlerArgs)
           : { flowId: handlerArgs?.meta?.flowId }
-        return { graphMeta: meta, flowId: meta?.flowId }
+        return { flowId: meta?.flowId, ...meta }
       },
       /** 外部的 hook */
       runtimeHook,
@@ -71,7 +71,7 @@ export class GraphMetaCommand implements ICommand {
     const modelService = this.ctx.getModelService()
     /** 如果已经注册，直接更新已有的值 */
     const model = await MODELS.GRAPH_META.getModel(modelService)
-    model.setValue(result.graphMeta)
+    model.setValue(result)
 
     /** 设置结果 */
     this.ctx.setResult(result)

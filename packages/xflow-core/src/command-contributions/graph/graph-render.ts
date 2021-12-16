@@ -94,9 +94,8 @@ export class GraphRenderCommand implements ICommand {
       args,
       async handlerArgs => {
         const x6Graph = await this.ctx.getX6Graph()
-
-        const { graphMeta, beforeRender, graphData, isNodeEqual, isEdgeEqual, afterRender } =
-          handlerArgs
+        const graphMeta = await this.ctx.getGraphMeta()
+        const { beforeRender, graphData, isNodeEqual, isEdgeEqual, afterRender } = handlerArgs
 
         /** 如果用户自定义beforeRender方法 */
         beforeRender && beforeRender(graphMeta)
