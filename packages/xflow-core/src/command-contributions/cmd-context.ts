@@ -1,15 +1,15 @@
-import { injectable, inject, postConstruct } from 'mana-syringe'
 import type { Disposable } from '../common/disposable'
-import { DisposableCollection } from '../common/disposable'
-import { IGraphProvider } from '../xflow-main/graph/graph-provider'
-import { IModelService, MODELS } from '../model-service'
 import type { Graph } from '@antv/x6'
-import { IHookService } from '../hooks'
 import type { IHooks } from '../hooks/interface'
 import type { IRuntimeHook } from '@antv/xflow-hook/es/interface'
 import type { ICommandHandler, IContext } from '../command/interface'
-import { IGraphCommandService } from '../command/interface'
 import type { NsGraph } from '../interface'
+import { injectable, inject, postConstruct } from 'mana-syringe'
+import { DisposableCollection } from '../common/disposable'
+import { IGraphProvider } from '../xflow-main/graph/graph-provider'
+import { IModelService, MODELS } from '../model-service'
+import { IGraphCommandService } from '../command/interface'
+import { IHookService } from '../hooks'
 
 @injectable()
 export class CmdContext<Args = any, Result = any, Hooks extends IHooks = IHooks>
@@ -66,6 +66,7 @@ export class CmdContext<Args = any, Result = any, Hooks extends IHooks = IHooks>
   getGraphConfig = async () => {
     return this.graphProvider.getGraphOptions()
   }
+  /** 获取 graphMeta */
   getGraphMeta = async () => {
     const service = this.getModelService()
     const meta = this.graphMeta || (await MODELS.GRAPH_META.useValue(service))
@@ -85,6 +86,7 @@ export class CmdContext<Args = any, Result = any, Hooks extends IHooks = IHooks>
       graphMeta: this.graphMeta,
       modelService: this.getModelService(),
       commandService: this.getCommands(),
+      getGraphMeta: this.getGraphMeta,
       getX6Graph: this.getX6Graph,
       getGraphConfig: this.getGraphConfig,
     }

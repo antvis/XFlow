@@ -1,4 +1,5 @@
 import type { Node, Edge, CellView, Cell } from '@antv/x6'
+import type { NsGraph } from '../interface'
 import type { Token } from '../common/types'
 import type { IModelService } from './interface'
 
@@ -126,7 +127,7 @@ export namespace CONTEXTMENU_TARGET {
 /** 画布元数据状态 */
 export namespace GRAPH_META {
   export const id = 'GRAPH_META'
-  export type IState = { flowId: string; [key: string]: any }
+  export type IState = NsGraph.IGraphMeta
   export const getModel = getModelUtil<IState>(id)
   export const useValue = useModelValueUtil<IState>(id)
 }

@@ -60,7 +60,8 @@ export class GraphLoadDataCommand implements ICommand {
     const result = await hooks.loadData.call(
       args,
       async handlerArgs => {
-        const { loadDataService, graphMeta } = handlerArgs
+        const { loadDataService } = handlerArgs
+        const graphMeta = await this.ctx.getGraphMeta()
         const graphData = await loadDataService(graphMeta)
         return { graphData }
       },

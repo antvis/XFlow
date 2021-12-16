@@ -28,7 +28,7 @@ export namespace NsNodeTreePanelModel {
     searchList: ITreeNode[]
   }
   export const useModel = async (model: IModelService) => {
-    return model.awaitModel(id)
+    return model.awaitModel<IState>(id)
   }
 }
 

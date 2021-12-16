@@ -3,7 +3,6 @@ import type { IContext, IArgsBase } from '../../command/interface'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IHooks } from '../../hooks/interface'
 import { inject, injectable, postConstruct } from 'mana-syringe'
-import { MODELS } from '../../model-service'
 import { XFlowGraphCommands } from '../constant'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
 
@@ -96,7 +95,7 @@ export class GraphSaveDataCommand implements ICommand {
         })
 
         const graphData = { nodes, edges }
-        const graphMeta = await MODELS.GRAPH_META.useValue(ctx.getModelService())
+        const graphMeta = await this.ctx.getGraphMeta()
         /** 执行 service */
         if (saveGraphDataService) {
           const result = await saveGraphDataService(graphMeta, graphData)
