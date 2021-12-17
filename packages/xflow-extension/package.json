@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow-extension",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist es lib",
@@ -38,8 +38,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@antv/xflow-core": "1.0.12",
-    "@antv/xflow-hook": "1.0.12",
+    "@antv/xflow-core": "1.0.13",
+    "@antv/xflow-hook": "1.0.13",
     "schemant-form": "1.1.0"
   },
   "devDependencies": {

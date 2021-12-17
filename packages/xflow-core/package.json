@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow-core",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist es lib",
@@ -46,13 +46,13 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@antv/xflow-hook": "1.0.12",
+    "@antv/xflow-hook": "1.0.13",
     "mana-common": "^0.1.0",
     "mana-syringe": "^0.2.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.7",
     "classnames": "^2.2.6",
-    "immer": "^8.0.0"
+    "immer": "^9.0.6"
   },
   "devDependencies": {
     "@antv/x6": "^1.12.11",
