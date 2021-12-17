@@ -17,5 +17,5 @@
     "emitDecoratorMetadata": true
   },
   "include": ["packages/**/src", "packages/**/docs", "typings.d.ts"],
-  "exclude": [".eslintrc.js", "node_modules", "**/es/**/*", "**/lib/**/*"]
+  "exclude": [".eslintrc.js", "node_modules", "**/es/**/*", "**/lib/**/*", "**/jest.config.js"]
 }
