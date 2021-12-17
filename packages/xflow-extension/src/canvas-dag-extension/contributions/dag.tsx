@@ -183,8 +183,7 @@ export const dagOptions: Graph.Options = {
   contrib: [IHookContribution, IModelContribution, IGraphCommandContribution],
 })
 export class DagHooksContribution
-  implements IHookContribution<ICmdHooks>, IGraphCommandContribution, IModelContribution
-{
+  implements IHookContribution<ICmdHooks>, IGraphCommandContribution, IModelContribution {
   /** IGraphCommandFactory */
   @ManaSyringe.inject(IGraphCommandFactory)
   commandFactory: IGraphCommandFactory
@@ -218,6 +217,7 @@ export class DagHooksContribution
         handler: async args => {
           const cellFactory: NsEdgeCmd.AddEdge.IArgs['cellFactory'] = async edgeConfig => {
             const cell = new XFlowEdge({
+              ...edgeConfig,
               id: edgeConfig.id,
               source: {
                 cell: edgeConfig.source,

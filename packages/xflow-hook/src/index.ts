@@ -37,8 +37,7 @@ export class HookHub<Args = any, Result = Args | null> implements IHookHub<Args,
     if (!sort) {
       return hooks
     }
-    HookUtils.sort(hooks, this.hookMap)
-    return hooks
+    return HookUtils.sort(hooks, this.hookMap)
   }
   /** registerHook */
   registerHook = (hookMeta: IHook<Args, Result>): Disposable => {
@@ -55,11 +54,11 @@ export class HookHub<Args = any, Result = Args | null> implements IHookHub<Args,
   /** registerHook */
   call = async (
     args: Args,
-    main: (mainArgs: Args) => Promise<Result> = async mainArgs => mainArgs as unknown as Result,
+    main: (mainArgs: Args) => Promise<Result> = async mainArgs => (mainArgs as unknown) as Result,
     runtimeHook: IRuntimeHook<Args, Result> = [],
   ): Promise<Result | undefined> => {
     // TODO: 这里加cache
-    const hooks = this.getHooks(runtimeHook)
+    const hooks = this.getHooks(runtimeHook, true)
     const scheduler = this.schedulers[this.scheduleType]
     return scheduler(args, main, hooks)
   }
@@ -121,7 +120,7 @@ export class HookHub<Args = any, Result = Args | null> implements IHookHub<Args,
       Promise.all(promises).then(res => defer.resolve(res))
       /** 检查是否被替换 */
       if (main) {
-        return await main.call(this, defer as any as Args)
+        return await main.call(this, (defer as any) as Args)
       }
     },
   } as const

@@ -83,20 +83,18 @@ export namespace HookUtils {
         if (!hookMap.has(hook.before)) {
           throw ErrorUtils.HookBeforeError()
         }
-        const edge = [hookMap.get(hook.before), hook] as [IHook, IHook]
+        const edge = [hook, hookMap.get(hook.before)] as [IHook, IHook]
         edges.push(edge)
       }
       if (hook.after) {
         if (!hookMap.has(hook.after)) {
           throw ErrorUtils.HookBeforeError()
         }
-        const edge = [hook, hookMap.get(hook.after)] as [IHook, IHook]
+        const edge = [hookMap.get(hook.after), hook] as [IHook, IHook]
         edges.push(edge)
       }
     })
-
-    const sortedHooks = toposort(edges)
-    sortedHooks.reverse()
+    const sortedHooks = toposort.array(hooks, edges)
     return sortedHooks
   }
 }

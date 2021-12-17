@@ -13,8 +13,7 @@ import { IHookService } from '../hooks'
 
 @injectable()
 export class CmdContext<Args = any, Result = any, Hooks extends IHooks = IHooks>
-  implements IContext<Args, Result, Hooks>
-{
+  implements IContext<Args, Result, Hooks> {
   /** undos 存在这里 */
   protected toDispose = new DisposableCollection()
 
@@ -83,7 +82,6 @@ export class CmdContext<Args = any, Result = any, Hooks extends IHooks = IHooks>
     /** 注入graph meta */
     const args = {
       ...this.args,
-      graphMeta: this.graphMeta,
       modelService: this.getModelService(),
       commandService: this.getCommands(),
       getGraphMeta: this.getGraphMeta,
