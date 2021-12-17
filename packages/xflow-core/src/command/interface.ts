@@ -10,7 +10,6 @@ import type { IModelService } from '../model-service'
 // hooks
 import type { IHooks } from '../command-contributions/interface'
 import type { IRuntimeHook } from '@antv/xflow-hook/es/interface'
-import type { GRAPH_META } from '../model-service/constant'
 import type { NsGraph } from '../interface'
 
 /**
@@ -230,14 +229,13 @@ export interface ICommandConfig<Args extends IArgsBase = any> {
 export interface IArgsBase {
   commandService?: IGraphCommandService
   modelService?: IModelService
-  graphMeta?: GRAPH_META.IState
 }
 
 /** Pipeline命令参数 */
 export interface IGraphPipelineCommand<
   Args extends IArgsBase = any,
   Result = any,
-  ICmdHooks = IHooks,
+  ICmdHooks = IHooks
 > {
   commandId: string
   getCommandOption: (ctx: IContext<Args, Result, ICmdHooks>) => Promise<ICommandConfig<Args>>
