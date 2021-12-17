@@ -1,10 +1,10 @@
-import type { NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
+import type { NsGraphCmd } from '@antv/xflow'
 import { createCmdConfig, DisposableCollection, XFlowGraphCommands } from '@antv/xflow'
 import type { IApplication } from '@antv/xflow'
 import type { IGraphPipelineCommand } from '@antv/xflow'
 import { MockApi } from './service'
 import { commandContributions } from './cmd-extensions'
-import { Edge } from '@antv/x6'
+
 export const useCmdConfig = createCmdConfig(config => {
   // 注册全局Command扩展
   config.setCommandContributions(() => commandContributions)
