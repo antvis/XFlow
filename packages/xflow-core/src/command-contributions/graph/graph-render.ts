@@ -163,7 +163,7 @@ export class GraphRenderCommand implements ICommand {
           nodeConfig,
         },
         {
-          name: 'remove servcie ',
+          name: 'remove servcie',
           handler: async args => {
             delete args.createNodeService
           },
@@ -185,7 +185,7 @@ export class GraphRenderCommand implements ICommand {
           edgeConfig,
         },
         {
-          name: 'remove servcie ',
+          name: 'remove servcie',
           handler: async args => {
             delete args.createEdgeService
           },

@@ -1,9 +1,10 @@
-import type { NsGraphCmd } from '@antv/xflow'
+import type { NsEdgeCmd, NsGraphCmd } from '@antv/xflow'
 import { createCmdConfig, DisposableCollection, XFlowGraphCommands } from '@antv/xflow'
 import type { IApplication } from '@antv/xflow'
 import type { IGraphPipelineCommand } from '@antv/xflow'
 import { MockApi } from './service'
 import { commandContributions } from './cmd-extensions'
+import { Edge } from '@antv/x6'
 export const useCmdConfig = createCmdConfig(config => {
   // 注册全局Command扩展
   config.setCommandContributions(() => commandContributions)
@@ -11,13 +12,13 @@ export const useCmdConfig = createCmdConfig(config => {
   config.setRegisterHookFn(hooks => {
     const list = [
       hooks.graphMeta.registerHook({
-        name: 'get node config from backend api',
+        name: 'get graph meta from backend',
         handler: async args => {
           args.graphMetaService = MockApi.queryGraphMeta
         },
       }),
       hooks.saveGrpahData.registerHook({
-        name: 'get node config from backend api',
+        name: 'save graph data',
         handler: async args => {
           if (!args.saveGraphDataService) {
             args.saveGraphDataService = MockApi.saveGraphData
@@ -40,6 +41,13 @@ export const useCmdConfig = createCmdConfig(config => {
         name: 'get edge config from backend api',
         handler: async args => {
           args.createEdgeService = MockApi.addEdge
+          args.edgeConfig = {
+            ...args.edgeConfig,
+            connector: { name: 'rounded' },
+            router: {
+              name: 'manhattan',
+            },
+          }
         },
       }),
       hooks.delEdge.registerHook({

@@ -7,7 +7,7 @@ import { throttle } from '../../common/utils'
 import type { IHooks } from '../interface'
 
 export namespace NsGraphEventPlugin {
-  export const pluginId = 'GraphEventPlugin'
+  export const pluginId = 'base-graph-events'
 }
 
 /**
