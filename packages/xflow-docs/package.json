@@ -35,43 +35,46 @@
     "lodash": "^4.17.20"
   },
   "dependencies": {
-    "@antv/gatsby-theme-antv": "^1.1.8",
-    "@antv/xflow": "1.0.15",
+    "@antv/gatsby-theme-antv": "^1.1.15",
+    "@antv/xflow": "workspace:1.0.13",
     "dumi-theme-graphin": "^0.1.4"
   },
   "devDependencies": {
-    "@ant-design/icons": "^4.6.0",
-    "@antv/layout": "^0.1.17",
-    "@antv/x6": "^1.12.11",
+    "@ant-design/icons": "^4.7.0",
+    "@antv/layout": "^0.1.22",
+    "@antv/x6": "^1.29.0",
     "@antv/x6-react-components": "^1.1.15",
-    "@antv/x6-react-shape": "^1.2.5",
-    "@testing-library/jest-dom": "^5.1.1",
+    "@antv/x6-react-shape": "^1.5.2",
+    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^9.5.0",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^25.2.3",
     "@umijs/fabric": "^2.8.1",
     "@umijs/plugin-esbuild": "^1.4.1",
-    "antd": "^4.6.3",
+    "antd": "^4.17.4",
     "babel-plugin-import": "^1.13.3",
     "cross-env": "^7.0.3",
-    "dumi": "^1.0.34",
+    "dumi": "^1.1.37",
     "dumi-theme-graphin": "^0.1.4",
     "less": "^4.1.2",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "parse-github-url": "^1.0.2",
-    "prettier": "^2.3.1",
+    "prettier": "^2.5.1",
     "rc-footer": "^0.6.6",
-    "react": "^16.8.0  || ^17.0.0",
-    "react-dom": "^16.8.0  || ^17.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-github-button": "^0.1.11",
-    "react-i18next": "^11.8.13",
+    "react-i18next": "^11.15.1",
     "react-slick": "^0.28.1",
     "request": "^2.88.2",
-    "rxjs": "^6.6.0",
+    "rxjs": "^6.6.7",
     "slick-carousel": "^1.8.1",
+    "tslib": "^2.3.1",
     "video-react": "^0.14.1"
   },
-  "resolutions": {
-    "@umijs/preset-dumi": "^1.1.33-0"
+  "pnpm": {
+    "overrides": {
+      "@umijs/preset-dumi": "^1.1.33-0"
+    }
   },
   "ci": {
     "type": "aci",
