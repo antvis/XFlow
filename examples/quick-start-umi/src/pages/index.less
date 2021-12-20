@@ -1,0 +1,36 @@
+@light-border: ~'1px solid #d9d9d9';
+
+#root {
+  height: 100vh;
+}
+
+.xflow-user-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+
+  /** 覆盖节点默认选中色 */
+  .x6-node-selected rect {
+    stroke: #dd4a68;
+    stroke-width: 3px;
+  }
+
+  /** 覆盖连线默认选中色 */
+  .x6-edge-selected path {
+    stroke: #873bf4;
+    stroke-width: 2px;
+  }
+
+  .xflow-workspace-toolbar-top {
+    border-bottom: @light-border;
+  }
+
+  .xflow-custom-minimap {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    .x6-widget-minimap-viewport {
+      border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+  }
+}
