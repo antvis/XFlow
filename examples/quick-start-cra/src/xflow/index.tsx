@@ -7,15 +7,14 @@ import { CanvasMiniMap, CanvasScaleToolbar, CanvasSnapline } from '@antv/xflow'
 /** 图的配置项 */
 import { useGraphConfig } from './config-graph'
 import { message } from 'antd'
-
 import './index.less'
 import '@antv/xflow/dist/index.css'
 
 export interface IProps {}
 
-const Demo: React.FC<IProps> = () => {
+const Demo: React.FC<IProps> = props => {
   /** 画布配置 */
-  const graphConfig = useGraphConfig()
+  const graphConfig = useGraphConfig(props)
 
   /** 画布渲染数据 */
   const [graphData, setGraphData] = useState<NsGraph.IGraphData>()
@@ -23,10 +22,34 @@ const Demo: React.FC<IProps> = () => {
   /** XFlow初始化完成的回调 */
   const onLoad: IAppLoad = async app => {
     const nodes: NsGraph.INodeConfig[] = [
-      { id: 'root1', width: 150, height: 40, renderKey: 'NODE1', info: { text: 'root1' } },
-      { id: 'down1', width: 150, height: 40, renderKey: 'NODE2', info: { text: 'down1' } },
-      { id: 'down2', width: 150, height: 40, renderKey: 'NODE2', info: { text: 'down2' } },
-      { id: 'down3', width: 150, height: 40, renderKey: 'NODE2', info: { text: 'down3' } },
+      {
+        id: 'root1',
+        width: 150,
+        height: 40,
+        renderKey: 'NODE1',
+        info: { text: 'root1' },
+      },
+      {
+        id: 'down1',
+        width: 150,
+        height: 40,
+        renderKey: 'NODE2',
+        info: { text: 'down1' },
+      },
+      {
+        id: 'down2',
+        width: 150,
+        height: 40,
+        renderKey: 'NODE2',
+        info: { text: 'down2' },
+      },
+      {
+        id: 'down3',
+        width: 150,
+        height: 40,
+        renderKey: 'NODE2',
+        info: { text: 'down3' },
+      },
     ]
     const edges: NsGraph.IEdgeConfig[] = [
       {
@@ -86,7 +109,7 @@ const Demo: React.FC<IProps> = () => {
       onLoad={onLoad}
       isAutoCenter={true}
     >
-      <XFlowCanvas config={graphConfig}>
+      <XFlowCanvas config={graphConfig as any}>
         <CanvasScaleToolbar position={{ top: 12, left: 12 }} />
         <CanvasMiniMap
           miniMapClz="xflow-custom-minimap"
