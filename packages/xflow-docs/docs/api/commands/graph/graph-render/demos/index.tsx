@@ -1,6 +1,7 @@
 import React from 'react'
 import type { NsGraph, NsGraphCmd, IAppLoad } from '@antv/xflow'
 import { XFlow, XFlowCanvas, createGraphConfig, XFlowGraphCommands } from '@antv/xflow'
+import '@antv/xflow/dist/index.css'
 import './index.less'
 
 /** graphConfig hook */

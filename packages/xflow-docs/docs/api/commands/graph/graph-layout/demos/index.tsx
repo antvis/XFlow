@@ -1,6 +1,8 @@
 import React from 'react'
-import { XFlow, XFlowCanvas, IAppLoad, NsGraph, createGraphConfig, NsGraphCmd, XFlowGraphCommands } from '@antv/xflow'
+import type { IAppLoad, NsGraph, NsGraphCmd } from '@antv/xflow'
+import { XFlow, XFlowCanvas, createGraphConfig, XFlowGraphCommands } from '@antv/xflow'
 import './index.less'
+import '@antv/xflow/dist/index.css'
 
 export const useGraphConfig = createGraphConfig(config => {
   config.setX6Config({ grid: true })
@@ -21,7 +23,7 @@ const Demo: React.FC<{}> = () => {
       { id: 'root1-down2', source: 'root1', target: 'down2', label: '1:N' },
       { id: 'root1-down3', source: 'root1', target: 'down3', label: 'N:N' },
     ]
-    const graphData = { nodes, edges };
+    const graphData = { nodes, edges }
 
     await app.executeCommand(XFlowGraphCommands.GRAPH_LAYOUT.id, {
       graphData,
@@ -37,7 +39,6 @@ const Demo: React.FC<{}> = () => {
     await app.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
       graphData,
     } as NsGraphCmd.GraphRender.IArgs)
-
   }
 
   return (
