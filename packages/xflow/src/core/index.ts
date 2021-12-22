@@ -200,7 +200,7 @@ export { uuidv4 } from '@antv/xflow-core'
 export { IPosition, usePositionStyle } from '@antv/xflow-core'
 export { Simplify } from '@antv/xflow-core'
 /** utils：insertCss */
-export { insertCss } from '@antv/xflow-core'
+export { insertCss, isReactComponent } from '@antv/xflow-core'
 
 /*******************************************************
  * Icon：Antd Icon

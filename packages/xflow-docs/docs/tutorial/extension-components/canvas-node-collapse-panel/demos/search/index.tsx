@@ -4,10 +4,10 @@
  *  配置 searchService 会支持搜索 <br>
  */
 import React from 'react'
-import { XFlow, XFlowCanvas, NodeTreePanel } from '@antv/xflow'
+import { XFlow, XFlowCanvas, NodeCollapsePanel } from '@antv/xflow'
 import { onLoad, useGraphConfig } from './graph-config'
-import * as TreeConfig from './dnd-tree-config'
-import { searchService } from './dnd-tree-config'
+import * as panelConfig from './dnd-config'
+
 import './index.less'
 import '@antv/xflow/dist/index.css'
 
@@ -16,10 +16,10 @@ const XFlowDemo: React.FC<{}> = props => {
 
   return (
     <XFlow onLoad={onLoad} className="xflow-workspace">
-      <NodeTreePanel
-        searchService={searchService}
-        onNodeDrop={TreeConfig.onNodeDrop}
-        treeDataService={TreeConfig.treeDataService}
+      <NodeCollapsePanel
+        searchService={panelConfig.searchService}
+        onNodeDrop={panelConfig.onNodeDrop}
+        nodeDataService={panelConfig.nodeDataService}
         position={{ top: 0, bottom: 0, left: 0, width: 290 }}
       />
       <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 290, right: 0 }} />

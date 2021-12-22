@@ -1,6 +1,7 @@
 import type { IAppLoad, NsGraphCmd } from '@antv/xflow'
 import { createGraphConfig } from '@antv/xflow'
 import { XFlowGraphCommands } from '@antv/xflow'
+import React from 'react'
 import { getGraphData } from './mock'
 
 export const onLoad: IAppLoad = async app => {

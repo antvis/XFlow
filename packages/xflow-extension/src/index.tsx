@@ -35,6 +35,14 @@ export {
   NsNodeTreePanel,
 } from './canvas-node-tree-panel'
 
+/** 组件折叠面板 */
+export {
+  NodeCollapsePanel,
+  NsCollapsePanelModel,
+  NsNodeCollapsePanel,
+  INodeCollapsePanelProps,
+} from './canvas-collapse-panel'
+
 /** JSON Schema Form */
 export {
   JsonSchemaForm,
