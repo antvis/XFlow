@@ -35,6 +35,14 @@ export {
   NsNodeTreePanel,
 } from '@antv/xflow-extension'
 
+/** 组件折叠面板 */
+export {
+  NodeCollapsePanel,
+  NsCollapsePanelModel,
+  NsNodeCollapsePanel,
+  INodeCollapsePanelProps,
+} from '@antv/xflow-extension'
+
 /** JSON Schema Form */
 export {
   JsonSchemaForm,

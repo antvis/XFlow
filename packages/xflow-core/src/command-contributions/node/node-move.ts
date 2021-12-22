@@ -67,8 +67,8 @@ export class MoveNodeCommand implements ICommand {
 
         /** nodePositionService 返回false时不更新position */
         if (nodePositionService) {
-          const canDel = await nodePositionService(handlerArgs)
-          if (!canDel) return { err: 'service rejected' }
+          const canMove = await nodePositionService(handlerArgs)
+          if (!canMove) return { err: 'service rejected' }
         }
 
         const { dx = 0, dy = 0, x, y, duration = 150 } = handlerArgs.position

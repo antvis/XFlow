@@ -202,7 +202,7 @@ export { uuidv4 } from './common/uuid'
 export { IPosition, usePositionStyle } from './common/position'
 export { Simplify } from './common/types'
 /** utils：insertCss */
-export { insertCss } from './common/utils'
+export { insertCss, isReactComponent } from './common/utils'
 
 /*******************************************************
  * Icon：Antd Icon

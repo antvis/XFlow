@@ -1,15 +1,13 @@
 /**
- * title: 基础使用
+ * title: 自定义渲染节点
  * desc: |
- *  treeDataService:返回平铺的树结构 <br>
- *  通过parentId将node组织到对应文件夹下, parentId 为空的节点是文件夹节点 <br>
- *  支持popoverContent属性  <br>
- *  onNodeDrop 回调时时，要求使用命令创建节点  <br>
+ *  如果左侧面板和画布的节点表现一致则使用renderkey来自定义 <br>
+ *  如果左侧面板节点和画布节点的渲染不一致，可以使用treeDataService返回的renderComponent字段来自定义 <br>
  */
 import React from 'react'
-import { XFlow, XFlowCanvas, NodeTreePanel } from '@antv/xflow'
+import { XFlow, XFlowCanvas, NodeCollapsePanel } from '@antv/xflow'
 import { onLoad, useGraphConfig } from './graph-config'
-import * as TreeConfig from './dnd-tree-config'
+import * as panelConfig from './dnd-panel-config'
 import './index.less'
 import '@antv/xflow/dist/index.css'
 
@@ -18,11 +16,11 @@ const XFlowDemo: React.FC<{}> = props => {
 
   return (
     <XFlow onLoad={onLoad} className="xflow-workspace">
-      <NodeTreePanel
+      <NodeCollapsePanel
         header={<h4 className="dnd-panel-header"> 组件面板 </h4>}
         footer={<div> Foorter </div>}
-        onNodeDrop={TreeConfig.onNodeDrop}
-        treeDataService={TreeConfig.treeDataService}
+        onNodeDrop={panelConfig.onNodeDrop}
+        nodeDataService={panelConfig.nodeDataService}
         position={{ top: 0, bottom: 0, left: 0, width: 290 }}
       />
       <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 290, right: 0 }} />
