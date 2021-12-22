@@ -34,6 +34,7 @@ import { useToolbarConfig } from './config-toolbar'
 import { useKeybindingConfig } from './config-keybinding'
 /** 配置Dnd组件面板 */
 import { DndNode } from './react-node/dnd-node'
+import { useCmdConfig } from './config-cmd'
 
 import './index.less'
 
@@ -47,6 +48,7 @@ export const Demo: React.FC<IProps> = props => {
   const menuConfig = useMenuConfig()
   const keybindingConfig = useKeybindingConfig()
   const graphRef = useRef<Graph>()
+  const commandConfig = useCmdConfig()
   /**
    * @param app 当前XFlow工作空间
    * @param extensionRegistry 当前XFlow配置项
@@ -65,7 +67,12 @@ export const Demo: React.FC<IProps> = props => {
   }, [graphRef])
 
   return (
-    <XFlow className="flow-user-custom-clz" onLoad={onLoad} meta={meta}>
+    <XFlow
+      className="flow-user-custom-clz"
+      commandConfig={commandConfig}
+      onLoad={onLoad}
+      meta={meta}
+    >
       <FlowchartExtension />
       <FlowchartNodePanel
         registerNode={{
