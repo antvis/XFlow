@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 /** 图核心组件 & 类型定义 */
-import type { IAppLoad, NsGraph, IApplication } from '@antv/xflow'
-import { XFlow, XFlowCanvas, createGraphConfig, XFlowGraphCommands, NsGraphCmd } from '@antv/xflow'
+import type { IAppLoad, NsGraph, IApplication, NsGraphCmd } from '@antv/xflow'
+import { XFlow, XFlowCanvas, createGraphConfig, XFlowGraphCommands } from '@antv/xflow'
 import './index.less'
+import '@antv/xflow/dist/index.css'
 
 export const useGraphConfig = createGraphConfig(config => {
   config.setX6Config({ grid: true })
@@ -28,8 +29,7 @@ const Demo: React.FC<{}> = () => {
       { id: 'root1-down2', source: 'root1', target: 'down2', label: '1:N' },
       { id: 'root1-down3', source: 'root1', target: 'down3', label: 'N:N' },
     ]
-    const graphData = { nodes, edges }
-    setGraphData(graphData)
+    setGraphData({ nodes, edges })
   }
 
   const zoomGraph = (key: string) => {
@@ -40,7 +40,7 @@ const Demo: React.FC<{}> = () => {
           absolute: false,
           minScale: 0.1,
           maxScale: 3.0,
-        }
+        },
       } as NsGraphCmd.GraphZoom.IArgs)
     }
     if (key === '缩小') {
@@ -50,7 +50,7 @@ const Demo: React.FC<{}> = () => {
           absolute: false,
           minScale: 0.1,
           maxScale: 3.0,
-        }
+        },
       } as NsGraphCmd.GraphZoom.IArgs)
     }
     if (key === '画布1:1(real)') {
