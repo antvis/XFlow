@@ -53,9 +53,9 @@
     "@antv/x6": "^1.29.0",
     "@antv/x6-react-components": "^1.1.15",
     "@antv/x6-react-shape": "^1.5.2",
-    "@antv/xflow-core": "workspace:1.0.13",
-    "@antv/xflow-extension": "workspace:1.0.13",
-    "@antv/xflow-hook": "workspace:1.0.13"
+    "@antv/xflow-core": "workspace:*",
+    "@antv/xflow-extension": "workspace:*",
+    "@antv/xflow-hook": "workspace:*"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",

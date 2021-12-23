@@ -46,7 +46,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@antv/xflow-hook": "workspace:1.0.13",
+    "@antv/xflow-hook": "workspace:*",
     "classnames": "^2.3.1",
     "immer": "^9.0.7",
     "mana-common": "^0.1.0",

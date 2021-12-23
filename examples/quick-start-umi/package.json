@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.31.7",
-    "@antv/xflow": "workspace:^1.0.13",
+    "@antv/xflow": "workspace:*",
     "react": "~17.0.2",
     "react-dom": "~17.0.2",
     "umi": "^3.5.20"
