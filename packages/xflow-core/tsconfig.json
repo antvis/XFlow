@@ -7,5 +7,5 @@
     "rootDir": "./src"
   },
   "include": ["src/**/*", ".eslintrc.js"],
-  "exclude": ["es/**/*", "lib/**/*"]
+  "exclude": ["es/**/*", "lib/**/*", "jest.setup.js"]
 }
