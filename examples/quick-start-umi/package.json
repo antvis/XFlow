@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "xflow-quick-start-umi",
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
