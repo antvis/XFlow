@@ -13,6 +13,7 @@
     "build:less": "pnpm run build:less --filter @antv/xflow... --stream",
     "build:pkg": "pnpm run build --filter @antv/xflow... --stream",
     "release:pkg": "pnpm run release --filter @antv/xflow... --stream",
+    "publish:pkg": "pnpm publish --filter @antv/xflow... --stream",
     "deploy:docs": "pnpm run deploy --filter @antv/xflow-docs",
     "ci": "echo 'no-ci'",
     "test": "pnpm run test --filter @antv/xflow-hook --filter @antv/xflow-core",
