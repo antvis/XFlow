@@ -38,10 +38,10 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
           events.push({
             eventName: 'node:moved',
             callback: (e, cmds) => {
-              const { x, y, cell } = e
+              const { node } = e
               cmds.executeCommand<NsNodeCmd.MoveNode.IArgs>(XFlowNodeCommands.MOVE_NODE.id, {
-                id: cell.id,
-                position: { x, y },
+                id: node.id,
+                position: node.getPosition(),
               })
             },
           } as NsGraph.IEvent<'node:moved'>)
