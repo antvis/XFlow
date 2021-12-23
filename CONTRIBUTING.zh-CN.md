@@ -38,12 +38,11 @@ $ git push origin branch-name
 
 ### 代码风格
 
-你的代码风格必须通过 eslint，你可以运行 `$ yarn lint` 本地测试。
+你的代码风格必须通过 eslint，你可以运行 `$ pnpm lint -r` 本地测试。
 
 ### Commit 提交规范
 
-根据 [angular 规范](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit-message-format)提交 commit，
-这样 history 看起来更加清晰，还可以自动生成 changelog。
+根据 [angular 规范](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit-message-format)提交 commit，这样 history 看起来更加清晰，还可以自动生成 changelog。
 
 ```xml
 <type>(<scope>): <subject>
