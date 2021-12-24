@@ -35,16 +35,17 @@ nav:
 
 toolbarItem 支持以下的配置项
 
-|      名称 |                           类型 |                    描述 | 必选 |
-| --------: | -----------------------------: | ----------------------: | ---- |
-|      text |                         string |              按钮的文案 | -    |
-|  iconName |                         string |                iconName | -    |
-|   tooltip |                         string | 配置 tooltip 显示的内容 | -    |
-| isEnabled |                        boolean |                是否可用 | -    |
-| isVisible |                        boolean |                是否可见 | -    |
-|    active |                        boolean |          是否显示中状态 | -    |
-|   onClick |     (args: IClickArgs) => void |            onClick 回调 | -    |
-|    render | React.FC<`ICustomRenderProps`> |              自定义渲染 | -    |
+|      名称 |                           类型 |                                                                                           描述 | 必选 |
+| --------: | -----------------------------: | ---------------------------------------------------------------------------------------------: | ---- |
+|      text |                       `string` |                                                                                     按钮的文案 | -    |
+|      icon |                 `ReactElement` |            用作图标的 React 元素 (如 [@ant-design/icons](https://ant.design/components/icon/)) | -    |
+|  iconName |                       `string` | 图标名称，需事先在 `IconStore` 注册；<br /> 若同时设置 `icon` 和 `iconName`, `icon` 优先级更高 | -    |
+|   tooltip |                       `string` |                                                                        配置 tooltip 显示的内容 | -    |
+| isEnabled |                      `boolean` |                                                                                       是否可用 | -    |
+| isVisible |                      `boolean` |                                                                                       是否可见 | -    |
+|    active |                      `boolean` |                                                                                 是否显示中状态 | -    |
+|   onClick |   `(args: IClickArgs) => void` |                                                                                     单击时回调 | -    |
+|    render | `React.FC<ICustomRenderProps>` |                                                                                     自定义渲染 | -    |
 
 ## Layout 布局
 
