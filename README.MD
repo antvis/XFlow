@@ -227,25 +227,25 @@ $ pnpm install
 新建 terminal 监听 xflow-core 的文件变化，等待 watch 服务启动成功后执行下个命令。
 
 ```shell
- yarn run doc:core
+yarn run dev:core
 ```
 
 新建 terminal 监听 xflow-extension 的文件变化，等待 watch 服务启动成功后执行下个命令。
 
 ```shell
- yarn run doc:ext
+yarn run dev:ext
 ```
 
 新建 terminal 监听 xflow 的文件变化，等待 watch 服务启动成功后执行下个命令。
 
 ```shell
- yarn run doc:main
+yarn run dev:main
 ```
 
 3. 启动文档网站, 根据示例调试代码
 
 ```shell
-$ yarn run dev:docs
+yarn run dev:docs
 ```
 
 ## 如何贡献
