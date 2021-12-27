@@ -1,5 +1,14 @@
 # @antv/xflow-extension
 
+## 1.0.18
+
+### Patch Changes
+
+- resolve workspace:version issues
+- Updated dependencies
+  - @antv/xflow-core@1.0.18
+  - @antv/xflow-hook@1.0.18
+
 ## 1.0.17
 
 ### Patch Changes

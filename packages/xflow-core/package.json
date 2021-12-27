@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow-core",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist es lib",
@@ -17,7 +17,7 @@
     "build": "run-s build:ts build:less",
     "prebuild": "run-s lint clean",
     "prepare": "pnpm run build",
-    "release": "npm publish --access=public",
+    "release": "pnpm publish --  --access=public",
     "lint": "run-s lint:ts lint:style",
     "lint:ts": "eslint 'src/**/*.{js,ts}?(x)' --fix",
     "lint:style": "stylelint 'src/**/*.less' --syntax less --fix",

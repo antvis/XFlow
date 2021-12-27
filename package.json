@@ -15,7 +15,7 @@
     "dev:docs": "pnpm start --filter @antv/xflow-docs",
     "build": "pnpm run build --filter @antv/xflow... --stream",
     "build:less": "pnpm run build:less --filter @antv/xflow... --stream",
-    "release": "pnpm run ci:publish",
+    "release": " pnpm publish -r --filter @antv/xflow...",
     "ci:publish": "pnpm run release --filter @antv/xflow... --stream",
     "ci:version": "pnpm changeset version",
     "deploy:docs": "pnpm run deploy --filter @antv/xflow-docs",
