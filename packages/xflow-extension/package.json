@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow-extension",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist es lib",
@@ -44,8 +44,7 @@
     "moment": "^2.29.1",
     "rc-field-form": "^1.22.0",
     "react-color": "2.17.1",
-    "reflect-metadata": "^0.1.13",
-    "schemant-form": "1.1.0"
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@antv/x6": "^1.29.0",
@@ -62,6 +61,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.5",
     "rimraf": "^3.0.2",
+    "lodash": "^4.17.20",
     "rollup": "^2.61.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-filesize": "^9.1.1",
@@ -78,7 +78,6 @@
     "@antv/x6-react-shape": "^1.2.5",
     "antd": "^4.6.3",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.20",
     "react": "^16.8.0  || ^17.0.0",
     "react-dom": "^16.8.0  || ^17.0.0",
     "reflect-metadata": "^0.1.13"

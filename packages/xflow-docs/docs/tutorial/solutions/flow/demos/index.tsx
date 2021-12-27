@@ -26,6 +26,8 @@ import {
   CanvasNodePortTooltip,
 } from '@antv/xflow'
 import type { Graph } from '@antv/x6'
+/** 配置Command*/
+import { useCmdConfig } from './config-cmd'
 /** 配置Menu */
 import { useMenuConfig } from './config-menu'
 /** 配置Toolbar */
@@ -45,6 +47,7 @@ export const Demo: React.FC<IProps> = props => {
   const { meta } = props
   const toolbarConfig = useToolbarConfig()
   const menuConfig = useMenuConfig()
+  const cmdConfig = useCmdConfig()
   const keybindingConfig = useKeybindingConfig()
   const graphRef = useRef<Graph>()
   /**
@@ -65,7 +68,7 @@ export const Demo: React.FC<IProps> = props => {
   }, [graphRef])
 
   return (
-    <XFlow className="flow-user-custom-clz" onLoad={onLoad} meta={meta}>
+    <XFlow commandConfig={cmdConfig} className="flow-user-custom-clz" onLoad={onLoad} meta={meta}>
       <FlowchartExtension />
       <FlowchartNodePanel
         registerNode={{
