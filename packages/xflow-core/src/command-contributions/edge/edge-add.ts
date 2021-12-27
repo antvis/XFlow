@@ -4,6 +4,7 @@ import type { IContext, IArgsBase } from '../../command/interface'
 import type { IHooks } from '../../hooks/interface'
 import type { HookHub } from '@antv/xflow-hook'
 import type { Edge as X6Edge } from '@antv/x6'
+import { StringExt } from '@antv/x6'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
 import { XFlowEdgeCommands } from '../constant'
 import { Disposable } from '../../common/disposable'
@@ -11,6 +12,16 @@ import { Disposable } from '../../common/disposable'
 export type ICommand = ICommandHandler<NsAddEdge.IArgs, NsAddEdge.IResult, NsAddEdge.ICmdHooks>
 
 export namespace NsAddEdge {
+  export interface IX6EdgePlainConfig {
+    sourceCell?: string
+    sourcePort?: string
+    targetCell?: string
+    targetPort?: string
+  }
+  export interface IX6EdgeObjectConfig {
+    source: { cell: string; port: string }
+    target: { cell: string; port: string }
+  }
   /** Command: 用于注册named factory */
   export const command = XFlowEdgeCommands.ADD_EDGE
   /** hookName */
@@ -44,7 +55,23 @@ export namespace NsAddEdge {
   }
   /** edge id 类型 */
   export const createEdgeId = (edge: NsGraph.IEdgeConfig) => {
-    return `${edge.source}:${edge.sourcePortId}-${edge.target}:${edge.targetPortId}`
+    if (StringExt.isString(edge.source)) {
+      return `${edge.source}:${edge.sourcePortId}-${edge.target}:${edge.targetPortId}`
+    }
+    if (isX6EdgeConfig(edge)) {
+      const x6EdgeConfig: IX6EdgeObjectConfig = edge
+      return `${x6EdgeConfig.source.cell}:${x6EdgeConfig.source.port}-${x6EdgeConfig.target.cell}:${x6EdgeConfig.target.port}`
+    }
+    if (isX6EdgePlainConfig(edge)) {
+      const x6EdgeConfig: IX6EdgePlainConfig = edge
+      return `${x6EdgeConfig.sourceCell}:${x6EdgeConfig.sourcePort}-${x6EdgeConfig.targetCell}:${x6EdgeConfig.targetPort}`
+    }
+  }
+  export function isX6EdgeConfig(edge: any): edge is IX6EdgeObjectConfig {
+    return edge.source && edge.source.cell && StringExt.isString(edge.source.cell)
+  }
+  export function isX6EdgePlainConfig(edge: any): edge is IX6EdgePlainConfig {
+    return edge.sourceCell && StringExt.isString(edge.sourceCell)
   }
 }
 
@@ -69,6 +96,11 @@ export class AddEdgeCommand implements ICommand {
     if (!edge.id) {
       const { createIdService = NsAddEdge.createEdgeId } = args
       edge.id = await createIdService(edge)
+    }
+    /** 处理xflow edge 和x6 edge的字段差异  */
+    if (edge.sourcePortId && !edge.sourcePort) {
+      edge.sourcePort = edge.sourcePortId
+      edge.targetPort = edge.targetPortId
     }
     return edge
   }

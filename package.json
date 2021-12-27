@@ -1,28 +1,28 @@
 {
   "private": true,
-  "name": "xflow",
+  "name": "xflow-monorepo",
   "version": "1.0.10",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "start": "npm run dev:docs",
     "reset": "pnpm up --filter @antv/xflow...",
-    "dev:main": "cd ./packages/xflow && pnpm start",
-    "dev:core": "cd ./packages/xflow-core && pnpm start",
-    "dev:ext": "cd ./packages/xflow-extension && pnpm start",
-    "dev:docs": "cd ./packages/xflow-docs && pnpm start",
+    "dev:main": "pnpm start --filter @antv/xflow",
+    "dev:hook": "pnpm start --filter @antv/xflow-hook",
+    "dev:core": "pnpm start --filter @antv/xflow-core",
+    "dev:ext": "pnpm start --filter @antv/xflow-extension",
+    "dev:docs": "pnpm start --filter @antv/xflow-docs",
     "build": "pnpm run build --filter @antv/xflow... --stream",
     "build:less": "pnpm run build:less --filter @antv/xflow... --stream",
-    "build:pkg": "pnpm run build --filter @antv/xflow... --stream",
-    "ci": "echo 'no-ci'",
     "release": "pnpm run ci:publish",
     "ci:publish": "pnpm run release --filter @antv/xflow... --stream",
     "ci:version": "pnpm changeset version",
     "deploy:docs": "pnpm run deploy --filter @antv/xflow-docs",
     "test": "pnpm run test --filter @antv/xflow-hook --filter @antv/xflow-core",
+    "ci": "echo 'no-ci'",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "typings": "dist/index.d.ts",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
@@ -39,43 +39,20 @@
     "antd": "^4.17.4"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.16.5",
-    "@babel/preset-react": "^7.16.5",
     "@changesets/cli": "^2.19.0",
     "@types/jest": "^27.0.3",
-    "@types/jquery": "^3.5.10",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/eslint-plugin-tslint": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "@umijs/fabric": "^2.8.1",
-    "babel-plugin-import": "^1.13.3",
-    "babel-plugin-named-asset-import": "^0.3.8",
-    "babel-preset-react-app": "^10.0.1",
-    "dumi": "^1.1.37",
     "eslint": "^7.32.0",
     "eslint-plugin-deprecation": "^1.3.2",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-no-null": "^1.0.2",
-    "gh-pages": "^3.2.3",
-    "jest": "^27.4.5",
     "lint-staged": "^10.5.4",
-    "lodash": "^4.17.21",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
-    "react-dev-utils": "^11.0.4",
-    "rimraf": "^2.7.1",
     "typescript": "^4.5.4",
     "yorkie": "^2.0.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "jest": "^27.2.4",
-      "@jest/transform": "^27.0.0",
-      "@antv/x6-react-components": "^1.1.15",
-      "react-color": "2.17.1",
-      "@types/react-dom": "^16.8.0  || ^17.0.0",
-      "@umijs/preset-dumi": "^1.1.33-0"
-    }
   },
   "ci": {
     "verison": 12

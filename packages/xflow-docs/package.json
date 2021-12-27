@@ -1,7 +1,8 @@
 {
-  "name": "@antv/xflow-docs",
+  "private": true,
+  "name": "xflow-docs",
   "version": "1.0.16",
-  "description": "@antv/xflow-docs",
+  "description": "xflow-docs",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
@@ -29,32 +30,40 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "peerDependencies": {
-    "@ant-design/icons": "^4.6.0",
-    "antd": "^4.6.3",
-    "lodash": "^4.17.20"
-  },
   "dependencies": {
-    "@antv/gatsby-theme-antv": "^1.1.15",
-    "@antv/xflow": "workspace:*",
-    "dumi-theme-graphin": "^0.1.4"
+    "@ant-design/icons": "^4.7.0",
+    "@antv/gatsby-theme-antv": "^1.1.16",
+    "@antv/xflow": "workspace:^",
+    "antd": "^4.17.4",
+    "classnames": "^2.3.1",
+    "dumi-theme-graphin": "^0.1.4",
+    "i18next": "^21.6.3",
+    "lodash": "^4.17.21",
+    "lz-string": "^1.4.4",
+    "prism-react-renderer": "^1.2.1",
+    "prismjs": "^1.25.0",
+    "rc-tabs": "^11.10.5",
+    "react-router": "^6.2.1",
+    "react-use": "^17.3.1"
   },
   "devDependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@antv/layout": "^0.1.22",
-    "@antv/x6": "^1.29.0",
+    "@antv/layout": "^0.1.24",
+    "@antv/x6": "^1.29.1",
     "@antv/x6-react-components": "^1.1.15",
     "@antv/x6-react-shape": "^1.5.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^9.5.0",
     "@types/jest": "^25.2.3",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
     "@umijs/fabric": "^2.8.1",
     "@umijs/plugin-esbuild": "^1.4.1",
     "antd": "^4.17.4",
     "babel-plugin-import": "^1.13.3",
     "cross-env": "^7.0.3",
     "dumi": "^1.1.37",
-    "dumi-theme-graphin": "^0.1.4",
+    "gh-pages": "^3.2.3",
     "less": "^4.1.2",
     "lodash": "^4.17.21",
     "parse-github-url": "^1.0.2",
@@ -69,15 +78,10 @@
     "rxjs": "^6.6.7",
     "slick-carousel": "^1.8.1",
     "tslib": "^2.3.1",
-    "video-react": "^0.14.1"
+    "typescript": "^4.5.4",
+    "umi": "^3.5.20",
+    "video-react": "^0.14.1",
+    "webpack": "^5.65.0"
   },
-  "pnpm": {
-    "overrides": {
-      "@umijs/preset-dumi": "^1.1.33-0"
-    }
-  },
-  "ci": {
-    "type": "aci",
-    "version": "alinode=5"
-  }
+  "overrides": {}
 }
