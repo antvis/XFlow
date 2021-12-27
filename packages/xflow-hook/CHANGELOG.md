@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.17
+
+### Patch Changes
+
+- c46813a: fix: xflow edgeConfig process logic, support multi type of port config
+
 ## 1.0.16
 
 ### Patch Changes
