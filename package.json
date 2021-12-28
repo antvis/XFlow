@@ -18,7 +18,7 @@
     "release": " pnpm publish -r --filter @antv/xflow...",
     "ci:publish": "pnpm run release --filter @antv/xflow... --stream",
     "ci:version": "pnpm changeset version",
-    "deploy:docs": "pnpm run deploy --filter @antv/xflow-docs",
+    "deploy:docs": "pnpm run deploy --filter xflow-docs",
     "test": "pnpm run test --filter @antv/xflow-hook --filter @antv/xflow-core",
     "ci": "echo 'no-ci'",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
