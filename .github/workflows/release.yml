@@ -2,7 +2,7 @@ name: Changesets
 on:
   push:
     branches:
-      - chore/release
+      - master
 env:
   CI: true
   PNPM_CACHE_FOLDER: .pnpm-store
