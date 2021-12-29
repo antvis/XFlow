@@ -125,7 +125,7 @@ export class GraphManager implements IGraphManager {
 
       this.toDisposce.push(
         Disposable.create(async () => {
-          await hooks.beforeGraphDestory.call({
+          await hooks.beforeGraphDestroy.call({
             graph,
             commandService,
             modelService,
@@ -212,17 +212,15 @@ export const registerGraphModule = (register: Syringe.Register) => {
       return {
         getGraphInstance: async () => {
           const graphManager = context.container.get<IGraphManager>(GraphManager)
-          const graphOptionProvider = context.container.get<IGraphOptionProvider>(
-            IGraphOptionProvider,
-          )
+          const graphOptionProvider =
+            context.container.get<IGraphOptionProvider>(IGraphOptionProvider)
           const graphConfig = await graphOptionProvider?.getOptions()
           const x6Graph = await graphManager?.getGraph(graphConfig.graphId)
           return x6Graph
         },
         getGraphOptions: async () => {
-          const graphOptionProvider = context.container.get<IGraphOptionProvider>(
-            IGraphOptionProvider,
-          )
+          const graphOptionProvider =
+            context.container.get<IGraphOptionProvider>(IGraphOptionProvider)
           return graphOptionProvider?.getOptions()
         },
       }

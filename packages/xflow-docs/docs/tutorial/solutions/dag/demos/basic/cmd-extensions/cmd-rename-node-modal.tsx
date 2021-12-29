@@ -174,7 +174,7 @@ function showModal(node: NsGraph.INodeConfig, getAppContext: IGetAppCtx) {
     modal.destroy()
     ModalCache.form = null as any
     ModalCache.modal = null as any
-    container.destory()
+    container.destroy()
   }
 
   /** modal内容 */
@@ -238,7 +238,7 @@ const createContainer = () => {
   window.document.body.append(div)
   return {
     element: div,
-    destory: () => {
+    destroy: () => {
       window.document.body.removeChild(div)
     },
   }

@@ -45,7 +45,7 @@ export interface IProps {
    * 1. graphOptions: 在实例化X6之前执行
    * 2. afterGraphInit:  在实例化X6后执行
    * 3. x6Events: 在实例化X6后绑定事件
-   * 4. beforeGraphDestory: 在X6实例销毁前执行
+   * 4. beforeGraphDestroy: 在X6实例销毁前执行
    */
   hookConfig?: HookConfig
   /** 可以在这里扩展工作台全局状态  */
@@ -54,7 +54,7 @@ export interface IProps {
   commandConfig?: CommandConfig
 
   /** xflow app 销毁前的回调 */
-  onAppDestroy?: IAppDestory
+  onAppDestroy?: IAppDestroy
   /** xflow app 初始化后的回调 */
   onAppConfigReady?: IAppConfigReady
 
@@ -67,7 +67,7 @@ export interface IProps {
 }
 
 export type IAppLoad = (app: IApplication, registry?: ExtensionRegistry) => void
-export type IAppDestory = (app: IApplication) => void
+export type IAppDestroy = (app: IApplication) => void
 export type IAppConfigReady = (registry: ExtensionRegistry) => void
 
 export const XFlow: React.FC<IProps> = props => {

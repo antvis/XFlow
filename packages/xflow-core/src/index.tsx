@@ -40,7 +40,7 @@ export {
   IApplication,
   IApplicationContribution,
   IAppLoad,
-  IAppDestory,
+  IAppDestroy,
   IAppConfigReady,
 } from './xflow-main'
 

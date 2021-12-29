@@ -49,7 +49,7 @@ interface ICmdHooks {
   reactNodeRender: HookHub<Map<string, NsGraph.INodeRender>>
   reactEdgeLabelRender: HookHub<Map<string, NsGraph.IEdgeRender>>
   afterGraphInit: HookHub<IGeneralAppService, IGeneralAppService>
-  beforeGraphDestory: HookHub<IGeneralAppService, IGeneralAppService>
+  beforeGraphDestroy: HookHub<IGeneralAppService, IGeneralAppService>
   x6Events: HookHub<IEventCollection, IEventSubscription>
   // command 相关
   addNode: HookHub<NsAddNode.IArgs, NsAddNode.IResult>

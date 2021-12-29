@@ -38,7 +38,7 @@ export {
   IApplication,
   IApplicationContribution,
   IAppLoad,
-  IAppDestory,
+  IAppDestroy,
   IAppConfigReady,
 } from '@antv/xflow-core'
 

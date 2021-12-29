@@ -47,11 +47,11 @@ import { IAppLoad } from '@antv/xflow'
 export type IAppLoad = (app: IApplication) => void
 ```
 
-## IAppDestory
+## IAppDestroy
 
 ```tsx | pure
 /** 引入方式 */
-import { IAppDestory } from '@antv/xflow'
+import { IAppDestroy } from '@antv/xflow'
 /** 类型说明：app销毁前的回调 */
-export type IAppDestory = (app: IApplication) => void
+export type IAppDestroy = (app: IApplication) => void
 ```

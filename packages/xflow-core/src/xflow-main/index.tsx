@@ -1,5 +1,5 @@
 import { XFlow } from './components'
-import type { IAppLoad, IAppDestory, IAppConfigReady } from './components'
+import type { IAppLoad, IAppDestroy, IAppConfigReady } from './components'
 import { XFlowCanvas } from './components/canvas'
 /** 通过context获取app */
 import { XFlowAppProvider, XFlowAppContext, useXFlowApp } from './components/app-context'
@@ -27,7 +27,7 @@ export {
   useExtensionRegistry,
 }
 
-export type { IAppLoad, IAppDestory, IAppConfigReady }
+export type { IAppLoad, IAppDestroy, IAppConfigReady }
 
 /** Graph 配置 */
 export { IGraphConfig, IGraphProvider, createGraphConfig } from './graph'
