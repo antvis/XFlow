@@ -1,46 +1,46 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-danger */
-import React, { useContext, useState } from 'react';
-import type { IRouteComponentProps } from '@umijs/types';
-import { context, Link } from 'dumi/theme';
-import Navbar from './components/Navbar';
-import SideMenu from './components/SideMenu';
-import SlugList from './components/SlugList';
-import SearchBar from './components/SearchBar';
-import Cases from './components/Cases/Cases';
-import Banner from './components/Banner/index';
-import Ideas from './components/Features';
-import NotFoundPage from './components/404';
-
-import './style/layout.less';
-import Footer from './components/Footer';
+import React, { useContext, useState } from 'react'
+import type { IRouteComponentProps } from '@umijs/types'
+import { context, Link } from 'dumi/theme'
+import Navbar from './components/Navbar'
+import SideMenu from './components/SideMenu'
+import SlugList from './components/SlugList'
+import SearchBar from './components/SearchBar'
+import Cases from './components/Cases/Cases'
+import Banner from './components/Banner/index'
+import Ideas from './components/Features'
+import NotFoundPage from './components/404'
+import { GITHUB_EDIT_PKG_URL } from './constant'
+import './style/layout.less'
+import Footer from './components/Footer'
 
 const isEmpty = obj => {
-  return Object.keys(obj).length === 0;
-};
+  return Object.keys(obj).length === 0
+}
 
 const processRedirect = (context, location) => {
-  const { pathname } = location;
-  const { meta, routes } = context;
+  const { pathname } = location
+  const { meta, routes } = context
 
-  const isEmptyMeta = isEmpty(meta);
-  let matchRoute = { meta: {} };
-  const needRedirectPath = ['/zh', '/zh/', '/zh-CN', '/zh-CN/', '/en', '/en/', '/en-US', '/en-US/'];
-  const isInclude = needRedirectPath.some(item => item === pathname);
+  const isEmptyMeta = isEmpty(meta)
+  let matchRoute = { meta: {} }
+  const needRedirectPath = ['/zh', '/zh/', '/zh-CN', '/zh-CN/', '/en', '/en/', '/en-US', '/en-US/']
+  const isInclude = needRedirectPath.some(item => item === pathname)
   if (isEmptyMeta) {
     if (isInclude) {
       // 存在重定向需求
-      const isZh = pathname.slice(1, 3) === 'zh';
-      const isEn = pathname.slice(1, 3) === 'en';
+      const isZh = pathname.slice(1, 3) === 'zh'
+      const isEn = pathname.slice(1, 3) === 'en'
       if (isZh) {
         matchRoute = routes.find(item => {
-          return item.path === '/';
-        });
+          return item.path === '/'
+        })
       }
       if (isEn) {
         matchRoute = routes.find(item => {
-          return item.path === '/en-US';
-        });
+          return item.path === '/en-US'
+        })
       }
     }
   }
@@ -48,8 +48,8 @@ const processRedirect = (context, location) => {
   return {
     meta: isEmptyMeta ? matchRoute.meta : meta,
     isDirect: isInclude,
-  };
-};
+  }
+}
 
 const Hero = hero => (
   <div className="__dumi-default-layout-hero">
@@ -63,12 +63,12 @@ const Hero = hero => (
         </Link>
       ))}
   </div>
-);
+)
 
 const BannerPanel = banner => {
-  const { image, title, desc, actions, notifications } = banner;
-  const description = <div dangerouslySetInnerHTML={{ __html: desc }} />;
-  const coverImage = <img alt="graphin" style={{ width: '100%', marginTop: '20%' }} src={image} />;
+  const { image, title, desc, actions, notifications } = banner
+  const description = <div dangerouslySetInnerHTML={{ __html: desc }} />
+  const coverImage = <img alt="graphin" style={{ width: '100%', marginTop: '20%' }} src={image} />
 
   return (
     <Banner
@@ -80,8 +80,8 @@ const BannerPanel = banner => {
       buttons={actions}
       className="banner"
     />
-  );
-};
+  )
+}
 
 const Features = features => (
   <div className="__dumi-default-layout-features">
@@ -98,38 +98,40 @@ const Features = features => (
       </dl>
     ))}
   </div>
-);
+)
 
 const Layout: React.FC<IRouteComponentProps> = ({ children, location }) => {
-  const Context = useContext(context);
+  const Context = useContext(context)
   const {
     config: { mode, repository },
     locale,
-  } = Context;
+  } = Context
 
-  const { meta, isDirect } = processRedirect(Context, location);
-  console.log('Context', Context, 'calculate meta', meta);
-  const { url: repoUrl, branch, platform } = repository;
-  const [menuCollapsed, setMenuCollapsed] = useState<boolean>(true);
-  const isSiteMode = mode === 'site';
-  const showHero = isSiteMode && meta.hero;
-  const showBanner = isSiteMode && meta.banner;
-  const showCases = isSiteMode && meta.cases;
-  const showFeatures = isSiteMode && meta.features;
-  const showIdeas = isSiteMode && meta.ideas;
-  const showSideMenu = meta.sidemenu !== false && !showHero && !showBanner && !showFeatures && !meta.gapless;
+  const { meta, isDirect } = processRedirect(Context, location)
+  const { url: repoUrl, branch, platform } = repository
+  const [menuCollapsed, setMenuCollapsed] = useState<boolean>(true)
+  const isSiteMode = mode === 'site'
+  const showHero = isSiteMode && meta.hero
+  const showBanner = isSiteMode && meta.banner
+  const showCases = isSiteMode && meta.cases
+  const showFeatures = isSiteMode && meta.features
+  const showIdeas = isSiteMode && meta.ideas
+  const showSideMenu =
+    meta.sidemenu !== false && !showHero && !showBanner && !showFeatures && !meta.gapless
   const showSlugs =
     !showHero &&
     !showBanner &&
     !showFeatures &&
     Boolean(meta.slugs?.length) &&
     (meta.toc === 'content' || meta.toc === undefined) &&
-    !meta.gapless;
-  const isCN = /^zh|cn$/i.test(locale);
+    !meta.gapless
+  const isCN = /^zh|cn$/i.test(locale)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const updatedTime: any = new Date(meta.updatedTime).toLocaleString([], { hour12: false });
+  const updatedTime: any = new Date(meta.updatedTime).toLocaleString([], { hour12: false })
   const repoPlatform =
-    { github: 'GitHub', gitlab: 'GitLab' }[(repoUrl || '').match(/(github|gitlab)/)?.[1] || 'nothing'] || platform;
+    { github: 'GitHub', gitlab: 'GitLab' }[
+      (repoUrl || '').match(/(github|gitlab)/)?.[1] || 'nothing'
+    ] || platform
   // 等dumi最新版发布后解决路由匹配问题
   if (isEmpty(meta) && !isDirect) {
     return (
@@ -143,8 +145,8 @@ const Layout: React.FC<IRouteComponentProps> = ({ children, location }) => {
           data-site-mode="site"
           data-gapless={String(!!meta.gapless)}
           onClick={() => {
-            if (menuCollapsed) return;
-            setMenuCollapsed(true);
+            if (menuCollapsed) return
+            setMenuCollapsed(true)
           }}
         >
           <div style={{ height: '60px' }} />
@@ -152,15 +154,15 @@ const Layout: React.FC<IRouteComponentProps> = ({ children, location }) => {
             location={location}
             navPrefix={<SearchBar />}
             onMobileMenuClick={ev => {
-              setMenuCollapsed(val => !val);
-              ev.stopPropagation();
+              setMenuCollapsed(val => !val)
+              ev.stopPropagation()
             }}
           />
           <NotFoundPage />
           <Footer githubUrl={repoUrl} rootDomain="https://antv.vision" />
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -172,16 +174,16 @@ const Layout: React.FC<IRouteComponentProps> = ({ children, location }) => {
       data-site-mode={isSiteMode}
       data-gapless={String(!!meta.gapless)}
       onClick={() => {
-        if (menuCollapsed) return;
-        setMenuCollapsed(true);
+        if (menuCollapsed) return
+        setMenuCollapsed(true)
       }}
     >
       <Navbar
         location={location}
         navPrefix={<SearchBar />}
         onMobileMenuClick={ev => {
-          setMenuCollapsed(val => !val);
-          ev.stopPropagation();
+          setMenuCollapsed(val => !val)
+          ev.stopPropagation()
         }}
       />
       {showSideMenu && <SideMenu mobileMenuCollapsed={menuCollapsed} location={location} />}
@@ -196,7 +198,7 @@ const Layout: React.FC<IRouteComponentProps> = ({ children, location }) => {
         {showSideMenu && (
           <div className="__dumi-default-layout-footer-meta">
             {repoPlatform && (
-              <Link to={`${repoUrl}/edit/${branch}/${meta.filePath}`}>
+              <Link to={`${GITHUB_EDIT_PKG_URL}/${meta.filePath}`}>
                 {isCN ? `在 ${repoPlatform} 上编辑此页` : `Edit this doc on ${repoPlatform}`}
               </Link>
             )}
@@ -206,7 +208,7 @@ const Layout: React.FC<IRouteComponentProps> = ({ children, location }) => {
         {!showSideMenu && <Footer githubUrl={repoUrl} rootDomain="https://antv.vision" />}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
