@@ -1,5 +1,16 @@
 # @antv/xflow-extension
 
+## 1.0.19
+
+### Patch Changes
+
+- 9f21cf4: fix: destroy spelling
+- 9f21cf4: chore: fix destroy spell issue
+- Updated dependencies [9f21cf4]
+- Updated dependencies [9f21cf4]
+  - @antv/xflow-core@1.0.19
+  - @antv/xflow-hook@1.0.19
+
 ## 1.0.18
 
 ### Patch Changes
