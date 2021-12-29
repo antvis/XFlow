@@ -1,5 +1,14 @@
 # @antv/xflow-docs
 
+## 1.0.19
+
+### Patch Changes
+
+- 9f21cf4: fix: destroy spelling
+- Updated dependencies [9f21cf4]
+- Updated dependencies [9f21cf4]
+  - @antv/xflow@1.0.19
+
 ## 1.0.18
 
 ### Patch Changes
