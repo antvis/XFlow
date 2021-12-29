@@ -47,9 +47,9 @@ export const Demo: React.FC<IProps> = props => {
   const { meta } = props
   const toolbarConfig = useToolbarConfig()
   const menuConfig = useMenuConfig()
-  const cmdConfig = useCmdConfig()
   const keybindingConfig = useKeybindingConfig()
   const graphRef = useRef<Graph>()
+  const commandConfig = useCmdConfig()
   /**
    * @param app 当前XFlow工作空间
    * @param extensionRegistry 当前XFlow配置项
@@ -68,7 +68,13 @@ export const Demo: React.FC<IProps> = props => {
   }, [graphRef])
 
   return (
-    <XFlow commandConfig={cmdConfig} className="flow-user-custom-clz" onLoad={onLoad} meta={meta}>
+ 
+    <XFlow
+      className="flow-user-custom-clz"
+      commandConfig={commandConfig}
+      onLoad={onLoad}
+      meta={meta}
+    >
       <FlowchartExtension />
       <FlowchartNodePanel
         registerNode={{

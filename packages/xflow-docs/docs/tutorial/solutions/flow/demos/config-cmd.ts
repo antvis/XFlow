@@ -1,18 +1,18 @@
-import { createCmdConfig, DisposableCollection } from '@antv/xflow'
+
+import { createCmdConfig, DisposableCollection, uuidv4 } from '@antv/xflow'
+
 
 export const useCmdConfig = createCmdConfig(config => {
   config.setRegisterHookFn(hooks => {
     const list = [
-      hooks.addEdge.registerHook({
-        name: 'addEdge',
-        handler: async args => {
-          console.log('addEdgehooks:', args.edgeConfig)
-        },
-      }),
+
       hooks.addNode.registerHook({
-        name: 'addNode',
+        name: 'set node config',
         handler: async args => {
-          console.log('addNodeHooks:', args.nodeConfig)
+          args.nodeConfig = {
+            ...args.nodeConfig,
+            id: args.nodeConfig.id || `node-${uuidv4()}`,
+          }
         },
       }),
     ]
