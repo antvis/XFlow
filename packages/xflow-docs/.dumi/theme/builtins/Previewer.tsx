@@ -16,9 +16,11 @@ import {
   usePrefersColor,
 } from 'dumi/theme'
 import { useCodeSandbox } from './useCodeSandbox'
+import { GithubOutlined } from '@ant-design/icons'
 import type { ICodeBlockProps } from 'dumi-theme-default/src/builtins/SourceCode'
 import SourceCode from 'dumi-theme-default/src/builtins/SourceCode'
 import './Previewer.less'
+import { GITHUB_PKG_URL } from '../constant'
 
 export interface IPreviewerProps extends IPreviewerComponentProps {
   /**
@@ -67,9 +69,13 @@ function getSourceType(file: string, source: IPreviewerComponentProps['sources']
   return type as ICodeBlockProps['lang']
 }
 
+function getFolderUrl(url: string) {
+  return url.slice(0, url.lastIndexOf('/'))
+}
+
 const Previewer: React.FC<IPreviewerProps> = oProps => {
   const demoRef = useRef()
-  const { locale } = useContext(context)
+  const { locale, meta } = useContext(context)
   const props = useLocaleProps<IPreviewerProps>(locale, oProps)
   const builtinDemoUrl = useDemoUrl(props.identifier)
   const demoUrl = props.demoUrl || builtinDemoUrl
@@ -152,6 +158,16 @@ const Previewer: React.FC<IPreviewerProps> = oProps => {
         )}
       </div>
       <div className="__dumi-default-previewer-actions">
+        <a
+          target="_blank"
+          title="Open demo code on github.com "
+          className="github-code-link"
+          href={`${getFolderUrl(`${GITHUB_PKG_URL}/${meta.filePath}`)}`}
+        >
+          <button>
+            <GithubOutlined style={{ fontSize: '16px', position: 'absolute', top: 0, left: 0 }} />
+          </button>
+        </a>
         {openCSB && (
           <button
             title="Open demo on CodeSandbox.io"
