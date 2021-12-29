@@ -2,8 +2,6 @@ import React from 'react'
 import { Select } from 'antd'
 import { FormItemHeight } from '../constants'
 
-const { Option } = Select
-
 interface IProps {
   label?: string
   value?: string
@@ -32,16 +30,15 @@ const SelectField: React.FC<IProps> = props => {
         onChange={(v: string) => {
           onChange?.(v)
         }}
-        filterOption={(input, option) =>
-          option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-        }
-      >
-        {options.map(option => (
-          <Option key={option.label} value={option.value}>
-            {option.label}
-          </Option>
-        ))}
-      </Select>
+        filterOption={(input, option) => {
+          const { label: text = '' } = option
+          if (typeof text === 'string') {
+            return text.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
+          return text.toString().indexOf(input.toLowerCase()) >= 0
+        }}
+        options={options}
+      />
     </div>
   )
 }
