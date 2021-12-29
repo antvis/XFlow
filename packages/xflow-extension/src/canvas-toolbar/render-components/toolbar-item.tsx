@@ -13,12 +13,19 @@ export interface IProps {
 export const ToolbarItem: React.FC<IProps> = props => {
   const app = useXFlowApp()
   const { item, layout } = props
-  const Icon = IconStore.get(item.iconName)
   const clz = classnames({
     ['xflow-toolbar-item']: true,
   })
   const text = layout === 'vertical' ? '' : item.text
-  const icon = Icon ? <Icon /> : null
+
+  let icon: React.ReactNode = undefined
+  if (item.icon) {
+    icon = item.icon
+  } else if (item.iconName) {
+    const Icon = IconStore.get(item.iconName)
+    icon = <Icon />
+  }
+
   const ToolbarItemWrap = item.render
   const { isEnabled = true } = item
   const { commandService, modelService } = app

@@ -199,7 +199,7 @@ const onLoad: IAppLoad = async app => {
 
 ## 如何开发
 
-我们使用了 [lerna](https://github.com/lerna/lerna) 来管理项目, 目录结构如下:
+我们使用了 [pnpm](https://pnpm.io/workspaces) 来管理项目, 目录结构如下:
 
 ```
 ├── packages
@@ -213,15 +213,12 @@ const onLoad: IAppLoad = async app => {
 1. 开始之前需要安装必要的全局依赖和初始化：
 
 ```shell
-# 全局安装 yarn 和 lerna 工具
-$ npm install yarn -g
-$ npm install lerna -g
+# 全局安装 pnpm
+$ npm install pnpm -g
 
 # 安装项目依赖和初始化构建
-$ yarn bootstrap
+$ pnpm install
 
-# 确保正确的registry
-$ yarn --registry=https://registry.npmjs.org
 
 ```
 
@@ -230,25 +227,25 @@ $ yarn --registry=https://registry.npmjs.org
 新建 terminal 监听 xflow-core 的文件变化，等待 watch 服务启动成功后执行下个命令。
 
 ```shell
- yarn run doc:core
+yarn run dev:core
 ```
 
 新建 terminal 监听 xflow-extension 的文件变化，等待 watch 服务启动成功后执行下个命令。
 
 ```shell
- yarn run doc:ext
+yarn run dev:ext
 ```
 
 新建 terminal 监听 xflow 的文件变化，等待 watch 服务启动成功后执行下个命令。
 
 ```shell
- yarn run doc:main
+yarn run dev:main
 ```
 
 3. 启动文档网站, 根据示例调试代码
 
 ```shell
-$ yarn run dev:docs
+yarn run dev:docs
 ```
 
 ## 如何贡献

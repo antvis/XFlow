@@ -1,0 +1,34 @@
+name: github pages
+on:
+  push:
+    branches:
+      - master
+env:
+  CI: true
+  PNPM_CACHE_FOLDER: .pnpm-store
+jobs:
+  version:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: setup node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: install pnpm
+        run: npm i pnpm@latest -g
+      - name: setup pnpm config
+        run: pnpm config set store-dir $PNPM_CACHE_FOLDER
+      - name: install dependencies
+        run: pnpm install
+      - name: build docs
+        run: pnpm run docs:build --filter xflow-docs
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/xflow-docs/dist

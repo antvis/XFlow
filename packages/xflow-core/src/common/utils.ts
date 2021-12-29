@@ -1,3 +1,5 @@
+import type React from 'react'
+
 export const noop = () => null
 
 export const disposableNoop = {
@@ -37,4 +39,18 @@ export const insertCss = (cssString: string) => {
     $style.appendChild(document.createTextNode(cssString))
   }
   return $style
+}
+
+// refer:https://stackoverflow.com/questions/33199959/how-to-detect-a-react-component-vs-a-react-element
+
+export function isClassComponent(component: unknown): component is React.ComponentClass {
+  return typeof component === 'function' && !!component.prototype.isReactComponent
+}
+
+export function isFunctionComponent(component: unknown): component is React.FunctionComponent {
+  return typeof component === 'function' && String(component).includes('return React.createElement')
+}
+
+export function isReactComponent(component: unknown): component is React.ComponentType {
+  return isClassComponent(component) || isFunctionComponent(component)
 }

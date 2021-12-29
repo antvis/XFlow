@@ -8,6 +8,7 @@ webpack.config.js
 config
 rollup.config.js
 jest.config.js
+jest.setup.js
 es
 lib
 dist

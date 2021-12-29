@@ -11,6 +11,7 @@ import type { Toolbar as X6Toolbar } from '@antv/x6-react-components/es/toolbar/
 import type { ToolbarGroup as X6ToolbarGroup } from '@antv/x6-react-components/es/toolbar/group'
 import type { ToolbarItem as X6ToolbarItem } from '@antv/x6-react-components/es/toolbar/item'
 import type { Simplify } from '../common/types'
+import type { ReactElement } from 'react'
 
 /** 用于了批量注册 可销毁的 Toolbar Item*/
 export interface IStandaloneToolbarService {
@@ -66,6 +67,8 @@ export interface IToolbarItemOptions
   text?: string
   /** Optional tooltip for the item. */
   tooltip?: string
+  /** React element to be used as an icon for the menu item; optional */
+  icon?: ReactElement
   /** Optional icon for the item. */
   iconName?: string
   /** runtime 处理context */

@@ -1,9 +1,11 @@
+
 import { createCmdConfig, DisposableCollection, uuidv4 } from '@antv/xflow'
 
+
 export const useCmdConfig = createCmdConfig(config => {
-  // 设置hook
   config.setRegisterHookFn(hooks => {
     const list = [
+
       hooks.addNode.registerHook({
         name: 'set node config',
         handler: async args => {

@@ -7,12 +7,11 @@ import {
   /** 触发Command的交互组件 */
   CanvasScaleToolbar,
   JsonSchemaForm,
-  NodeTreePanel,
+  NodeCollapsePanel,
   CanvasContextMenu,
   CanvasToolbar,
   /** Graph的扩展交互组件 */
   CanvasSnapline,
-  // CanvasMiniMap,
   CanvasNodePortTooltip,
   DagGraphExtension,
 } from '@antv/xflow'
@@ -31,7 +30,7 @@ import { useToolbarConfig } from './config-toolbar'
 /** 配置快捷键 */
 import { useKeybindingConfig } from './config-keybinding'
 /** 配置Dnd组件面板 */
-import { onNodeDrop, searchService, treeDataService } from './config-dnd-panel'
+import * as dndPanelConfig from './config-dnd-panel'
 /** 配置JsonConfigForm */
 import { formSchemaService, formValueUpdateService, controlMapService } from './config-form'
 
@@ -84,11 +83,11 @@ export const Demo: React.FC<IProps> = props => {
       meta={meta}
     >
       <DagGraphExtension />
-      <NodeTreePanel
+      <NodeCollapsePanel
         className="xflow-node-panel"
-        searchService={searchService}
-        treeDataService={treeDataService}
-        onNodeDrop={onNodeDrop}
+        searchService={dndPanelConfig.searchService}
+        nodeDataService={dndPanelConfig.nodeDataService}
+        onNodeDrop={dndPanelConfig.onNodeDrop}
         position={{ width: 230, top: 0, bottom: 0, left: 0 }}
         footerPosition={{ height: 0 }}
         bodyPosition={{ top: 40, bottom: 0, left: 0 }}
@@ -102,7 +101,6 @@ export const Demo: React.FC<IProps> = props => {
       <XFlowCanvas position={{ top: 40, left: 230, right: 290, bottom: 0 }}>
         <CanvasScaleToolbar position={{ top: 12, right: 12 }} />
         <CanvasContextMenu config={menuConfig} />
-        {/* <CanvasMiniMap nodeFillColor="#c5c5c5" /> */}
         <CanvasSnapline color="#faad14" />
         <CanvasNodePortTooltip />
       </XFlowCanvas>

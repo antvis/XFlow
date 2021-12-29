@@ -48,3 +48,9 @@ XFlow 内置累常用的画布缩放，复制粘贴，撤销重做，MiniMap 等
 
 内置 DAG 特需的执行/停止执行/轮询更新画布节点状态的交互
 <img src="https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*4SkDRpv79goAAAAAAAAAAAAAARQnAQ" style="display: block;padding: 12px 0;width: 61.88%;"/>
+
+## FAQ
+
+### 定制连线交互逻辑
+
+<code src="./demos/port-config/index.tsx" compact transform classname="dag-solution" />

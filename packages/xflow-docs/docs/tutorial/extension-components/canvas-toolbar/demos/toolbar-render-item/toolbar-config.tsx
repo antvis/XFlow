@@ -27,9 +27,14 @@ export namespace NSToolbarConfig {
       tooltip: '添加节点，text + iconName, group1 ',
     })
     iconToolbarGroup.push({
+      id: XFlowNodeCommands.ADD_NODE.id + 'icon',
+      icon: <PlusCircleOutlined />,
+      tooltip: '添加节点，直接传递图标组件 (icon: PlusCircleOutlined), group2',
+    })
+    iconToolbarGroup.push({
       id: XFlowNodeCommands.ADD_NODE.id + 'iconName',
       iconName: 'PlusCircleOutlined',
-      tooltip: '添加节点，只配置 iconName=PlusCircleOutlined, group2  ',
+      tooltip: "添加节点，全局 IconStore 注册 'PlusCircleOutlined' 后指定 iconName, group2",
     })
     iconToolbarGroup.push({
       id: XFlowNodeCommands.MOVE_NODE.id + 'tooltip',

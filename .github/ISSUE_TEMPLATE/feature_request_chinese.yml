@@ -1,0 +1,54 @@
+name: 💡 功能请求
+description: 为XFlow创建一个功能请求
+labels: ["template: story"]
+body:
+  - type: markdown
+    attributes:
+      value: 谢谢你花时间提出功能请求! 请尽可能完整地填写此表
+  - type: markdown
+    attributes:
+      value: 功能请求将被转换到GitHub讨论的"💡想法 "部分（https://github.com/antvis/XFlow/discussions/categories/ideas）'
+  - type: textarea
+    id: describe_feature_request
+    attributes:
+      label: 描述你想申请的功能
+      description: 简明扼要地描述你想要什么，你的用例是什么。你给团队提供的背景和描述越多，就越能帮助我们理解你的问题并节省时间。
+    validations:
+      required: true
+  - type: textarea
+    id: describe_solution
+    attributes:
+      label: 描述你想要的解决方案
+      description: 简明扼要地描述你希望发生的事情。
+    validations:
+      required: true
+  - type: textarea
+    id: describe_alternatives
+    attributes:
+      label: 描述你所考虑的替代方案
+      description: 简明扼要地描述你所考虑的任何替代方案或功能。
+    validations:
+      required: true
+  - type: input
+    id: code_link
+    attributes:
+      label: 你的网站或应用程序实例
+      description: |
+        当错误发生时，你在使用哪个网站或应用程序？
+        注意。
+        - 如果我们能够运行你的代码，并且它没有G6 npm包以外的依赖，你的错误可能会更快得到修复。
+        - 要创建一个可共享的代码示例，你可以使用Stackblitz（https://stackblitz.com/）或CodeSandbox（https://codesandbox.io/s/new）。请不要使用localhost的URL。
+        - 请阅读这些关于提供一个最小的例子的提示: https://stackoverflow.com/help/mcve。
+      placeholder: |
+        例如: Stackblitz、Code Sandbox应用程序的网址
+  - type: textarea
+    id: screenshots_or_videos
+    attributes:
+      label: 屏幕截图或视频
+      description: |
+        如果适用，请添加屏幕截图或视频以帮助解释你的问题。
+        如果你认为其他库或框架的例子（链接、图片、视频等）有助于捕捉你的想法，请分享。
+        关于支持的文件图像/文件类型和文件大小限制的更多信息，请参考
+        以下链接: https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/attaching-files
+      placeholder: |
+        你可以把你的视频或图片文件拖到这个编辑器里面去 ↓

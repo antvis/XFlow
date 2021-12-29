@@ -1,5 +1,6 @@
 import type { IProps } from './index'
-import type { NsGraph } from '@antv/xflow'
+import type { NsGraph, NsNodeCmd } from '@antv/xflow'
+import { XFlowNodeCommands } from '@antv/xflow'
 import { createHookConfig, DisposableCollection } from '@antv/xflow'
 import { DND_RENDER_ID, GROUP_NODE_RENDER_ID } from './constant'
 import { AlgoNode } from './react-node/algo-node'
@@ -32,15 +33,18 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
       }),
       // 注册增加 graph event
       hooks.x6Events.registerHook({
-        name: 'add node click event',
+        name: 'add',
         handler: async events => {
           events.push({
-            eventName: 'node:click',
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            callback: (e, cmds, ctx) => {
-              // 绑定事件
+            eventName: 'node:moved',
+            callback: (e, cmds) => {
+              const { node } = e
+              cmds.executeCommand<NsNodeCmd.MoveNode.IArgs>(XFlowNodeCommands.MOVE_NODE.id, {
+                id: node.id,
+                position: node.getPosition(),
+              })
             },
-          } as NsGraph.IEvent<'node:click'>)
+          } as NsGraph.IEvent<'node:moved'>)
         },
       }),
     ]
