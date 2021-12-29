@@ -12,7 +12,7 @@
     "dev:hook": "pnpm start --filter @antv/xflow-hook",
     "dev:core": "pnpm start --filter @antv/xflow-core",
     "dev:ext": "pnpm start --filter @antv/xflow-extension",
-    "dev:docs": "pnpm start --filter @antv/xflow-docs",
+    "dev:docs": "pnpm start --filter xflow-docs",
     "build": "pnpm run build --filter @antv/xflow... --stream",
     "build:less": "pnpm run build:less --filter @antv/xflow... --stream",
     "release": " pnpm publish -r --filter @antv/xflow...",

@@ -40,6 +40,7 @@ export namespace NsAddEdgeEvent {
 export const ANT_PREFIX = 'ant'
 
 export const dagOptions: Graph.Options = {
+  grid: false,
   keyboard: {
     enabled: true,
   },
@@ -183,7 +184,8 @@ export const dagOptions: Graph.Options = {
   contrib: [IHookContribution, IModelContribution, IGraphCommandContribution],
 })
 export class DagHooksContribution
-  implements IHookContribution<ICmdHooks>, IGraphCommandContribution, IModelContribution {
+  implements IHookContribution<ICmdHooks>, IGraphCommandContribution, IModelContribution
+{
   /** IGraphCommandFactory */
   @ManaSyringe.inject(IGraphCommandFactory)
   commandFactory: IGraphCommandFactory
