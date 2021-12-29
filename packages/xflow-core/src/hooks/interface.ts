@@ -60,7 +60,7 @@ export const initHooks = () => ({
   reactNodeRender: new HookHub<Map<string, NsGraph.INodeRender>>(),
   reactEdgeLabelRender: new HookHub<Map<string, NsGraph.IEdgeRender>>(),
   afterGraphInit: new HookHub<IGeneralAppService>(),
-  beforeGraphDestory: new HookHub<IGeneralAppService>(),
+  beforeGraphDestroy: new HookHub<IGeneralAppService>(),
   x6Events: new HookHub<IEventCollection, IEventSubscription>(),
 })
 

@@ -78,7 +78,7 @@ type IHooks = {
   /* 在Graph 实例化后执行的逻辑   */
   afterGraphInit: HookHub<IGeneralAppService>
   /* 在Graph 销毁前执行的逻辑  */
-  beforeGraphDestory: HookHub<IGeneralAppService>
+  beforeGraphDestroy: HookHub<IGeneralAppService>
 }
 ```
 

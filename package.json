@@ -18,6 +18,7 @@
     "release": " pnpm publish -r --filter @antv/xflow...",
     "ci:publish": "pnpm run release --filter @antv/xflow... --stream",
     "ci:version": "pnpm changeset version",
+    "add:changelog": "pnpm changeset",
     "deploy:docs": "pnpm run deploy --filter xflow-docs",
     "test": "pnpm run test --filter @antv/xflow-hook --filter @antv/xflow-core",
     "ci": "echo 'no-ci'",

@@ -83,7 +83,7 @@ export class GraphEventContribution implements IHookContribution<IHooks> {
       }),
 
       /** 在graph停止时 取消外部事件 */
-      hooks.beforeGraphDestory.registerHook({
+      hooks.beforeGraphDestroy.registerHook({
         name: NsGraphEventPlugin.pluginId,
         handler: async () => {
           toDispose.dispose()
