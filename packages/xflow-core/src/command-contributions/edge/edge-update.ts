@@ -13,12 +13,24 @@ type ICommand = ICommandHandler<NsUpdateEdge.IArgs, NsUpdateEdge.IResult, NsUpda
 export namespace NsUpdateEdge {
   export const command = XFlowEdgeCommands.UPDATE_EDGE
   export const hookKey = 'updateEdge'
-
+  export const XFlowEdgeSetOptions: X6Edge.SetOptions = { overwrite: true }
   export interface IArgs extends IArgsBase {
     /** edgeConfig */
     edgeConfig: NsGraph.IEdgeConfig
+    /** options */
+    options: X6Edge.SetOptions
     /** 更新的Service */
     updateEdgeService?: IUpdateEdgeService
+    /** 更新Label的Service */
+    updateEdgeLabelService?: IUpdateEdgeLabelService
+  }
+
+  export const XFlowUpdateLabelService = async (
+    edge: X6Edge,
+    edgeConfig: NsGraph.IEdgeConfig,
+    options = NsUpdateEdge.XFlowEdgeSetOptions,
+  ) => {
+    edge?.setLabelAt(0, edgeConfig?.label || edgeConfig, options)
   }
 
   export interface IResult {
@@ -28,6 +40,13 @@ export namespace NsUpdateEdge {
 
   export interface IUpdateEdgeService {
     (args: IArgs): Promise<NsGraph.IEdgeConfig>
+  }
+  export interface IUpdateEdgeLabelService {
+    (
+      edge: X6Edge,
+      edgeConfig: NsGraph.IEdgeConfig,
+      options: X6Edge.SetOptions,
+    ): Promise<NsGraph.IEdgeConfig>
   }
 
   export interface ICmdHooks extends IHooks {
@@ -57,15 +76,21 @@ export class UpdateEdgeCommand implements ICommand {
       args,
       async handlerArgs => {
         const x6Graph = await this.ctx.getX6Graph()
-        const { updateEdgeService } = handlerArgs
+        const {
+          updateEdgeService,
+          updateEdgeLabelService = NsUpdateEdge.XFlowUpdateLabelService,
+          options = NsUpdateEdge.XFlowEdgeSetOptions,
+        } = handlerArgs
         const edgeConfig = updateEdgeService
           ? await updateEdgeService(handlerArgs)
           : handlerArgs?.edgeConfig
 
         const x6Edge = x6Graph?.getCellById(edgeConfig?.id) as X6Edge
-        x6Edge?.setData(edgeConfig)
-        x6Edge?.setLabelAt(0, edgeConfig?.label || edgeConfig)
-        // 支持edgeAttrs
+        x6Edge?.setData(edgeConfig, options)
+        if (edgeConfig?.label) {
+          // 默认更新edge的第一个label
+          await updateEdgeLabelService(x6Edge, edgeConfig, options)
+        }
         if (edgeConfig.attrs) {
           x6Edge.setAttrs(edgeConfig.attrs)
         }
