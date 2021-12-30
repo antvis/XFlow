@@ -1,5 +1,15 @@
 # @antv/xflow
 
+## 1.0.20
+
+### Patch Changes
+
+- 92eeefa: feat: support model options in add/del node/edge command Close#68
+- Updated dependencies [92eeefa]
+  - @antv/xflow-hook@1.0.20
+  - @antv/xflow-extension@1.0.20
+  - @antv/xflow-core@1.0.20
+
 ## 1.0.19
 
 ### Patch Changes
