@@ -42,11 +42,15 @@ export namespace NsAddEdge {
   }
   /** hook handler 返回类型 */
   export interface IResult {
-    edgeConfig: NsGraph.IEdgeConfig
-    edgeCell: X6Edge
+    /** err */
+    err?: string
+    /** 元数据 */
+    edgeConfig?: NsGraph.IEdgeConfig
+    /** edge的x6实例 */
+    edgeCell?: X6Edge
   }
   export interface ICreateEdgeService {
-    (args: IArgs): Promise<NsGraph.IEdgeConfig>
+    (args: IArgs): Promise<NsGraph.IEdgeConfig | boolean>
   }
   export interface ICreateEdgeIdService {
     (edgeConfig: NsGraph.IEdgeConfig): Promise<string>
@@ -122,11 +126,18 @@ export class AddEdgeCommand implements ICommand {
       /** 执行 callback */
       async handlerArgs => {
         const { cellFactory, createEdgeService, commandService, options } = handlerArgs
-        const edgeConfig = createEdgeService
-          ? await createEdgeService(handlerArgs)
-          : handlerArgs.edgeConfig
         const graph = await this.ctx.getX6Graph()
-        await this.processEdgeConfig(handlerArgs, edgeConfig)
+        let rawEdge: NsGraph.IEdgeConfig = handlerArgs.edgeConfig
+        // 通过createEdgeService来获取 id/是否可以添加的信息，如果返回的nodeid为空则不添加到画布
+        if (createEdgeService) {
+          const res = await createEdgeService(handlerArgs)
+          if (typeof res === 'boolean') {
+            return { err: 'createEdgeService rejected' }
+          }
+          rawEdge = res
+        }
+
+        const edgeConfig = await this.processEdgeConfig(handlerArgs, rawEdge)
         let edgeCell: X6Edge
         if (cellFactory) {
           const cell = await cellFactory(edgeConfig, this)

@@ -4,6 +4,7 @@ import type { NsGraph } from '../../interface'
 import type { IHooks } from '../../hooks/interface'
 import type { IArgsBase } from '../../command/interface'
 import type { NsNodeCmd } from '../interface'
+
 import { inject, injectable } from 'mana-syringe'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
 import { getNodeReactComponent } from '../components/context'
@@ -32,14 +33,15 @@ export namespace NsAddNode {
 
   /** hook handler 返回类型 */
   export interface IResult {
+    err?: string
     /** 节点的元数据 */
-    nodeConfig: NsGraph.INodeConfig
+    nodeConfig?: NsGraph.INodeConfig
     /** X6的Cell */
-    nodeCell: Node
+    nodeCell?: Node
   }
   /** add node api service 类型 */
   export interface ICreateNodeService {
-    (args: IArgs): Promise<NsGraph.INodeConfig>
+    (args: IArgs): Promise<NsGraph.INodeConfig | boolean>
   }
   /** 创建X6 Node Cell的工厂方法 */
   export interface INodeCellFactory {
@@ -70,10 +72,18 @@ export class AddNodeCommand implements ICommand {
       async handlerArgs => {
         const { createNodeService, cellFactory, commandService, options } = handlerArgs
         const graph = await ctx.getX6Graph()
-        const node = createNodeService
-          ? await createNodeService(handlerArgs)
-          : handlerArgs.nodeConfig
-        const nodeConfig = await this.processNodeConfig(node)
+        let rawNode: NsGraph.INodeConfig = handlerArgs.nodeConfig
+        // 通过createNodeService来获取诸如nodeId的信息，如果返回的nodeid为空则不添加到画布
+        if (createNodeService) {
+          const res = await createNodeService(handlerArgs)
+          if (typeof res === 'boolean') {
+            return { err: 'createNodeService rejected' }
+          }
+          rawNode = res
+        }
+
+        const nodeConfig = await this.processNodeConfig(rawNode)
+
         let x6NodeCell: Node
         if (cellFactory) {
           /** 使用参数中的工厂方法 */
@@ -99,7 +109,6 @@ export class AddNodeCommand implements ICommand {
       },
       runtimeHook,
     )
-
     ctx.setResult(result)
 
     return this
