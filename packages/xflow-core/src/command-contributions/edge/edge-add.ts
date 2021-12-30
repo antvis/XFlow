@@ -3,7 +3,7 @@ import type { NsGraph } from '../../interface'
 import type { IContext, IArgsBase } from '../../command/interface'
 import type { IHooks } from '../../hooks/interface'
 import type { HookHub } from '@antv/xflow-hook'
-import type { Edge as X6Edge } from '@antv/x6'
+import type { Edge as X6Edge, Model } from '@antv/x6'
 import { StringExt } from '@antv/x6'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
 import { XFlowEdgeCommands } from '../constant'
@@ -29,9 +29,15 @@ export namespace NsAddEdge {
 
   /** hook 参数类型 */
   export interface IArgs extends IArgsBase {
+    /** 边的元数据 */
     edgeConfig: NsGraph.IEdgeConfig
+    /** X6 Model Options：https://x6.antv.vision/zh/docs/api/graph/model/#addnode */
+    options?: Model.AddOptions
+    /** cell的工厂方法 */
     cellFactory?: IEdgeCellFactory
+    /** 创建 edge id的方法（可选） */
     createIdService?: ICreateEdgeIdService
+    /** 创建 edgeCell 的方法 */
     createEdgeService?: ICreateEdgeService
   }
   /** hook handler 返回类型 */
@@ -115,7 +121,7 @@ export class AddEdgeCommand implements ICommand {
       args,
       /** 执行 callback */
       async handlerArgs => {
-        const { cellFactory, createEdgeService, commandService } = handlerArgs
+        const { cellFactory, createEdgeService, commandService, options } = handlerArgs
         const edgeConfig = createEdgeService
           ? await createEdgeService(handlerArgs)
           : handlerArgs.edgeConfig
@@ -124,14 +130,17 @@ export class AddEdgeCommand implements ICommand {
         let edgeCell: X6Edge
         if (cellFactory) {
           const cell = await cellFactory(edgeConfig, this)
-          edgeCell = graph.addEdge(cell)
+          edgeCell = graph.addEdge(cell, options)
         } else {
-          edgeCell = graph.addEdge({
-            ...edgeConfig,
-            /** 由于X6的实现是React节点挂在label上的, 所以必须要给label设置值 */
-            label: edgeConfig?.label || edgeConfig,
-            data: { ...edgeConfig },
-          })
+          edgeCell = graph.addEdge(
+            {
+              ...edgeConfig,
+              /** 由于X6的实现是React节点挂在label上的, 所以必须要给label设置值 */
+              label: edgeConfig?.label || edgeConfig,
+              data: { ...edgeConfig },
+            },
+            options,
+          )
         }
 
         /** 创建 undo */
