@@ -1,4 +1,4 @@
-import type { Node } from '@antv/x6'
+import type { Model, Node } from '@antv/x6'
 import type { HookHub } from '@antv/xflow-hook'
 import type { NsGraph } from '../../interface'
 import type { IHooks } from '../../hooks/interface'
@@ -22,6 +22,8 @@ export namespace NsAddNode {
   export interface IArgs extends IArgsBase {
     /** 节点的元数据 */
     nodeConfig: NsGraph.INodeConfig
+    /** X6 Model Options：https://x6.antv.vision/zh/docs/api/graph/model/#addnode */
+    options?: Model.AddOptions
     /** 创建X6 Node Cell的工厂方法 */
     cellFactory?: INodeCellFactory
     /** 创建Node的服务 */
@@ -66,7 +68,7 @@ export class AddNodeCommand implements ICommand {
     const result = await hooks.addNode.call(
       args,
       async handlerArgs => {
-        const { createNodeService, cellFactory, commandService } = handlerArgs
+        const { createNodeService, cellFactory, commandService, options } = handlerArgs
         const graph = await ctx.getX6Graph()
         const node = createNodeService
           ? await createNodeService(handlerArgs)
@@ -76,9 +78,9 @@ export class AddNodeCommand implements ICommand {
         if (cellFactory) {
           /** 使用参数中的工厂方法 */
           const cell = await cellFactory(nodeConfig, this)
-          x6NodeCell = graph.addNode(cell)
+          x6NodeCell = graph.addNode(cell, options)
         } else {
-          x6NodeCell = graph.addNode(nodeConfig)
+          x6NodeCell = graph.addNode(nodeConfig, options)
         }
 
         /** add undo: delete node */
@@ -109,8 +111,7 @@ export class AddNodeCommand implements ICommand {
      * 1. react shape node 逻辑
      * 2. X6不会处理data数据, 仅透传。可以通过x6Node?.getData()方法获取这份数据
      */
-    nodeConfig.data = { ...nodeConfig };
-
+    nodeConfig.data = { ...nodeConfig }
 
     /** 非 react shape */
     if (nodeConfig.shape) {

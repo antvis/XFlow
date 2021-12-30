@@ -5,7 +5,7 @@ import { ICommandHandler, ICommandContextProvider } from '../../command/interfac
 import type { IHooks } from '../../hooks/interface'
 
 import type { HookHub } from '@antv/xflow-hook'
-import type { Cell, Edge } from '@antv/x6'
+import type { Cell, Edge, Model } from '@antv/x6'
 import { XFlowEdgeCommands } from '../constant'
 import { Disposable } from '../../common/disposable'
 
@@ -21,8 +21,13 @@ export namespace NsDelEdge {
   }
   /** hook 参数类型 */
   export interface IArgs extends IArgsBase {
+    /** EdgeCell */
     x6Edge?: Edge<Edge.Properties>
+    /** Edge元数据 */
     edgeConfig?: NsGraph.IEdgeConfig
+    /** X6 Model Options：https://x6.antv.vision/zh/docs/api/graph/model/#addnode */
+    options?: Model.RemoveOptions
+    /** Edge 删除服务 */
     deleteEdgeService?: IDeleteEdgeService
   }
   /** hook handler 返回类型 */
@@ -78,7 +83,7 @@ export class DelEdgeCommand implements ICommand {
       args,
       /** 执行 callback */
       async handlerArgs => {
-        const { edgeConfig, x6Edge, deleteEdgeService, commandService } = handlerArgs
+        const { edgeConfig, x6Edge, deleteEdgeService, commandService, options } = handlerArgs
         let edgeCell = x6Edge
         /** 没有edgeCell时查找cell */
         if (!edgeCell) {
@@ -111,7 +116,7 @@ export class DelEdgeCommand implements ICommand {
           const source = sourceCell.id
           const target = targetCell.id
           /** 执行remove */
-          edgeCell.remove()
+          edgeCell.remove(options)
 
           /** 创建 undo */
           const undo = Disposable.create(() => {

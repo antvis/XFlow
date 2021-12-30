@@ -8,7 +8,7 @@ import { XFlowEdgeCommands, XFlowNodeCommands } from '../constant'
 import { Disposable } from '../../common/disposable'
 import type { NsNodeCmd } from '../interface'
 
-import type { Node } from '@antv/x6/es'
+import type { Model, Node } from '@antv/x6/es'
 import type { NsEdgeCmd } from '../edge'
 
 type ICommand = ICommandHandler<NsDelNode.IArgs, NsDelNode.IResult, NsDelNode.ICmdHooks>
@@ -24,8 +24,13 @@ export namespace NsDelNode {
   }
   /** hook 参数类型 */
   export interface IArgs extends IArgsBase {
+    /** X6 Node Cell */
     x6Node?: Node
+    /** Node元数据 */
     nodeConfig: NsGraph.INodeConfig
+    /** X6 Model Options：https://x6.antv.vision/zh/docs/api/graph/model/#addnode */
+    options?: Model.RemoveOptions
+    /** 删除Node的服务 */
     deleteNodeService?: IDeleteNodeService
   }
   /** hook handler 返回类型 */
@@ -61,7 +66,7 @@ export class DelNodeCommand implements ICommand {
     const result = await hooks.delNode.call(
       args,
       async handlerArgs => {
-        const { commandService, deleteNodeService } = handlerArgs
+        const { commandService, deleteNodeService, options } = handlerArgs
         const graph = await ctx.getX6Graph()
 
         if (deleteNodeService) {
@@ -88,7 +93,7 @@ export class DelNodeCommand implements ICommand {
           )
           /** 再清理节点 */
           const nodeConfig = nodeCell.getData<NsGraph.INodeConfig>()
-          nodeCell.remove()
+          nodeCell.remove(options)
           /** add undo: delete node */
           ctx.addUndo(
             Disposable.create(async () => {
