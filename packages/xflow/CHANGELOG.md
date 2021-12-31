@@ -1,5 +1,15 @@
 # @antv/xflow
 
+## 1.0.21
+
+### Patch Changes
+
+- 1c20705: feat: support createNodeService and createEdgeService stop command execution Close#73
+- Updated dependencies [1c20705]
+  - @antv/xflow-core@1.0.21
+  - @antv/xflow-extension@1.0.21
+  - @antv/xflow-hook@1.0.21
+
 ## 1.0.20
 
 ### Patch Changes
