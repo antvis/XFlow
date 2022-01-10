@@ -75,7 +75,6 @@ if (!Shape.Edge.registry.exist(XFLOW_SHAPE.EDGE)) {
     Shape.Edge.define({
       zIndex: 1,
       highlight: false,
-      connector: { name: EDGE_PATH_TYPE.VERTICAL_NODE },
       shape: XFLOW_SHAPE.EDGE,
       // https://x6.antv.vision/zh/docs/api/registry/node-anchor
       // source: {
