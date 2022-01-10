@@ -5,4 +5,4 @@
 '@antv/xflow-hook': patch
 ---
 
-Command: add update node port command for dynamic node port purpose.
+feat: add layout prop to DagGraphExtension Component
