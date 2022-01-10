@@ -1,5 +1,13 @@
 # xflow-quick-start-cra
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [24db2b1]
+- Updated dependencies [24db2b1]
+  - @antv/xflow@1.0.22
+
 ## 0.1.6
 
 ### Patch Changes
