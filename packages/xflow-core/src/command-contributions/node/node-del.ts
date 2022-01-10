@@ -93,7 +93,8 @@ export class DelNodeCommand implements ICommand {
           )
           /** 再清理节点 */
           const nodeConfig = nodeCell.getData<NsGraph.INodeConfig>()
-          nodeCell.remove(options)
+          nodeCell.remove({ ...options, isCommand: true })
+
           /** add undo: delete node */
           ctx.addUndo(
             Disposable.create(async () => {

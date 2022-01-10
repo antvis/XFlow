@@ -1,11 +1,11 @@
-import React from 'react'
-import { ConfigProvider, Tooltip } from 'antd'
 import type { TooltipPlacement } from 'antd/es/tooltip'
+import type { IEvent } from '@antv/xflow-core'
+import type { Edge } from '@antv/x6'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import classnames from 'classnames'
-import type { IEvent } from '@antv/xflow-core'
+import { ConfigProvider, Tooltip } from 'antd'
 import { createGraphConfig } from '@antv/xflow-core'
-import type { Edge } from '@antv/x6'
 import { Shape } from '@antv/x6'
 import {
   NODE_HEIGHT,

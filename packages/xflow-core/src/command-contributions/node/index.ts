@@ -13,6 +13,7 @@ import { NsCenterNode, CenterNodeCommand } from './node-center'
 import { NsFrontNode, FrontNodeCommand } from './node-front'
 import { NsBackNode, BackNodeCommand } from './node-back'
 import { NsHighlightNode, HighlightNodeCommand } from './node-highlight'
+import { NsUpdateNodePort, UpdateNodePort } from './node-update-port'
 
 /** 注册Command Handler Class */
 export const registerNodeCommand = (register: Syringe.Register) => {
@@ -25,6 +26,7 @@ export const registerNodeCommand = (register: Syringe.Register) => {
   register(FrontNodeCommand)
   register(BackNodeCommand)
   register(HighlightNodeCommand)
+  register(UpdateNodePort)
 }
 
 /** app onStart 时, 注册 Command Hooks */
@@ -42,6 +44,7 @@ export const hookhubList: {
   NsFrontNode,
   NsBackNode,
   NsHighlightNode,
+  NsUpdateNodePort,
 ]
 
 /** 扩展 Command Hooks 类型*/
@@ -55,6 +58,7 @@ export interface ICmdHooks
     NsFrontNode.ICmdHooks,
     NsBackNode.ICmdHooks,
     NsHighlightNode.ICmdHooks,
+    NsUpdateNodePort.ICmdHooks,
     IHooks {}
 
 /** Command 参数类型*/
@@ -76,6 +80,11 @@ export namespace NsNodeCmd {
     export type IResult = Simplify<NsMoveNode.IResult>
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  export namespace UpdateNodePort {
+    export type IArgs = Simplify<NsUpdateNodePort.IArgs>
+    export type IResult = Simplify<NsUpdateNodePort.IResult>
+  }
   export namespace UpdateNode {
     export type IArgs = Simplify<NsUpdateNode.IArgs>
     export type IResult = Simplify<NsUpdateNode.IResult>

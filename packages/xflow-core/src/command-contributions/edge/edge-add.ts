@@ -139,9 +139,10 @@ export class AddEdgeCommand implements ICommand {
 
         const edgeConfig = await this.processEdgeConfig(handlerArgs, rawEdge)
         let edgeCell: X6Edge
+        const eventOptions = { ...options, isCommand: true }
         if (cellFactory) {
           const cell = await cellFactory(edgeConfig, this)
-          edgeCell = graph.addEdge(cell, options)
+          edgeCell = graph.addEdge(cell, eventOptions)
         } else {
           edgeCell = graph.addEdge(
             {
@@ -150,7 +151,7 @@ export class AddEdgeCommand implements ICommand {
               label: edgeConfig?.label || edgeConfig,
               data: { ...edgeConfig },
             },
-            options,
+            eventOptions,
           )
         }
 

@@ -42,12 +42,12 @@ export class FrontendApplication {
   }
 
   /** 获取画布实例 */
-  public getGraphInstance() {
+  public getGraphInstance = () => {
     return this.graphProvider.getGraphInstance()
   }
 
   /** 获取画布配置项 */
-  public getGraphConfig() {
+  public getGraphConfig = () => {
     return this.graphProvider.getGraphOptions()
   }
 
@@ -59,31 +59,31 @@ export class FrontendApplication {
   }
 
   /** 获取画布所有节点 */
-  public async getAllNodes() {
+  public getAllNodes = async () => {
     const graph = await this.graphProvider.getGraphInstance()
     return graph.getNodes()
   }
 
   /** 获取画布节点 */
-  public async getNodeById(nodeId: string) {
+  public getNodeById = async (nodeId: string) => {
     const graph = await this.graphProvider.getGraphInstance()
     return graph.getCellById(nodeId) as X6Node
   }
 
   /** 获取画布所有连线 */
-  public async getAllEdges() {
+  public getAllEdges = async () => {
     const graph = await this.graphProvider.getGraphInstance()
     return graph.getEdges()
   }
 
   /** 获取画布连线 */
-  public async getEdgeById(edgeId: string) {
+  public getEdgeById = async (edgeId: string) => {
     const graph = await this.graphProvider.getGraphInstance()
     return graph.getCellById(edgeId) as X6Edge
   }
 
   /** 更新节点样式 */
-  public async updateNodeAttrs(node: string | X6Node, attrs: Registry.Attr.CellAttrs) {
+  public updateNodeAttrs = async (node: string | X6Node, attrs: Registry.Attr.CellAttrs) => {
     if (node instanceof X6Node) {
       node.setAttrs(attrs)
     } else {
@@ -93,7 +93,7 @@ export class FrontendApplication {
   }
 
   /** 更新连线样式 */
-  public async updateEdgeAttrs(edge: string | X6Edge, attrs: Registry.Attr.CellAttrs) {
+  public updateEdgeAttrs = async (edge: string | X6Edge, attrs: Registry.Attr.CellAttrs) => {
     if (edge instanceof X6Edge) {
       edge.setAttrs(attrs)
     } else {
@@ -103,7 +103,7 @@ export class FrontendApplication {
   }
 
   /** 平移画布 */
-  public async translateGraph(tx: number, ty: number) {
+  public translateGraph = async (tx: number, ty: number) => {
     const graph = await this.graphProvider.getGraphInstance()
     const currentTranslate = graph.translate()
     graph.translate(currentTranslate.tx + tx, currentTranslate.ty + ty)

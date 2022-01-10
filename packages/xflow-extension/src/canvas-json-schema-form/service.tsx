@@ -28,6 +28,7 @@ export const executeJsonSchemaFormCommand = (
     XFlowModelCommands.UPDATE_MODEL.id,
     {
       getModel: async modelService => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         return NsJsonSchemaFormModel.useModel(modelService)
       },
       updateModel: updateModel,
@@ -37,7 +38,7 @@ export const executeJsonSchemaFormCommand = (
 
 export const useJsonSchemaFormModel = (props: IProps) => {
   const app = useXFlowApp()
-  const { commandService, modelService } = app
+  const { commandService, modelService, getGraphInstance } = app
   const { formSchemaService } = props
 
   const [state, setState, model, isModelReady] = createComponentModel<NsJsonSchemaFormModel.IState>(
@@ -76,12 +77,14 @@ export const useJsonSchemaFormModel = (props: IProps) => {
               if (!formSchemaService) {
                 return
               }
+              const graph = await getGraphInstance()
               const schema = await formSchemaService({
                 commandService,
                 modelService,
                 targetData,
                 cell: targetCell,
                 targetType: type,
+                graph,
               })
               self.setValue({
                 loading: false,
