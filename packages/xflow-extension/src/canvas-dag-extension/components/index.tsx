@@ -2,8 +2,7 @@ import React from 'react'
 import { createDagExtensionModule } from '../module'
 import type { IModuleConfig } from '@antv/xflow-core'
 import { useExtensionRegistry, XFlowAppExtensionMoudle } from '@antv/xflow-core'
-
-export interface IProps {}
+import type { IProps } from '../interface'
 
 export const DagGraphExtension: React.FC<IProps> = props => {
   /** 获取扩展Registry */
@@ -11,7 +10,11 @@ export const DagGraphExtension: React.FC<IProps> = props => {
   React.useEffect(() => {
     /** 添加 container的classname */
     extensionRegistry.addContainerClassNames('dag-extension-container')
-  }, [extensionRegistry])
+    const layout = props.layout || 'TB'
+    extensionRegistry.addContainerClassNames(
+      layout === 'TB' ? 'layout-top-bottom' : 'layout-left-right',
+    )
+  }, [extensionRegistry, props.layout])
 
   const config = React.useMemo<IModuleConfig>(
     () => ({

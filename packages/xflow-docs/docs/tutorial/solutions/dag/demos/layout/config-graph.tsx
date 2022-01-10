@@ -12,7 +12,7 @@ function createInputPort(portMeta) {
   return {
     id: uuidv4(),
     type: NsGraph.AnchorType.INPUT,
-    group: NsGraph.AnchorGroup.TOP,
+    group: NsGraph.AnchorGroup.RIGHT,
     tooltip: '输入桩',
     ...portMeta,
   }

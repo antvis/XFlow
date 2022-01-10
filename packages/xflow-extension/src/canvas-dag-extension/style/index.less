@@ -86,3 +86,48 @@
     }
   }
 }
+
+.layout-top-bottom {
+  // 连线状态
+  .x6-port {
+    .xflow-port-group {
+      // 默认状态
+      .xflow-port-arrow {
+        display: none;
+      }
+
+      // 已连接箭头
+      &.connected {
+        .xflow-port-arrow {
+          display: block;
+        }
+        .xflow-port {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.layout-left-right {
+  // 连线状态
+  .x6-port {
+    .xflow-port-group {
+      // 默认状态
+      .xflow-port-arrow {
+        display: none;
+      }
+
+      // 已连接箭头
+      &.connected {
+        .xflow-port-arrow {
+          display: block;
+          transform: ~'translate(0, 5px) rotate(270deg) !important';
+        }
+        .xflow-port {
+          display: none;
+        }
+      }
+    }
+  }
+}

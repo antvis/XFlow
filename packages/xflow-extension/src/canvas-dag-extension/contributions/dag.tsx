@@ -22,10 +22,12 @@ import {
 import type { Edge, Graph, Node } from '@antv/x6'
 import { HookHub } from '@antv/xflow-hook'
 import { XFlowNode } from '../x6-extension/node'
-import { XFlowEdge, EDGE_PATH_TYPE } from '../x6-extension/edge'
+import { XFlowEdge } from '../x6-extension/edge'
 import { GRAPH_STATUS_INFO } from '../constants'
 import { NsGraphStatusCommand } from './command'
-
+import type { IProps } from '../interface'
+import { LayoutEnum } from '../interface'
+import { IComponentConfig } from '../interface'
 export namespace NsAddEdgeEvent {
   export const EVENT_NAME = 'ADD_EDGE_CMD_EVENT'
   export interface IArgs {
@@ -37,143 +39,156 @@ export namespace NsAddEdgeEvent {
   }
 }
 
+export namespace DAG_DEFAULT_CONIFG {
+  export const router = { name: 'manhattan' }
+  export const connector = {
+    name: 'rounded',
+    args: { radius: 15 },
+  }
+}
+
 export const ANT_PREFIX = 'ant'
 
-export const dagOptions: Graph.Options = {
-  grid: false,
-  keyboard: {
-    enabled: true,
-  },
-  // 点选/框选配置（详细文档：https://X6.antv.vision/zh/docs/tutorial/basic/selection）
-  selecting: {
-    enabled: true,
-    multiple: true,
-    selectCellOnMoved: true,
-    showNodeSelectionBox: false,
-    // 框选可以选中edge
-    rubberEdge: true,
-    // 框选可以选中node
-    rubberNode: true,
-    movable: true,
-  },
-  connecting: {
-    //链接桩的位置 https://x6.antv.vision/zh/docs/api/registry/node-anchor
-    sourceAnchor: 'bottom',
-    //链接桩的位置 https://x6.antv.vision/zh/docs/api/registry/node-anchor
-    targetAnchor: 'center',
-    connectionPoint: 'anchor',
-    snap: { radius: 20 },
-    router: { name: 'manhattan' },
-    connector: {
-      name: EDGE_PATH_TYPE.VERTICAL_NODE,
-      args: {
-        radius: 15,
-      },
+export const getDagOptions = (props: IProps) => {
+  const {
+    layout = LayoutEnum.TOP_BOTTOM,
+    router = DAG_DEFAULT_CONIFG.router,
+    connector = DAG_DEFAULT_CONIFG.connector,
+  } = props
+  const targetPortType =
+    layout === LayoutEnum.TOP_BOTTOM ? NsGraph.AnchorGroup.TOP : NsGraph.AnchorGroup.LEFT
+  const dagOptions: Graph.Options = {
+    grid: false,
+    keyboard: {
+      enabled: true,
     },
-    highlight: true,
-    dangling: false,
-    createEdge() {
-      /* eslint-disable-next-line @typescript-eslint/no-this-alias */
-      const graph = this
-      const edge = new XFlowEdge({
-        attrs: {
-          line: {
-            strokeDasharray: '5 5',
-            stroke: '#888',
-            strokeWidth: 1,
-            targetMarker: {
-              name: 'block',
-              args: {
-                size: '6',
+    // 点选/框选配置（详细文档：https://X6.antv.vision/zh/docs/tutorial/basic/selection）
+    selecting: {
+      enabled: true,
+      multiple: true,
+      selectCellOnMoved: true,
+      showNodeSelectionBox: false,
+      // 框选可以选中edge
+      rubberEdge: true,
+      // 框选可以选中node
+      rubberNode: true,
+      movable: true,
+    },
+    connecting: {
+      //链接桩的位置 https://x6.antv.vision/zh/docs/api/registry/node-anchor
+      sourceAnchor: 'bottom',
+      //链接桩的位置 https://x6.antv.vision/zh/docs/api/registry/node-anchor
+      targetAnchor: 'center',
+      connectionPoint: 'anchor',
+      snap: { radius: 20 },
+      router: router,
+      connector: connector,
+      highlight: true,
+      dangling: false,
+      createEdge() {
+        /* eslint-disable-next-line @typescript-eslint/no-this-alias */
+        const graph = this
+        const edge = new XFlowEdge({
+          attrs: {
+            line: {
+              strokeDasharray: '5 5',
+              stroke: '#888',
+              strokeWidth: 1,
+              targetMarker: {
+                name: 'block',
+                args: {
+                  size: '6',
+                },
               },
             },
           },
-        },
-      })
-      graph.once('edge:connected', args => {
-        const { isNew } = args
-        const edgeCell = args.edge
-        if (isNew && edgeCell.isEdge()) {
-          const portId = edgeCell.getTargetPortId()
-          const targetNode = edgeCell.getTargetCell()
-          if (targetNode && targetNode.isNode()) {
-            targetNode.setPortProp(portId, 'connected', false)
-            edgeCell.attr({
-              line: {
-                strokeDasharray: '',
-                targetMarker: '',
-                stroke: '#d5d5d5',
-              },
-            })
-            const targetPortId = edgeCell.getTargetPortId()
-            const sourcePortId = edgeCell.getSourcePortId()
-            const sourceCellId = edgeCell.getSourceCellId()
-            const targetCellId = edgeCell.getTargetCellId()
-            graph.trigger(NsAddEdgeEvent.EVENT_NAME, {
-              targetPortId,
-              sourcePortId,
-              source: sourceCellId,
-              target: targetCellId,
-              edge: edge,
-            } as NsAddEdgeEvent.IArgs)
+        })
+        graph.once('edge:connected', args => {
+          const { isNew } = args
+          const edgeCell = args.edge
+          if (isNew && edgeCell.isEdge()) {
+            const portId = edgeCell.getTargetPortId()
+            const targetNode = edgeCell.getTargetCell()
+            if (targetNode && targetNode.isNode()) {
+              targetNode.setPortProp(portId, 'connected', false)
+              edgeCell.attr({
+                line: {
+                  strokeDasharray: '',
+                  targetMarker: '',
+                  stroke: '#d5d5d5',
+                },
+              })
+              const targetPortId = edgeCell.getTargetPortId()
+              const sourcePortId = edgeCell.getSourcePortId()
+              const sourceCellId = edgeCell.getSourceCellId()
+              const targetCellId = edgeCell.getTargetCellId()
+              graph.trigger(NsAddEdgeEvent.EVENT_NAME, {
+                targetPortId,
+                sourcePortId,
+                source: sourceCellId,
+                target: targetCellId,
+                edge: edge,
+              } as NsAddEdgeEvent.IArgs)
+            }
           }
+        })
+        return edge
+      },
+      validateEdge: args => {
+        const { edge } = args
+        return !!(edge?.target as any)?.port
+      },
+      // 是否触发交互事件
+      validateMagnet({ magnet }) {
+        return magnet.getAttribute('port-group') !== targetPortType
+      },
+      // 显示可用的链接桩
+      validateConnection({ sourceView, targetView, sourceMagnet, targetMagnet }) {
+        // 不允许连接到自己
+        if (sourceView === targetView) {
+          return false
         }
-      })
-      return edge
-    },
-    validateEdge: args => {
-      const { edge } = args
-      return !!(edge?.target as any)?.port
-    },
-    // 是否触发交互事件
-    validateMagnet({ magnet }) {
-      return magnet.getAttribute('port-group') !== NsGraph.AnchorGroup.TOP
-    },
-    // 显示可用的链接桩
-    validateConnection({ sourceView, targetView, sourceMagnet, targetMagnet }) {
-      // 不允许连接到自己
-      if (sourceView === targetView) {
-        return false
-      }
-      // 只能从上游节点的输出链接桩创建连接
-      if (!sourceMagnet || sourceMagnet.getAttribute('port-group') === NsGraph.AnchorGroup.TOP) {
-        return false
-      }
-      // 只能连接到下游节点的输入桩
-      if (!targetMagnet || targetMagnet.getAttribute('port-group') !== NsGraph.AnchorGroup.TOP) {
-        return false
-      }
-      const node = targetView!.cell as any
-      // 判断目标链接桩是否可连接
-      const portId = targetMagnet.getAttribute('port')!
-      const port = node.getPort(portId)
-      return !(port && port.connected)
-    },
-  },
-  highlighting: {
-    nodeAvailable: {
-      name: 'className',
-      args: {
-        className: 'available',
+        // 只能从上游节点的输出链接桩创建连接
+        if (!sourceMagnet || sourceMagnet.getAttribute('port-group') === targetPortType) {
+          return false
+        }
+        // 只能连接到下游节点的输入桩
+        if (!targetMagnet || targetMagnet.getAttribute('port-group') !== targetPortType) {
+          return false
+        }
+        const node = targetView!.cell as any
+        // 判断目标链接桩是否可连接
+        const portId = targetMagnet.getAttribute('port')!
+        const port = node.getPort(portId)
+        return !(port && port.connected)
       },
     },
-    magnetAvailable: {
-      name: 'className',
-      args: {
-        className: 'available',
+    highlighting: {
+      nodeAvailable: {
+        name: 'className',
+        args: {
+          className: 'available',
+        },
+      },
+      magnetAvailable: {
+        name: 'className',
+        args: {
+          className: 'available',
+        },
+      },
+      magnetAdsorbed: {
+        name: 'className',
+        args: {
+          className: 'adsorbed',
+        },
       },
     },
-    magnetAdsorbed: {
-      name: 'className',
-      args: {
-        className: 'adsorbed',
-      },
+    scaling: {
+      max: 1.05,
+      min: 0.01,
     },
-  },
-  scaling: {
-    max: 1.05,
-    min: 0.01,
-  },
+  }
+  return dagOptions
 }
 
 /**
@@ -189,6 +204,10 @@ export class DagHooksContribution
   /** IGraphCommandFactory */
   @ManaSyringe.inject(IGraphCommandFactory)
   commandFactory: IGraphCommandFactory
+
+  /** propConfig */
+  @ManaSyringe.inject(IComponentConfig)
+  propConfig: IComponentConfig
 
   /** 注册Command */
   registerGraphCommands = (commands: IGraphCommandService) => {
@@ -217,6 +236,7 @@ export class DagHooksContribution
       hooks.addEdge.registerHook({
         name: 'dag-add-edge',
         handler: async args => {
+          const { layout = LayoutEnum.TOP_BOTTOM } = await this.propConfig.getConfig()
           const cellFactory: NsEdgeCmd.AddEdge.IArgs['cellFactory'] = async edgeConfig => {
             const cell = new XFlowEdge({
               ...edgeConfig,
@@ -225,14 +245,14 @@ export class DagHooksContribution
                 cell: edgeConfig.source,
                 port: edgeConfig.sourcePortId,
                 anchor: {
-                  name: 'bottom',
+                  name: layout === LayoutEnum.TOP_BOTTOM ? 'bottom' : 'right',
                 },
               },
               target: {
                 cell: edgeConfig.target,
                 port: edgeConfig.targetPortId,
                 anchor: {
-                  name: 'center',
+                  name: layout === LayoutEnum.TOP_BOTTOM ? 'center' : 'right',
                 },
               },
               attrs: {
@@ -290,6 +310,8 @@ export class DagHooksContribution
       hooks.graphOptions.registerHook({
         name: 'dag-extension-x6-options',
         handler: async args => {
+          const props = await this.propConfig.getConfig()
+          const dagOptions = getDagOptions(props)
           Object.assign(args, dagOptions)
         },
       }),

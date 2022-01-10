@@ -15,7 +15,7 @@ nav:
 
 ```tsx | pure
 /** 如何引入？ */
-import { IModelService } from '@ali/xflow'
+import { IModelService } from '@antv/xflow'
 
 /**
  * Model Service 类型
@@ -33,7 +33,7 @@ export interface IModelService {
 ## IModel
 
 ```tsx | pure
-import { NsModel } from '@ali/xflow'
+import { NsModel } from '@antv/xflow'
 // NsModel.IModel
 
 /** model的类型 */

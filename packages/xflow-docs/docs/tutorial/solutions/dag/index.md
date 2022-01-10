@@ -58,3 +58,7 @@ XFlow 内置累常用的画布缩放，复制粘贴，撤销重做，MiniMap 等
 ### 定制动态链接桩
 
 <code src="./demos/dynamic-ports/index.tsx" compact transform classname="dag-solution" />
+
+### 支持左右布局
+
+<code src="./demos/layout/index.tsx" compact transform classname="dag-solution" />
