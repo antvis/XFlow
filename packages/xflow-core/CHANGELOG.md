@@ -1,5 +1,13 @@
 # @antv/xflow-core
 
+## 1.0.23
+
+### Patch Changes
+
+- 922e83e: feat: add layout prop to DagGraphExtension Component
+- Updated dependencies [922e83e]
+  - @antv/xflow-hook@1.0.23
+
 ## 1.0.22
 
 ### Patch Changes

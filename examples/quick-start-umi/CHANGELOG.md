@@ -1,5 +1,12 @@
 # xflow-quick-start-umi
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [922e83e]
+  - @antv/xflow@1.0.23
+
 ## 0.1.6
 
 ### Patch Changes
