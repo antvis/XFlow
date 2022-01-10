@@ -1,5 +1,12 @@
 # @antv/xflow-hook
 
+## 1.0.22
+
+### Patch Changes
+
+- 24db2b1: feat: support createNodeService and createEdgeService stop command execution Close#73
+- 24db2b1: Command: add update node port command for dynamic node port purpose.
+
 ## 1.0.21
 
 ### Patch Changes
