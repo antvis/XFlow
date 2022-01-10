@@ -1,21 +1,21 @@
 import React from 'react'
 import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons'
 import type { NsGraph } from '@antv/xflow'
-import { useXFlowApp, XFlowGroupCommands } from '@antv/xflow'
+import { useXFlowApp, XFlowGroupCommands, NsNodeCmd } from '@antv/xflow'
 import './group.less'
 
 export const GroupNode: NsGraph.INodeRender = props => {
   const { cell } = props
   const app = useXFlowApp()
   const isCollapsed = props.data.isCollapsed || false
-  const onExpand = () => {
+  const onExpand = e => {
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
       isCollapsed: false,
       collapsedSize: { width: 200, height: 40 },
     })
   }
-  const onCollapse = () => {
+  const onCollapse = e => {
     app.executeCommand(XFlowGroupCommands.COLLAPSE_GROUP.id, {
       nodeId: cell.id,
       isCollapsed: true,
