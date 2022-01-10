@@ -116,7 +116,7 @@ export class DelEdgeCommand implements ICommand {
           const source = sourceCell.id
           const target = targetCell.id
           /** 执行remove */
-          edgeCell.remove(options)
+          edgeCell.remove({ ...options, isCommand: true })
 
           /** 创建 undo */
           const undo = Disposable.create(() => {

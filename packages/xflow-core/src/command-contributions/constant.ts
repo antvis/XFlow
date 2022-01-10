@@ -9,16 +9,16 @@ export namespace XFlowNodeCommands {
     label: '添加节点',
     category,
   }
-  /** 移动节点 */
-  export const MOVE_NODE: IGraphCommand = {
-    id: 'xflow:move-node',
-    label: 'Move Node',
-    category,
-  }
   /** 删除节点 */
   export const DEL_NODE: IGraphCommand = {
     id: 'xflow:del-node',
     label: '删除节点',
+    category,
+  }
+  /** 更新链接桩 */
+  export const UPDATE_NODE_PORT: IGraphCommand = {
+    id: 'xflow:update-node-port',
+    label: '删除连接桩',
     category,
   }
   /** 更新节点 */
@@ -37,6 +37,12 @@ export namespace XFlowNodeCommands {
   export const SELECT_NODE: IGraphCommand = {
     id: 'xflow:select-node',
     label: '选中节点',
+    category,
+  }
+  /** 移动节点 */
+  export const MOVE_NODE: IGraphCommand = {
+    id: 'xflow:move-node',
+    label: 'Move Node',
     category,
   }
   /** 节点居中 */

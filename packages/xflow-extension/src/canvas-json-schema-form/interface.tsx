@@ -2,7 +2,7 @@ import type React from 'react'
 import type { FormInstance } from 'antd'
 import type { FieldData, Rule } from 'rc-field-form/es/interface'
 import type { IPosition, NsGraph, IModelService, IGraphCommandService } from '@antv/xflow-core'
-import type { Cell } from '@antv/x6'
+import type { Cell, Graph as X6Graph } from '@antv/x6'
 
 export { FieldData }
 /** Panel 布局 */
@@ -94,6 +94,7 @@ export interface IFormSchemaService {
     targetData: TargetData
     modelService: IModelService
     commandService: IGraphCommandService
+    graph: X6Graph
   }): Promise<ISchema>
 }
 

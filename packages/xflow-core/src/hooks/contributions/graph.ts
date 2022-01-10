@@ -50,7 +50,7 @@ export class GraphEventContribution implements IHookContribution<IHooks> {
           const todo = await hooks.x6Events.call([], async mergedEvents => {
             return mergedEvents.map(e => {
               const handler = handlerArgs => {
-                e.callback(handlerArgs, commandService, modelService)
+                e.callback(handlerArgs, commandService, modelService, graph)
               }
               graph.on(e.eventName, handler)
               return {

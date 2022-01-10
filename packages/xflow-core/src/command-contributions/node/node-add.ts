@@ -85,12 +85,13 @@ export class AddNodeCommand implements ICommand {
         const nodeConfig = await this.processNodeConfig(rawNode)
 
         let x6NodeCell: Node
+        const eventOptions = { ...options, isCommand: true }
         if (cellFactory) {
           /** 使用参数中的工厂方法 */
           const cell = await cellFactory(nodeConfig, this)
-          x6NodeCell = graph.addNode(cell, options)
+          x6NodeCell = graph.addNode(cell, eventOptions)
         } else {
-          x6NodeCell = graph.addNode(nodeConfig, options)
+          x6NodeCell = graph.addNode(nodeConfig, eventOptions)
         }
 
         /** add undo: delete node */
