@@ -185,7 +185,7 @@ const getModel = async () => {
 Model 的类型如下：
 
 ```tsx | pure
-import { NsModel } from '@ali/xflow'
+import { NsModel } from '@antv/xflow'
 
 /** NsModel.IModel的类型 */
 export interface IModel<T> {
