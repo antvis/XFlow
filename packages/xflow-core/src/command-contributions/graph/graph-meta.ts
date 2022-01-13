@@ -61,7 +61,7 @@ export class GraphMetaCommand implements ICommand {
         const { graphMetaService } = handlerArgs
         const meta = graphMetaService
           ? await graphMetaService(handlerArgs)
-          : { flowId: handlerArgs?.meta?.flowId }
+          : { ...handlerArgs?.meta }
         return { flowId: meta?.flowId, ...meta }
       },
       /** 外部的 hook */
