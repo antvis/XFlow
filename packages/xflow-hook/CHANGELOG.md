@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.27
+
+### Patch Changes
+
+- e7c7ccb: fix: dag extension connecting edge support right to left layout
+
 ## 1.0.26
 
 ### Patch Changes
