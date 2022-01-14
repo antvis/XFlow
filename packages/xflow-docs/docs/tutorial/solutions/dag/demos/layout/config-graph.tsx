@@ -66,7 +66,6 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
               callback: (e, cmds) => {
                 const node = e.edge.getTargetNode() as any as X6Node
                 const isCommand = ObjectExt.getByPath(e, 'options.isCommand', '.')
-                console.log(isCommand)
                 if (!isCommand) {
                   return
                 }
@@ -92,7 +91,6 @@ export const useGraphHookConfig = createHookConfig<IProps>((config, proxy) => {
                 const nodeId = e.edge.getTargetCellId()
                 const portId = e.edge.getTargetPortId()
                 const isCommand = ObjectExt.getByPath(e, 'options.isCommand', '.')
-
                 if (!isCommand) {
                   return
                 }
