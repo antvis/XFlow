@@ -1,5 +1,6 @@
-import type { IPosition, NsGraph } from '@antv/xflow-core'
 import type React from 'react'
+import type { IPosition, NsGraph, GraphConfig } from '@antv/xflow-core'
+import type { Graph as X6Graph } from '@antv/x6'
 
 export type Datum = {
   nodes?: unknown[]
@@ -7,11 +8,11 @@ export type Datum = {
 }
 
 export interface IFlowchartGraphProps {
-  config?: any
+  config?: X6Graph.Options
   style?: React.CSSProperties
   className?: string
-
   position?: IPosition
+  useConfig?: (config: GraphConfig) => void
   /**
    * 这种几个方法应该移动到最外层，后续
    */

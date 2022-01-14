@@ -30,7 +30,7 @@ export {
 export type { IAppLoad, IAppDestroy, IAppConfigReady }
 
 /** Graph 配置 */
-export { IGraphConfig, IGraphProvider, createGraphConfig } from './graph'
+export { IGraphConfig, IGraphProvider, createGraphConfig, GraphConfig } from './graph'
 
 /** Application 扩展依赖 */
 export {

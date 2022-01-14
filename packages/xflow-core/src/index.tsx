@@ -33,7 +33,7 @@ export {
 export { IExtensionModule, IModuleConfig } from './xflow-main'
 
 /** graphProvider：注入Graph时 需要 */
-export { IGraphConfig, IGraphProvider, createGraphConfig } from './xflow-main'
+export { IGraphConfig, IGraphProvider, createGraphConfig, GraphConfig } from './xflow-main'
 
 /** app：用于extension扩展*/
 export {
