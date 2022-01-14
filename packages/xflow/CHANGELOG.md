@@ -1,5 +1,14 @@
 # @antv/xflow
 
+## 1.0.24
+
+### Patch Changes
+
+- 232b897: fix: in addition to support set any key in graph meta including 'flowId'
+- Updated dependencies [232b897]
+  - @antv/xflow-core@1.0.24
+  - @antv/xflow-extension@1.0.24
+
 ## 1.0.23
 
 ### Patch Changes
