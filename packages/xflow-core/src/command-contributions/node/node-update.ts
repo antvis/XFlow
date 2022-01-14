@@ -1,5 +1,5 @@
 import { inject, injectable, postConstruct } from 'mana-syringe'
-import type { Node as X6Node } from '@antv/x6'
+import { Graph as X6Graph, Node as X6Node } from '@antv/x6'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IHooks } from '../../hooks/interface'
 import { XFlowNodeCommands } from '../constant'
@@ -16,7 +16,9 @@ export namespace NsUpdateNode {
 
   export interface IArgs extends IArgsBase {
     /** 节点的新元数据 */
-    nodeConfig: NsGraph.INodeConfig
+    nodeConfig?: NsGraph.INodeConfig
+    /** 更新节点元数据 */
+    setNodeConfig?: ISetNodeConfig
     /** setOptions:https://x6.antv.vision/zh/docs/api/model/cell/#setdata */
     options?: X6Node.SetOptions
     /** 更新节点的服务 */
@@ -24,6 +26,10 @@ export namespace NsUpdateNode {
   }
 
   export const XFlowNodeSetOptions: X6Node.SetOptions = { overwrite: true }
+  export interface ISetNodeConfig {
+    node: string | X6Node
+    callback: (node: NsGraph.INodeConfig) => Promise<NsGraph.INodeConfig>
+  }
   export interface IResult {
     nodeConfig: NsGraph.INodeConfig
     nodeCell: X6Node
@@ -55,42 +61,84 @@ export class UpdateNodeCommand implements ICommand {
     this.ctx = this.contextProvider()
   }
 
+  setNodeConfig = (x6Node: X6Node, nodeConfig: NsGraph.INodeConfig, options: X6Node.SetOptions) => {
+    x6Node.setData(nodeConfig, options)
+    x6Node.setPosition(nodeConfig?.x || 0, nodeConfig?.y || 0)
+    x6Node.setSize(
+      nodeConfig?.width || NsUpdateNode.NODE_WIDTH,
+      nodeConfig?.height || NsUpdateNode.NODE_HEIGHT,
+    )
+
+    // SVG 元素更新label
+    if (!(x6Node instanceof ReactShape) && !!x6Node.getAttrByPath('text/text')) {
+      x6Node.setAttrByPath('text/text', nodeConfig.label)
+    }
+
+    // 支持nodeAttrs
+    if (nodeConfig.attrs) {
+      x6Node.setAttrs(nodeConfig.attrs)
+    }
+
+    // 更新ports
+    if (Array.isArray(nodeConfig.ports)) {
+      x6Node.setPropByPath('ports/items', nodeConfig.ports, { rewrite: true, ...options })
+    }
+  }
+
+  getNodeConfig = (x6Node: X6Node) => {
+    const data = x6Node.getData()
+    const position = x6Node.getPosition()
+    const size = x6Node.getSize()
+    return {
+      ...data,
+      ...position,
+      ...size,
+    }
+  }
+
+  getNodeCell = (x6Graph: X6Graph, handlerArgs: NsUpdateNode.IArgs) => {
+    const { nodeConfig, setNodeConfig } = handlerArgs
+    let nodeId: string = ''
+    if (setNodeConfig && setNodeConfig.node && typeof setNodeConfig.node === 'string') {
+      nodeId = setNodeConfig.node
+    } else if (nodeConfig && nodeConfig.id && typeof nodeConfig.id === 'string') {
+      nodeId = nodeConfig.node
+    }
+    if (nodeId) {
+      return x6Graph?.getCellById(nodeId) as X6Node
+    }
+    if (setNodeConfig.node instanceof X6Node) {
+      return setNodeConfig.node
+    }
+  }
+
+  getNextNodeConfig = async (handlerArgs: NsUpdateNode.IArgs, x6Node: X6Node) => {
+    if (handlerArgs && handlerArgs.setNodeConfig && handlerArgs.setNodeConfig.callback) {
+      const nodeData = this.getNodeConfig(x6Node)
+      return handlerArgs.setNodeConfig.callback(nodeData)
+    }
+    return handlerArgs.nodeConfig
+  }
+
   execute = async () => {
     const { args, hooks: runtimeHook } = this.ctx.getArgs()
     const hooks = this.ctx.getHooks()
-
     const result = await hooks.updateNode.call(
       args,
       async handlerArgs => {
-        const x6Graph = await this.ctx.getX6Graph()
-        const { nodeConfig, options = NsUpdateNode.XFlowNodeSetOptions } = handlerArgs
-
-        const x6Node = x6Graph?.getCellById(nodeConfig?.id) as X6Node
-        x6Node.setData(nodeConfig, options)
-        x6Node.setPosition(nodeConfig?.x || 0, nodeConfig?.y || 0)
-        x6Node.setSize(
-          nodeConfig?.width || NsUpdateNode.NODE_WIDTH,
-          nodeConfig?.height || NsUpdateNode.NODE_HEIGHT,
-        )
-
-        if (!(x6Node instanceof ReactShape) && !!x6Node.getAttrByPath('text/text')) {
-          x6Node.setAttrByPath('text/text', nodeConfig.label)
-        }
-
-        // 支持nodeAttrs
-        if (nodeConfig.attrs) {
-          x6Node.setAttrs(nodeConfig.attrs)
-        }
+        const { options = NsUpdateNode.XFlowNodeSetOptions } = handlerArgs
+        const graph = await this.ctx.getX6Graph()
+        const x6Node = this.getNodeCell(graph, handlerArgs)
+        const nextNodeConfig = await this.getNextNodeConfig(handlerArgs, x6Node)
+        this.setNodeConfig(x6Node, nextNodeConfig, options)
         return {
-          nodeConfig,
+          nodeConfig: nextNodeConfig,
           nodeCell: x6Node,
         }
       },
       runtimeHook,
     )
-
     this.ctx.setResult(result)
-
     return this
   }
 
