@@ -76,9 +76,9 @@ export const getDagOptions = (props: IProps) => {
     },
     connecting: {
       //链接桩的位置 https://x6.antv.vision/zh/docs/api/registry/node-anchor
-      sourceAnchor: 'bottom',
+      sourceAnchor: layout === LayoutEnum.TOP_BOTTOM ? 'bottom' : 'right',
       //链接桩的位置 https://x6.antv.vision/zh/docs/api/registry/node-anchor
-      targetAnchor: 'center',
+      targetAnchor: layout === LayoutEnum.TOP_BOTTOM ? 'center' : 'left',
       connectionPoint: 'anchor',
       snap: { radius: 20 },
       router: router,
