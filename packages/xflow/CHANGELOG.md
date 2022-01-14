@@ -1,5 +1,15 @@
 # @antv/xflow
 
+## 1.0.26
+
+### Patch Changes
+
+- c79a9ea: fix: after add node port update nodeConfig automatically
+- Updated dependencies [c79a9ea]
+  - @antv/xflow-core@1.0.26
+  - @antv/xflow-extension@1.0.26
+  - @antv/xflow-hook@1.0.26
+
 ## 1.0.25
 
 ### Patch Changes
