@@ -1,5 +1,14 @@
 # @antv/xflow-extension
 
+## 1.0.25
+
+### Patch Changes
+
+- 9bc9095: feat: add useConfig to flow chart
+- Updated dependencies [9bc9095]
+  - @antv/xflow-hook@1.0.24
+  - @antv/xflow-core@1.0.25
+
 ## 1.0.24
 
 ### Patch Changes
