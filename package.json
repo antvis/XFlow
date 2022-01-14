@@ -7,7 +7,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "start": "npm run dev:docs",
-    "reset": "pnpm up --filter @antv/xflow...",
+    "reset": "pnpm install --force --filter @antv/xflow...",
     "dev:main": "pnpm start --filter @antv/xflow",
     "dev:hook": "pnpm start --filter @antv/xflow-hook",
     "dev:core": "pnpm start --filter @antv/xflow-core",

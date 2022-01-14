@@ -47,7 +47,7 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@antv/x6": "^1.29.0",
+    "@antv/x6": "^1.29.6",
     "@antv/x6-react-components": "^1.1.15",
     "@antv/x6-react-shape": "^1.5.2",
     "@rollup/plugin-commonjs": "^20.0.0",

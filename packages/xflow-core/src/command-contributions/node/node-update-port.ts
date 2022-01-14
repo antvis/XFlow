@@ -3,12 +3,12 @@ import type { HookHub } from '@antv/xflow-hook'
 import type { NsGraph } from '../../interface'
 import type { IHooks } from '../../hooks/interface'
 import type { IArgsBase } from '../../command/interface'
+import type { PortManager } from '@antv/x6/es/model/port'
 
 import { inject, injectable } from 'mana-syringe'
 import { XFlowNodeCommands } from '../constant'
 import { Disposable } from '../../common/disposable'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
-import type { PortManager } from '@antv/x6/es/model/port'
 
 type ICommand = ICommandHandler<
   NsUpdateNodePort.IArgs,
@@ -29,7 +29,7 @@ export namespace NsUpdateNodePort {
       ports: PortManager.PortMetadata[],
       node: X6Node,
       graph: X6Graph,
-    ) => Promise<PortManager.PortMetadata[]>
+    ) => Promise<PortManager.PortMetadata[] | false>
   }
   /** hook handler 返回类型 */
   export interface IResult {
@@ -65,6 +65,40 @@ export class UpdateNodePort implements ICommand {
     return node
   }
 
+  getNodeConfig = (x6Node: X6Node) => {
+    const data = x6Node.getData()
+    const position = x6Node.getPosition()
+    const size = x6Node.getSize()
+    return {
+      ...data,
+      ...position,
+      ...size,
+    } as NsGraph.INodeConfig
+  }
+
+  isNodeAnchors(ports: any): ports is NsGraph.INodeAnchor {
+    return Array.isArray(ports)
+  }
+
+  isPortMetaData(ports: any): ports is NsGraph.INodePortMeta {
+    return ports.items && Array.isArray(ports.items)
+  }
+
+  updatePortsOfNodeConfig = (
+    cell: X6Node,
+    ports: NsGraph.INodeAnchor[],
+    options: X6Node.SetOptions,
+  ) => {
+    const nodeConfig = this.getNodeConfig(cell)
+    if (this.isNodeAnchors(nodeConfig.ports)) {
+      nodeConfig.ports = [...ports]
+    }
+    if (this.isPortMetaData(nodeConfig.ports)) {
+      nodeConfig.ports.items = [...ports]
+    }
+    cell.setData(nodeConfig, options)
+  }
+
   /** 执行Cmd */
   execute = async () => {
     const ctx = this.contextProvider()
@@ -83,9 +117,13 @@ export class UpdateNodePort implements ICommand {
         }
         const currentPorts = (cell as X6Node).getPorts()
         const nextPorts = await updatePorts([...currentPorts], cell, graph)
-
+        if (nextPorts === false) {
+          return { err: 'service rejected' }
+        }
         cell.setPropByPath('ports/items', nextPorts, { rewrite: true, ...options })
-        /** add undo: delete node */
+        /** update nodeConfig */
+        this.updatePortsOfNodeConfig(cell, nextPorts as NsGraph.INodeAnchor[], options)
+        /** add undo */
         ctx.addUndo(
           Disposable.create(async () => {
             commandService.executeCommand<NsUpdateNodePort.IArgs>(
