@@ -107,8 +107,9 @@ export const useGraphConfig = createGraphConfig((config, proxy) => {
           createEdge() {
             const tempEdge = new XFlowEdge({})
             this.once('edge:connected', args => {
-              const { edge, isNew } = args
-              if (isNew && edge.isEdge()) {
+              const { edge, isNew, e } = args
+              /** 没有edge:connected时，会导致graph.once的事件没有执行 */
+              if (isNew && edge.isEdge() && tempEdge === e.edge) {
                 const targetNode = edge.getTargetCell()
                 if (targetNode && targetNode.isNode()) {
                   const targetPortId = edge.getTargetPortId()

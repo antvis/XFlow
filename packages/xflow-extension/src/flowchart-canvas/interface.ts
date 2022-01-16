@@ -1,5 +1,6 @@
 import type React from 'react'
-import type { IPosition, NsGraph, GraphConfig } from '@antv/xflow-core'
+import type { IPosition, NsGraph } from '@antv/xflow-core'
+import type { GraphConfig } from '@antv/xflow-core/es/xflow-main/graph/config'
 import type { Graph as X6Graph } from '@antv/x6'
 
 export type Datum = {

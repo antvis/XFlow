@@ -20,6 +20,7 @@ import {
   IGraphCommandContribution,
 } from '@antv/xflow-core'
 import type { Edge, Graph, Node } from '@antv/x6'
+import type { EventArgs } from '@antv/x6/lib/graph/events'
 import { HookHub } from '@antv/xflow-hook'
 import { XFlowNode } from '../x6-extension/node'
 import { XFlowEdge } from '../x6-extension/edge'
@@ -103,10 +104,12 @@ export const getDagOptions = (props: IProps) => {
             },
           },
         })
-        graph.once('edge:connected', args => {
+
+        const addEdge = (args: EventArgs['edge:connected']) => {
           const { isNew } = args
           const edgeCell = args.edge
-          if (isNew && edgeCell.isEdge()) {
+          /** 没有edge:connected时，会导致graph.once的事件没有执行 */
+          if (isNew && edgeCell.isEdge() && edgeCell === edge) {
             const portId = edgeCell.getTargetPortId()
             const targetNode = edgeCell.getTargetCell()
             if (targetNode && targetNode.isNode()) {
@@ -131,7 +134,8 @@ export const getDagOptions = (props: IProps) => {
               } as NsAddEdgeEvent.IArgs)
             }
           }
-        })
+        }
+        graph.once('edge:connected', addEdge)
         return edge
       },
       validateEdge: args => {
@@ -275,9 +279,11 @@ export class DagHooksContribution
         handler: async (handlerArgs, handler) => {
           const main = async args => {
             const res = await handler(args)
-            const targetNode = res.edgeCell.getTargetCell() as Node
-            const portId = res.edgeCell.getTargetPortId()
-            targetNode.setPortProp(portId, 'connected', true)
+            if (res && res.edgeCell) {
+              const targetNode = res.edgeCell.getTargetCell() as Node
+              const portId = res.edgeCell.getTargetPortId()
+              targetNode.setPortProp(portId, 'connected', true)
+            }
             return res
           }
           return main
