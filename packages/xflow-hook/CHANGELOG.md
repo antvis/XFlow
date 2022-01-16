@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.28
+
+### Patch Changes
+
+- 634d925: fix: addEdgeService is called more than once when edge connecting is rejected
+
 ## 1.0.27
 
 ### Patch Changes
