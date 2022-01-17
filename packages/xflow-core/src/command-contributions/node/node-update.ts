@@ -1,5 +1,6 @@
 import { inject, injectable, postConstruct } from 'mana-syringe'
-import { Graph as X6Graph, Node as X6Node } from '@antv/x6'
+import type { Graph as X6Graph } from '@antv/x6'
+import { Node as X6Node } from '@antv/x6'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IHooks } from '../../hooks/interface'
 import { XFlowNodeCommands } from '../constant'
@@ -102,12 +103,12 @@ export class UpdateNodeCommand implements ICommand {
     if (setNodeConfig && setNodeConfig.node && typeof setNodeConfig.node === 'string') {
       nodeId = setNodeConfig.node
     } else if (nodeConfig && nodeConfig.id && typeof nodeConfig.id === 'string') {
-      nodeId = nodeConfig.node
+      nodeId = nodeConfig.id
     }
     if (nodeId) {
       return x6Graph?.getCellById(nodeId) as X6Node
     }
-    if (setNodeConfig.node instanceof X6Node) {
+    if (setNodeConfig && setNodeConfig.node instanceof X6Node) {
       return setNodeConfig.node
     }
   }
