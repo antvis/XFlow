@@ -1,5 +1,15 @@
 # @antv/xflow
 
+## 1.0.29
+
+### Patch Changes
+
+- 0a2c18d: fix: cannot update node since use wrong node id
+- Updated dependencies [0a2c18d]
+  - @antv/xflow-core@1.0.29
+  - @antv/xflow-extension@1.0.29
+  - @antv/xflow-hook@1.0.29
+
 ## 1.0.28
 
 ### Patch Changes
