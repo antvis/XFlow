@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.29
+
+### Patch Changes
+
+- 0a2c18d: fix: cannot update node since use wrong node id
+
 ## 1.0.28
 
 ### Patch Changes
