@@ -1,5 +1,15 @@
 # @antv/xflow
 
+## 1.0.30
+
+### Patch Changes
+
+- dba9f5c: fix: flow chart cannot trigger addEdgeService
+- Updated dependencies [dba9f5c]
+  - @antv/xflow-extension@1.0.30
+  - @antv/xflow-core@1.0.30
+  - @antv/xflow-hook@1.0.30
+
 ## 1.0.29
 
 ### Patch Changes
