@@ -85,6 +85,7 @@ export const XFlow: React.FC<IProps> = props => {
     onAppDestroy,
     children = [],
     className,
+    style,
   } = props
 
   const [appRef, setAppRef] = React.useState<IApplication | null>()
@@ -188,7 +189,7 @@ export const XFlow: React.FC<IProps> = props => {
   return (
     <XFlowAppInternalProvider app={appRef}>
       <ExtensionRegistryContext.Provider value={extensionRegistry}>
-        <div className={appClzName} id={extensionRegistry.getInstaceId()}>
+        <div className={appClzName} id={extensionRegistry.getInstaceId()} style={style}>
           {/** 挂载XFlowCanvas组件 坐标相对于xflow-graph-root */}
           {!hasCanvasComponent && (
             <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 0, right: 0 }} />
