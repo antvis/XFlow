@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Demo from './xflow'
 import reportWebVitals from './reportWebVitals'
+import './index.less'
 
 ReactDOM.render(
   <React.StrictMode>

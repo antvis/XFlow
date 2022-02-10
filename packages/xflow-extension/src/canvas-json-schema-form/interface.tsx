@@ -108,7 +108,7 @@ export interface ICustomRender {
     targetData: TargetData,
     modelService: IModelService,
     commandService: IGraphCommandService,
-  ): React.FC<ICustomProps>
+  ): React.FC<ICustomProps> | null
 }
 
 export interface ICustomProps {
