@@ -1,5 +1,13 @@
 # @antv/xflow-core
 
+## 1.0.31
+
+### Patch Changes
+
+- 1c37eca: fix: JsonSchemaForm type error close#122
+- Updated dependencies [1c37eca]
+  - @antv/xflow-hook@1.0.31
+
 ## 1.0.30
 
 ### Patch Changes
