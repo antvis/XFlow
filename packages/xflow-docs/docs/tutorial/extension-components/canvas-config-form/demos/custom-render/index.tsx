@@ -20,9 +20,7 @@ import '@antv/xflow/dist/index.css'
 import './index.less'
 
 /**  Demo Props  */
-export interface IDemoProps {
-  anything: string
-}
+export interface IDemoProps {}
 
 /**  graphConfig：配置Graph  */
 export const useGraphConfig = createGraphConfig<IDemoProps>(graphConfig => {
@@ -38,6 +36,9 @@ namespace NsJsonForm {
   /** 保存form的values */
   export const formValueUpdateService: NsJsonSchemaForm.IFormValueUpdateService = async args => {
     const { values, commandService, targetData } = args
+    if (!targetData) {
+      return
+    }
     const updateNode = (node: NsGraph.INodeConfig) => {
       return commandService.executeCommand<NsNodeCmd.UpdateNode.IArgs>(
         XFlowNodeCommands.UPDATE_NODE.id,
@@ -61,12 +62,14 @@ namespace NsJsonForm {
     console.log(targetType, targetData)
     if (targetType === 'node') {
       return () => (
-        <div className="custom-form-component"> node: {targetData.label} custom componnet </div>
+        <div className="custom-form-component"> node: {targetData?.label} custom componnet </div>
       )
     }
     if (targetType === 'canvas') {
       return () => <div className="custom-form-component"> canvas custom componnet </div>
     }
+
+    return null
   }
 
   /** 根据选中的节点更新formSchema */

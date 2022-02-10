@@ -10,6 +10,7 @@ import { message } from 'antd';
 
 import './index.less';
 import '@antv/xflow/dist/index.css';
+import 'antd/dist/antd.css';
 
 export interface IProps {}
 

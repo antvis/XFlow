@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "xflow-quick-start-umi",
+  "version": "0.1.14",
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
@@ -30,12 +31,22 @@
   "devDependencies": {
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "@umijs/babel-preset-umi": "^3.5.20",
     "@umijs/preset-react": "~1.8.30",
     "@umijs/test": "^3.5.20",
+    "jquery": "^3.6.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.5.1",
     "typescript": "^4.5.4",
     "yorkie": "^2.0.0"
   },
-  "version": "0.1.14"
+  "pnpm": {
+    "packageExtensions": {
+      "jquery-mousewheel": {
+        "dependencies": {
+          "jquery": "*"
+        }
+      }
+    }
+  }
 }
