@@ -71,7 +71,7 @@ return (
   <XFlow
     className="xflow-uer-container"
     graphData={graphData}
-    graphLayuot={{
+    graphLayout={{
       layoutType: 'dagre',
       layoutOptions: {
         type: 'dagre',
@@ -91,7 +91,7 @@ return (
       {/** 对齐线 */}
       <CanvasSnapline color="#1890ff" />
     </XFlowCanvas>
-  </Xflow>
+  </XFlow>
 )
 ```
 
