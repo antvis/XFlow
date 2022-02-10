@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.32
+
+### Patch Changes
+
+- 97dc25f: fix: XFlow style props is not working
+
 ## 1.0.31
 
 ### Patch Changes

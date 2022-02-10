@@ -1,5 +1,12 @@
 # @antv/xflow-docs
 
+## 1.0.32
+
+### Patch Changes
+
+- Updated dependencies [97dc25f]
+  - @antv/xflow@1.0.32
+
 ## 1.0.31
 
 ### Patch Changes
