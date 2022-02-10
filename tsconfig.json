@@ -13,6 +13,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noErrorTruncation": true,
+    "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true
   },
