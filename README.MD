@@ -1,17 +1,21 @@
 # XFlow: 专业的图编辑应用级解决方案
 
+[![](https://img.shields.io/travis/antvis/xflow.svg)](https://travis-ci.org/antvis/xflow) ![](https://img.shields.io/badge/language-javascript-red.svg) ![](https://img.shields.io/badge/license-MIT-000000.svg)
+
+[![npm package](https://img.shields.io/npm/v/@antv/xflow.svg)](https://www.npmjs.com/package/@antv/xflow) [![npm downloads](http://img.shields.io/npm/dm/@antv/xflow.svg)](https://npmjs.org/package/@antv/xflow) [![Percentage of issues still open](http://isitmaintained.com/badge/open/antvis/xflow.svg)](http://isitmaintained.com/project/antvis/xflow 'Percentage of issues still open')
+
 ## 什么是 XFlow？
 
 XFlow 是 AntV 旗下, 基于 X6 图编辑引擎、面向 React 技术栈用户的图编辑应用级解决方案, 旨在让复杂的图编辑应用开发变得简单高效。XFlow 源自蚂蚁体验技术部数据智能团队, 已经在蚂蚁大数据部、人工智能中台业务场景深度打磨验证, 值得信赖！
 
-## 特性
+## ✨ 特性
 
 - 🌱 　极易定制：支持使用 React 组件 开发节点/连线样式。
 - 🚀 　开箱即用：内置 1 个快速上手 + 3 个解决方案, 内置若干 React 交互组件, 如小地图、对齐线、右键菜单等。
 - 💯 　生产可用：源自蚂蚁体验技术部数据智能团队, 在蚂蚁大数据部、人工智能中台业务场景深度打磨验证。
 - 🧲 　 一切皆可扩展：内置统一的扩展模式, 可按照自己的业务需求扩展图交互, 所有组件皆可扩展。
 
-## 应用案例
+## 🔨 应用案例
 
 ### 简单示例
 
@@ -29,7 +33,7 @@ XFlow 是 AntV 旗下, 基于 X6 图编辑引擎、面向 React 技术栈用户�
 
 <img src=https://gw.alipayobjects.com/mdn/rms_19b204/afts/img/A*kp-AQ7_GKi0AAAAAAAAAAAAAARQnAQ />
 
-## 安装
+## ⌨️ 安装
 
 ### 使用 npm 或 yarn:
 
