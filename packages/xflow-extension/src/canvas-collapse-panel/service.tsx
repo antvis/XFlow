@@ -33,7 +33,7 @@ export const executeCollapsePanelCommand = (
 
 /** 方便其他组件执行Command改变Panel内部状态 */
 export const useCollapsePanelData = (props: IProps) => {
-  const { nodeDataService, searchService } = props
+  const { collapsible, nodeDataService, searchService, onCollapseChange } = props
   const { modelService } = useXFlowApp()
   /** 创建model */
   const [state, setState, panelModel] = createComponentModel<NsCollapsePanelModel.IState>({
@@ -114,8 +114,10 @@ export const useCollapsePanelData = (props: IProps) => {
   )
   return {
     state,
+    collapsible,
     setState,
     onKeywordChange,
     onActiveKeyChange,
+    onCollapseChange,
   }
 }

@@ -59,6 +59,12 @@ export interface IProps extends Partial<ILayoutProps> {
   nodeDataService: INodeDataService
   /** dnd的配置项 */
   x6NodeFactory?: (args: INodeFactoryArgs) => X6Node
+  /** 是否可以折叠 */
+  collapsible?: boolean
+  /** 折叠的 onChange 方法 */
+  onCollapseChange?: (isCollapsed: boolean) => void
+  /** collapseBtn 的样式 */
+  collapseButtonStyle?: React.CSSProperties
 }
 
 /** drop节点的回调，通过回调创建画布的节点 */
