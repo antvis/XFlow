@@ -67,12 +67,20 @@ export class GraphEventContribution implements IHookContribution<IHooks> {
       hooks.afterGraphInit.registerHook({
         name: 'add auto resize event',
         handler: async args => {
-          const { commandService } = args
+          const { commandService, graphOptions } = args
           const resizeHandler = throttle(() => {
             commandService.executeCommand(XFlowGraphCommands.GRAPH_RESIZE.id, {})
           })
 
           window.addEventListener('resize', resizeHandler)
+
+          const { rootContainer } = graphOptions
+          const resizeObserver = new ResizeObserver(() => {
+            graph => {
+              graph.resize(rootContainer.clientWidth)
+            }
+          })
+          rootContainer && resizeObserver.observe(rootContainer)
 
           toDispose.push(
             Disposable.create(() => {
