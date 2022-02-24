@@ -1,6 +1,7 @@
+import React from 'react'
 import { uuidv4 } from '@antv/xflow-core'
 import { isNumber } from 'lodash'
-import * as NodesComponent from './nodes'
+import { NodeComponent } from './node-components'
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL } from './constants'
 
 /** 和 graph config 注册的节点保持一致 */
@@ -87,7 +88,8 @@ export const setNodeRender = (config, nodes = []) => {
   /** 默认节点，通过 Terminal 标识，避免多次调用*/
   if (!config.nodeRender.get('Terminal')) {
     NODEPOOL.forEach(item => {
-      config.setNodeRender(item.name, NodesComponent[`${item.name.replace(/\s+/g, '')}Node`])
+      //config.setNodeRender(item.name, NodesComponent[`${item.name.replace(/\s+/g, '')}Node`])
+      config.setNodeRender(item.name, props => <NodeComponent {...props} name={item.name} />)
     })
   }
 }
@@ -110,3 +112,26 @@ export const createPath = (paths: (string | number)[][], offsetX = 0, offsetY = 
 
   return path
 }
+
+export const createRoundedPath = (paths: (string | number)[][]) => {
+  if (!paths.length) {
+    return null;
+  }
+  let path = '';
+  // @ts-ignore
+  paths.forEach((item) => {
+    path += item.join(' ');
+  });
+
+  return path;
+};
+
+// 将16进制表示颜色转变为gba表示
+// 例如 getGradientColor('#FF0000') ===> 'rgb(255, 0, 0)'
+export const getGradientColor = (color) => {
+  if (!color) return;
+  const r = parseInt(color[1] + color[2], 16);
+  const g = parseInt(color[3] + color[4], 16);
+  const b = parseInt(color[5] + color[6], 16);
+  return `rgb(${r}, ${g}, ${b})`;
+};

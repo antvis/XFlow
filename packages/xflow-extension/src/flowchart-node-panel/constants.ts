@@ -13,7 +13,18 @@ export const DefaultNodeConfig = {
   fill: '#FFFFFF',
   fontFill: '#000',
   fontSize: 12,
-  label: '',
+  strokeWidth: 1,
+  fillOpacity: 1,
+  angel: 0,
+  rounded: false,
+  isGradient: false,
+  gradientDirection: 'top-bottom',
+  endColor: '#FFFFFF',
+  isBold: false,
+  isItalic: false,
+  isUnderline: false,
+  alignmentBaseline: 'middle',
+  textAnchor: 'middle',
 }
 
 export const NODEPOOL = [
