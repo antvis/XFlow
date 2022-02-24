@@ -1,5 +1,20 @@
 # @antv/xflow
 
+## 2.0.0
+
+### Major Changes
+
+- 89040a44: Add NodeDndPanel collapse button
+
+### Patch Changes
+
+- ff57ccc1: chore: enable importHelper option in tsconfig.json
+- Updated dependencies [89040a44]
+- Updated dependencies [ff57ccc1]
+  - @antv/xflow-core@2.0.0
+  - @antv/xflow-extension@2.0.0
+  - @antv/xflow-hook@2.0.0
+
 ## 1.0.32
 
 ### Patch Changes
