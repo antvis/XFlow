@@ -5,4 +5,4 @@
 '@antv/xflow-hook': patch
 ---
 
-chore: release 1.x version
+chore: release 1.0.33 verison
