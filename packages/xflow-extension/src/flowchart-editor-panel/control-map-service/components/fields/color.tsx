@@ -6,7 +6,7 @@ import { Button } from 'antd'
 import { SketchPicker } from 'react-color'
 import { PREFIX } from '../constants'
 
-interface IProps {
+export interface IProps {
   label?: string
   value?: string
   onChange?: (value: string) => void

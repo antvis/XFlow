@@ -18,6 +18,8 @@ export interface IFlowchartFormPanelProps {
     modelService: IModelService
     commandService: IGraphCommandService
   }) => Promise<NsJsonSchemaForm.ISchema>
+  // 画布selection:change事件的回调函数 如果函数返回结果是react.component 会代替form的渲染
+  getCustomRenderComponent?: NsJsonSchemaForm.ICustomRender
   header?: React.ReactNode
 }
 
