@@ -6,6 +6,7 @@ import type { IModelService } from '../model-service/interface'
 import { HookHub } from '@antv/xflow-hook'
 import { Syringe } from 'mana-syringe'
 import type { EventArgs } from '@antv/x6/es/graph/events'
+import type { IGraphConfig } from '../xflow-main/graph/config'
 export interface IRegsiterHookFn<T = IHooks> {
   (hooks: T): Disposable
 }
@@ -52,7 +53,8 @@ export type IEventSubscription = Disposable[]
 export interface IGeneralAppService {
   graph: Graph
   commandService: IGraphCommandService
-  modelService: IModelService
+  modelService: IModelService,
+  options: IGraphConfig
 }
 
 export const initHooks = () => ({

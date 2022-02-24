@@ -99,6 +99,7 @@ export class GraphManager implements IGraphManager {
         graph,
         commandService,
         modelService,
+        options,
       })
 
       graphDefer.resolve(graph)
@@ -129,6 +130,7 @@ export class GraphManager implements IGraphManager {
             graph,
             commandService,
             modelService,
+            options,
           })
           this.graphMap.delete(graphId)
           graph.dispose()
