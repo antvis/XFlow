@@ -128,8 +128,12 @@ export const nodeService = async registerNode => {
   return treeData;
 }
 
-export const setNodeRender = (config, nodes = []) => {
-  console.log(nodes, "nodes")
+export const setNodeRender = (config, registerNode = []) => {
+  let nodes = [];
+  registerNode.forEach((item) => {
+    nodes = [...nodes, ...item.nodes];
+  });
+  //console.log(nodes, "nodes")
   // 自定义节点
   if (nodes?.length) {
     nodes.forEach(item => {

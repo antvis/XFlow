@@ -47,6 +47,26 @@
       grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));
     }
 
+    &-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      background-color: @footer-bg;
+      border-top: @light-border;
+      border-right: @light-border;
+      background-color: aquamarine;
+      cursor: pointer;
+      &-content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .@{dnd-panel-prefix-cls}-text {
+          font-size: 24px;
+        }
+      }
+    }
+
     &-node-wrapper {
       display: flex;
       justify-content: center;

@@ -5,7 +5,6 @@ import type { IProps, IFlowchartNode } from './interface'
 import type { ITreeNode } from '../canvas-node-tree-panel/interface'
 import React, { useCallback } from 'react'
 import { Empty, Collapse } from 'antd'
-import { get } from 'lodash'
 import { Addon } from '@antv/x6'
 import { getNodeReactComponent, useXFlowApp, uuidv4, XFlowNodeCommands } from '@antv/xflow-core'
 import { setNodeRender } from './utils'
@@ -25,8 +24,9 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
     dndOptions,
     state,
     prefixClz,
-    defaultActiveKey = ['official', 'custom'],
-    visibleNodeTypes
+    defaultActiveKey = ['common', 'flowchart'],
+    visibleNodeTypes,
+    registerNode
   } = props
   const { graphProvider, modelService, commandService } = useXFlowApp()
 
@@ -40,7 +40,8 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
   let graphConfig = undefined
   graphProvider.getGraphOptions().then(x6GraphConfig => {
     /** x6GraphConfig 上缺失 setNodeRender 方法  */
-    setNodeRender(getProps('graphConfig'), get(props, 'registerNode.nodes', []))
+    //setNodeRender(getProps('graphConfig'), get(props, 'registerNode.nodes', []))
+    setNodeRender(getProps('graphConfig'), registerNode)
     graphConfig = x6GraphConfig
   })
 

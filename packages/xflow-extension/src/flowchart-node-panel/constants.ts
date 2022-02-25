@@ -1,4 +1,6 @@
+import { ICheckboxOption } from "."
 export const PANEL_HEADER_HEIGHT = 40
+export const PANEL_FOOTER_HEIGHT = 40
 export const CONTAINER_CLASS = 'xflow-node-panel-collpase'
 /** 组群 ID */
 export const GROUP_NODE_RENDER_ID = 'GROUP_NODE_RENDER_ID'
@@ -7,6 +9,9 @@ export const NODE_WIDTH = 60
 export const NODE_HEIGHT = 40
 // svg 绘制起始点，解决边不清晰的问题
 export const NODE_PADDING = 1
+
+//圆角半径
+export const ROUNDEDRADIUS = 10;
 
 export const DefaultNodeConfig = {
   stroke: '#A2B1C3',
@@ -154,3 +159,20 @@ export const ASPECTRATIONODE = ['Connector', 'Or']
 
 //内置节点分类
 export const BUILDIN_NODE_TYPES = ['common', 'flowchart'];
+export const TYPE_IMG_MAP = {
+  common: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*HVZwQYtQ9cIAAAAAAAAAAAAAARQnAQ',
+  flowchart: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*c-IOS6IAEAQAAAAAAAAAAAAAARQnAQ',
+};
+
+export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
+  {
+    label: '通用节点',
+    value: 'common',
+    disabled: false,
+  },
+  {
+    label: '流程图节点',
+    value: 'flowchart',
+    disabled: false,
+  },
+];
