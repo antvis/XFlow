@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Modal, Checkbox, Button, Layout, Menu } from 'antd'
 import { usePanelContext } from '../base-panel/context'
-import { IProps, ICheckboxOption } from './interface'
+import type { IProps, ICheckboxOption } from './interface'
 import { CHECKBOX_OPTIONS, TYPE_IMG_MAP } from './constants'
 import { BUILDIN_NODE_TYPES } from './constants'
 //import { storage } from '../../util/stroage'
@@ -60,52 +60,52 @@ export const NodePanelFooter: React.FC<IFooterProps> = props => {
       >
         {panelProps.footer && React.isValidElement(panelProps.footer) && panelProps.footer}
         <Button onClick={() => setIsModalVisible(true)}>更多节点</Button>
-      </div>
-      <Modal
-        title="更多节点"
-        visible={isModalVisible}
-        onOk={handleModalOk}
-        onCancel={handleModalCancel}
-        okText="确定"
-        cancelText="取消"
-        bodyStyle={{ height: 300, padding: 0 }}
-      >
-        <Layout style={{ height: '100%' }}>
-          <Layout.Sider theme="light" width={140}>
-            <Checkbox.Group
-              value={checkedValue}
-              onChange={values => {
-                setCheckedValue(values as string[])
-              }}
-              style={{ width: '100%', height: '100%' }}
-            >
-              <Menu
+        <Modal
+          title="更多节点"
+          visible={isModalVisible}
+          onOk={handleModalOk}
+          onCancel={handleModalCancel}
+          okText="确定"
+          cancelText="取消"
+          bodyStyle={{ height: 300, padding: 0 }}
+        >
+          <Layout style={{ height: '100%' }}>
+            <Layout.Sider theme="light" width={140}>
+              <Checkbox.Group
+                value={checkedValue}
+                onChange={values => {
+                  setCheckedValue(values as string[])
+                }}
                 style={{ width: '100%', height: '100%' }}
-                defaultSelectedKeys={['common']}
-                onClick={handleClickMenuItem}
               >
-                {checkBoxOptions.map(option => {
-                  return (
-                    <Menu.Item key={option.value}>
-                      <Checkbox value={option.value} disabled={option.disabled}></Checkbox>
-                      &nbsp;{option.label}
-                    </Menu.Item>
-                  )
-                })}
-              </Menu>
-            </Checkbox.Group>
-          </Layout.Sider>
-          <Layout.Content style={{ backgroundColor: '#fff' }}>
-            <div className={`${prefixClz}-footer-content-wrapper`}>
-              {BUILDIN_NODE_TYPES.includes(typeImg) ? (
-                <img src={TYPE_IMG_MAP[typeImg]} alt="type" />
-              ) : (
-                <span className={`${prefixClz}-text`}>自定义节点</span>
-              )}
-            </div>
-          </Layout.Content>
-        </Layout>
-      </Modal>
+                <Menu
+                  style={{ width: '100%', height: '100%' }}
+                  defaultSelectedKeys={['common']}
+                  onClick={handleClickMenuItem}
+                >
+                  {checkBoxOptions.map(option => {
+                    return (
+                      <Menu.Item key={option.value}>
+                        <Checkbox value={option.value} disabled={option.disabled} />
+                        &nbsp;{option.label}
+                      </Menu.Item>
+                    )
+                  })}
+                </Menu>
+              </Checkbox.Group>
+            </Layout.Sider>
+            <Layout.Content style={{ backgroundColor: '#fff' }}>
+              <div className={`content-wrapper`}>
+                {BUILDIN_NODE_TYPES.includes(typeImg) ? (
+                  <img src={TYPE_IMG_MAP[typeImg]} alt="type" />
+                ) : (
+                  <span className={`text`}>自定义节点</span>
+                )}
+              </div>
+            </Layout.Content>
+          </Layout>
+        </Modal>
+      </div>
     </React.Fragment>
   )
 }

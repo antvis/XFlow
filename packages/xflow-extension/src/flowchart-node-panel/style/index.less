@@ -11,6 +11,8 @@
 .flowchart-extension-container {
   @light-border: ~'1px solid #d9d9d9';
   @header-bg: #fff;
+  @footer-bg: #fff;
+  @footer-hover: #fafafa;
   @dnd-panel-prefix-cls: ~'xflow-node-panel';
   @dnd-panel-prefix-container: ~'xflow-node-panel-collpase';
 
@@ -54,14 +56,13 @@
       background-color: @footer-bg;
       border-top: @light-border;
       border-right: @light-border;
-      background-color: aquamarine;
       cursor: pointer;
-      &-content-wrapper {
+      .content-wrapper {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100%;
-        .@{dnd-panel-prefix-cls}-text {
+        .text {
           font-size: 24px;
         }
       }
