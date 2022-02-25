@@ -20,7 +20,7 @@ export interface IFlowchartGraphProps {
   /** 新增节点时回调 */
   onAddNode?: (node: NsGraph.INodeConfig) => void
   /** 新增边时回调 */
-  onAddEdge?: (node: NsGraph.IEdgeConfig) => void
+  onAddEdge?: (edge: NsGraph.IEdgeConfig) => void
   /** 节点或边更新数据时调用 */
   onConfigChange?: (params: {
     data: Datum

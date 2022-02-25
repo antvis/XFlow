@@ -45,6 +45,16 @@ export class GraphModelContribution implements IModelContribution {
         })
       },
     })
+    /** Graph 全屏 */
+    registry.registerModel<MODELS.GRAPH_FULLSCREEN.IState>({
+      id: MODELS.GRAPH_FULLSCREEN.id,
+      getInitialValue: () => false,
+      watchChange: async self => {
+        return Disposable.create(() => {
+          self.setValue(false)
+        })
+      },
+    })
     /** 选中Cells状态 */
     registry.registerModel<MODELS.SELECTED_CELLS.IState>({
       id: MODELS.SELECTED_CELLS.id,

@@ -1,4 +1,5 @@
 import React from 'react'
+import { find, get } from 'lodash'
 import { Disposable } from '../../common/disposable'
 import { uuidv4 } from '../../common/uuid'
 import type { IExtensionModule } from '../interface'
@@ -29,6 +30,10 @@ export class ExtensionRegistry {
     return Disposable.create(() => {
       this.removeExtension(extension)
     })
+  }
+
+  getExtension = (config_type: string) => {
+    return find(this.extensions, extension => get(extension, 'config.CONFIG_TYPE') === config_type)
   }
 
   removeExtension = (extension: IExtensionModule) => {
