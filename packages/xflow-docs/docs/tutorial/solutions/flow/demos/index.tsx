@@ -68,7 +68,6 @@ export const Demo: React.FC<IProps> = props => {
   }, [graphRef])
 
   return (
- 
     <XFlow
       className="flow-user-custom-clz"
       commandConfig={commandConfig}
@@ -77,7 +76,7 @@ export const Demo: React.FC<IProps> = props => {
     >
       <FlowchartExtension />
       <FlowchartNodePanel
-        registerNode={{
+        /* registerNode={{
           title: '自定义节点',
           nodes: [
             {
@@ -89,7 +88,28 @@ export const Demo: React.FC<IProps> = props => {
               label: '自定义节点',
             },
           ],
-        }}
+        }} */
+        registerNode={[
+          {
+            title: '测试1',
+            type: 'test1',
+            nodes: [
+              {
+                component: DndNode,
+                popover: () => <div>自定义节点</div>,
+                name: 'custom-node-indicator',
+                width: 210,
+                height: 130,
+                label: '自定义节点',
+              },
+            ],
+          },
+          {
+            title: '测试2',
+            type: 'test2',
+            nodes: [],
+          },
+        ]}
         position={{ width: 162, top: 40, bottom: 0, left: 0 }}
       />
       <CanvasToolbar

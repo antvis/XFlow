@@ -1,0 +1,109 @@
+@import '~antd/es/style/themes/default.less';
+@light-border: ~'1px solid #d9d9d9';
+@header-bg: #fff;
+@body-bg: #fff;
+@footer-bg: #fff;
+@footer-hover: #fafafa;
+
+@dnd-panel-prefix-cls: ~'xflow-node-panel';
+@dnd-panel-prefix-collpase-container: ~'flowchart-node-panel-collpase';
+
+.node() {
+  grid-gap: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: @body-bg;
+  cursor: grab;
+}
+
+.@{dnd-panel-prefix-cls} {
+  &-header {
+    display: flex;
+    justify-content: space-evenly;
+    background: @header-bg;
+    border-right: @light-border;
+    border-bottom: @light-border;
+
+    &-title {
+      font-size: 16px;
+    }
+    &-search {
+      width: 100%;
+      padding: 0px 12px;
+    }
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: @footer-bg;
+    border-top: @light-border;
+    border-right: @light-border;
+    cursor: pointer;
+    &-content-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      .@{dnd-panel-prefix-cls}-text {
+        font-size: 24px;
+      }
+    }
+  }
+
+  &-custom {
+    display: flex;
+    flex-wrap: wrap;
+    .node();
+  }
+
+  &-common,
+  &-flowchart {
+    .node();
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));
+  }
+
+  &-node-wrapper {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .ant-collapse-content {
+    border-top: none;
+  }
+}
+
+.@{dnd-panel-prefix-collpase-container} {
+  transition: left 0.5s;
+
+  &-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-nodes {
+    overflow: hidden;
+    overflow-y: auto;
+    border-right: @light-border;
+  }
+
+  &-icon {
+    position: absolute;
+    z-index: 99;
+    width: 20px;
+    color: #aaa;
+    font-size: 12px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    transform: translate(0, -50%);
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(43, 132, 192);
+    }
+  }
+}

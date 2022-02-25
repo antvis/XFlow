@@ -23,13 +23,18 @@ const DefaultsearchService = async (nodeList = [], keyword: string) => {
 
 export const usePanelData = (props: IProps) => {
   const { registerNode, searchService = DefaultsearchService } = props
-  const { nodes } = registerNode ?? {}
+  //const { nodes } = registerNode ?? {}
   const { modelService } = useXFlowApp()
 
   /** 使用model */
   const [state, setState, panelModel] = createComponentModel<NsPanelData.IState>({
-    searchList: [],
+    /* searchList: [],
     nodeList: [],
+    defaultExpandAll: false,
+    keyword: '', */
+    treeData: {},
+    searchNodes: {},
+    expandedKeys: [],
     defaultExpandAll: false,
     keyword: '',
   })
@@ -46,17 +51,22 @@ export const usePanelData = (props: IProps) => {
       watchChange: async self => {
         const graphMetaModel = await MODELS.GRAPH_META.getModel(modelService) //useContext(MODELS.GRAPH_META.id)
         const fetch = async () => {
-          const listData = await nodeService(nodes)
-          return { listData }
+          /* const listData = await nodeService(nodes)
+          return { listData } */
+          console.log("registerNode", registerNode)
+          const treeData = await nodeService(registerNode);
+          const expandedKeys = [];
+          return { treeData, expandedKeys };
         }
 
         const graphMetaDisposable = graphMetaModel.watch(async () => {
           const data = await fetch()
           self.setValue({
-            nodeList: data.listData,
+            treeData: data.treeData,
+            expandedKeys: data.expandedKeys,
             defaultExpandAll: false,
             keyword: '',
-            searchList: [],
+            searchNodes: {},
           })
         })
 

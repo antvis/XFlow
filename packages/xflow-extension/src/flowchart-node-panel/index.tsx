@@ -9,7 +9,7 @@ import { NodePanelBody } from './panel-body'
 import { NodePanelHeader } from './panel-header'
 import { usePanelLyaoutStyle } from '../canvas-node-tree-panel/utils'
 import { usePanelData } from './service'
-import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT } from './constants'
+import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, BUILDIN_NODE_TYPES } from './constants'
 export { setGroupRender } from './group-panel'
 export * from './constants'
 export * from './utils'
@@ -20,8 +20,30 @@ export const NodePanelMain: React.FC<IProps> = props => {
     prefixClz,
     position = { width: 240, top: 0, bottom: 0, left: 0 },
     showHeader = true,
+    registerNode,
     ...rest
   } = props
+  const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(() => {
+    let initialState: string[]
+    if (window.localStorage.getItem('vsibleNodeTypes')) {
+      initialState = JSON.parse(window.localStorage.getItem('visibleNodeTypes'))
+    } else {
+      initialState = BUILDIN_NODE_TYPES
+      const set = new Set<string>()
+      //加入自定义节点的类型
+      initialState = initialState.concat(
+        registerNode?.map(item => {
+          if (BUILDIN_NODE_TYPES.includes(item.type))
+            throw new Error(`${item.type} is a build-in node type`)
+          if (set.has(item.type)) throw new Error('you cannot set two same register-node types')
+          set.add(item.type)
+          return item.type
+        }),
+      )
+    }
+    return initialState
+  })
+
   const { width = 200 } = position
   const { headerStyle, bodyStyle } = usePanelLyaoutStyle(props as IPanelProps)
   const { state, onKeywordChange } = usePanelData(props)
@@ -54,7 +76,12 @@ export const NodePanelMain: React.FC<IProps> = props => {
           top: showHeader ? PANEL_HEADER_HEIGHT : 0,
         }}
       >
-        <NodePanelBody {...props} state={state} style={bodyStyle} />
+        <NodePanelBody
+          {...props}
+          state={state}
+          style={bodyStyle}
+          visibleNodeTypes={visibleNodeTypes}
+        />
       </WorkspacePanel>
     </>
   )

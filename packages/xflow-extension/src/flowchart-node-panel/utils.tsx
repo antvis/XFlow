@@ -38,8 +38,8 @@ const getPorts = (position = ['top', 'right', 'bottom', 'left']) => {
   }
 }
 
-export const getRegisterNode = nodes => {
-  return (nodes || []).map(item => {
+export const getRegisterNode = registerNodes => {
+  /* return (nodes || []).map(item => {
     const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = item
     const id = uuidv4() // 暂不使用上层数据
     return {
@@ -54,13 +54,37 @@ export const getRegisterNode = nodes => {
       originData: { ...item },
       isCustom: true,
     }
+  }) */
+  const treeData = {}
+  registerNodes.forEach(item => {
+    const nodes = item.nodes.map(node => {
+      const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = node
+      const id = uuidv4() // 暂不使用上层数据
+      return {
+        parentId: '',
+        id,
+        renderKey: name,
+        name,
+        label,
+        popoverContent: popover,
+        width,
+        height,
+        ports: ports || getPorts(),
+        originData: { ...item },
+      }
+    })
+    treeData[item.type] = {
+      title: item.title,
+      nodes,
+    }
   })
+  return treeData
 }
 
-export const nodeService = async nodes => {
-  const customNodes = getRegisterNode(nodes)
+export const nodeService = async registerNode => {
+  const customNodes = getRegisterNode(registerNode)
 
-  return [
+  /* return [
     ...customNodes,
     ...NODEPOOL.map(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '' }) => {
       return {
@@ -74,10 +98,38 @@ export const nodeService = async nodes => {
         ports: getPorts(ports),
       }
     }),
-  ]
+  ] */
+  const treeData = {
+    ...customNodes,
+    common: {
+      title: '通用节点',
+      nodes: [],
+    },
+    flowchart: {
+      title: '流程图节点',
+      nodes: [],
+    },
+  };
+  NODEPOOL.forEach(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '', type }) => {
+    treeData[type]?.nodes?.push({
+      parentId: '',
+      id: uuidv4(), // 不会被使用
+      renderKey: name,
+      // name: `${name.replace(/\s+/g, '-')}`,
+      name,
+      label,
+      popoverContent: () => name,
+      width,
+      height,
+      ports: getPorts(ports),
+    });
+  });
+  console.log(treeData)
+  return treeData;
 }
 
 export const setNodeRender = (config, nodes = []) => {
+  console.log(nodes, "nodes")
   // 自定义节点
   if (nodes?.length) {
     nodes.forEach(item => {
@@ -115,23 +167,23 @@ export const createPath = (paths: (string | number)[][], offsetX = 0, offsetY = 
 
 export const createRoundedPath = (paths: (string | number)[][]) => {
   if (!paths.length) {
-    return null;
+    return null
   }
-  let path = '';
+  let path = ''
   // @ts-ignore
-  paths.forEach((item) => {
-    path += item.join(' ');
-  });
+  paths.forEach(item => {
+    path += item.join(' ')
+  })
 
-  return path;
-};
+  return path
+}
 
 // 将16进制表示颜色转变为gba表示
 // 例如 getGradientColor('#FF0000') ===> 'rgb(255, 0, 0)'
-export const getGradientColor = (color) => {
-  if (!color) return;
-  const r = parseInt(color[1] + color[2], 16);
-  const g = parseInt(color[3] + color[4], 16);
-  const b = parseInt(color[5] + color[6], 16);
-  return `rgb(${r}, ${g}, ${b})`;
-};
+export const getGradientColor = color => {
+  if (!color) return
+  const r = parseInt(color[1] + color[2], 16)
+  const g = parseInt(color[3] + color[4], 16)
+  const b = parseInt(color[5] + color[6], 16)
+  return `rgb(${r}, ${g}, ${b})`
+}
