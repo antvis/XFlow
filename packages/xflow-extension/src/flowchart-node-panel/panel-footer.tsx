@@ -21,9 +21,6 @@ export const NodePanelFooter: React.FC<IFooterProps> = props => {
 
   const { propsProxy } = usePanelContext<IProps>()
   const panelProps = propsProxy.getValue()
-
-  //const { flowchartId } = useContext(AppContext);
-  //const { registerNode = [] } = (getProps(flowchartId, 'nodePanelProps') as FlowchartProps['nodePanelProps']) ?? {};
   const extraCheckBoxOptions: ICheckboxOption[] = registerNode.map(item => ({
     value: item.type,
     label: item.title,

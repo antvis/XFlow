@@ -14,14 +14,6 @@ export namespace NsPanelData {
   }
 }
 
-/** 节点查找 */
-/* const DefaultsearchService = async (nodeList = [], keyword: string) => {
-  const list = nodeList.filter(
-    i => i.isDirectory || i.label?.includes(keyword) || i.name?.includes(keyword),
-  )
-  return list
-} */
-
 const DefaultsearchService = async (treeData: ITreeData = {}, keyword: string) => {
   const nodeTypes = Object.keys(treeData);
   const searchNodes = {};
@@ -38,10 +30,6 @@ export const usePanelData = (props: IProps) => {
 
   /** 使用model */
   const [state, setState, panelModel] = createComponentModel<NsPanelData.IState>({
-    /* searchList: [],
-    nodeList: [],
-    defaultExpandAll: false,
-    keyword: '', */
     treeData: {},
     searchNodes: {},
     expandedKeys: [],
@@ -61,9 +49,6 @@ export const usePanelData = (props: IProps) => {
       watchChange: async self => {
         const graphMetaModel = await MODELS.GRAPH_META.getModel(modelService) //useContext(MODELS.GRAPH_META.id)
         const fetch = async () => {
-          /* const listData = await nodeService(nodes)
-          return { listData } */
-          //console.log("registerNode", registerNode)
           const treeData = await nodeService(registerNode)
           const expandedKeys = []
           return { treeData, expandedKeys }
@@ -89,28 +74,6 @@ export const usePanelData = (props: IProps) => {
     /* eslint-disable-next-line  */
   }, [])
 
-  /** 搜索 */
-  /* const onKeywordChange = React.useCallback(
-    async (keyword: string) => {
-      if (!searchService) {
-        return
-      }
-      if (keyword) {
-        // @ts-ignore
-        const list = await searchService(state.nodeList, keyword)
-        setState(modelState => {
-          modelState.keyword = keyword
-          modelState.searchList = list
-        })
-      } else {
-        setState(modelState => {
-          modelState.keyword = ''
-          modelState.searchList = []
-        })
-      }
-    },
-    [searchService, state.nodeList, setState],
-  ) */
   const onKeywordChange = React.useCallback(
     async (keyword: string) => {
       if (!searchService) {

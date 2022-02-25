@@ -1,5 +1,6 @@
 import React from 'react'
-import { NsGraph, uuidv4 } from '@antv/xflow-core'
+import type { NsGraph} from '@antv/xflow-core';
+import { uuidv4 } from '@antv/xflow-core'
 import * as nodePathMap from './paths'
 import { NODE_HEIGHT, NODE_WIDTH,DefaultNodeConfig  } from './constants'
 import { GradientComponent } from './gradient-component'
@@ -67,7 +68,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
         startColor={startColor}
         endColor={endColor}
         uuid={uuid}
-      ></GradientComponent>
+       />
       {nodePath.map(path => {
         return (
           <path
@@ -78,7 +79,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
             strokeWidth={strokeWidth}
             strokeDasharray={strokeDasharray}
             fillOpacity={fillOpacity}
-          ></path>
+           />
         )
       })}
       <text

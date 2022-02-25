@@ -40,7 +40,6 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
   let graphConfig = undefined
   graphProvider.getGraphOptions().then(x6GraphConfig => {
     /** x6GraphConfig 上缺失 setNodeRender 方法  */
-    //setNodeRender(getProps('graphConfig'), get(props, 'registerNode.nodes', []))
     setNodeRender(getProps('graphConfig'), registerNode)
     graphConfig = x6GraphConfig
   })
@@ -138,42 +137,12 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
     },
     [commandService, graphConfig, modelService, onMouseDown, prefixClz],
   )
-  /* const customNode = state.nodeList.filter(item => item.isCustom)
-  const officialNode = state.nodeList.filter(item => !item.isCustom)
-  const searchCustomNode = state.searchList.filter(item => item.isCustom)
-  const searchOfficialNode = state.searchList.filter(item => !item.isCustom)
-  const hasCustomNode = customNode.length > 0 */
 
   const { treeData, searchNodes } = state;
   //treeData 是异步获取的, 初次渲染时 treeData 对象为空
   if (Object.keys(treeData).length === 0) return null;
 
   return (
-   /*  <React.Fragment>
-      <div className={`${prefixClz}-body`}>
-        <Collapse defaultActiveKey={defaultActiveKey} style={{ border: 'none' }}>
-          <Panel header="通用节点" key="official" style={{ border: 'none' }}>
-            {!state.keyword && (
-              <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>
-            )}
-            {state.searchList.length > 0 && (
-              <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
-            )}
-          </Panel>
-          {hasCustomNode && (
-            <Panel header={title} key="custom" style={{ border: 'none' }}>
-              {!state.keyword && (
-                <div className={`${prefixClz}-custom`}>{renderTree(customNode)}</div>
-              )}
-              {state.searchList.length > 0 && (
-                <div className={`${prefixClz}-custom`}>{renderTree(searchCustomNode)}</div>
-              )}
-            </Panel>
-          )}
-        </Collapse>
-        {state.keyword && state.searchList.length === 0 && <Empty style={{ marginTop: '48px' }} />}
-      </div>
-    </React.Fragment> */
     <React.Fragment>
       <div className={`${prefixClz}-body`}>
         <Collapse defaultActiveKey={defaultActiveKey} style={{ border: 'none' }}>

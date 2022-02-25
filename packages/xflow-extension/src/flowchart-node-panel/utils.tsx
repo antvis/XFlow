@@ -39,22 +39,6 @@ const getPorts = (position = ['top', 'right', 'bottom', 'left']) => {
 }
 
 export const getRegisterNode = registerNodes => {
-  /* return (nodes || []).map(item => {
-    const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = item
-    const id = uuidv4() // 暂不使用上层数据
-    return {
-      id,
-      renderKey: name,
-      name,
-      label,
-      popoverContent: popover,
-      width,
-      height,
-      ports: ports || getPorts(),
-      originData: { ...item },
-      isCustom: true,
-    }
-  }) */
   const treeData = {}
   registerNodes.forEach(item => {
     const nodes = item.nodes.map(node => {
@@ -83,22 +67,6 @@ export const getRegisterNode = registerNodes => {
 
 export const nodeService = async registerNode => {
   const customNodes = getRegisterNode(registerNode)
-
-  /* return [
-    ...customNodes,
-    ...NODEPOOL.map(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '' }) => {
-      return {
-        id: uuidv4(), // 不会被使用
-        renderKey: name,
-        name,
-        label,
-        popoverContent: () => name,
-        width,
-        height,
-        ports: getPorts(ports),
-      }
-    }),
-  ] */
   const treeData = {
     ...customNodes,
     common: {
@@ -144,7 +112,6 @@ export const setNodeRender = (config, registerNode = []) => {
   /** 默认节点，通过 Terminal 标识，避免多次调用*/
   if (!config.nodeRender.get('Terminal')) {
     NODEPOOL.forEach(item => {
-      //config.setNodeRender(item.name, NodesComponent[`${item.name.replace(/\s+/g, '')}Node`])
       config.setNodeRender(item.name, props => <NodeComponent {...props} name={item.name} />)
     })
   }
