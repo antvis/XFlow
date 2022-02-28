@@ -30,7 +30,7 @@ export const DefaultNodeConfig = {
   isUnderline: false,
   alignmentBaseline: 'middle',
   textAnchor: 'middle',
-}
+} as const;
 
 export const NODEPOOL = [
   {
