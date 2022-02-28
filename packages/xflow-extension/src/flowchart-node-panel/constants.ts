@@ -28,9 +28,9 @@ export const DefaultNodeConfig = {
   isBold: false,
   isItalic: false,
   isUnderline: false,
-  alignmentBaseline: 'middle' as 'middle' | 'before-edge' | 'after-edge',
-  textAnchor: 'middle' as 'start' | 'middle' | 'end',
-}
+  alignmentBaseline: 'middle',
+  textAnchor: 'middle',
+} as const;
 
 export const NODEPOOL = [
   {
