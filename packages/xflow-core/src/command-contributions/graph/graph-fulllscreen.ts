@@ -18,7 +18,9 @@ export namespace NsGraphFullscreen {
   /** hook 参数类型 */
   export interface IArgs extends IArgsBase {}
   /** hook handler 返回类型 */
-  export interface IResult {}
+  export interface IResult {
+    fulllscreen: boolean
+  }
   /** hookName */
   export const hookKey = 'graphFullscreen'
   /** hooks 类型 */
