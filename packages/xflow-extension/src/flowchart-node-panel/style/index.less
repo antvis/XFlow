@@ -11,6 +11,8 @@
 .flowchart-extension-container {
   @light-border: ~'1px solid #d9d9d9';
   @header-bg: #fff;
+  @footer-bg: #fff;
+  @footer-hover: #fafafa;
   @dnd-panel-prefix-cls: ~'xflow-node-panel';
   @dnd-panel-prefix-container: ~'xflow-node-panel-collpase';
 
@@ -45,6 +47,25 @@
 
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));
+    }
+
+    &-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      background-color: @footer-bg;
+      border-top: @light-border;
+      border-right: @light-border;
+      cursor: pointer;
+      .content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .text {
+          font-size: 24px;
+        }
+      }
     }
 
     &-node-wrapper {

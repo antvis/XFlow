@@ -1,35 +1,38 @@
 import React from 'react'
 import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xflow-core'
-import type { IProps, IFlowchartNode } from './interface'
+import type { IProps, ITreeData, ISearchNodes } from './interface'
 import { nodeService } from './utils'
 
 export namespace NsPanelData {
   export const id = 'NODE_PANEL_DATA'
   export interface IState {
-    nodeList: IFlowchartNode[]
     defaultExpandAll: boolean
     keyword: string
-    searchList: IFlowchartNode[]
+    treeData: ITreeData
+    searchNodes: ISearchNodes
+    expandedKeys: string[]
   }
 }
 
-/** 节点查找 */
-const DefaultsearchService = async (nodeList = [], keyword: string) => {
-  const list = nodeList.filter(
-    i => i.isDirectory || i.label?.includes(keyword) || i.name?.includes(keyword),
-  )
-  return list
-}
+const DefaultsearchService = async (treeData: ITreeData = {}, keyword: string) => {
+  const nodeTypes = Object.keys(treeData);
+  const searchNodes = {};
+  nodeTypes.forEach((type) => {
+    searchNodes[type] = treeData[type].nodes.filter((i) => i.label?.includes(keyword) || i.name?.includes(keyword));
+  });
+  return searchNodes;
+};
 
 export const usePanelData = (props: IProps) => {
   const { registerNode, searchService = DefaultsearchService } = props
-  const { nodes } = registerNode ?? {}
+  //const { nodes } = registerNode ?? {}
   const { modelService } = useXFlowApp()
 
   /** 使用model */
   const [state, setState, panelModel] = createComponentModel<NsPanelData.IState>({
-    searchList: [],
-    nodeList: [],
+    treeData: {},
+    searchNodes: {},
+    expandedKeys: [],
     defaultExpandAll: false,
     keyword: '',
   })
@@ -46,17 +49,19 @@ export const usePanelData = (props: IProps) => {
       watchChange: async self => {
         const graphMetaModel = await MODELS.GRAPH_META.getModel(modelService) //useContext(MODELS.GRAPH_META.id)
         const fetch = async () => {
-          const listData = await nodeService(nodes)
-          return { listData }
+          const treeData = await nodeService(registerNode)
+          const expandedKeys = []
+          return { treeData, expandedKeys }
         }
 
         const graphMetaDisposable = graphMetaModel.watch(async () => {
           const data = await fetch()
           self.setValue({
-            nodeList: data.listData,
+            treeData: data.treeData,
+            expandedKeys: data.expandedKeys,
             defaultExpandAll: false,
             keyword: '',
-            searchList: [],
+            searchNodes: {},
           })
         })
 
@@ -69,27 +74,25 @@ export const usePanelData = (props: IProps) => {
     /* eslint-disable-next-line  */
   }, [])
 
-  /** 搜索 */
   const onKeywordChange = React.useCallback(
     async (keyword: string) => {
       if (!searchService) {
         return
       }
       if (keyword) {
-        // @ts-ignore
-        const list = await searchService(state.nodeList, keyword)
+        const searchNodes = await searchService(state.treeData, keyword)
         setState(modelState => {
           modelState.keyword = keyword
-          modelState.searchList = list
+          modelState.searchNodes = searchNodes
         })
       } else {
         setState(modelState => {
           modelState.keyword = ''
-          modelState.searchList = []
+          modelState.searchNodes = {}
         })
       }
     },
-    [searchService, state.nodeList, setState],
+    [searchService, state.treeData, setState],
   )
 
   return {

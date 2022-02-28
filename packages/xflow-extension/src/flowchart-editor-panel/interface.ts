@@ -28,7 +28,7 @@ export type IFlowchartFormWrapperProps = NsJsonSchemaForm.IControlProps & {
     config: Object,
     plugin: {
       updateNode: (config: NsGraph.INodeConfig) => void
-      updateEdge: (config: NsGraph.IEdgeConfig) => void
+      updateEdge: (config: NsGraph.IEdgeConfig, type: 'text' | 'line', key?: string) => void
       updateGroup: (config: NsGraph.INodeConfig) => void
     },
   ) => React.ReactElement

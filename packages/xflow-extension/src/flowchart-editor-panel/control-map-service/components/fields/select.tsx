@@ -6,7 +6,7 @@ interface IProps {
   label?: string
   value?: string
   options?: {
-    label: string | number
+    label: JSX.Element| string
     value: string | number
   }[]
   width?: number | string

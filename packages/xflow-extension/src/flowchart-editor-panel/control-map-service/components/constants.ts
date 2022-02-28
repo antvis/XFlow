@@ -51,3 +51,5 @@ export const ArrowStrokeMaps = {
   solid: [0, 0],
   dash: [5, 5],
 }
+
+export const canEditorRounded = ['Process', 'Extract'];

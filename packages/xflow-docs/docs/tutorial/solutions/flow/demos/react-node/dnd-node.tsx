@@ -2,7 +2,7 @@ import React from 'react'
 import './dnd-node.less'
 
 export const DndNode = props => {
-  const { size = { width: 126, height: 104 }, data } = props
+  const { size = { width: 100, height: 40 }, data } = props
   const { width, height } = size
   const { label, stroke, fill, fontFill, fontSize } = data
 
