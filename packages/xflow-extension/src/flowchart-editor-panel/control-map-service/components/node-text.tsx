@@ -132,7 +132,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
               onNodeConfigChange('isUnderline', !nodeConfig.isUnderline);
             }}
           />
-          <label style={{ color: '#888' }}>&#12288;&#12288;&#12288;文本位置</label>
+          <label style={{ color: '#888' }}>文本位置</label>
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <VerticalAlignTopOutlined
@@ -165,7 +165,6 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
               onNodeConfigChange('alignmentBaseline', 'before-edge');
             }}
           />
-          &#12288;
           <InputFontPosition
             label="Y"
             value={nodeConfig.dy}
@@ -201,7 +200,6 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
               onNodeConfigChange('textAnchor', 'end');
             }}
           />
-          &#12288;
           <InputFontPosition
             label="X"
             value={nodeConfig.dx}
