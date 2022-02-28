@@ -25,7 +25,10 @@ interface IPreGridConfig extends Omit<IGridConfig, 'color'> {
 interface IBackground {
   color: string //背景颜色
   image?: string //背景图片
-  opacity: string //背景透明度
+  position?: string //背景图片位置
+  size?: string //背景图片大小
+  repeat?: string //背景图片重复方式
+  opacity?: number //背景透明度
 }
 
 export namespace NsGraphUpdate {
@@ -65,21 +68,42 @@ export class GraphUpdateCommand implements ICommand {
 
   updateGrid = (graph: X6Graph, grid: IGridConfig) => {
     const preGridConfig = graph.options.grid as IPreGridConfig
-    const { visible, size, type, color } = grid
+    const { visible, size, type = preGridConfig.type, color = preGridConfig.args.color } = grid
     if (visible === true) {
       graph.showGrid()
       size && graph.setGridSize(size)
-
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       graph.drawGrid({
-        type: type || preGridConfig.type,
+        type: type,
         args: {
-          color: color || preGridConfig.args.color,
+          color: color,
         },
       })
     } else if (visible === false) {
       graph.hideGrid()
     }
+  }
+
+  updateBackground = (graph: X6Graph, background: IBackground) => {
+    const preBackground = graph.options.background as IBackground
+    const {
+      color = preBackground.color,
+      image = preBackground.image,
+      position = preBackground.position,
+      size = preBackground.size,
+      repeat = preBackground.repeat,
+      opacity = preBackground.opacity,
+    } = background
+
+    console.log(color, image, size, repeat)
+
+    graph.drawBackground({
+      color,
+      image,
+      position,
+      size,
+      repeat,
+      opacity,
+    })
   }
 
   /** 执行Cmd */
@@ -90,12 +114,11 @@ export class GraphUpdateCommand implements ICommand {
     const result = await hooks.graphUpdate.call(
       args,
       async handlerArgs => {
-        //console.log(handlerArgs)
         const graph = await this.ctx.getX6Graph()
-        /*  const graphConfig = await this.ctx.getGraphConfig();
-        console.log(graphConfig) */
         const { grid, background } = handlerArgs
         grid && this.updateGrid(graph, grid)
+        background && this.updateBackground(graph, background)
+        return { err: null }
       },
       runtimeHook,
     )
