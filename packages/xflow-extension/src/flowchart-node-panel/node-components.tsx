@@ -1,36 +1,36 @@
 import React from 'react'
-import type { NsGraph} from '@antv/xflow-core';
+import type { NsGraph } from '@antv/xflow-core'
 import { uuidv4 } from '@antv/xflow-core'
 import * as nodePathMap from './paths'
-import { NODE_HEIGHT, NODE_WIDTH,DefaultNodeConfig  } from './constants'
+import { NODE_HEIGHT, NODE_WIDTH, DefaultNodeConfig } from './constants'
 import { GradientComponent } from './gradient-component'
 
 export const NodeComponent: NsGraph.INodeRender = props => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {}, name } = props
 
   const {
-    stroke = DefaultNodeConfig .stroke,
-    label = DefaultNodeConfig .label,
-    fill: startColor = DefaultNodeConfig .fill,
-    fontFill = DefaultNodeConfig .fontFill,
-    fontSize = DefaultNodeConfig .fontSize,
-    strokeWidth = DefaultNodeConfig .strokeWidth,
-    strokeDasharray = DefaultNodeConfig .strokeDasharray,
-    fillOpacity = DefaultNodeConfig .fillOpacity,
-    angel = DefaultNodeConfig .angel,
-    rounded = DefaultNodeConfig .rounded,
-    isGradient = DefaultNodeConfig .rounded,
-    gradientDirection = DefaultNodeConfig .gradientDirection,
-    endColor = DefaultNodeConfig .endColor,
-    isBold = DefaultNodeConfig .isBold,
-    isItalic = DefaultNodeConfig .isItalic,
-    isUnderline = DefaultNodeConfig .isUnderline,
-    alignmentBaseline = DefaultNodeConfig .alignmentBaseline,
-    textAnchor = DefaultNodeConfig .textAnchor,
-    textOpacity = DefaultNodeConfig .textOpacity,
-    letterSpacing = DefaultNodeConfig .letterSpacing,
-    dy = DefaultNodeConfig .dy,
-    dx = DefaultNodeConfig .dx,
+    stroke = DefaultNodeConfig.stroke,
+    label = DefaultNodeConfig.label,
+    fill: startColor = DefaultNodeConfig.fill,
+    fontFill = DefaultNodeConfig.fontFill,
+    fontSize = DefaultNodeConfig.fontSize,
+    strokeWidth = DefaultNodeConfig.strokeWidth,
+    strokeDasharray = DefaultNodeConfig.strokeDasharray,
+    fillOpacity = DefaultNodeConfig.fillOpacity,
+    angel = DefaultNodeConfig.angel,
+    rounded = DefaultNodeConfig.rounded,
+    isGradient = DefaultNodeConfig.rounded,
+    gradientDirection = DefaultNodeConfig.gradientDirection,
+    endColor = DefaultNodeConfig.endColor,
+    isBold = DefaultNodeConfig.isBold,
+    isItalic = DefaultNodeConfig.isItalic,
+    isUnderline = DefaultNodeConfig.isUnderline,
+    alignmentBaseline = DefaultNodeConfig.alignmentBaseline,
+    textAnchor = DefaultNodeConfig.textAnchor,
+    textOpacity = DefaultNodeConfig.textOpacity,
+    letterSpacing = DefaultNodeConfig.letterSpacing,
+    dy = DefaultNodeConfig.dy,
+    dx = DefaultNodeConfig.dx,
   } = data
 
   const { width, height } = size
@@ -64,11 +64,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
       height="100%"
       style={{ transform: `rotate(${angel}deg)` }}
     >
-      <GradientComponent
-        startColor={startColor}
-        endColor={endColor}
-        uuid={uuid}
-       />
+      <GradientComponent startColor={startColor} endColor={endColor} uuid={uuid} />
       {nodePath.map(path => {
         return (
           <path
@@ -79,7 +75,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
             strokeWidth={strokeWidth}
             strokeDasharray={strokeDasharray}
             fillOpacity={fillOpacity}
-           />
+          />
         )
       })}
       <text
