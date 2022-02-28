@@ -42,21 +42,36 @@ export interface IFlowchartNode {
    * Dnd节点的popover的提示内容
    */
   readonly popoverContent?: React.ReactNode
-  /** 内部使用 */
-  isCustom?: boolean
 }
 
-export interface IProps extends Omit<TreeNodeProps, 'treeDataService' | 'onNodeDrop'> {
+type ITreeItem = {
+  title?: string;
+  nodes?: IFlowchartNode[];
+};
+
+/* export interface ITreeData {
+  [string: string]: ITreeItem
+} */
+export type ITreeData = Record<string, ITreeItem>
+
+export type ISearchNodes = Record<string, IFlowchartNode[]>
+export interface IRegisterNodeItem {
+  type: string;
+  title: string;
+  nodes: ICustomNode[];
+}
+export type IRegisterNode = IRegisterNodeItem[];
+
+export interface IProps extends Omit<TreeNodeProps, 'treeDataService' | 'onNodeDrop' | 'searchService'> {
   show?: boolean
   showHeader?: boolean
+  showFooter?: boolean
   /** 自定义节点 */
-  registerNode?: {
-    title?: string
-    nodes: ICustomNode[]
-  }
+  registerNode?: IRegisterNode
   treeDataService?: ITreeDataService
   /** 默认展开的折叠面板 */
   defaultActiveKey?: string[] // ['official', 'custom']
+  searchService?: (treeData: ITreeData) => ISearchNodes
 }
 
 export interface IOnKeywordChange {
@@ -67,4 +82,10 @@ export type IFlowchartNodePanelProps = IProps
 
 export namespace NsFlowchartPanelData {
   export const id = 'FLOWCHART_PANEL_DATA'
+}
+
+export interface ICheckboxOption {
+  label: string;
+  value: string;
+  disabled?: boolean;
 }
