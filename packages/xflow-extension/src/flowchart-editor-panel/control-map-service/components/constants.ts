@@ -53,3 +53,20 @@ export const ArrowStrokeMaps = {
 }
 
 export const canEditorRounded = ['Process', 'Extract'];
+
+export const defaultCanvasConfig = {
+  grid: {
+    visible: true,
+    color: '#aaaaaa',
+    type: 'dot',
+    size: 10
+  },
+  background:{
+    color: '#FFF',
+    image: '',
+    repeat: 'no-repeat',
+    position: 'center',
+    size: 'auto auto',
+    opacity: 1,
+  }
+} as const

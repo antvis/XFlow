@@ -8,15 +8,15 @@ import { XFlowGraphCommands } from '../constant'
 
 type ICommand = ICommandHandler<NsGraphUpdate.IArgs, NsGraphUpdate.IResult, NsGraphUpdate.ICmdHooks>
 
-interface IGridConfig {
+interface IGrid {
   visible?: boolean //是否显示网格
   type?: 'dot' | 'mesh' //网格线条样式
   color?: string //网格颜色
   size?: number //网格大小
   thickness?: number //网格线条宽度
-}
+}   
 
-interface IPreGridConfig extends Omit<IGridConfig, 'color'> {
+interface IPreGrid extends Omit<IGrid, 'color'> {
   args: {
     color: string
   }
@@ -38,7 +38,7 @@ export namespace NsGraphUpdate {
   export const hookKey = 'graphUpdate'
   /** hook 参数类型 */
   export interface IArgs extends IArgsBase {
-    grid?: IGridConfig
+    grid?: IGrid
     background?: IBackground
   }
   /** hook handler 返回类型 */
@@ -66,8 +66,8 @@ export class GraphUpdateCommand implements ICommand {
     this.ctx = this.contextProvider()
   }
 
-  updateGrid = (graph: X6Graph, grid: IGridConfig) => {
-    const preGridConfig = graph.options.grid as IPreGridConfig
+  updateGrid = (graph: X6Graph, grid: IGrid) => {
+    const preGridConfig = graph.options.grid as IPreGrid
     const { visible, size, type = preGridConfig.type, color = preGridConfig.args.color } = grid
     if (visible === true) {
       graph.showGrid()
@@ -93,8 +93,6 @@ export class GraphUpdateCommand implements ICommand {
       repeat = preBackground.repeat,
       opacity = preBackground.opacity,
     } = background
-
-    console.log(color, image, size, repeat)
 
     graph.drawBackground({
       color,
