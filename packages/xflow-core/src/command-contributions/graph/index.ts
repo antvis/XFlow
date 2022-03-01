@@ -12,6 +12,8 @@ import { GraphLoadDataCommand, NsGraphLoadData } from './graph-load-data'
 import { GraphLayoutCommand, NsGraphLayout } from './graph-layout'
 import { GraphRenderCommand, NsGraphRender } from './graph-render'
 import { GraphResizeCommand, NsGraphResize } from './graph-resize'
+// 全屏
+import { GraphFullscreenCommand, NsGraphFullscreen } from './graph-fulllscreen'
 // 画布操作相关
 import { NsGraphZoom, GraphZoomCommand } from './graph-zoom'
 import { NsGraphCopySelection, GraphCopySelectionCommand } from './graph-copy'
@@ -54,6 +56,7 @@ export const registerGraphCommand = (register: Syringe.Register) => {
   register(GraphToggleMultiSelectCommand)
   register(GraphCopySelectionCommand)
   register(GraphPasteSelectionCommand)
+  register(GraphFullscreenCommand)
   // tools
   register(GraphAddToolCommand)
   register(GraphDelToolCommand)
@@ -78,6 +81,7 @@ export const hookhubList: {
   NsGraphLayout,
   NsGraphRender,
   NsGraphResize,
+  NsGraphFullscreen,
   // xflow command
   NsRedoCmd,
   NsUndoCmd,
@@ -182,6 +186,12 @@ export namespace NsGraphCmd {
   export namespace GraphZoom {
     export type IArgs = Simplify<NsGraphZoom.IArgs>
     export type IResult = Simplify<NsGraphZoom.IResult>
+  }
+
+  // 全屏
+  export namespace GraphFullscreen {
+    export type IArgs = Simplify<NsGraphFullscreen.IArgs>
+    export type IResult = Simplify<NsGraphFullscreen.IResult>
   }
 
   export namespace GraphToggleMultiSelect {

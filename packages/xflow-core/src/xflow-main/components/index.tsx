@@ -89,6 +89,8 @@ export const XFlow: React.FC<IProps> = props => {
   } = props
 
   const [appRef, setAppRef] = React.useState<IApplication | null>()
+  /** 所有组件父容器 */
+  const appContainerRef = React.useRef<HTMLDivElement>(null)
 
   /** XFlow App 配置中心 */
   const extensionRegistry = createExtensionRegistry()
@@ -105,7 +107,7 @@ export const XFlow: React.FC<IProps> = props => {
     app.start().then(async () => {
       /** 保留引用 */
       setAppRef(app)
-
+      extensionRegistry.getExtension('GraphConfig')?.config.setAppContainer(appContainerRef.current)
       /** 自动执行 load Meta */
       if (meta) {
         await app.commandService.executeCommand(XFlowGraphCommands.LOAD_META.id, { meta })
@@ -189,7 +191,12 @@ export const XFlow: React.FC<IProps> = props => {
   return (
     <XFlowAppInternalProvider app={appRef}>
       <ExtensionRegistryContext.Provider value={extensionRegistry}>
-        <div className={appClzName} id={extensionRegistry.getInstaceId()} style={style}>
+        <div
+          className={appClzName}
+          id={extensionRegistry.getInstaceId()}
+          ref={appContainerRef}
+          style={style}
+        >
           {/** 挂载XFlowCanvas组件 坐标相对于xflow-graph-root */}
           {!hasCanvasComponent && (
             <XFlowCanvas config={graphConfig} position={{ top: 0, bottom: 0, left: 0, right: 0 }} />

@@ -48,6 +48,8 @@ export class GraphConfig {
   }
   /** 画布的属性 */
   private x6Options: Deferred<X6Graph.Options> = new Deferred()
+  /** app 的 root 节点 */
+  private appContainer: HTMLElement
   /** 画布的root节点 */
   private rootContainer: Deferred<HTMLElement> = new Deferred()
   /** 画布的dom节点 */
@@ -76,6 +78,9 @@ export class GraphConfig {
   setX6Config = (options?: X6Graph.Options) => {
     const defaultOptions = this.getDefaultGraphOptions()
     this.x6Options?.resolve({ ...defaultOptions, ...options })
+  }
+  setAppContainer = (ele: HTMLElement | null) => {
+    this.appContainer = ele
   }
   setRootContainer = (ele: HTMLElement | null) => {
     ele && this?.rootContainer.resolve(ele)
@@ -118,6 +123,7 @@ export class GraphConfig {
       xflowInstanceId: this.xflowInstanceId,
       graphId: this.graphId,
       nodeViewId: this.graphId,
+      appContainer: this.appContainer,
       rootContainer,
       graphContainer,
       x6Options,
@@ -235,6 +241,8 @@ export interface IGraphConfig {
   nodeViewId: string
   /** 画布的options */
   x6Options: X6Graph.Options
+  /** app 的 root 节点 */
+  appContainer: HTMLElement
   /** 画布的root节点 */
   rootContainer: HTMLElement
   /** 画布的dom节点 */

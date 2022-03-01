@@ -68,7 +68,6 @@ export const Demo: React.FC<IProps> = props => {
   }, [graphRef])
 
   return (
- 
     <XFlow
       className="flow-user-custom-clz"
       commandConfig={commandConfig}
@@ -103,7 +102,7 @@ export const Demo: React.FC<IProps> = props => {
           layout="horizontal"
           position={{ top: -40, right: 0 }}
           style={{
-            width: 120,
+            width: 150,
             left: 'auto',
             height: 39,
           }}

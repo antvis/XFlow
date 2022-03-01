@@ -163,6 +163,12 @@ export namespace XFlowGraphCommands {
     label: '缩放画布',
     category,
   }
+  /** Graph Fullscreen */
+  export const GRAPH_FULLSCREEN: IGraphCommand = {
+    id: 'xflow:graph-fullscreen',
+    label: '全屏',
+    category,
+  }
   /** Graph Resize */
   export const GRAPH_RESIZE: IGraphCommand = {
     id: 'xflow:graph-resize',

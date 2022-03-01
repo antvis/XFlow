@@ -32,6 +32,13 @@ export namespace GRAPH_ENABLE_MULTI_SELECT {
   export const getModel = getModelUtil<IState>(id)
   export const useValue = useModelValueUtil<IState>(id)
 }
+/** 画布是否全屏 */
+export namespace GRAPH_FULLSCREEN {
+  export const id = 'GRAPH_FULLSCREEN'
+  export type IState = boolean
+  export const getModel = getModelUtil<IState>(id)
+  export const useValue = useModelValueUtil<IState>(id)
+}
 /** 画布已选中节点 */
 export namespace IS_NODE_SELECTED {
   export const id = 'IS_NODE_SELECTED'
