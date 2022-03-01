@@ -1,5 +1,18 @@
 # @antv/xflow-extension
 
+## 1.0.34
+
+### Patch Changes
+
+- 85dd60b6: chore: release 1.0.33 verison
+- 01bb0958: chore: release 1.x version
+- 85dd60b6: fix: npm package version
+- Updated dependencies [85dd60b6]
+- Updated dependencies [01bb0958]
+- Updated dependencies [85dd60b6]
+  - @antv/xflow-core@1.0.34
+  - @antv/xflow-hook@1.0.34
+
 ## 1.0.32
 
 ### Patch Changes
