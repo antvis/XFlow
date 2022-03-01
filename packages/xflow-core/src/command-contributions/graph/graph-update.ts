@@ -28,7 +28,7 @@ interface IBackground {
   position?: string //背景图片位置
   size?: string //背景图片大小
   repeat?: string //背景图片重复方式
-  opacity?: number //背景透明度
+  opacity?: number //背景图片透明度
 }
 
 export namespace NsGraphUpdate {
@@ -87,20 +87,21 @@ export class GraphUpdateCommand implements ICommand {
     const preBackground = graph.options.background as IBackground
     const {
       color = preBackground.color,
-      image = preBackground.image,
       position = preBackground.position,
       size = preBackground.size,
       repeat = preBackground.repeat,
       opacity = preBackground.opacity,
     } = background
 
+    //当传入的 image 为空字符串时，认为删除图片
+    const image = background.image === undefined ? preBackground.image : background.image
     graph.drawBackground({
       color,
+      opacity,
       image,
       position,
       size,
       repeat,
-      opacity,
     })
   }
 
