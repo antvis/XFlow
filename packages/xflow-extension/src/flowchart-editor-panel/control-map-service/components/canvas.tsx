@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { XFlowGraphCommands } from '@antv/xflow-core'
-import { Checkbox, Button } from 'antd'
+import { Checkbox } from 'antd'
 import { ColorPicker, InputNumberFiled, SelectField } from './fields'
 import { SolidIcon, DottedLine } from './edit-style/index'
 import { PREFIX } from './constants'
 import { usePanelContext } from '../../../base-panel/context'
 import type { ICanvasConfig, IBackground, IGrid } from './interface'
-import { defaultCanvasConfig } from './constants'
 import { getGraphInstance } from '../../../flowchart-canvas/utils'
 
 export const CanvasService: React.FC = () => {
@@ -24,7 +23,6 @@ export const CanvasService: React.FC = () => {
     key: string,
     value: string | number | boolean,
   ) => {
-    console.log(value)
     setCanvasConfig({
       ...canvasConfig,
       [type]: {
@@ -44,30 +42,38 @@ export const CanvasService: React.FC = () => {
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
         <Checkbox
-          checked={grid.visible}
+          checked={canvasConfig.grid.visible}
           onChange={e => {
             onCanvasConfigChange('grid', 'visible', e.target.checked)
           }}
         >
           网格
         </Checkbox>
-        {grid.visible && <ColorPicker label="网格填充" value={grid.args.color} />}
-        {grid.visible && (
+        {canvasConfig.grid.visible && (
+          <ColorPicker
+            label="网格填充"
+            value={canvasConfig.grid.color || canvasConfig.grid.args.color}
+            onChange={(value: string) => {
+              onCanvasConfigChange('grid', 'color', value)
+            }}
+          />
+        )}
+        {canvasConfig.grid.visible && (
           <InputNumberFiled
             label="网格大小"
-            value={grid.size}
+            value={canvasConfig.grid.size}
             step={1}
             width={70}
-            onChange={value => {
+            onChange={(value: number) => {
               onCanvasConfigChange('grid', 'size', value)
             }}
           />
         )}
-        {grid.visible && (
+        {canvasConfig.grid.visible && (
           <SelectField
             label="线形"
             width={69}
-            value={grid.type}
+            value={canvasConfig.grid.type}
             options={[
               {
                 label: SolidIcon,
@@ -78,17 +84,11 @@ export const CanvasService: React.FC = () => {
                 value: 'dot',
               },
             ]}
-            onChange={value => {}}
+            onChange={(value: string) => {
+              onCanvasConfigChange('grid', 'type', value)
+            }}
           />
         )}
-        <Button
-          onClick={() => {
-            console.log(X6Graph)
-            console.log(grid, background)
-          }}
-        >
-          11111
-        </Button>
       </div>
     </div>
   )

@@ -14,7 +14,7 @@ interface IGrid {
   color?: string //网格颜色
   size?: number //网格大小
   thickness?: number //网格线条宽度
-}   
+}
 
 interface IPreGrid extends Omit<IGrid, 'color'> {
   args: {
@@ -71,16 +71,16 @@ export class GraphUpdateCommand implements ICommand {
     const { visible, size, type = preGridConfig.type, color = preGridConfig.args.color } = grid
     if (visible === true) {
       graph.showGrid()
-      size && graph.setGridSize(size)
-      graph.drawGrid({
-        type: type,
-        args: {
-          color: color,
-        },
-      })
     } else if (visible === false) {
       graph.hideGrid()
     }
+    size && graph.setGridSize(size)
+    graph.drawGrid({
+      type: type,
+      args: {
+        color: color,
+      },
+    })
   }
 
   updateBackground = (graph: X6Graph, background: IBackground) => {
