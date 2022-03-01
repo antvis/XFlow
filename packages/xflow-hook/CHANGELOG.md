@@ -1,5 +1,13 @@
 # @antv/xflow-hook
 
+## 1.0.34
+
+### Patch Changes
+
+- 85dd60b6: chore: release 1.0.33 verison
+- 01bb0958: chore: release 1.x version
+- 85dd60b6: fix: npm package version
+
 ## 1.0.32
 
 ### Patch Changes

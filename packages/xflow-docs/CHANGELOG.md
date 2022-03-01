@@ -1,5 +1,15 @@
 # @antv/xflow-docs
 
+## 1.0.34
+
+### Patch Changes
+
+- 85dd60b6: fix: npm package version
+- Updated dependencies [85dd60b6]
+- Updated dependencies [01bb0958]
+- Updated dependencies [85dd60b6]
+  - @antv/xflow@1.0.34
+
 ## 1.0.32
 
 ### Patch Changes
