@@ -1,5 +1,6 @@
 import { uuidv4 } from '@antv/xflow-core'
 import { isNumber } from 'lodash'
+import { setProps, getProps } from '../flowchart-canvas/utils'
 import * as NodesComponent from './nodes'
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL } from './constants'
 
@@ -76,14 +77,25 @@ export const nodeService = async nodes => {
   ]
 }
 
-export const setNodeRender = (config, nodes = []) => {
-  // 自定义节点
-  if (nodes?.length) {
-    nodes.forEach(item => {
-      const { name, component } = item
-      config.setNodeRender(name, component)
+export const registerCustomNode = (nodes = []) => {
+  if (nodes.length) {
+    setProps({
+      registerNode: nodes,
     })
   }
+  const graphConfig = getProps('graphConfig')
+  const registerNode = getProps('registerNode')
+  if (!graphConfig || !registerNode?.length) {
+    return
+  }
+  registerNode.forEach(item => {
+    const { name, component } = item
+    graphConfig.setNodeRender(name, component)
+  })
+}
+
+export const setNodeRender = config => {
+  registerCustomNode()
   /** 默认节点，通过 Terminal 标识，避免多次调用*/
   if (!config.nodeRender.get('Terminal')) {
     NODEPOOL.forEach(item => {
