@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useXflowPrefixCls } from '@antv/xflow-core'
 import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons'
+import { get } from 'lodash'
 import { WorkspacePanel } from '../base-panel'
 import type { IProps } from './interface'
 import type { IPanelProps } from '../canvas-node-tree-panel/interface'
+import { registerCustomNode } from './utils'
 import { NodePanelBody } from './panel-body'
 // import { NodePanelHeader } from '../canvas-node-tree-panel/panel-header'
 import { NodePanelHeader } from './panel-header'
@@ -61,6 +63,7 @@ export const NodePanelMain: React.FC<IProps> = props => {
 }
 
 export const FlowchartNodePanel: React.FC<IProps> = props => {
+  registerCustomNode(get(props, 'registerNode.nodes'))
   const prefixClz = useXflowPrefixCls('node-panel')
   const [collpased, setCollpased] = useState(false)
   const { show = true, position = { width: 240, top: 40, bottom: 0, left: 0 }, ...rest } = props

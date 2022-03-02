@@ -67,13 +67,14 @@ const XFlowEdge = Shape.Edge.registry.register(
 export const useGraphConfig = createGraphConfig((config, proxy) => {
   const { config: canvasConfig = {}, useConfig } = proxy.getValue()
   config.setEdgeTypeParser(edge => edge?.renderKey as string)
-  setNodeRender(config)
-  setGroupRender(config)
   /** 这里比较黑，props 共享*/
   setProps({
     ...proxy.getValue(),
     graphConfig: config,
   })
+  setNodeRender(config)
+  setGroupRender(config)
+
   config.setX6Config(
     merge(
       {

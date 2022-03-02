@@ -8,7 +8,7 @@ export const globalProps = {
 }
 
 export const setProps = props => {
-  globalProps.config = props
+  globalProps.config = Object.assign({}, globalProps.config, props)
 }
 export const getProps = (key: string) => {
   return globalProps.config?.[key]
