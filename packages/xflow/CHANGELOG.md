@@ -1,5 +1,15 @@
 # @antv/xflow
 
+## 1.0.35
+
+### Patch Changes
+
+- 2fa59874: fix: add update for vertices, router, connector, source, target in edge-update command chore: update x6 version to 1.30.1
+- Updated dependencies [2fa59874]
+  - @antv/xflow-core@1.0.35
+  - @antv/xflow-extension@1.0.35
+  - @antv/xflow-hook@1.0.35
+
 ## 1.0.34
 
 ### Patch Changes
