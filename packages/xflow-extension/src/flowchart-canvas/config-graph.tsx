@@ -28,6 +28,7 @@ export namespace NsAddEdgeEvent {
     source: string
     target: string
     edge: Edge
+    tempEdgeId?: string
   }
 }
 
@@ -122,6 +123,7 @@ export const useGraphConfig = createGraphConfig((config, proxy) => {
                     source: sourceCellId,
                     target: targetCellId,
                     edge: edge,
+                    tempEdgeId: tempEdge.id,
                   } as NsAddEdgeEvent.IArgs)
                 }
               }

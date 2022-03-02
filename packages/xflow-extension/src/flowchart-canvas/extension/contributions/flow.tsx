@@ -1,6 +1,11 @@
 import type { ICmdHooks } from '@antv/xflow-core'
 import { singleton } from 'mana-syringe'
-import { DisposableCollection, Disposable, XFlowEdgeCommands } from '@antv/xflow-core'
+import {
+  DisposableCollection,
+  Disposable,
+  XFlowEdgeCommands,
+  XFlowNodeCommands,
+} from '@antv/xflow-core'
 import { IHookContribution } from '@antv/xflow-core'
 import { NsAddEdgeEvent } from '../../config-graph'
 import { getProps } from '../../utils'
@@ -25,9 +30,10 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
           const { commandService, graph } = handlerArgs
           graph.on(NsAddEdgeEvent.EVENT_NAME, async (args: NsAddEdgeEvent.IArgs) => {
             const { edge, ...edgeConfig } = args
+            const { tempEdgeId, ...rest } = edgeConfig
             const config = {
               edgeConfig: {
-                ...edgeConfig,
+                ...rest,
                 // renderKey: FLOWCHART_EDGE, // 暂不支持
                 source: {
                   cell: edgeConfig.source,
@@ -50,10 +56,36 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
                     strokeWidth: 1,
                   },
                 },
-                data: { ...edgeConfig },
+                data: { ...rest },
               },
             }
             await commandService.executeCommand(XFlowEdgeCommands.ADD_EDGE.id, config)
+            /** 删除 createEdge() 产生的 tempEdge */
+            await commandService.executeCommand(XFlowEdgeCommands.DEL_EDGE.id, {
+              edgeConfig: {
+                id: tempEdgeId,
+              },
+            })
+            /**
+             * 新增边时更新入边、出边信息
+             * @link https://github.com/ant-design/ant-design-charts/issues/1189
+             */
+            const sourceNode = graph.getCellById(edgeConfig.source)
+            const targetNode = graph.getCellById(edgeConfig.target)
+            await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+              nodeConfig: {
+                ...sourceNode.data,
+                incomingEdges: graph.getIncomingEdges(sourceNode),
+                outgoingEdges: graph.getOutgoingEdges(sourceNode),
+              },
+            })
+            await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+              nodeConfig: {
+                ...targetNode.data,
+                incomingEdges: graph.getIncomingEdges(targetNode),
+                outgoingEdges: graph.getOutgoingEdges(targetNode),
+              },
+            })
             const onAddEdge = getProps('onAddEdge')
             if (typeof onAddEdge === 'function') {
               onAddEdge(config)
