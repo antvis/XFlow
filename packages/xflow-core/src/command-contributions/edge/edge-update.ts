@@ -1,5 +1,7 @@
 import { inject, injectable, postConstruct } from 'mana-syringe'
 import type { Edge as X6Edge } from '@antv/x6'
+import isBoolean from 'lodash/isBoolean'
+import isObject from 'lodash/isObject'
 
 import type { NsGraph } from '../../interface'
 import type { IContext, IArgsBase } from '../../command/interface'
@@ -91,9 +93,29 @@ export class UpdateEdgeCommand implements ICommand {
           // 默认更新edge的第一个label
           await updateEdgeLabelService(x6Edge, edgeConfig, options)
         }
+        if (isBoolean(edgeConfig?.visble)) {
+          x6Edge.setVisible(edgeConfig?.visible)
+        }
+
         if (edgeConfig.attrs) {
           x6Edge.setAttrs(edgeConfig.attrs)
         }
+        if (edgeConfig.vertices) {
+          x6Edge.setVertices(edgeConfig.vertices)
+        }
+        if (edgeConfig.router) {
+          x6Edge.setRouter(edgeConfig.router)
+        }
+        if (edgeConfig.connector) {
+          x6Edge.setConnector(edgeConfig.connector)
+        }
+        if (isObject(edgeConfig.source)) {
+          x6Edge.setSource(edgeConfig.source)
+        }
+        if (isObject(edgeConfig.target)) {
+          x6Edge.setTarget(edgeConfig.target)
+        }
+
         return {
           edgeConfig,
           edgeCell: x6Edge,

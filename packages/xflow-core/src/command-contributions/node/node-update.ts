@@ -2,6 +2,7 @@ import { inject, injectable, postConstruct } from 'mana-syringe'
 import type { Graph as X6Graph } from '@antv/x6'
 import { Node as X6Node } from '@antv/x6'
 import type { HookHub } from '@antv/xflow-hook'
+import isBoolean from 'lodash/isBoolean'
 import type { IHooks } from '../../hooks/interface'
 import { XFlowNodeCommands } from '../constant'
 import type { NsGraph } from '../../interface'
@@ -69,6 +70,9 @@ export class UpdateNodeCommand implements ICommand {
       nodeConfig?.width || NsUpdateNode.NODE_WIDTH,
       nodeConfig?.height || NsUpdateNode.NODE_HEIGHT,
     )
+    if (isBoolean(nodeConfig?.visble)) {
+      x6Node.setVisible(nodeConfig?.visble)
+    }
 
     // SVG 元素更新label
     if (!(x6Node instanceof ReactShape) && !!x6Node.getAttrByPath('text/text')) {
