@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { XFlowGraphCommands } from '@antv/xflow-core'
-import { Checkbox } from 'antd'
-import { ColorPicker, InputNumberFiled, SelectField } from './fields'
+import { Checkbox, Upload, Button } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
+import { ColorPicker, InputNumberFiled, SelectField, Size } from './fields'
 import { SolidIcon, DottedLine } from './edit-style/index'
 import { PREFIX } from './constants'
 import { usePanelContext } from '../../../base-panel/context'
@@ -17,7 +18,6 @@ export const CanvasService: React.FC = () => {
     grid,
     background,
   } as ICanvasConfig)
-
   const onCanvasConfigChange = (
     type: 'grid' | 'background',
     key: string,
@@ -36,6 +36,22 @@ export const CanvasService: React.FC = () => {
         [key]: value,
       },
     })
+  }
+
+  function getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = error => reject(error)
+    })
+  }
+
+  const handleUpload = async ({ file }) => {
+    if (file.status === 'done') {
+      const image = await getBase64(file.originFileObj)
+      onCanvasConfigChange('background', 'image', image as string)
+    }
   }
 
   return (
@@ -86,6 +102,38 @@ export const CanvasService: React.FC = () => {
             ]}
             onChange={(value: string) => {
               onCanvasConfigChange('grid', 'type', value)
+            }}
+          />
+        )}
+      </div>
+      <div className={`${PREFIX}-panel-group`}>
+        <ColorPicker
+          label="背景"
+          value={canvasConfig.background.color}
+          onChange={(value: string) => {
+            onCanvasConfigChange('background', 'color', value)
+          }}
+        />
+        <Upload
+          maxCount={1}
+          onChange={handleUpload}
+          onRemove={() => {
+            onCanvasConfigChange('background', 'image', '')
+          }}
+        >
+          <Button icon={<UploadOutlined />}>背景图片</Button>
+        </Upload>
+        {canvasConfig.background.image && (
+          <InputNumberFiled
+            label="图片透明度"
+            value={canvasConfig.background.opacity}
+            max={1}
+            min={0}
+            step={0.1}
+            width={70}
+            onChange={(value: number) => {
+              console.log(typeof value)
+              onCanvasConfigChange('background', 'opacity', value)
             }}
           />
         )}

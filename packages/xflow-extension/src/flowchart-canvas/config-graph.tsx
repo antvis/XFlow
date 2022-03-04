@@ -88,7 +88,7 @@ export const useGraphConfig = createGraphConfig((config, proxy) => {
           color: '#fff',
           image: '',
           repeat: 'no-repeat',
-          opacity: 0.2,
+          opacity: 1,
           position: 'center',
           size: 'auto auto',
         },
