@@ -97,11 +97,11 @@ export class GraphUpdateCommand implements ICommand {
     const image = background.image === undefined ? preBackground.image : background.image
     graph.drawBackground({
       color,
-      opacity,
       image,
       position,
       size,
       repeat,
+      opacity,
     })
   }
 

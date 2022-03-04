@@ -53,7 +53,6 @@ export const CanvasService: React.FC = () => {
       onCanvasConfigChange('background', 'image', image as string)
     }
   }
-
   return (
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
