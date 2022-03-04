@@ -223,6 +223,11 @@ export namespace XFlowGraphCommands {
     label: 'history toggle',
     category,
   }
+  export const GRAPH_UPDATE: IGraphCommand = {
+    id: 'xflow:graph-update',
+    label: 'graph update',
+    category
+  }
 }
 
 /** 全局状态 */

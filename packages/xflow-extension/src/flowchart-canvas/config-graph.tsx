@@ -76,7 +76,22 @@ export const useGraphConfig = createGraphConfig((config, proxy) => {
   config.setX6Config(
     merge(
       {
-        grid: true,
+        grid: {
+          visible: true,
+          type: 'dot',
+          size: 10,
+          args: {
+            color: '#aaa',
+          },
+        },
+        background: {
+          color: '#fff',
+          image: '',
+          repeat: 'no-repeat',
+          opacity: 0.2,
+          position: 'center',
+          size: 'auto auto',
+        },
         history: true,
         resizing: {
           enabled: true,

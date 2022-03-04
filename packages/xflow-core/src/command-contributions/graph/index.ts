@@ -31,6 +31,10 @@ import { NsGraphDelTool, GraphDelToolCommand } from './graph-del-tool'
 // xflow-command
 import { NsRedoCmd, GraphRedoCommand } from './graph-cmd-redo'
 import { NsUndoCmd, GraphUndoCommand } from './graph-cmd-undo'
+
+// 更新画布
+import { NsGraphUpdate, GraphUpdateCommand } from './graph-update'
+
 /** 注册Command Handler Class */
 export const registerGraphCommand = (register: Syringe.Register) => {
   // 数据
@@ -57,6 +61,9 @@ export const registerGraphCommand = (register: Syringe.Register) => {
   // tools
   register(GraphAddToolCommand)
   register(GraphDelToolCommand)
+
+  //更新画布
+  register(GraphUpdateCommand)
 }
 
 /** app onStart 时, 注册 Command Hooks */
@@ -89,6 +96,7 @@ export const hookhubList: {
   // tools
   NsGraphAddTool,
   NsGraphDelTool,
+  NsGraphUpdate,
 ]
 
 /** Command hook类型*/
@@ -117,7 +125,8 @@ export interface ICmdHooks
     NsGraphPasteSelection.ICmdHooks,
     // tool
     NsGraphAddTool.ICmdHooks,
-    NsGraphDelTool.ICmdHooks {}
+    NsGraphDelTool.ICmdHooks,
+    NsGraphUpdate.ICmdHooks {}
 
 /** Command 参数类型*/
 export namespace NsGraphCmd {
@@ -205,4 +214,9 @@ export namespace NsGraphCmd {
     export type IArgs = Simplify<NsGraphDelTool.IArgs>
     export type IResult = Simplify<NsGraphDelTool.IResult>
   }
+  export namespace GraphUpdate {
+    export type IArgs = Simplify<NsGraphUpdate.IArgs>
+    export type IResult = Simplify<NsGraphUpdate.IResult>
+  }
+
 }
