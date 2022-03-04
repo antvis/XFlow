@@ -94,7 +94,7 @@ export class GraphUpdateCommand implements ICommand {
     } = background
 
     //当传入的 image 为空字符串时，认为删除图片
-    const image = background.image === undefined ? preBackground.image : background.image
+    const image = background.image ?? preBackground.image
     graph.drawBackground({
       color,
       image,
