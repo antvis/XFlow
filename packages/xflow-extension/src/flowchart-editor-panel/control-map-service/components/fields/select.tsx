@@ -14,10 +14,9 @@ interface IProps {
 }
 
 const SelectField: React.FC<IProps> = props => {
-  const { label = '箭头', value, onChange, options = [], width } = props
+  const { value, onChange, options = [], width } = props
   return (
     <div className="group">
-      <label>{label}</label>
       <Select
         size="small"
         value={value}

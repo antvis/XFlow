@@ -126,15 +126,15 @@ const EdgeComponent = props => {
           width={69}
           options={[
             {
-              label: LeftArrow,
+              label: <LeftArrow />,
               value: 'target',
             },
             {
-              label: RightArrow,
+              label: <RightArrow />,
               value: 'source',
             },
             {
-              label: DoubleArrow,
+              label: <DoubleArrow />,
               value: 'all',
             },
             {
@@ -154,11 +154,11 @@ const EdgeComponent = props => {
             value={getSrokeDashValue()}
             options={[
               {
-                label: SolidLine,
+                label: <SolidLine />,
                 value: 'solid',
               },
               {
-                label: DottedLine,
+                label: <DottedLine/>,
                 value: 'dash',
               },
             ]}

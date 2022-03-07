@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { XFlowGraphCommands } from '@antv/xflow-core'
 import { Checkbox } from 'antd'
 import { ColorPicker, InputNumberFiled, SelectField } from './fields'
-import { SolidIcon, DottedLine } from './edit-icon/index'
+import { SolidLine, DottedLine } from './edit-icon/index'
 import { PREFIX } from './constants'
 import { usePanelContext } from '../../../base-panel/context'
 import type { ICanvasConfig, IBackground, IGrid } from './interface'
@@ -76,11 +76,11 @@ export const CanvasService: React.FC = () => {
             value={canvasConfig.grid.type}
             options={[
               {
-                label: SolidIcon,
+                label: <SolidLine />,
                 value: 'mesh',
               },
               {
-                label: DottedLine,
+                label: <DottedLine />,
                 value: 'dot',
               },
             ]}
