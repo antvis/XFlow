@@ -8,7 +8,7 @@ const path = [
 ]
 
 //实线
-const SolidIcon = (
+const SolidLine = (
   <svg width={ICON_WIDTH} height={ICON_HEIGHT} xmlns="http://www.w3.org/2000/svg">
     <path
       d={createPath(path)}
@@ -18,4 +18,4 @@ const SolidIcon = (
   </svg>
 )
 
-export default SolidIcon
+export default SolidLine

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FlowchartFormWrapper } from '../../form-wrapper'
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields'
-import { LeftArrow, RightArrow, DoubleArrow } from './edit-icon'
+import { LeftArrow, RightArrow, DoubleArrow, DottedLine, SolidLine } from './edit-icon'
 import { PREFIX, DefaultEdgeConfig, ArrowStrokeMaps, ArrowMaps } from './constants'
 
 export type MarkerCfg = {
@@ -154,11 +154,11 @@ const EdgeComponent = props => {
             value={getSrokeDashValue()}
             options={[
               {
-                label: '实线',
+                label: SolidLine,
                 value: 'solid',
               },
               {
-                label: '虚线',
+                label: DottedLine,
                 value: 'dash',
               },
             ]}

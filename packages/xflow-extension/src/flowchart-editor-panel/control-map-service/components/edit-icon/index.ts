@@ -2,6 +2,6 @@ import DottedLine from './dotted-line';
 import DoubleArrow from './double-arrow';
 import LeftArrow from './left-arrow';
 import RightArrow from './right-arrow';
-import SolidIcon from './solid-icon';
+import SolidLine from './solid-line';
 
-export { DottedLine, DoubleArrow, LeftArrow, RightArrow, SolidIcon };
+export { DottedLine, DoubleArrow, LeftArrow, RightArrow, SolidLine };
