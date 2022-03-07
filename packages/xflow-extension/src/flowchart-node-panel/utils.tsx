@@ -77,6 +77,10 @@ export const nodeService = async registerNode => {
       title: '流程图节点',
       nodes: [],
     },
+    advanced: {
+      title: '高级节点',
+      nodes: [],
+    }
   };
   NODEPOOL.forEach(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '', type }) => {
     treeData[type]?.nodes?.push({

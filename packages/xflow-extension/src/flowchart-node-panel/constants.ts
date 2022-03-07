@@ -34,26 +34,12 @@ export const DefaultNodeConfig = {
 
 export const NODEPOOL = [
   {
-    name: 'Terminal',
-    type: 'common',
-  },
-  {
-    name: 'Process',
-    type: 'common',
-  },
-  {
     name: 'Decision',
     type: 'common',
   },
   {
-    name: 'Connector',
-    width: NODE_HEIGHT,
-    height: NODE_HEIGHT,
-    type: 'common',
-  },
-  {
     name: 'Multi Document',
-    type: 'flowchart',
+    type: 'common',
   },
   {
     name: 'DataIO',
@@ -61,24 +47,84 @@ export const NODEPOOL = [
     type: 'common',
   },
   {
-    name: 'Database',
-    type: 'flowchart',
-  },
-  {
     name: 'Hard Disk',
     type: 'common',
   },
   {
-    name: 'Stroed Data',
-    type: 'flowchart',
-  },
-  {
-    name: 'Document',
-    type: 'flowchart',
-  },
-  {
     name: 'Predefined Process',
     type: 'common',
+  },
+
+  {
+    name: 'Isosceles Trapezoid',
+    type: 'common',
+  },
+  {
+    name: 'LeftTrapezoid',
+    type: 'common',
+  },
+  {
+    name: 'RightTrapezoid',
+    type: 'common',
+  },
+  {
+    name: 'Ellipse',
+    type: 'common',
+  },
+  {
+    name: 'Right Triangle',
+    type: 'common',
+  },
+  {
+    name: 'Left Triangle',
+    type: 'common',
+  },
+  {
+    name: 'Step',
+    type: 'common',
+  },
+  {
+    name: 'Card',
+    type: 'advanced',
+  },
+
+  {
+    name: 'Callout',
+    type: 'advanced',
+  },
+
+  {
+    name: 'Message',
+    type: 'advanced',
+  },
+  {
+    name: 'Text',
+    label: 'text',
+    type: 'common',
+  },
+  {
+    name: 'Terminal',
+    type: 'flowchart',
+  },
+  {
+    name: 'Process',
+    type: 'flowchart',
+  },
+  {
+    name: 'Connector',
+    width: NODE_HEIGHT,
+    height: NODE_HEIGHT,
+    type: 'flowchart',
+  },
+
+  {
+    name: 'Database',
+    type: 'flowchart',
+  },
+
+  {
+    name: 'Stroed Data',
+    type: 'flowchart',
   },
   {
     name: 'Extract',
@@ -119,6 +165,30 @@ export const NODEPOOL = [
     type: 'flowchart',
   },
   {
+    name: 'Internal Storage',
+    type: 'flowchart',
+  },
+  {
+    name: 'Reference',
+    type: 'flowchart',
+  },
+  {
+    name: 'Diagonal Snip Rectangle',
+    type: 'advanced',
+  },
+  {
+    name: 'FiveSides',
+    type: 'advanced',
+  },
+  {
+    name: 'Hexagon',
+    type: 'advanced',
+  },
+  {
+    name: 'Loop',
+    type: 'flowchart',
+  },
+  {
     name: 'Note Left',
     label: '≣',
     type: 'flowchart',
@@ -129,36 +199,20 @@ export const NODEPOOL = [
     type: 'flowchart',
   },
   {
-    name: 'Internal Storage',
+    name: 'Collate',
+    type: 'advanced',
+  },
+
+  {
+    name: 'Document',
     type: 'flowchart',
-  },
-  {
-    name: 'Text',
-    label: 'text',
-    type: 'common',
-  },
-  {
-    name: 'Isosceles Trapezoid',
-    type: 'common',
-  },
-  {
-    name: 'LeftTrapezoid',
-    type: 'common',
-  },
-  {
-    name: 'RightTrapezoid',
-    type: 'common',
-  },
-  {
-    name: 'Ellipse',
-    type: 'common',
   },
 ];
 // 缩放时保存同比例
 export const ASPECTRATIONODE = ['Connector', 'Or']
 
 //内置节点分类
-export const BUILDIN_NODE_TYPES = ['common', 'flowchart'];
+export const BUILDIN_NODE_TYPES = ['common', 'flowchart', 'advanced'];
 export const TYPE_IMG_MAP = {
   common: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*HVZwQYtQ9cIAAAAAAAAAAAAAARQnAQ',
   flowchart: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*c-IOS6IAEAQAAAAAAAAAAAAAARQnAQ',
@@ -175,4 +229,9 @@ export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
     value: 'flowchart',
     disabled: false,
   },
+  {
+    label: '高级节点',
+    value: 'advanced',
+    disabled: false
+  }
 ];
