@@ -4,7 +4,7 @@ import { DefaultNodeConfig } from '../../../flowchart-node-panel'
 import { FlowchartFormWrapper } from '../../form-wrapper';
 import { ColorPicker, InputNumberFiled, SelectField } from './fields';
 import { PREFIX, canEditorRounded } from './constants';
-import { SolidIcon, DottedLine } from './edit-style/index';
+import { SolidIcon, DottedLine } from './edit-icon/index';
 import type { IControlProps } from './interface';
 import { ArrowStrokeMaps } from './constants';
 import './style.less';

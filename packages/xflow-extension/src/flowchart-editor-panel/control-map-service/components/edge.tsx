@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FlowchartFormWrapper } from '../../form-wrapper'
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields'
+import { LeftArrow, RightArrow, DoubleArrow } from './edit-icon'
 import { PREFIX, DefaultEdgeConfig, ArrowStrokeMaps, ArrowMaps } from './constants'
 
 export type MarkerCfg = {
@@ -122,18 +123,18 @@ const EdgeComponent = props => {
         <SelectField
           label="箭头"
           value={getArrowValue()}
-          width="100%"
+          width={69}
           options={[
             {
-              label: '正向',
+              label: LeftArrow,
               value: 'target',
             },
             {
-              label: '逆向',
+              label: RightArrow,
               value: 'source',
             },
             {
-              label: '双向',
+              label: DoubleArrow,
               value: 'all',
             },
             {
