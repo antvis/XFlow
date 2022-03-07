@@ -77,30 +77,32 @@ export const nodeService = async registerNode => {
       title: '流程图节点',
       nodes: [],
     },
-  };
-  NODEPOOL.forEach(({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '', type }) => {
-    treeData[type]?.nodes?.push({
-      parentId: '',
-      id: uuidv4(), // 不会被使用
-      renderKey: name,
-      // name: `${name.replace(/\s+/g, '-')}`,
-      name,
-      label,
-      popoverContent: () => name,
-      width,
-      height,
-      ports: getPorts(ports),
-    });
-  });
+  }
+  NODEPOOL.forEach(
+    ({ name, ports, width = NODE_WIDTH, height = NODE_HEIGHT, label = '', type }) => {
+      treeData[type]?.nodes?.push({
+        parentId: '',
+        id: uuidv4(), // 不会被使用
+        renderKey: name,
+        // name: `${name.replace(/\s+/g, '-')}`,
+        name,
+        label,
+        popoverContent: () => name,
+        width,
+        height,
+        ports: getPorts(ports),
+      })
+    },
+  )
   console.log(treeData)
-  return treeData;
+  return treeData
 }
 
 export const setNodeRender = (config, registerNode = []) => {
-  let nodes = [];
-  registerNode.forEach((item) => {
-    nodes = [...nodes, ...item.nodes];
-  });
+  let nodes = []
+  registerNode.forEach(item => {
+    nodes = [...nodes, ...item.nodes]
+  })
   //console.log(nodes, "nodes")
   // 自定义节点
   if (nodes?.length) {
@@ -149,12 +151,12 @@ export const createRoundedPath = (paths: (string | number)[][]) => {
   return path
 }
 
-// 将16进制表示颜色转变为gba表示
-// 例如 getGradientColor('#FF0000') ===> 'rgb(255, 0, 0)'
-export const getGradientColor = color => {
+// 将16进制表示颜色转变为rgba表示
+// 例如 colorTransform('#FF0000') ===> 'rgb(255, 0, 0)'
+export const colorTransform = (color: string, opacity: number = 1): string => {
   if (!color) return
   const r = parseInt(color[1] + color[2], 16)
   const g = parseInt(color[3] + color[4], 16)
   const b = parseInt(color[5] + color[6], 16)
-  return `rgb(${r}, ${g}, ${b})`
+  return `rgb(${r}, ${g}, ${b},,${opacity})`
 }

@@ -15,6 +15,7 @@ export const ROUNDEDRADIUS = 10;
 
 export const DefaultNodeConfig = {
   stroke: '#A2B1C3',
+  label: '',
   fill: '#FFFFFF',
   fontFill: '#000',
   fontSize: 12,
@@ -30,6 +31,10 @@ export const DefaultNodeConfig = {
   isUnderline: false,
   alignmentBaseline: 'middle',
   textAnchor: 'middle',
+  textOpacity: 1,
+  letterSpace: 0,
+  fontFamily: 'microsoftYahei',
+  
 } as const;
 
 export const NODEPOOL = [

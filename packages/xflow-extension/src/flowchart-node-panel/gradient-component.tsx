@@ -1,14 +1,14 @@
 /* eslint-disable react/self-closing-comp */
 import React from 'react';
-import { getGradientColor } from './utils';
+import { colorTransform } from './utils';
 interface IProps {
   startColor: string;
   endColor: string;
   uuid: string;
 }
 export const GradientComponent = ({ startColor, endColor, uuid }: IProps) => {
-  startColor = getGradientColor(startColor);
-  endColor = getGradientColor(endColor);
+  startColor = colorTransform(startColor);
+  endColor = colorTransform(endColor);
   return (
     <>
       <linearGradient id={`top-bottom-${uuid}`} x1="0" y1="0" x2="0" y2="1">
