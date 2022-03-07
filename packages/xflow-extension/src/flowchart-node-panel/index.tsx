@@ -78,6 +78,7 @@ export const NodePanelMain: React.FC<IProps> = props => {
         position={{
           ...position,
           top: showHeader ? PANEL_HEADER_HEIGHT : 0,
+          bottom: showFooter ? PANEL_FOOTER_HEIGHT: 0,
         }}
       >
         <NodePanelBody

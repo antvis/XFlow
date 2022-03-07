@@ -107,7 +107,14 @@ export const Demo: React.FC<IProps> = props => {
           {
             title: '测试2',
             type: 'test2',
-            nodes: [],
+            nodes: [{
+              component: DndNode,
+              popover: () => <div>自定义节点</div>,
+              name: 'custom-node-indicator',
+              width: 100,
+              height: 40,
+              label: '自定义节点',
+            }],
           },
         ]}
         position={{ width: 162, top: 40, bottom: 0, left: 0 }}
