@@ -5,12 +5,16 @@ import { WorkspacePanel } from '../base-panel'
 import type { IProps } from './interface'
 import type { IPanelProps } from '../canvas-node-tree-panel/interface'
 import { NodePanelBody } from './panel-body'
-// import { NodePanelHeader } from '../canvas-node-tree-panel/panel-header'
 import { NodePanelHeader } from './panel-header'
 import { NodePanelFooter } from './panel-footer'
 import { usePanelLyaoutStyle } from '../canvas-node-tree-panel/utils'
 import { usePanelData } from './service'
-import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT ,BUILDIN_NODE_TYPES } from './constants'
+import {
+  CONTAINER_CLASS,
+  PANEL_HEADER_HEIGHT,
+  PANEL_FOOTER_HEIGHT,
+  BUILDIN_NODE_TYPES,
+} from './constants'
 export { setGroupRender } from './group-panel'
 export * from './constants'
 export * from './utils'
