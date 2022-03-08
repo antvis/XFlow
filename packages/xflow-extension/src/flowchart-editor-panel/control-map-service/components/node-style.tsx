@@ -1,59 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { Checkbox } from 'antd';
+import React, { useState, useEffect } from 'react'
+import { Checkbox } from 'antd'
 import { DefaultNodeConfig } from '../../../flowchart-node-panel'
-import { FlowchartFormWrapper } from '../../form-wrapper';
-import { ColorPicker, InputNumberFiled, SelectField } from './fields';
-import { PREFIX, canEditorRounded } from './constants';
-import { SolidIcon, DottedLine } from './edit-style/index';
-import type { IControlProps } from './interface';
-import { ArrowStrokeMaps } from './constants';
-import './style.less';
+import { FlowchartFormWrapper } from '../../form-wrapper'
+import { ColorPicker, InputNumberFiled, SelectField } from './fields'
+import { PREFIX, canEditorRounded } from './constants'
+import { SolidLine, DottedLine } from './edit-icon/index'
+import type { IControlProps } from './interface'
+import { ArrowStrokeMaps } from './constants'
+import './style.less'
 export interface INodeStyleConfig {
-  width?: number;
-  height?: number;
-  label?: string;
-  stroke?: string;
-  fill?: string;
-  strokeWidth?: number;
-  strokeDasharray?: string;
-  fillOpacity?: number;
-  rounded?: boolean;
-  isGradient?: boolean;
-  gradientDirection?: string;
-  endColor?: string;
-  name?: string;
-  isSelected?: boolean;
+  width?: number
+  height?: number
+  label?: string
+  stroke?: string
+  fill?: string
+  strokeWidth?: number
+  strokeDasharray?: string
+  fillOpacity?: number
+  rounded?: boolean
+  isGradient?: boolean
+  gradientDirection?: string
+  endColor?: string
+  name?: string
+  isSelected?: boolean
 }
 
-const NodeComponent: React.FC<IControlProps> = (props) => {
-  const { config, plugin } = props;
-  const { updateNode } = plugin;
+const NodeComponent: React.FC<IControlProps> = props => {
+  const { config, plugin } = props
+  const { updateNode } = plugin
 
   const [nodeConfig, setNodeConfig] = useState<INodeStyleConfig>({
     ...DefaultNodeConfig,
     ...config,
-  });
+  })
 
   const onNodeConfigChange = (key: string, value: number | string | boolean) => {
     setNodeConfig({
       ...nodeConfig,
       [key]: value,
-    });
+    })
     updateNode({
       [key]: value,
-    });
-  };
+    })
+  }
 
   const getSrokeDashValue = () => {
-    return nodeConfig.strokeDasharray ? 'dash' : 'solid';
-  };
+    return nodeConfig.strokeDasharray ? 'dash' : 'solid'
+  }
 
   useEffect(() => {
     setNodeConfig({
       ...DefaultNodeConfig,
       ...config,
-    });
-  }, [config]);
+    })
+  }, [config])
 
   return (
     <div className={`${PREFIX}-panel-body`}>
@@ -62,7 +62,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
           label="填充"
           value={nodeConfig.fill}
           onChange={(value: string) => {
-            onNodeConfigChange('fill', value);
+            onNodeConfigChange('fill', value)
           }}
         />
         <InputNumberFiled
@@ -72,15 +72,15 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
           min={0}
           step={0.1}
           width={70}
-          onChange={(value) => {
-            onNodeConfigChange('fillOpacity', value);
+          onChange={value => {
+            onNodeConfigChange('fillOpacity', value)
           }}
         />
         <ColorPicker
           label="边框"
           value={nodeConfig.stroke}
           onChange={(value: string) => {
-            onNodeConfigChange('stroke', value);
+            onNodeConfigChange('stroke', value)
           }}
         />
         <div className={`${PREFIX}-edge-stroke-style`}>
@@ -90,24 +90,25 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             value={getSrokeDashValue()}
             options={[
               {
-                label: SolidIcon,
+                label: <SolidLine />,
                 value: 'solid',
               },
               {
-                label: DottedLine,
+                label: <DottedLine />,
                 value: 'dash',
               },
             ]}
-            onChange={(value) => {
-              onNodeConfigChange('strokeDasharray', ArrowStrokeMaps[value]);
+            onChange={value => {
+              onNodeConfigChange('strokeDasharray', ArrowStrokeMaps[value])
             }}
           />
           <InputNumberFiled
             value={nodeConfig.strokeWidth}
             min={1}
             max={5}
-            onChange={(value) => {
-              onNodeConfigChange('strokeWidth', value);
+            width={69}
+            onChange={value => {
+              onNodeConfigChange('strokeWidth', value)
             }}
           />
         </div>
@@ -115,8 +116,8 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
           <Checkbox
             style={{ color: 'rgba(0, 0, 0, 0.45)' }}
             checked={nodeConfig.isGradient}
-            onChange={(e) => {
-              onNodeConfigChange('isGradient', e.target.checked);
+            onChange={e => {
+              onNodeConfigChange('isGradient', e.target.checked)
             }}
           >
             渐变
@@ -125,7 +126,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             <ColorPicker
               value={nodeConfig.endColor}
               onChange={(value: string) => {
-                onNodeConfigChange('endColor', value);
+                onNodeConfigChange('endColor', value)
               }}
             />
           )}
@@ -157,8 +158,8 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
                 value: 'radial',
               },
             ]}
-            onChange={(value) => {
-              onNodeConfigChange('gradientDirection', value);
+            onChange={value => {
+              onNodeConfigChange('gradientDirection', value)
             }}
           />
         )}
@@ -166,8 +167,8 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
           <Checkbox
             style={{ color: 'rgba(0, 0, 0, 0.45)' }}
             checked={nodeConfig.rounded}
-            onChange={(e) => {
-              onNodeConfigChange('rounded', e.target.checked);
+            onChange={e => {
+              onNodeConfigChange('rounded', e.target.checked)
             }}
           >
             圆角
@@ -175,13 +176,13 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export const NodeStyle: React.FC<any> = (props) => {
+export const NodeStyle: React.FC<any> = props => {
   return (
     <FlowchartFormWrapper {...props}>
       {(config, plugin) => <NodeComponent {...props} plugin={plugin} config={config} />}
     </FlowchartFormWrapper>
-  );
-};
+  )
+}
