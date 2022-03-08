@@ -204,7 +204,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
               onNodeConfigChange('isUnderline', !nodeConfig.isUnderline)
             }}
           />
-          <label style={{ color: '#888' }}>&#12288;&#12288;&#12288;文本位置</label>
+          <label style={{ color: '#888' }}>文本位置</label>
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <VerticalAlignTopOutlined

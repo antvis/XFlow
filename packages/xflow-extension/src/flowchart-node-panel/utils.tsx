@@ -94,7 +94,6 @@ export const nodeService = async registerNode => {
       })
     },
   )
-  console.log(treeData)
   return treeData
 }
 
@@ -158,5 +157,5 @@ export const colorTransform = (color: string, opacity: number = 1): string => {
   const r = parseInt(color[1] + color[2], 16)
   const g = parseInt(color[3] + color[4], 16)
   const b = parseInt(color[5] + color[6], 16)
-  return `rgb(${r}, ${g}, ${b},,${opacity})`
+  return `rgba(${r}, ${g}, ${b},${opacity})`
 }

@@ -4,7 +4,7 @@ import { uuidv4 } from '@antv/xflow-core'
 import * as nodePathMap from './paths'
 import { NODE_HEIGHT, NODE_WIDTH, DefaultNodeConfig } from './constants'
 import { GradientComponent } from './gradient-component'
-import { colorTransform } from './utils';
+import { colorTransform } from './utils'
 
 export const NodeComponent: NsGraph.INodeRender = props => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {}, name } = props
@@ -49,7 +49,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
   const fontWeight = isBold ? 'bold' : 'normal'
   const fontStyle = isItalic ? 'italic' : 'normal'
   const textDecoration = isUnderline ? 'underline' : 'none'
-  const textColor = colorTransform(fontFill, textOpacity);
+  const textColor = colorTransform(fontFill, textOpacity)
 
   return (
     <svg
@@ -73,10 +73,14 @@ export const NodeComponent: NsGraph.INodeRender = props => {
           />
         )
       })}
-      <foreignObject width={'100%'} height={'100%'} xmlns="http://www.w3.org/2000/svg">
-        <div className={`flowchart-nodetext x-${textAnchor} y-${alignmentBaseline}`}>
+      <foreignObject
+        width={'100%'}
+        height={'100%'}
+        xmlns="http://www.w3.org/2000/svg"
+        className="flowchart-text-editor-container"
+      >
+        <div className={`flowchart-text-editor-wrapper x-${textAnchor} y-${alignmentBaseline}`}>
           <div
-            className="flowchart-text"
             style={{
               maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
               maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
