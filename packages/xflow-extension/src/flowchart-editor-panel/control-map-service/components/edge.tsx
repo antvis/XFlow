@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FlowchartFormWrapper } from '../../form-wrapper'
 import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields'
 import { LeftArrow, RightArrow, DoubleArrow, DottedLine, SolidLine } from './edit-icon'
-import { PREFIX, DefaultEdgeConfig, ArrowStrokeMaps, ArrowMaps } from './constants'
+import { PREFIX, DefaultEdgeConfig, STROKE_MAP, ARROW_MAP } from './constants'
 
 export type MarkerCfg = {
   width?: number
@@ -143,7 +143,7 @@ const EdgeComponent = props => {
             },
           ]}
           onChange={value => {
-            onEdgeConfigChange('arrow', ArrowMaps[value], 'line')
+            onEdgeConfigChange('arrow', ARROW_MAP[value], 'line')
           }}
         />
 
@@ -163,7 +163,7 @@ const EdgeComponent = props => {
               },
             ]}
             onChange={value => {
-              onEdgeConfigChange('strokeDasharray', ArrowStrokeMaps[value], 'line')
+              onEdgeConfigChange('strokeDasharray', STROKE_MAP[value], 'line')
             }}
           />
           <InputNumberFiled

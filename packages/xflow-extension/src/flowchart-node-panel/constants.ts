@@ -19,6 +19,7 @@ export const DefaultNodeConfig = {
   fill: '#FFFFFF',
   fontFill: '#000',
   fontSize: 12,
+  strokeDash: 'solid',
   strokeWidth: 1,
   fillOpacity: 1,
   angel: 0,
@@ -36,6 +37,34 @@ export const DefaultNodeConfig = {
   fontFamily: 'microsoftYahei',
   
 } as const;
+
+export const DefaultGroupConfig = {
+  stroke: '#A2B1C3',
+  fill: '#FFFFFF',
+  fontFill: '#000',
+  fontSize: 14,
+  strokeDash: 'solid',
+  strokeWidth: 1,
+  fillOpacity: 1,
+  angel: 0,
+  rounded: false,
+  isGradient: false,
+  gradientDirection: 'top-bottom',
+  endColor: '#FFFFFF',
+  isBold: false,
+  isItalic: false,
+  isUnderline: false,
+  alignmentBaseline: 'middle',
+  textAnchor: 'middle',
+  fontFamily: 'microsoftYahei',
+  dx: 2,
+  dy: 0,
+} as const;
+
+export const STROKE_MAP = {
+  solid: [0, 0],
+  dash: [5, 5],
+}
 
 export const NODEPOOL = [
   {

@@ -9,64 +9,56 @@ import {
   AlignLeftOutlined,
   AlignCenterOutlined,
   AlignRightOutlined,
-} from '@ant-design/icons'
-import { DefaultNodeConfig } from '../../../flowchart-node-panel'
+} from '@ant-design/icons';
+import { DefaultGroupConfig } from '../../../flowchart-node-panel'
 import { FlowchartFormWrapper } from '../../form-wrapper'
-import {
-  InputFiled,
-  ColorPicker,
-  InputNumberFiled,
-  InputOpacity,
-  InputFontSpacing,
-  InputFontPosition,
-  SelectField
-} from './fields'
+import { InputFiled, ColorPicker, InputNumberFiled, InputOpacity, InputFontSpacing, InputFontPosition, SelectField } from './fields';
+
 import { PREFIX } from './constants'
-import type { IControlProps } from './interface'
-import './style.less'
-export interface INodeTextConfig {
-  label?: string
-  fontSize?: number
-  fontFill?: string
-  isBold?: boolean
-  isItalic?: boolean
-  isUnderline?: boolean
-  alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge'
-  textAnchor?: 'start' | 'middle' | 'end'
-  name?: string
-  isSelected?: boolean
-  textOpacity?: number
-  letterSpacing?: number
-  opacity?: number
-  dy?: number
-  dx?: number
-  bgColor?: string
-  bdColor?: string
-  fontFamily?: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu'
+
+export interface IGroupTextConfig {
+  label?: string;
+  fontSize?: number;
+  fontFill?: string;
+  isBold?: boolean;
+  isItalic?: boolean;
+  isUnderline?: boolean;
+  alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge';
+  textAnchor?: 'start' | 'middle' | 'end';
+  name: string;
+  isSelected?: boolean;
+  textOpacity: number;
+  letterSpacing: number;
+  opacity: number;
+  dy: number;
+  dx: number;
+  bgColor: string;
+  bdColor: string;
+  fontFamily: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu';
 }
 
-const NodeComponent: React.FC<IControlProps> = props => {
-  const { config, plugin } = props
-  const { updateNode } = plugin
+const GroupComponent = props => {
+  const { config, plugin = {} } = props
+  const { updateGroup } = plugin
 
-  const [nodeConfig, setNodeConfig] = useState<INodeTextConfig>({
-    ...DefaultNodeConfig,
+  const [groupConfig, setGroupConfig] = useState<IGroupTextConfig>({
+    ...DefaultGroupConfig,
     ...config,
   })
 
-  const onNodeConfigChange = (key: string, value: number | string | boolean) => {
-    setNodeConfig({
-      ...nodeConfig,
+  const onGroupConfigChange = (key: string, value: number | string | boolean) => {
+    setGroupConfig({
+      ...groupConfig,
       [key]: value,
     })
-    updateNode({
+    updateGroup({
       [key]: value,
     })
   }
 
   useEffect(() => {
-    setNodeConfig({
-      ...DefaultNodeConfig,
+    setGroupConfig({
+      ...DefaultGroupConfig,
       ...config,
     })
   }, [config])
@@ -76,9 +68,9 @@ const NodeComponent: React.FC<IControlProps> = props => {
       <div className={`${PREFIX}-panel-group`}>
         <InputFiled
           label="标题"
-          value={nodeConfig.label}
-          onChange={value => {
-            onNodeConfigChange('label', value)
+          value={groupConfig.label}
+          onChange={(value) => {
+            onGroupConfigChange('label', value);
           }}
         />
       </div>
@@ -86,7 +78,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <SelectField
           label="字体"
           width={150}
-          value={nodeConfig.fontFamily}
+          value={groupConfig.fontFamily}
           options={[
             {
               label: '微软雅黑',
@@ -114,8 +106,8 @@ const NodeComponent: React.FC<IControlProps> = props => {
               value: 'lisu',
             },
           ]}
-          onChange={value => {
-            onNodeConfigChange('fontFamily', value)
+          onChange={(value) => {
+            onGroupConfigChange('fontFamily', value);
           }}
         />
       </div>
@@ -123,167 +115,154 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <div className={`${PREFIX}-node-text-style`}>
           <InputNumberFiled
             label="字号"
-            value={nodeConfig.fontSize}
+            value={groupConfig.fontSize}
             width={50}
-            onChange={value => {
-              onNodeConfigChange('fontSize', value)
+            onChange={(value) => {
+              onGroupConfigChange('fontSize', value);
             }}
           />
           <InputFontSpacing
             label="间距"
-            value={nodeConfig.letterSpacing}
+            value={groupConfig.letterSpacing}
             min={0}
             step={1}
             width={50}
-            onChange={value => {
-              onNodeConfigChange('letterSpacing', value)
+            onChange={(value) => {
+              onGroupConfigChange('letterSpacing', value);
             }}
           />
         </div>
         <div className={`${PREFIX}-node-text-style`}>
           <label style={{ color: '#888' }}>颜色</label>
           <ColorPicker
-            value={nodeConfig.fontFill}
+            value={groupConfig.fontFill}
             onChange={(value: string) => {
-              onNodeConfigChange('fontFill', value)
+              onGroupConfigChange('fontFill', value);
             }}
           />
           <InputOpacity
             label="透明度"
-            value={nodeConfig.textOpacity}
+            value={groupConfig.textOpacity}
             max={1}
             min={0}
             step={0.1}
             width={65}
-            onChange={value => {
-              onNodeConfigChange('textOpacity', value)
+            onChange={(value) => {
+              onGroupConfigChange('textOpacity', value);
             }}
           />
         </div>
         <div className={`${PREFIX}-node-text-style`}>
           <label style={{ color: '#888' }}>字体背景</label>
           <ColorPicker
-            value={nodeConfig.bgColor}
+            value={groupConfig.bgColor}
             onChange={(value: string) => {
-              onNodeConfigChange('bgColor', value)
+              onGroupConfigChange('bgColor', value);
             }}
           />
           <label style={{ color: '#888' }}>字体边框</label>
           <ColorPicker
-            value={nodeConfig.bdColor}
+            value={groupConfig.bdColor}
             onChange={(value: string) => {
-              onNodeConfigChange('bdColor', value)
+              onGroupConfigChange('bdColor', value);
             }}
           />
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <BoldOutlined
-            className={
-              nodeConfig.isBold ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
-            }
+            className={groupConfig.isBold ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
             onClick={() => {
-              onNodeConfigChange('isBold', !nodeConfig.isBold)
+              onGroupConfigChange('isBold', !groupConfig.isBold);
             }}
           />
           <ItalicOutlined
-            className={
-              nodeConfig.isItalic ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
-            }
+            className={groupConfig.isItalic ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
             onClick={() => {
-              onNodeConfigChange('isItalic', !nodeConfig.isItalic)
+              onGroupConfigChange('isItalic', !groupConfig.isItalic);
             }}
           />
           <UnderlineOutlined
-            className={
-              nodeConfig.isUnderline
-                ? `${PREFIX}-icon-select-style`
-                : `${PREFIX}-icon-noselect-style`
-            }
+            className={groupConfig.isUnderline ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
             onClick={() => {
-              onNodeConfigChange('isUnderline', !nodeConfig.isUnderline)
+              onGroupConfigChange('isUnderline', !groupConfig.isUnderline);
             }}
           />
-          <label style={{ color: '#888' }}>文本位置</label>
+          <label style={{ color: '#888' }}>&#12288;&#12288;&#12288;文本位置</label>
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <VerticalAlignTopOutlined
             className={
-              nodeConfig.alignmentBaseline === 'after-edge'
+              groupConfig.alignmentBaseline === 'after-edge'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'after-edge')
+              onGroupConfigChange('alignmentBaseline', 'after-edge');
             }}
           />
           <VerticalAlignMiddleOutlined
             className={
-              nodeConfig.alignmentBaseline === 'middle'
+              groupConfig.alignmentBaseline === 'middle'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'middle')
+              onGroupConfigChange('alignmentBaseline', 'middle');
             }}
           />
           <VerticalAlignBottomOutlined
             className={
-              nodeConfig.alignmentBaseline === 'before-edge'
+              groupConfig.alignmentBaseline === 'before-edge'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'before-edge')
+              onGroupConfigChange('alignmentBaseline', 'before-edge');
             }}
           />
           <InputFontPosition
             label="Y"
-            value={nodeConfig.dy}
+            value={groupConfig.dy}
             step={1}
             width={60}
-            onChange={value => {
-              onNodeConfigChange('dy', value)
+            onChange={(value) => {
+              onGroupConfigChange('dy', value);
             }}
           />
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <AlignLeftOutlined
             className={
-              nodeConfig.textAnchor === 'start'
-                ? `${PREFIX}-icon-select-style`
-                : `${PREFIX}-icon-noselect-style`
+              groupConfig.textAnchor === 'start' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'start')
+              onGroupConfigChange('textAnchor', 'start');
             }}
           />
           <AlignCenterOutlined
             className={
-              nodeConfig.textAnchor === 'middle'
-                ? `${PREFIX}-icon-select-style`
-                : `${PREFIX}-icon-noselect-style`
+              groupConfig.textAnchor === 'middle' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'middle')
+              onGroupConfigChange('textAnchor', 'middle');
             }}
           />
           <AlignRightOutlined
             className={
-              nodeConfig.textAnchor === 'end'
-                ? `${PREFIX}-icon-select-style`
-                : `${PREFIX}-icon-noselect-style`
+              groupConfig.textAnchor === 'end' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'end')
+              onGroupConfigChange('textAnchor', 'end');
             }}
           />
+          &#12288;
           <InputFontPosition
             label="X"
-            value={nodeConfig.dx}
+            value={groupConfig.dx}
             step={1}
             width={60}
-            onChange={value => {
-              onNodeConfigChange('dx', value)
+            onChange={(value) => {
+              onGroupConfigChange('dx', value);
             }}
           />
         </div>
@@ -292,10 +271,10 @@ const NodeComponent: React.FC<IControlProps> = props => {
   )
 }
 
-export const NodeText: React.FC<any> = props => {
+export const GroupText: React.FC<any> = props => {
   return (
     <FlowchartFormWrapper {...props}>
-      {(config, plugin) => <NodeComponent {...props} plugin={plugin} config={config} />}
+      {(config, plugin) => <GroupComponent {...props} plugin={plugin} config={config} />}
     </FlowchartFormWrapper>
   )
 }

@@ -28,7 +28,7 @@ export const DisableArrowConfig = {
   name: '',
 }
 
-export const ArrowMaps = {
+export const ARROW_MAP = {
   target: {
     sourceMarker: DisableArrowConfig,
     targetMarker: ArrowConfig,
@@ -47,9 +47,9 @@ export const ArrowMaps = {
   },
 }
 
-export const ArrowStrokeMaps = {
+export const canEditorRounded = ['Process', 'Extract'];
+
+export const STROKE_MAP = {
   solid: [0, 0],
   dash: [5, 5],
 }
-
-export const canEditorRounded = ['Process', 'Extract'];

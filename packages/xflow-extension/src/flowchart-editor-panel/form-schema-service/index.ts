@@ -7,15 +7,47 @@ export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = asy
   const groupSchema: NsJsonSchemaForm.ISchema = {
     tabs: [
       {
-        name: '设置',
+        name: '样式',
         groups: [
           {
             name: 'groupName',
             controls: [
               {
                 label: '分组名',
-                name: 'group-service',
-                shape: 'group-service',
+                name: 'group-style',
+                shape: 'group-style',
+                placeholder: '群组样式',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: '字体',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '分组名',
+                name: 'group-text',
+                shape: 'group-text',
+                placeholder: '分组名称',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: '布局',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '分组名',
+                name: 'group-arrange',
+                shape: 'group-arrange',
                 placeholder: '分组名称',
               },
             ],

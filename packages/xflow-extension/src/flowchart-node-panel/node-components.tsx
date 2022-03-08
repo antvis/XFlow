@@ -2,7 +2,7 @@ import React from 'react'
 import type { NsGraph } from '@antv/xflow-core'
 import { uuidv4 } from '@antv/xflow-core'
 import * as nodePathMap from './paths'
-import { NODE_HEIGHT, NODE_WIDTH, DefaultNodeConfig } from './constants'
+import { NODE_HEIGHT, NODE_WIDTH, DefaultNodeConfig, STROKE_MAP } from './constants'
 import { GradientComponent } from './gradient-component'
 import { colorTransform } from './utils'
 
@@ -16,7 +16,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
     fontFill = DefaultNodeConfig.fontFill,
     fontSize = DefaultNodeConfig.fontSize,
     strokeWidth = DefaultNodeConfig.strokeWidth,
-    strokeDasharray,
+    strokeDash = DefaultNodeConfig.strokeDash,
     fillOpacity = DefaultNodeConfig.fillOpacity,
     angel = DefaultNodeConfig.angel,
     rounded = DefaultNodeConfig.rounded,
@@ -68,7 +68,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
             fill={fill}
             stroke={stroke}
             strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
+            strokeDasharray={STROKE_MAP[strokeDash]}
             fillOpacity={fillOpacity}
           />
         )
