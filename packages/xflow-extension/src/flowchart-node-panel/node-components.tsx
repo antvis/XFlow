@@ -4,6 +4,7 @@ import { uuidv4 } from '@antv/xflow-core'
 import * as nodePathMap from './paths'
 import { NODE_HEIGHT, NODE_WIDTH, DefaultNodeConfig } from './constants'
 import { GradientComponent } from './gradient-component'
+import { colorTransform } from './utils'
 
 export const NodeComponent: NsGraph.INodeRender = props => {
   const { size = { width: NODE_WIDTH, height: NODE_HEIGHT }, data = {}, name } = props
@@ -15,7 +16,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
     fontFill = DefaultNodeConfig.fontFill,
     fontSize = DefaultNodeConfig.fontSize,
     strokeWidth = DefaultNodeConfig.strokeWidth,
-    strokeDasharray = DefaultNodeConfig.strokeDasharray,
+    strokeDasharray,
     fillOpacity = DefaultNodeConfig.fillOpacity,
     angel = DefaultNodeConfig.angel,
     rounded = DefaultNodeConfig.rounded,
@@ -28,9 +29,12 @@ export const NodeComponent: NsGraph.INodeRender = props => {
     alignmentBaseline = DefaultNodeConfig.alignmentBaseline,
     textAnchor = DefaultNodeConfig.textAnchor,
     textOpacity = DefaultNodeConfig.textOpacity,
-    letterSpacing = DefaultNodeConfig.letterSpacing,
-    dy = DefaultNodeConfig.dy,
-    dx = DefaultNodeConfig.dx,
+    letterSpacing,
+    bgColor,
+    bdColor,
+    fontFamily = DefaultNodeConfig.fontFamily,
+    dy,
+    dx,
   } = data
 
   const { width, height } = size
@@ -45,16 +49,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
   const fontWeight = isBold ? 'bold' : 'normal'
   const fontStyle = isItalic ? 'italic' : 'normal'
   const textDecoration = isUnderline ? 'underline' : 'none'
-
-  //文本初始位置
-  let textX
-  if (textAnchor === 'start') {
-    textX = 0
-  } else if (textAnchor === 'middle') {
-    textX = width / (scale * 2)
-  } else {
-    textX = width
-  }
+  const textColor = colorTransform(fontFill, textOpacity)
 
   return (
     <svg
@@ -78,23 +73,34 @@ export const NodeComponent: NsGraph.INodeRender = props => {
           />
         )
       })}
-      <text
-        x={textX}
-        y={height / (scale * 2)}
-        fill={fontFill}
-        textAnchor={textAnchor}
-        alignmentBaseline={alignmentBaseline}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
-        fontStyle={fontStyle}
-        textDecoration={textDecoration}
-        opacity={textOpacity}
-        letterSpacing={letterSpacing}
-        dy={dy}
-        dx={dx}
+      <foreignObject
+        width={'100%'}
+        height={'100%'}
+        xmlns="http://www.w3.org/2000/svg"
+        className="flowchart-text-editor-container"
       >
-        {label}
-      </text>
+        <div className={`flowchart-text-editor-wrapper x-${textAnchor} y-${alignmentBaseline}`}>
+          <div
+            style={{
+              maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
+              maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
+              backgroundColor: bgColor,
+              fontSize,
+              letterSpacing: letterSpacing,
+              color: textColor,
+              fontWeight,
+              fontStyle,
+              textDecoration,
+              border: `1px solid ${bdColor}`,
+              left: dx,
+              top: dy,
+              fontFamily,
+            }}
+          >
+            {label}
+          </div>
+        </div>
+      </foreignObject>
       Sorry, your browser does not support inline SVG.
     </svg>
   )
