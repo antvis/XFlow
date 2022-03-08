@@ -93,7 +93,7 @@ export class UpdateEdgeCommand implements ICommand {
           // 默认更新edge的第一个label
           await updateEdgeLabelService(x6Edge, edgeConfig, options)
         }
-        if (isBoolean(edgeConfig?.visble)) {
+        if (isBoolean(edgeConfig?.visible)) {
           x6Edge.setVisible(edgeConfig?.visible)
         }
 

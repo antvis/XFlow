@@ -70,8 +70,8 @@ export class UpdateNodeCommand implements ICommand {
       nodeConfig?.width || NsUpdateNode.NODE_WIDTH,
       nodeConfig?.height || NsUpdateNode.NODE_HEIGHT,
     )
-    if (isBoolean(nodeConfig?.visble)) {
-      x6Node.setVisible(nodeConfig?.visble)
+    if (isBoolean(nodeConfig?.visible)) {
+      x6Node.setVisible(nodeConfig?.visible)
     }
 
     // SVG 元素更新label
