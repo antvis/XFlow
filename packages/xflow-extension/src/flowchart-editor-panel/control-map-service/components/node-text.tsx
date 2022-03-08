@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import {
   VerticalAlignTopOutlined,
   VerticalAlignMiddleOutlined,
@@ -9,57 +9,68 @@ import {
   AlignLeftOutlined,
   AlignCenterOutlined,
   AlignRightOutlined,
-} from '@ant-design/icons';
+} from '@ant-design/icons'
 import { DefaultNodeConfig } from '../../../flowchart-node-panel'
-import { FlowchartFormWrapper } from '../../form-wrapper';
-import { InputFiled, ColorPicker, InputNumberFiled, InputOpacity, InputFontSpacing, InputFontPosition } from './fields';
-import { PREFIX } from './constants';
-import type { IControlProps } from './interface';
-import './style.less';
+import { FlowchartFormWrapper } from '../../form-wrapper'
+import {
+  InputFiled,
+  ColorPicker,
+  InputNumberFiled,
+  InputOpacity,
+  InputFontSpacing,
+  InputFontPosition,
+  SelectField
+} from './fields'
+import { PREFIX } from './constants'
+import type { IControlProps } from './interface'
+import './style.less'
 
 export interface INodeTextConfig {
-  label?: string;
-  fontSize?: number;
-  fontFill?: string;
-  isBold?: boolean;
-  isItalic?: boolean;
-  isUnderline?: boolean;
-  alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge';
-  textAnchor?: 'start' | 'middle' | 'end';
-  name?: string;
-  isSelected?: boolean;
-  textOpacity?: number;
-  letterSpacing?: number;
-  opacity?: number;
-  dy?: number;
-  dx?: number;
+  label?: string
+  fontSize?: number
+  fontFill?: string
+  isBold?: boolean
+  isItalic?: boolean
+  isUnderline?: boolean
+  alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge'
+  textAnchor?: 'start' | 'middle' | 'end'
+  name?: string
+  isSelected?: boolean
+  textOpacity?: number
+  letterSpacing?: number
+  opacity?: number
+  dy?: number
+  dx?: number
+  bgColor?: string
+  bdColor?: string
+  fontFamily?: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu'
 }
 
-const NodeComponent: React.FC<IControlProps> = (props) => {
-  const { config, plugin } = props;
-  const { updateNode } = plugin;
+const NodeComponent: React.FC<IControlProps> = props => {
+  const { config, plugin } = props
+  const { updateNode } = plugin
 
   const [nodeConfig, setNodeConfig] = useState<INodeTextConfig>({
     ...DefaultNodeConfig,
     ...config,
-  });
+  })
 
   const onNodeConfigChange = (key: string, value: number | string | boolean) => {
     setNodeConfig({
       ...nodeConfig,
       [key]: value,
-    });
+    })
     updateNode({
       [key]: value,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
     setNodeConfig({
       ...DefaultNodeConfig,
       ...config,
-    });
-  }, [config]);
+    })
+  }, [config])
 
   return (
     <div className={`${PREFIX}-panel-body`}>
@@ -67,8 +78,45 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
         <InputFiled
           label="标题"
           value={nodeConfig.label}
-          onChange={(value) => {
-            onNodeConfigChange('label', value);
+          onChange={value => {
+            onNodeConfigChange('label', value)
+          }}
+        />
+      </div>
+      <div className={`${PREFIX}-panel-group`}>
+        <SelectField
+          label="字体"
+          width={150}
+          value={nodeConfig.fontFamily}
+          options={[
+            {
+              label: '微软雅黑',
+              value: 'microsoftYahei',
+            },
+            {
+              label: '仿宋',
+              value: 'fangsong',
+            },
+            {
+              label: '新宋体',
+              value: 'nsimSun',
+            },
+            {
+              label: '楷体',
+              value: 'kaiti',
+            },
+
+            {
+              label: '幼圆',
+              value: 'youyuan',
+            },
+            {
+              label: '隶书',
+              value: 'lisu',
+            },
+          ]}
+          onChange={value => {
+            onNodeConfigChange('fontFamily', value)
           }}
         />
       </div>
@@ -78,8 +126,8 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             label="字号"
             value={nodeConfig.fontSize}
             width={50}
-            onChange={(value) => {
-              onNodeConfigChange('fontSize', value);
+            onChange={value => {
+              onNodeConfigChange('fontSize', value)
             }}
           />
           <InputFontSpacing
@@ -88,8 +136,8 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             min={0}
             step={1}
             width={50}
-            onChange={(value) => {
-              onNodeConfigChange('letterSpacing', value);
+            onChange={value => {
+              onNodeConfigChange('letterSpacing', value)
             }}
           />
         </div>
@@ -98,7 +146,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
           <ColorPicker
             value={nodeConfig.fontFill}
             onChange={(value: string) => {
-              onNodeConfigChange('fontFill', value);
+              onNodeConfigChange('fontFill', value)
             }}
           />
           <InputOpacity
@@ -108,28 +156,52 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             min={0}
             step={0.1}
             width={65}
-            onChange={(value) => {
-              onNodeConfigChange('textOpacity', value);
+            onChange={value => {
+              onNodeConfigChange('textOpacity', value)
+            }}
+          />
+        </div>
+        <div className={`${PREFIX}-node-text-style`}>
+          <label style={{ color: '#888' }}>字体背景</label>
+          <ColorPicker
+            value={nodeConfig.bgColor}
+            onChange={(value: string) => {
+              onNodeConfigChange('bgColor', value)
+            }}
+          />
+          <label style={{ color: '#888' }}>字体边框</label>
+          <ColorPicker
+            value={nodeConfig.bdColor}
+            onChange={(value: string) => {
+              onNodeConfigChange('bdColor', value)
             }}
           />
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <BoldOutlined
-            className={nodeConfig.isBold ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
+            className={
+              nodeConfig.isBold ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+            }
             onClick={() => {
-              onNodeConfigChange('isBold', !nodeConfig.isBold);
+              onNodeConfigChange('isBold', !nodeConfig.isBold)
             }}
           />
           <ItalicOutlined
-            className={nodeConfig.isItalic ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
+            className={
+              nodeConfig.isItalic ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+            }
             onClick={() => {
-              onNodeConfigChange('isItalic', !nodeConfig.isItalic);
+              onNodeConfigChange('isItalic', !nodeConfig.isItalic)
             }}
           />
           <UnderlineOutlined
-            className={nodeConfig.isUnderline ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`}
+            className={
+              nodeConfig.isUnderline
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
+            }
             onClick={() => {
-              onNodeConfigChange('isUnderline', !nodeConfig.isUnderline);
+              onNodeConfigChange('isUnderline', !nodeConfig.isUnderline)
             }}
           />
           <label style={{ color: '#888' }}>文本位置</label>
@@ -142,7 +214,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'after-edge');
+              onNodeConfigChange('alignmentBaseline', 'after-edge')
             }}
           />
           <VerticalAlignMiddleOutlined
@@ -152,7 +224,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'middle');
+              onNodeConfigChange('alignmentBaseline', 'middle')
             }}
           />
           <VerticalAlignBottomOutlined
@@ -162,7 +234,7 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'before-edge');
+              onNodeConfigChange('alignmentBaseline', 'before-edge')
             }}
           />
           <InputFontPosition
@@ -170,34 +242,40 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             value={nodeConfig.dy}
             step={1}
             width={60}
-            onChange={(value) => {
-              onNodeConfigChange('dy', value);
+            onChange={value => {
+              onNodeConfigChange('dy', value)
             }}
           />
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <AlignLeftOutlined
             className={
-              nodeConfig.textAnchor === 'start' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+              nodeConfig.textAnchor === 'start'
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'start');
+              onNodeConfigChange('textAnchor', 'start')
             }}
           />
           <AlignCenterOutlined
             className={
-              nodeConfig.textAnchor === 'middle' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+              nodeConfig.textAnchor === 'middle'
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'middle');
+              onNodeConfigChange('textAnchor', 'middle')
             }}
           />
           <AlignRightOutlined
             className={
-              nodeConfig.textAnchor === 'end' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+              nodeConfig.textAnchor === 'end'
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'end');
+              onNodeConfigChange('textAnchor', 'end')
             }}
           />
           <InputFontPosition
@@ -205,20 +283,20 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
             value={nodeConfig.dx}
             step={1}
             width={60}
-            onChange={(value) => {
-              onNodeConfigChange('dx', value);
+            onChange={value => {
+              onNodeConfigChange('dx', value)
             }}
           />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export const NodeText: React.FC<any> = (props) => {
+export const NodeText: React.FC<any> = props => {
   return (
     <FlowchartFormWrapper {...props}>
       {(config, plugin) => <NodeComponent {...props} plugin={plugin} config={config} />}
     </FlowchartFormWrapper>
-  );
-};
+  )
+}

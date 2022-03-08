@@ -20,8 +20,6 @@ export * from './constants'
 export * from './utils'
 export * from './interface'
 
-import './style/index.less'
-
 export const NodePanelMain: React.FC<IProps> = props => {
   const {
     prefixClz,
