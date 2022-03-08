@@ -3,30 +3,31 @@ import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons'
 import type { NsGraph } from '@antv/xflow-core'
 import { useXFlowApp, XFlowGroupCommands } from '@antv/xflow-core'
 import { DefaultGroupConfig } from '../constants'
+import { colorTransform } from '../utils'
 
 export const GroupNode: NsGraph.INodeRender = props => {
   const {
     cell,
     data: {
-      label,
-      stroke,
-      strokeWidth,
-      strokeDash,
-      fill,
-      fillOpacity,
+      label = DefaultGroupConfig.label,
+      stroke = DefaultGroupConfig.stroke,
+      strokeWidth = DefaultGroupConfig.strokeWidth,
+      strokeDash = DefaultGroupConfig.strokeDash,
+      fill = DefaultGroupConfig.fill,
+      fillOpacity = DefaultGroupConfig.fillOpacity,
       fontSize = DefaultGroupConfig.fontSize,
-      fontFill,
+      fontFill = DefaultGroupConfig.fontFill,
       width = 200,
       isCollapsed = false,
-      isBold,
-      isItalic,
-      isUnderline,
-      alignmentBaseline,
-      textAnchor,
-      textOpacity,
-      letterSpacing,
-      bgColor,
-      bdColor,
+      isBold = DefaultGroupConfig.isBold,
+      isItalic = DefaultGroupConfig.isItalic,
+      isUnderline = DefaultGroupConfig.isUnderline,
+      verticalAlign = DefaultGroupConfig.verticalAlign,
+      horizontalAlign = DefaultGroupConfig.horizontalAlign,
+      textOpacity = DefaultGroupConfig.textOpacity,
+      letterSpacing = DefaultGroupConfig.letterSpace,
+      textBgColor = DefaultGroupConfig.textBdColor,
+      textBdColor = DefaultGroupConfig.textBgColor,
       dx = DefaultGroupConfig.dx,
       dy = DefaultGroupConfig.dy,
       fontFamily = DefaultGroupConfig.fontFamily,
@@ -49,11 +50,10 @@ export const GroupNode: NsGraph.INodeRender = props => {
     })
   }
 
-  const fontWeight = isBold ? 'bold' : 'normal';
-  const fontStyle = isItalic ? 'italic' : 'normal';
-  const textDecoration = isUnderline ? 'underline' : 'none';
-
-  console.log(fontSize)
+  const fontWeight = isBold ? 'bold' : 'normal'
+  const fontStyle = isItalic ? 'italic' : 'normal'
+  const textDecoration = isUnderline ? 'underline' : 'none'
+  const textColor = colorTransform(fontFill, textOpacity)
 
   return (
     <div
@@ -69,21 +69,21 @@ export const GroupNode: NsGraph.INodeRender = props => {
       }}
     >
       <div className="xflow-group-header">
-        <div className="header-left">
-          <div className={`flowchart-nodetext x-${textAnchor} y-${alignmentBaseline}`}>
+        <div className="header-left flowchart-text-editor-container">
+          <div className={`flowchart-text-editor-wrapper horizontal-${horizontalAlign} y-${verticalAlign}`}>
             <div
-              className="flowchart-text"
+              className='flowchart-text'
               style={{
                 //maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
                 //maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
-                backgroundColor: bgColor,
+                backgroundColor: textBgColor,
                 fontSize,
                 letterSpacing: letterSpacing,
-                //color: textColor,
+                color: textColor,
                 fontWeight,
                 fontStyle,
                 textDecoration,
-                border: `1px solid ${bdColor}`,
+                border: `1px solid ${textBdColor}`,
                 left: dx,
                 top: dy,
                 fontFamily,

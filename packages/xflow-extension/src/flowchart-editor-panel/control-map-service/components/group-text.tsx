@@ -23,8 +23,8 @@ export interface IGroupTextConfig {
   isBold?: boolean;
   isItalic?: boolean;
   isUnderline?: boolean;
-  alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge';
-  textAnchor?: 'start' | 'middle' | 'end';
+  verticalAlign?: 'top' | 'middle' | 'bottom';
+  horizontalAlign?: 'left' | 'middle' | 'right';
   name: string;
   isSelected?: boolean;
   textOpacity: number;
@@ -32,8 +32,8 @@ export interface IGroupTextConfig {
   opacity: number;
   dy: number;
   dx: number;
-  bgColor: string;
-  bdColor: string;
+  textBgColor: string;
+  textBdColor: string;
   fontFamily: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu';
 }
 
@@ -155,16 +155,16 @@ const GroupComponent = props => {
         <div className={`${PREFIX}-node-text-style`}>
           <label style={{ color: '#888' }}>字体背景</label>
           <ColorPicker
-            value={groupConfig.bgColor}
+            value={groupConfig.textBgColor}
             onChange={(value: string) => {
-              onGroupConfigChange('bgColor', value);
+              onGroupConfigChange('textBgColor', value);
             }}
           />
           <label style={{ color: '#888' }}>字体边框</label>
           <ColorPicker
-            value={groupConfig.bdColor}
+            value={groupConfig.textBdColor}
             onChange={(value: string) => {
-              onGroupConfigChange('bdColor', value);
+              onGroupConfigChange('textBdColor', value);
             }}
           />
         </div>
@@ -187,37 +187,37 @@ const GroupComponent = props => {
               onGroupConfigChange('isUnderline', !groupConfig.isUnderline);
             }}
           />
-          <label style={{ color: '#888' }}>&#12288;&#12288;&#12288;文本位置</label>
+          <label style={{ color: '#888' }}>文本位置</label>
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <VerticalAlignTopOutlined
             className={
-              groupConfig.alignmentBaseline === 'after-edge'
+              groupConfig.verticalAlign === 'top'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onGroupConfigChange('alignmentBaseline', 'after-edge');
+              onGroupConfigChange('verticalAlign', 'top');
             }}
           />
           <VerticalAlignMiddleOutlined
             className={
-              groupConfig.alignmentBaseline === 'middle'
+              groupConfig.verticalAlign === 'middle'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onGroupConfigChange('alignmentBaseline', 'middle');
+              onGroupConfigChange('verticalAlign', 'middle');
             }}
           />
           <VerticalAlignBottomOutlined
             className={
-              groupConfig.alignmentBaseline === 'before-edge'
+              groupConfig.verticalAlign === 'bottom'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onGroupConfigChange('alignmentBaseline', 'before-edge');
+              onGroupConfigChange('verticalAlign', 'bottom');
             }}
           />
           <InputFontPosition
@@ -233,29 +233,28 @@ const GroupComponent = props => {
         <div className={`${PREFIX}-icon-container`}>
           <AlignLeftOutlined
             className={
-              groupConfig.textAnchor === 'start' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+              groupConfig.horizontalAlign === 'left' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onGroupConfigChange('textAnchor', 'start');
+              onGroupConfigChange('horizontalAlign', 'left');
             }}
           />
           <AlignCenterOutlined
             className={
-              groupConfig.textAnchor === 'middle' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+              groupConfig.horizontalAlign === 'middle' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onGroupConfigChange('textAnchor', 'middle');
+              onGroupConfigChange('horizontalAlign', 'middle');
             }}
           />
           <AlignRightOutlined
             className={
-              groupConfig.textAnchor === 'end' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+              groupConfig.horizontalAlign === 'right' ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onGroupConfigChange('textAnchor', 'end');
+              onGroupConfigChange('horizontalAlign', 'right');
             }}
           />
-          &#12288;
           <InputFontPosition
             label="X"
             value={groupConfig.dx}

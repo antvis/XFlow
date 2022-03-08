@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { DefaultGroupConfig } from '../../../flowchart-node-panel'
 import { FlowchartFormWrapper } from '../../form-wrapper'
 import {  ColorPicker, InputNumberFiled, SelectField } from './fields'
-import { SolidIcon, DottedLine } from './edit-style/index';
+import { SolidLine, DottedLine } from './edit-icon';
 import { PREFIX, } from './constants'
 
 export interface IGroupStyleConfig {
@@ -77,11 +77,11 @@ const GroupComponent = props => {
             value={groupConfig.strokeDash}
             options={[
               {
-                label: SolidIcon,
+                label: <SolidLine/>,
                 value: 'solid',
               },
               {
-                label: DottedLine,
+                label: <DottedLine/>,
                 value: 'dash',
               },
             ]}

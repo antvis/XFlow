@@ -10,7 +10,7 @@ export const DefaultEdgeConfig = {
     text: {
       fill: '#000',
       fontSize: 12,
-      textAnchor: 'middle',
+      horizontalAlign: 'middle',
       textVerticalAnchor: 'middle',
     },
   },
