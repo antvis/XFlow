@@ -71,6 +71,8 @@ const NodeComponent: React.FC<IControlProps> = props => {
     })
   }, [config])
 
+  
+
   return (
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>

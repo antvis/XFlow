@@ -49,9 +49,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
   const fontWeight = isBold ? 'bold' : 'normal'
   const fontStyle = isItalic ? 'italic' : 'normal'
   const textDecoration = isUnderline ? 'underline' : 'none'
-  console.log(textOpacity)
   const textColor = colorTransform(fontFill, textOpacity)
-  console.log(textColor, fontFill)
 
   return (
     <svg
