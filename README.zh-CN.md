@@ -99,7 +99,7 @@ return (
       {/** 对齐线 */}
       <CanvasSnapline color="#1890ff" />
     </XFlowCanvas>
-  </Xflow>
+  </XFlow>
 )
 ```
 

@@ -95,7 +95,7 @@ return (
       <CanvasMiniMap minimapOptions={{ width: 200, height: 120 }} />
       <CanvasSnapline color="#1890ff" />
     </XFlowCanvas>
-  </Xflow>
+  </XFlow>
 )
 ```
 
