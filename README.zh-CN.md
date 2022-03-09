@@ -79,7 +79,7 @@ return (
   <XFlow
     className="xflow-uer-container"
     graphData={graphData}
-    graphLayuot={{
+    graphLayout={{
       layoutType: 'dagre',
       layoutOptions: {
         type: 'dagre',
@@ -91,7 +91,7 @@ return (
     onLoad={onLoad}
     isAutoCenter={true}
   >
-    <XFlowCanvas config={useGrapConfig()}>
+    <XFlowCanvas config={useGraphConfig()}>
       {/** 工具栏 */}
       <CanvasScaleToolbar />
       {/** 小地图  */}
