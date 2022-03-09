@@ -91,7 +91,7 @@ return (
     onLoad={onLoad}
     isAutoCenter={true}
   >
-    <XFlowCanvas config={useGrapConfig()}>
+    <XFlowCanvas config={useGraphConfig()}>
       {/** 工具栏 */}
       <CanvasScaleToolbar />
       {/** 小地图  */}

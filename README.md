@@ -90,7 +90,7 @@ return (
     onLoad={onLoad}
     isAutoCenter={true}
   >
-    <XFlowCanvas config={useGrapConfig()}>
+    <XFlowCanvas config={useGraphConfig()}>
       <CanvasScaleToolbar />
       <CanvasMiniMap minimapOptions={{ width: 200, height: 120 }} />
       <CanvasSnapline color="#1890ff" />
