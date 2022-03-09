@@ -1,5 +1,13 @@
 # @antv/xflow-core
 
+## 1.0.36
+
+### Patch Changes
+
+- 90a2950f: chore: upgrade mana-common version avoid runtime generator issue
+- Updated dependencies [90a2950f]
+  - @antv/xflow-hook@1.0.36
+
 ## 1.0.35
 
 ### Patch Changes
