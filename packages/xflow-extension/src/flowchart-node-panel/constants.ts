@@ -18,7 +18,7 @@ export const DefaultNodeConfig = {
   label: '',
   fill: '#FFFFFF',
   fontFill: '#000000',
-  fontSize: 12,
+  fontSize: 14,
   fontFamily: 'microsoftYahei',
   strokeDash: 'solid',
   strokeWidth: 1,
@@ -39,34 +39,6 @@ export const DefaultNodeConfig = {
   textBgColor: '#FFFFFF',
   dx: 0,
   dy: 2,
-} as const
-
-export const DefaultGroupConfig = {
-  stroke: '#A2B1C3',
-  label: '',
-  fill: '#FFFFFF',
-  fontFill: '#000000',
-  fontSize: 14,
-  fontFamily: 'microsoftYahei',
-  strokeDash: 'solid',
-  strokeWidth: 1,
-  fillOpacity: 1,
-  angel: 0,
-  rounded: false,
-  isGradient: false,
-  gradientDirection: 'top-bottom',
-  endColor: '#FFFFFF',
-  isBold: false,
-  isItalic: false,
-  isUnderline: false,
-  verticalAlign: 'middle',
-  horizontalAlign: 'left',
-  textOpacity: 1,
-  letterSpace: 0,
-  textBdColor: '#FFFFFF',
-  textBgColor: '#FFFFFF',
-  dx: 2,
-  dy: 0,
 } as const
 
 export const STROKE_MAP = {

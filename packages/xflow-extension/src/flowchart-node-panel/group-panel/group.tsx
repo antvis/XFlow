@@ -2,7 +2,7 @@ import React from 'react'
 import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons'
 import type { NsGraph } from '@antv/xflow-core'
 import { useXFlowApp, XFlowGroupCommands } from '@antv/xflow-core'
-import { DefaultGroupConfig } from '../constants'
+import { DefaultNodeConfig as DefaultGroupConfig} from '../constants'
 import { colorTransform } from '../utils'
 
 export const GroupNode: NsGraph.INodeRender = props => {
@@ -70,9 +70,11 @@ export const GroupNode: NsGraph.INodeRender = props => {
     >
       <div className="xflow-group-header">
         <div className="header-left flowchart-text-editor-container">
-          <div className={`flowchart-text-editor-wrapper horizontal-${horizontalAlign} y-${verticalAlign}`}>
+          <div
+            className={`flowchart-text-editor-wrapper horizontal-${horizontalAlign} y-${verticalAlign}`}
+          >
             <div
-              className='flowchart-text'
+              className="flowchart-text"
               style={{
                 //maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
                 //maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
