@@ -14,30 +14,54 @@ export const NODE_PADDING = 1
 export const ROUNDEDRADIUS = 10
 
 export const DefaultNodeConfig = {
+  // 边框颜色
   stroke: '#A2B1C3',
+  // 文本
   label: '',
+  // 填充颜色
   fill: '#FFFFFF',
+  // 字体颜色
   fontFill: '#000000',
+  // 字体大小
   fontSize: 14,
   fontFamily: 'microsoftYahei',
+  // 字体
   strokeDash: 'solid',
+  // 线框
   strokeWidth: 1,
+  // 字体透明度
   fillOpacity: 1,
+  // 角度
   angel: 0,
+  // 圆角
   rounded: false,
+  // 是否设置渐变
   isGradient: false,
+  // 渐变方向
   gradientDirection: 'top-bottom',
+  // 渐变结束颜色(渐变起始颜色为填充色)
   endColor: '#FFFFFF',
+  // 字体是否加粗
   isBold: false,
+  // 字体是否斜体
   isItalic: false,
+  // 字体是否有下划线
   isUnderline: false,
+  // 文本垂直对齐方式
   verticalAlign: 'middle',
+  // 文本水平对齐方式
   horizontalAlign: 'middle',
+  // 字体透明度
   textOpacity: 1,
+  // 字间距
   letterSpace: 0,
+  // 文本边框色
   textBdColor: '#FFFFFF',
+  // 文本背景色
   textBgColor: '#FFFFFF',
+  // 文本水平位置
   dx: 0,
+  // 文本垂直位置
   dy: 2,
 } as const
 

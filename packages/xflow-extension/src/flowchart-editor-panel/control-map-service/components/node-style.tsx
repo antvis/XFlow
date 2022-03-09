@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { Checkbox } from 'antd'
 import { DefaultNodeConfig } from '../../../flowchart-node-panel'
-import { FlowchartFormWrapper } from '../../form-wrapper';
-import { ColorPicker, InputNumberFiled, SelectField } from './fields';
-import { PREFIX, canEditorRounded } from './constants';
-import { SolidLine, DottedLine } from './edit-icon';
-import type { IControlProps } from './interface';
-import './style.less';
+import { FlowchartFormWrapper } from '../../form-wrapper'
+import { ColorPicker, InputNumberFiled, SelectField } from './fields'
+import { PREFIX, canEditorRounded } from './constants'
+import { SolidLine, DottedLine } from './edit-icon'
+import type { IControlProps } from './interface'
+import './style.less'
 interface INodeStyleConfig {
-  width?: number;
-  height?: number;
-  label?: string;
-  stroke?: string;
-  fill?: string;
-  strokeWidth?: number;
-  strokeDash?: string;
-  fillOpacity?: number;
-  rounded?: boolean;
-  isGradient?: boolean;
-  gradientDirection?: string;
-  endColor?: string;
-  name?: string;
-  isSelected?: boolean;
+  width?: number
+  height?: number
+  label?: string
+  stroke?: string
+  fill?: string
+  strokeWidth?: number
+  strokeDash?: string
+  fillOpacity?: number
+  rounded?: boolean
+  isGradient?: boolean
+  gradientDirection?: 'top-bottom' | 'bottom-top' | 'left-right' | 'right-left' | 'radial'
+  endColor?: string
+  name?: string
+  isSelected?: boolean
 }
 
 const NodeComponent: React.FC<IControlProps> = props => {
@@ -92,9 +92,8 @@ const NodeComponent: React.FC<IControlProps> = props => {
                 value: 'dash',
               },
             ]}
-
-            onChange={(value) => {
-              onNodeConfigChange('strokeDash', value);
+            onChange={value => {
+              onNodeConfigChange('strokeDash', value)
             }}
           />
           <InputNumberFiled

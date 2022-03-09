@@ -2,7 +2,7 @@ import React from 'react'
 import { PlusSquareOutlined, MinusSquareOutlined } from '@ant-design/icons'
 import type { NsGraph } from '@antv/xflow-core'
 import { useXFlowApp, XFlowGroupCommands } from '@antv/xflow-core'
-import { DefaultNodeConfig as DefaultGroupConfig} from '../constants'
+import { DefaultNodeConfig as DefaultGroupConfig } from '../constants'
 import { colorTransform } from '../utils'
 
 export const GroupNode: NsGraph.INodeRender = props => {
@@ -13,7 +13,10 @@ export const GroupNode: NsGraph.INodeRender = props => {
       stroke = DefaultGroupConfig.stroke,
       strokeWidth = DefaultGroupConfig.strokeWidth,
       strokeDash = DefaultGroupConfig.strokeDash,
-      fill = DefaultGroupConfig.fill,
+      fill: startColor = DefaultGroupConfig.fill,
+      isGradient = DefaultGroupConfig.rounded,
+      gradientDirection = DefaultGroupConfig.gradientDirection,
+      endColor = DefaultGroupConfig.endColor,
       fillOpacity = DefaultGroupConfig.fillOpacity,
       fontSize = DefaultGroupConfig.fontSize,
       fontFill = DefaultGroupConfig.fontFill,
@@ -55,6 +58,23 @@ export const GroupNode: NsGraph.INodeRender = props => {
   const textDecoration = isUnderline ? 'underline' : 'none'
   const textColor = colorTransform(fontFill, textOpacity)
 
+  let fill;
+  if (!isGradient) {
+    fill = startColor
+  } else {
+    if (gradientDirection === 'radial') {
+      fill = `radial-gradient(${startColor}, ${endColor})`
+    } else if (gradientDirection === 'top-bottom') {
+      fill = `linear-gradient(to bottom, ${startColor}, ${endColor})`
+    } else if (gradientDirection === 'bottom-top') {
+      fill = `linear-gradient(to top, ${startColor}, ${endColor})`
+    } else if (gradientDirection === 'left-right') {
+      fill = `linear-gradient(to right, ${startColor}, ${endColor})`
+    } else if (gradientDirection === 'right-left') {
+      fill = `linear-gradient(to left, ${startColor}, ${endColor})`
+    }
+  }
+
   return (
     <div
       className="xflow-group-node"
@@ -63,6 +83,7 @@ export const GroupNode: NsGraph.INodeRender = props => {
         borderWidth: strokeWidth,
         borderStyle: strokeDash === 'dash' ? 'dotted' : 'solid',
         backgroundColor: fill,
+        background: fill,
         opacity: fillOpacity,
         fontSize,
         color: fontFill,
