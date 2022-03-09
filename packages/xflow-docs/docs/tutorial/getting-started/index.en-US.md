@@ -71,7 +71,7 @@ return (
   <XFlow
     className="xflow-uer-container"
     graphData={graphData}
-    graphLayuot={{
+    graphLayout={{
       layoutType: 'dagre',
       layoutOptions: {
         type: 'dagre',
