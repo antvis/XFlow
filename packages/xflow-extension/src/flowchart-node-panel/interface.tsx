@@ -23,6 +23,10 @@ export interface IFlowchartNode {
    */
   readonly id: string | 'root'
   /**
+   * 节点唯一标识
+   */
+  readonly name: string
+  /**
    * The display label for the menu item.
    */
   readonly label: string
@@ -42,6 +46,7 @@ export interface IFlowchartNode {
    * Dnd节点的popover的提示内容
    */
   readonly popoverContent?: React.ReactNode
+
 }
 
 type ITreeItem = {

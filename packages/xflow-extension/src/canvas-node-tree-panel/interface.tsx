@@ -54,7 +54,7 @@ export interface ITreeNode {
   /**
    * 节点的文件夹id
    */
-  readonly parentId: string
+  //readonly parentId: string
   /**
    * 节点名
    */

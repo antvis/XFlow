@@ -5,7 +5,7 @@ import { getConfig } from '../utils'
 export const MessageNodePath = props => {
   const { width, height } = getConfig(props)
 
-  const path2 = [
+  const path = [
     ['M', NODE_PADDING, NODE_PADDING],
     ['L', width - NODE_PADDING, NODE_PADDING],
     ['L', width - NODE_PADDING, height - NODE_PADDING],
@@ -13,11 +13,11 @@ export const MessageNodePath = props => {
     ['Z'],
   ]
 
-  const path = [
-    ['L', NODE_PADDING, NODE_PADDING],
+  const path2 = [
+    ['M', NODE_PADDING, NODE_PADDING],
     ['L', width / 2, height / 2],
     ['L', width - NODE_PADDING, NODE_PADDING],
     ['Z'],
   ]
-  return [createPath(path)]
+  return [createPath(path), createPath(path2)]
 }
