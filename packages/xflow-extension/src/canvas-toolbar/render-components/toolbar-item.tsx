@@ -26,9 +26,11 @@ export const ToolbarItem: React.FC<IProps> = props => {
     icon = <Icon />
   }
 
+  
   const ToolbarItemWrap = item.render
   const { isEnabled = true } = item
   const { commandService, modelService } = app
+  
   const onItemClick = () => {
     if (item.onClick) {
       item.onClick({ toolbarItem: item, commandService, modelService })
