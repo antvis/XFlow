@@ -32,7 +32,6 @@ export { StepNodePath } from './step';
 export { CardNodePath } from './card';
 export { ReferenceNodePath } from './reference';
 export { DiagonalSnipRectangleNodePath } from './diagonal-snip-rectangle';
-export { FiveSidesNodePath } from './fivesides';
 export { HexagonNodePath } from './hexagon';
 export { LoopNodePath } from './loop';
 export { CalloutNodePath } from './callout';

@@ -7,12 +7,12 @@ export const CalloutNodePath = (props) => {
 
   const path = [
     ['M', NODE_PADDING, NODE_PADDING],
-    ['L', width - 2 * NODE_PADDING, NODE_PADDING],
-    ['L', width - 2 * NODE_PADDING, height - 10 * NODE_PADDING],
-    ['L', 25, height - 10 * NODE_PADDING],
-    ['L', 15, height * NODE_PADDING],
-    ['L', 18, height - 10 * NODE_PADDING],
-    ['L', NODE_PADDING, height - 10 * NODE_PADDING],
+    ['L', width - NODE_PADDING, NODE_PADDING],
+    ['L', width - NODE_PADDING, height - height / 4],
+    ['L', 0.4 * width, height - height / 4],
+    ['L', 0.25 * width, height - NODE_PADDING],
+    ['L', 0.3 * width, height - height / 4],
+    ['L', NODE_PADDING, height - height / 4],
     ['Z'],
   ];
 
