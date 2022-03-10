@@ -1,14 +1,16 @@
-import {
-  createToolbarConfig,
+import type {
   IModelService,
   IToolbarItemOptions,
   NsGroupCmd,
+  NsGraphCmd,
+  NsNodeCmd,
+} from '@antv/xflow'
+import {
+  createToolbarConfig,
   uuidv4,
   XFlowGroupCommands,
   XFlowNodeCommands,
   XFlowGraphCommands,
-  NsGraphCmd,
-  NsNodeCmd,
   IconStore,
   MODELS,
 } from '@antv/xflow'
@@ -23,22 +25,12 @@ import {
   VerticalAlignBottomOutlined,
   CopyOutlined,
   SnippetsOutlined,
+  ClearOutlined,
 } from '@ant-design/icons'
+import type { Cell } from '@antv/x6'
+import { Modal } from 'antd'
 
 const GROUP_NODE_RENDER_ID = 'GROUP_NODE_RENDER_ID'
-
-export namespace TOOLBAR_ITEMS {
-  export const BACK_NODE = XFlowNodeCommands.BACK_NODE.id
-  export const FRONT_NODE = XFlowNodeCommands.FRONT_NODE.id
-  export const SAVE_GRAPH_DATA = XFlowGraphCommands.SAVE_GRAPH_DATA.id
-  export const REDO_CMD = `${XFlowGraphCommands.REDO_CMD.id}`
-  export const UNDO_CMD = `${XFlowGraphCommands.UNDO_CMD.id}`
-  export const MULTI_SELECT = `${XFlowGraphCommands.GRAPH_TOGGLE_MULTI_SELECT.id}`
-  export const ADD_GROUP = `${XFlowGroupCommands.ADD_GROUP.id}`
-  export const DEL_GROUP = `${XFlowGroupCommands.DEL_GROUP.id}`
-  export const COPY = `${XFlowGraphCommands.GRAPH_COPY.id}`
-  export const PASTE = `${XFlowGraphCommands.GRAPH_PASTE.id}`
-}
 
 namespace NSToolbarConfig {
   /** toolbar依赖的状态 */
@@ -48,6 +40,7 @@ namespace NSToolbarConfig {
     isNodeSelected: boolean
     isUndoable: boolean
     isRedoable: boolean
+    cells: Cell[]
   }
 
   export const getDependencies = async (modelService: IModelService) => {
@@ -68,8 +61,11 @@ namespace NSToolbarConfig {
     // isNormalNodesSelected: node不能是GroupNode
     const isNormalNodesSelected = await MODELS.IS_NORMAL_NODES_SELECTED.useValue(modelService)
     // undo redo
-    const isUndoable = await MODELS.COMMAND_UNDOABLE.useValue(modelService)
-    const isRedoable = await MODELS.COMMAND_REDOABLE.useValue(modelService)
+    const isUndoable = await MODELS.HISTORY_UNDOABLE.useValue(modelService)
+    const isRedoable = await MODELS.HISTORY_REDOABLE.useValue(modelService)
+
+    // 能否复制
+    const cells = await MODELS.SELECTED_CELLS.useValue(modelService)
 
     return {
       isUndoable,
@@ -77,44 +73,49 @@ namespace NSToolbarConfig {
       isNodeSelected: isNormalNodesSelected,
       isGroupSelected,
       isMultiSelctionActive,
+      cells,
     } as NSToolbarConfig.IToolbarState
   }
 
   export const getToolbarItems = async (state: IToolbarState) => {
     const toolbarGroup: IToolbarItemOptions[] = []
-    // const history = getGraphHistory()
+    /** 撤销 */
+    toolbarGroup.push({
+      tooltip: '撤销',
+      iconName: 'UndoOutlined',
+      id: XFlowGraphCommands.GRAPH_HISTORY_UNDO.id,
+      isEnabled: state.isUndoable,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.GraphHistoryUndo.IArgs>(
+          XFlowGraphCommands.GRAPH_HISTORY_UNDO.id,
+          {},
+        )
+      },
+    })
 
-    // /** 撤销 */
-    // toolbarGroup.push({
-    //   tooltip: '撤销',
-    //   iconName: 'UndoOutlined',
-    //   id: TOOLBAR_ITEMS.UNDO_CMD,
-    //   isEnabled: history.canUndo(),
-    //   onClick: async () => {
-    //     history.undo()
-    //   },
-    // })
-
-    // /** 重做 */
-    // toolbarGroup.push({
-    //   tooltip: '重做',
-    //   iconName: 'RedoOutlined',
-    //   id: TOOLBAR_ITEMS.REDO_CMD,
-    //   isEnabled: history.canRedo(),
-    //   onClick: async () => {
-    //     history.redo()
-    //   },
-    // })
+    /** 重做 */
+    toolbarGroup.push({
+      tooltip: '重做',
+      iconName: 'RedoOutlined',
+      id: XFlowGraphCommands.GRAPH_HISTORY_REDO.id,
+      isEnabled: state.isRedoable,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.GraphHistoryRedo.IArgs>(
+          XFlowGraphCommands.GRAPH_HISTORY_REDO.id,
+          {},
+        )
+      },
+    })
 
     /** FRONT_NODE */
     toolbarGroup.push({
       tooltip: '置前',
       iconName: 'VerticalAlignTopOutlined',
-      id: TOOLBAR_ITEMS.FRONT_NODE,
+      id: XFlowNodeCommands.FRONT_NODE.id,
       isEnabled: state.isNodeSelected,
       onClick: async ({ commandService, modelService }) => {
         const node = await MODELS.SELECTED_NODE.useValue(modelService)
-        commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(TOOLBAR_ITEMS.FRONT_NODE, {
+        commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(XFlowNodeCommands.FRONT_NODE.id, {
           nodeId: node?.id,
         })
       },
@@ -124,11 +125,11 @@ namespace NSToolbarConfig {
     toolbarGroup.push({
       tooltip: '置后',
       iconName: 'VerticalAlignBottomOutlined',
-      id: TOOLBAR_ITEMS.BACK_NODE,
+      id: XFlowNodeCommands.BACK_NODE.id,
       isEnabled: state.isNodeSelected,
       onClick: async ({ commandService, modelService }) => {
         const node = await MODELS.SELECTED_NODE.useValue(modelService)
-        commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(TOOLBAR_ITEMS.BACK_NODE, {
+        commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(XFlowNodeCommands.BACK_NODE.id, {
           nodeId: node?.id,
         })
       },
@@ -138,11 +139,11 @@ namespace NSToolbarConfig {
     toolbarGroup.push({
       tooltip: '开启框选',
       iconName: 'GatewayOutlined',
-      id: TOOLBAR_ITEMS.MULTI_SELECT,
+      id: XFlowGraphCommands.GRAPH_TOGGLE_MULTI_SELECT.id,
       active: state.isMultiSelctionActive,
       onClick: async ({ commandService }) => {
         commandService.executeCommand<NsGraphCmd.GraphToggleMultiSelect.IArgs>(
-          TOOLBAR_ITEMS.MULTI_SELECT,
+          XFlowGraphCommands.GRAPH_TOGGLE_MULTI_SELECT.id,
           {},
         )
       },
@@ -152,12 +153,12 @@ namespace NSToolbarConfig {
     toolbarGroup.push({
       tooltip: '新建群组',
       iconName: 'GroupOutlined',
-      id: TOOLBAR_ITEMS.ADD_GROUP,
+      id: XFlowGroupCommands.ADD_GROUP.id,
       isEnabled: state.isNodeSelected,
       onClick: async ({ commandService, modelService }) => {
         const cells = await MODELS.SELECTED_CELLS.useValue(modelService)
         const groupChildren = cells.map(cell => cell.id)
-        commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(TOOLBAR_ITEMS.ADD_GROUP, {
+        commandService.executeCommand<NsGroupCmd.AddGroup.IArgs>(XFlowGroupCommands.ADD_GROUP.id, {
           nodeConfig: {
             id: uuidv4(),
             renderKey: GROUP_NODE_RENDER_ID,
@@ -173,7 +174,7 @@ namespace NSToolbarConfig {
     toolbarGroup.push({
       tooltip: '解散群组',
       iconName: 'UngroupOutlined',
-      id: TOOLBAR_ITEMS.DEL_GROUP,
+      id: XFlowGroupCommands.DEL_GROUP.id,
       isEnabled: state.isGroupSelected,
       onClick: async ({ commandService, modelService }) => {
         const cell = await MODELS.SELECTED_NODE.useValue(modelService)
@@ -184,14 +185,41 @@ namespace NSToolbarConfig {
       },
     })
 
+    /** 复制  */
+    toolbarGroup.push({
+      tooltip: '复制',
+      iconName: 'CopyOutlined',
+      id: XFlowGraphCommands.GRAPH_COPY.id,
+      isEnabled: state.cells.length > 0,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.GraphCopySelection.IArgs>(
+          XFlowGraphCommands.GRAPH_COPY.id,
+          {},
+        )
+      },
+    })
+
+    /** 粘贴 */
+    toolbarGroup.push({
+      tooltip: '粘贴',
+      iconName: 'SnippetsOutlined',
+      id: XFlowGraphCommands.GRAPH_PASTE.id,
+      onClick: async ({ commandService }) => {
+        commandService.executeCommand<NsGraphCmd.GraphPasteSelection.IArgs>(
+          XFlowGraphCommands.GRAPH_PASTE.id,
+          {},
+        )
+      },
+    })
+
     /** 保存数据 */
     toolbarGroup.push({
       tooltip: '保存',
       iconName: 'SaveOutlined',
-      id: TOOLBAR_ITEMS.SAVE_GRAPH_DATA,
+      id: XFlowGraphCommands.SAVE_GRAPH_DATA.id,
       onClick: async ({ commandService }) => {
         commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(
-          TOOLBAR_ITEMS.SAVE_GRAPH_DATA,
+          XFlowGraphCommands.SAVE_GRAPH_DATA.id,
           {
             saveGraphDataService: (meta, graphData) => {
               console.log(graphData)
@@ -199,6 +227,27 @@ namespace NSToolbarConfig {
             },
           },
         )
+      },
+    })
+
+    toolbarGroup.push({
+      tooltip: '清空画布',
+      iconName: 'ClearOutlined',
+      id: 'clearGraph',
+      onClick: async ({ commandService }) => {
+        Modal.confirm({
+          content: '是否确定清空画布?',
+          okText: '确定',
+          cancelText: '取消',
+          onOk: () => {
+            commandService.executeCommand<NsGraphCmd.GraphRender.IArgs>(
+              XFlowGraphCommands.GRAPH_RENDER.id,
+              {
+                graphData: { nodes: [], edges: [] },
+              },
+            )
+          },
+        })
       },
     })
     return [
@@ -222,6 +271,7 @@ const registerIcon = () => {
   IconStore.set('UngroupOutlined', UngroupOutlined)
   IconStore.set('CopyOutlined', CopyOutlined)
   IconStore.set('SnippetsOutlined', SnippetsOutlined)
+  IconStore.set('ClearOutlined', ClearOutlined)
 }
 
 export const useToolbarConfig = createToolbarConfig((toolbarConfig, proxy) => {
