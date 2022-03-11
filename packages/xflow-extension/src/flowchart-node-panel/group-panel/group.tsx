@@ -58,20 +58,28 @@ export const GroupNode: NsGraph.INodeRender = props => {
   const textDecoration = isUnderline ? 'underline' : 'none'
   const textColor = colorTransform(fontFill, textOpacity)
 
-  let fill;
+  let fill
   if (!isGradient) {
     fill = startColor
   } else {
-    if (gradientDirection === 'radial') {
-      fill = `radial-gradient(${startColor}, ${endColor})`
-    } else if (gradientDirection === 'top-bottom') {
-      fill = `linear-gradient(to bottom, ${startColor}, ${endColor})`
-    } else if (gradientDirection === 'bottom-top') {
-      fill = `linear-gradient(to top, ${startColor}, ${endColor})`
-    } else if (gradientDirection === 'left-right') {
-      fill = `linear-gradient(to right, ${startColor}, ${endColor})`
-    } else if (gradientDirection === 'right-left') {
-      fill = `linear-gradient(to left, ${startColor}, ${endColor})`
+    switch (gradientDirection) {
+      case 'radial':
+        fill = `radial-gradient(${startColor}, ${endColor})`
+        break
+      case 'top-bottom':
+        fill = `linear-gradient(to bottom, ${startColor}, ${endColor})`
+        break
+      case 'bottom-top':
+        fill = `linear-gradient(to top, ${startColor}, ${endColor})`
+        break
+      case 'left-right':
+        fill = `linear-gradient(to right, ${startColor}, ${endColor})`
+        break
+      case 'right-left':
+        fill = `linear-gradient(to left, ${startColor}, ${endColor})`
+        break
+      default:
+        console.error('invalid gradientDirection')
     }
   }
 
