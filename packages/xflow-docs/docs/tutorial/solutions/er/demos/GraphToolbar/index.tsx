@@ -1,5 +1,4 @@
 import React from 'react'
-import {} from 'antd'
 import { PlusCircleOutlined, DeleteOutlined, LinkOutlined } from '@ant-design/icons'
 import { MODELS, useXFlowApp } from '@antv/xflow'
 import './index.less'

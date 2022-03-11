@@ -1,6 +1,5 @@
 import type { NsNodeCmd, IMenuOptions, MODELS, NsGraph } from '@antv/xflow'
 import { createCtxMenuConfig, MenuItemType } from '@antv/xflow'
-import {} from '@antv/xflow'
 import { IconStore, XFlowNodeCommands } from '@antv/xflow'
 import {
   DeleteOutlined,
