@@ -48,7 +48,8 @@ export interface IProps {
   meta: { flowId: string }
 }
 
-export const customToolbar = () => {
+export const customToolbar = (props) => {
+  console.log(props, '@@')
   return <div>123</div>
 }
 
@@ -143,6 +144,7 @@ export const Demo: React.FC<IProps> = props => {
         getCustomRenderComponent={({ modelService, commandService }) => {
           console.log(modelService, commandService, '@')
           return customToolbar
+          //return <Button>自定义按钮</Button>
         }}
       />
       <FlowchartCanvas position={{ top: 40, left: 0, right: 0, bottom: 0 }}>

@@ -2,7 +2,6 @@ import type {
   IPosition,
   IModelService,
   IGraphCommandService,
-  ICommandHandler,
   IToolbarModel,
   IToolbarLayout,
   DisposableCollection,
@@ -42,5 +41,7 @@ export interface IToolbarCustomRenderService {
 }
 
 export interface IToolbarCustomRenderProps {
-  config: IToolbarOptions
+  config: IToolbarOptions,
+  commandService: IGraphCommandService,
+  modelService: IModelService
 }

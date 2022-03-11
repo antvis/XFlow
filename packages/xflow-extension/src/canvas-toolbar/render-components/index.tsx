@@ -65,7 +65,16 @@ const InnerRender: React.FC<IToolbarProps> = props => {
           ...props.style,
         }}
       >
-        {React.createElement(customRender, { config: state })}
+        {React.createElement<any>(customRender, {
+          config: {
+            name: state.name,
+            mainGroups: state.mainGroups,
+            extraGroups: state.extraGroups,
+            layout: state.layout,
+          },
+          commandService: state.commandService,
+          modelService: state.modelService,
+        })}
       </div>
     )
   }

@@ -3,7 +3,6 @@ import { NSToolbarConfig, registerIcon } from './utils'
 export const useToolbarConfig = createToolbarConfig((toolbarConfig, proxy) => {
   const props = proxy.getValue()
   const { getCustomRenderComponent } = props
-  console.log(props, '@')
   registerIcon()
   /** 生产 toolbar item */
   toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
