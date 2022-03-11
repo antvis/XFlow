@@ -1,7 +1,6 @@
 import { createToolbarConfig } from '../canvas-toolbar'
 import { NSToolbarConfig, registerIcon } from './utils'
 export const useToolbarConfig = createToolbarConfig((toolbarConfig, proxy) => {
-  //const { commandService } = useXFlowApp()
   const props = proxy.getValue()
   const { getCustomRenderComponent } = props
   console.log(props, '@')
@@ -24,9 +23,11 @@ export const useToolbarConfig = createToolbarConfig((toolbarConfig, proxy) => {
     })
     toDispose.pushAll(subscriptions)
   })
+  
+  // 自定义 toolbar
   if (getCustomRenderComponent) {
-    toolbarConfig.setCustomToolbarRender(async (modelService, updateComponent) => {
-      const customRender = getCustomRenderComponent({ modelService })
+    toolbarConfig.setCustomToolbarRender(async (modelService, updateComponent, commandService) => {
+      const customRender = getCustomRenderComponent({ modelService, commandService })
       updateComponent(customRender)
       return null
     })

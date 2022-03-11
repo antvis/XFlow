@@ -40,7 +40,7 @@ export const useToolbarModel = (props: IToolbarProps) => {
             const updateCustomRender = customRender => {
               self.setValue(m => (m.customRender = customRender))
             }
-            await toolbarCustomRender(app.modelService, updateCustomRender)
+            await toolbarCustomRender(app.modelService, updateCustomRender, app.commandService)
           }
           return toDispose
         },

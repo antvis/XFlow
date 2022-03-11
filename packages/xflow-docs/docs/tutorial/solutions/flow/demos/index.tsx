@@ -140,7 +140,10 @@ export const Demo: React.FC<IProps> = props => {
         className="xflow-workspace-toolbar-top"
         layout="horizontal"
         position={{ top: 0, left: 0, right: 0, bottom: 0 }}
-        getCustomRenderComponent={() => customToolbar}
+        getCustomRenderComponent={({ modelService, commandService }) => {
+          console.log(modelService, commandService, '@')
+          return customToolbar
+        }}
       />
       <FlowchartCanvas position={{ top: 40, left: 0, right: 0, bottom: 0 }}>
         <CanvasScaleToolbar
