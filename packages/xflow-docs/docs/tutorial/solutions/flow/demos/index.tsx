@@ -12,6 +12,8 @@ import {
   FlowchartNodePanel,
   /** 流程图表单组件 */
   FlowchartFormPanel,
+  /**  流程图 toolbar 组件 */
+  FlowchartToolbar,
   /** 通用组件：快捷键 */
   KeyBindings,
   /** 通用组件：画布缩放 */
@@ -19,11 +21,12 @@ import {
   /** 通用组件：右键菜单 */
   CanvasContextMenu,
   /** 通用组件：工具栏 */
-  CanvasToolbar,
+  //CanvasToolbar,
   /** 通用组件：对齐线 */
   CanvasSnapline,
   /** 通用组件：节点连接桩 */
   CanvasNodePortTooltip,
+  CanvasToolbar
 } from '@antv/xflow'
 import type { Graph } from '@antv/x6'
 /** 配置Command*/
@@ -37,10 +40,16 @@ import { useKeybindingConfig } from './config-keybinding'
 /** 配置Dnd组件面板 */
 import { DndNode } from './react-node/dnd-node'
 
+//import {FlowchartToolbar} from '@antv/xflow-extension'
+
 import './index.less'
 
 export interface IProps {
   meta: { flowId: string }
+}
+
+export const customToolbar = () => {
+  return <div>123</div>
 }
 
 export const Demo: React.FC<IProps> = props => {
@@ -107,23 +116,31 @@ export const Demo: React.FC<IProps> = props => {
           {
             title: '测试2',
             type: 'test2',
-            nodes: [{
-              component: DndNode,
-              popover: () => <div>自定义节点</div>,
-              name: 'custom-node-indicator',
-              width: 100,
-              height: 40,
-              label: '自定义节点',
-            }],
+            nodes: [
+              {
+                component: DndNode,
+                popover: () => <div>自定义节点</div>,
+                name: 'custom-node-indicator',
+                width: 100,
+                height: 40,
+                label: '自定义节点',
+              },
+            ],
           },
         ]}
         position={{ width: 162, top: 40, bottom: 0, left: 0 }}
       />
-      <CanvasToolbar
+      {/* <CanvasToolbar
         className="xflow-workspace-toolbar-top"
         layout="horizontal"
         config={toolbarConfig}
         position={{ top: 0, left: 0, right: 0, bottom: 0 }}
+      /> */}
+      <FlowchartToolbar
+        className="xflow-workspace-toolbar-top"
+        layout="horizontal"
+        position={{ top: 0, left: 0, right: 0, bottom: 0 }}
+        getCustomRenderComponent={() => customToolbar}
       />
       <FlowchartCanvas position={{ top: 40, left: 0, right: 0, bottom: 0 }}>
         <CanvasScaleToolbar
