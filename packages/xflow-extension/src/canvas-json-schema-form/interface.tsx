@@ -12,7 +12,7 @@ export interface IPanelProps {
   footerPosition: IPosition
 }
 /** 画布选中会触发Form更新的画布元素类型 */
-export type TargetType = 'node' | 'edge' | 'group' | 'canvas'
+export type TargetType = 'node' | 'edge' | 'canvas' | 'mix'
 /** 画布元素的数据 */
 export type TargetData = NsGraph.INodeConfig | NsGraph.IEdgeConfig | NsGraph.IGroupConfig | null
 
@@ -89,7 +89,7 @@ export interface IFormItemProps {
 /** service: 返回 json form schema */
 export interface IFormSchemaService {
   (args: {
-    cell: Cell
+    cells: Cell[]
     targetType: TargetType
     targetData: TargetData
     modelService: IModelService

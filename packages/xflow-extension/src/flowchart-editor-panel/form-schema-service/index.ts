@@ -75,13 +75,14 @@ export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = asy
     ],
   }
 
-  if (targetType === 'node' || targetType === 'group') {
+  if (targetType === 'node') {
     return nodeSchema
   }
 
   if (targetType === 'edge') {
     return edgeSchema
   }
+
   return {
     tabs: [
       {
