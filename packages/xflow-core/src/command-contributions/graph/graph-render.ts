@@ -273,7 +273,9 @@ export class GraphRenderCommand implements ICommand {
           }
         }
         if (!judgeResult) {
-          x6Node.setData(findNodeConfig)
+          x6Node.setData(findNodeConfig, {
+            deep: false,
+          })
         }
         judgeResult === true ? retainNodes.push(x6Node) : updateNodes.push(x6Node)
       }
@@ -308,7 +310,9 @@ export class GraphRenderCommand implements ICommand {
           }
         }
         if (!judgeResult) {
-          x6Edge.setData(findEdgeConfig)
+          x6Edge.setData(findEdgeConfig, {
+            deep: false,
+          })
         }
         judgeResult === true ? retainEdges.push(x6Edge) : updateEdges.push(x6Edge)
       }
