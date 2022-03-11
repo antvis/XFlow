@@ -82,7 +82,8 @@ export const GroupNode: NsGraph.INodeRender = props => {
         break
       default:
         console.error('invalid gradientDirection')
-
+    }
+  }
   return (
     <div
       className="xflow-group-node"

@@ -19,12 +19,12 @@ export const FlowchartFormWrapper: React.FC<
     return nodes as Node[]
   }, [modelService])
 
-  const getSelectEdge = useCallback(async () => {
+  const getSelectEdges = useCallback(async () => {
     const edges = await MODELS.SELECTED_CELLS.useValue(modelService)
     return edges as Edge[]
   }, [modelService])
 
-  const { data, loading } = useAsync(formType === 'edge' ? getSelectEdge : getSelectNodes)
+  const { data, loading } = useAsync(formType === 'edge' ? getSelectEdges : getSelectNodes)
 
   React.useEffect(() => {
     commandService.executeCommand(XFlowGraphCommands.SAVE_GRAPH_DATA.id, {
@@ -47,7 +47,7 @@ export const FlowchartFormWrapper: React.FC<
   }
 
   const updateEdge = async (value: object, type: 'text' | 'line' = 'line', key?: string) => {
-    const selectEdges = await getSelectEdge()
+    const selectEdges = await getSelectEdges()
     selectEdges.forEach(async (edge: Edge) => {
       const currentEdgeData = edge.data
       // 更新线、文本样式
