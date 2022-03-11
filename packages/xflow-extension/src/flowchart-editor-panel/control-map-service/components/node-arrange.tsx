@@ -5,7 +5,7 @@ import { Position, Size, Rotate } from './fields';
 import { PREFIX } from './constants';
 import type { IControlProps } from './interface';
 import './style.less';
-export interface INodeArrangeConfig {
+interface INodeArrangeConfig {
   x?: number;
   y?: number;
   width?: number;

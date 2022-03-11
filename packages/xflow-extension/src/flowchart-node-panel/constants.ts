@@ -1,4 +1,4 @@
-import type { ICheckboxOption } from "."
+import type { ICheckboxOption } from './interface'
 export const PANEL_HEADER_HEIGHT = 40
 export const PANEL_FOOTER_HEIGHT = 40
 export const CONTAINER_CLASS = 'xflow-node-panel-collpase'
@@ -11,31 +11,64 @@ export const NODE_HEIGHT = 40
 export const NODE_PADDING = 1
 
 //圆角半径
-export const ROUNDEDRADIUS = 10;
+export const ROUNDEDRADIUS = 10
 
 export const DefaultNodeConfig = {
+  // 边框颜色
   stroke: '#A2B1C3',
+  // 文本
   label: '',
+  // 填充颜色
   fill: '#FFFFFF',
-  fontFill: '#000',
-  fontSize: 12,
-  strokeWidth: 1,
-  fillOpacity: 1,
-  angel: 0,
-  rounded: false,
-  isGradient: false,
-  gradientDirection: 'top-bottom',
-  endColor: '#FFFFFF',
-  isBold: false,
-  isItalic: false,
-  isUnderline: false,
-  alignmentBaseline: 'middle',
-  textAnchor: 'middle',
-  textOpacity: 1,
-  letterSpace: 0,
+  // 字体颜色
+  fontFill: '#000000',
+  // 字体大小
+  fontSize: 14,
   fontFamily: 'microsoftYahei',
-  
-} as const;
+  // 字体
+  strokeDash: 'solid',
+  // 线框
+  strokeWidth: 1,
+  // 字体透明度
+  fillOpacity: 1,
+  // 角度
+  angel: 0,
+  // 圆角
+  rounded: false,
+  // 是否设置渐变
+  isGradient: false,
+  // 渐变方向
+  gradientDirection: 'top-bottom',
+  // 渐变结束颜色(渐变起始颜色为填充色)
+  endColor: '#FFFFFF',
+  // 字体是否加粗
+  isBold: false,
+  // 字体是否斜体
+  isItalic: false,
+  // 字体是否有下划线
+  isUnderline: false,
+  // 文本垂直对齐方式
+  verticalAlign: 'middle',
+  // 文本水平对齐方式
+  horizontalAlign: 'middle',
+  // 字体透明度
+  textOpacity: 1,
+  // 字间距
+  letterSpace: 0,
+  // 文本边框色
+  textBdColor: '#FFFFFF',
+  // 文本背景色
+  textBgColor: '#FFFFFF',
+  // 文本水平位置
+  dx: 0,
+  // 文本垂直位置
+  dy: 2,
+} as const
+
+export const STROKE_MAP = {
+  solid: [0, 0],
+  dash: [5, 5],
+}
 
 export const NODEPOOL = [
   {
@@ -212,16 +245,17 @@ export const NODEPOOL = [
     name: 'Document',
     type: 'flowchart',
   },
-];
+]
 // 缩放时保存同比例
 export const ASPECTRATIONODE = ['Connector', 'Or']
 
 //内置节点分类
-export const BUILDIN_NODE_TYPES = ['common', 'flowchart', 'advanced'];
+export const BUILDIN_NODE_TYPES = ['common', 'flowchart', 'advanced']
 export const TYPE_IMG_MAP = {
   common: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*HVZwQYtQ9cIAAAAAAAAAAAAAARQnAQ',
-  flowchart: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*c-IOS6IAEAQAAAAAAAAAAAAAARQnAQ',
-};
+  flowchart:
+    'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*c-IOS6IAEAQAAAAAAAAAAAAAARQnAQ',
+}
 
 export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
   {
@@ -237,6 +271,6 @@ export const CHECKBOX_OPTIONS: ICheckboxOption[] = [
   {
     label: '高级节点',
     value: 'advanced',
-    disabled: false
-  }
-];
+    disabled: false,
+  },
+]

@@ -120,23 +120,28 @@
     height: 100%;
     overflow: hidden;
     word-break: break-all;
+    .flowchart-text {
+      position: relative;
+      display: inline-block;
+      margin-left: -1px;
+    }
   }
-  .y-after-edge {
+  .vertical-top {
     align-items: flex-start;
   }
-  .y-before-edge {
+  .vertical-bottom {
     align-items: flex-end;
   }
-  .y-middle {
+  .vertical-middle {
     align-items: center;
   }
-  .x-start {
+  .horizontal-left {
     justify-content: flex-start;
   }
-  .x-middle {
+  .horizontal-middle {
     justify-content: center;
   }
-  .x-end {
+  .horizontal-right {
     justify-content: flex-end;
   }
 }

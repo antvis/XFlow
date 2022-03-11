@@ -2,7 +2,7 @@ import React from 'react'
 import type { NsGraph } from '@antv/xflow-core'
 import { uuidv4 } from '@antv/xflow-core'
 import * as nodePathMap from './paths'
-import { NODE_HEIGHT, NODE_WIDTH, DefaultNodeConfig } from './constants'
+import { NODE_HEIGHT, NODE_WIDTH, DefaultNodeConfig, STROKE_MAP } from './constants'
 import { GradientComponent } from './gradient-component'
 import { colorTransform } from './utils'
 
@@ -16,7 +16,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
     fontFill = DefaultNodeConfig.fontFill,
     fontSize = DefaultNodeConfig.fontSize,
     strokeWidth = DefaultNodeConfig.strokeWidth,
-    strokeDasharray,
+    strokeDash = DefaultNodeConfig.strokeDash,
     fillOpacity = DefaultNodeConfig.fillOpacity,
     angel = DefaultNodeConfig.angel,
     rounded = DefaultNodeConfig.rounded,
@@ -26,12 +26,12 @@ export const NodeComponent: NsGraph.INodeRender = props => {
     isBold = DefaultNodeConfig.isBold,
     isItalic = DefaultNodeConfig.isItalic,
     isUnderline = DefaultNodeConfig.isUnderline,
-    alignmentBaseline = DefaultNodeConfig.alignmentBaseline,
-    textAnchor = DefaultNodeConfig.textAnchor,
+    verticalAlign = DefaultNodeConfig.verticalAlign,
+    horizontalAlign = DefaultNodeConfig.horizontalAlign,
     textOpacity = DefaultNodeConfig.textOpacity,
-    letterSpacing,
-    bgColor,
-    bdColor,
+    letterSpacing = DefaultNodeConfig.letterSpace,
+    textBgColor = DefaultNodeConfig.textBgColor,
+    textBdColor = DefaultNodeConfig.textBdColor,
     fontFamily = DefaultNodeConfig.fontFamily,
     dy,
     dx,
@@ -68,7 +68,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
             fill={fill}
             stroke={stroke}
             strokeWidth={strokeWidth}
-            strokeDasharray={strokeDasharray}
+            strokeDasharray={STROKE_MAP[strokeDash]}
             fillOpacity={fillOpacity}
           />
         )
@@ -79,19 +79,22 @@ export const NodeComponent: NsGraph.INodeRender = props => {
         xmlns="http://www.w3.org/2000/svg"
         className="flowchart-text-editor-container"
       >
-        <div className={`flowchart-text-editor-wrapper x-${textAnchor} y-${alignmentBaseline}`}>
+        <div
+          className={`flowchart-text-editor-wrapper horizontal-${horizontalAlign} vertical-${verticalAlign}`}
+        >
           <div
+            className="flowchart-text"
             style={{
               maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
               maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
-              backgroundColor: bgColor,
+              backgroundColor: textBgColor,
               fontSize,
               letterSpacing: letterSpacing,
               color: textColor,
               fontWeight,
               fontStyle,
               textDecoration,
-              border: `1px solid ${bdColor}`,
+              border: `1px solid ${textBdColor}`,
               left: dx,
               top: dy,
               fontFamily,

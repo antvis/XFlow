@@ -24,7 +24,6 @@ import {
 import { PREFIX } from './constants'
 import type { IControlProps } from './interface'
 import './style.less'
-
 export interface INodeTextConfig {
   label?: string
   fontSize?: number
@@ -32,8 +31,8 @@ export interface INodeTextConfig {
   isBold?: boolean
   isItalic?: boolean
   isUnderline?: boolean
-  alignmentBaseline?: 'middle' | 'before-edge' | 'after-edge'
-  textAnchor?: 'start' | 'middle' | 'end'
+  verticalAlign?: 'top' | 'middle' | 'bottom'
+  horizontalAlign?: 'left' | 'middle' | 'right'
   name?: string
   isSelected?: boolean
   textOpacity?: number
@@ -41,8 +40,8 @@ export interface INodeTextConfig {
   opacity?: number
   dy?: number
   dx?: number
-  bgColor?: string
-  bdColor?: string
+  textBgColor?: string
+  textBdColor?: string
   fontFamily?: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu'
 }
 
@@ -71,6 +70,8 @@ const NodeComponent: React.FC<IControlProps> = props => {
       ...config,
     })
   }, [config])
+
+  
 
   return (
     <div className={`${PREFIX}-panel-body`}>
@@ -164,16 +165,16 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <div className={`${PREFIX}-node-text-style`}>
           <label style={{ color: '#888' }}>字体背景</label>
           <ColorPicker
-            value={nodeConfig.bgColor}
+            value={nodeConfig.textBgColor}
             onChange={(value: string) => {
-              onNodeConfigChange('bgColor', value)
+              onNodeConfigChange('textBgColor', value)
             }}
           />
           <label style={{ color: '#888' }}>字体边框</label>
           <ColorPicker
-            value={nodeConfig.bdColor}
+            value={nodeConfig.textBdColor}
             onChange={(value: string) => {
-              onNodeConfigChange('bdColor', value)
+              onNodeConfigChange('textBdColor', value)
             }}
           />
         </div>
@@ -209,32 +210,32 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <div className={`${PREFIX}-icon-container`}>
           <VerticalAlignTopOutlined
             className={
-              nodeConfig.alignmentBaseline === 'after-edge'
+              nodeConfig.verticalAlign === 'top'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'after-edge')
+              onNodeConfigChange('verticalAlign', 'top')
             }}
           />
           <VerticalAlignMiddleOutlined
             className={
-              nodeConfig.alignmentBaseline === 'middle'
+              nodeConfig.verticalAlign === 'middle'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'middle')
+              onNodeConfigChange('verticalAlign', 'middle')
             }}
           />
           <VerticalAlignBottomOutlined
             className={
-              nodeConfig.alignmentBaseline === 'before-edge'
+              nodeConfig.verticalAlign === 'bottom'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('alignmentBaseline', 'before-edge')
+              onNodeConfigChange('verticalAlign', 'bottom')
             }}
           />
           <InputFontPosition
@@ -250,32 +251,32 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <div className={`${PREFIX}-icon-container`}>
           <AlignLeftOutlined
             className={
-              nodeConfig.textAnchor === 'start'
+              nodeConfig.horizontalAlign === 'left'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'start')
+              onNodeConfigChange('horizontalAlign', 'left')
             }}
           />
           <AlignCenterOutlined
             className={
-              nodeConfig.textAnchor === 'middle'
+              nodeConfig.horizontalAlign === 'middle'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'middle')
+              onNodeConfigChange('horizontalAlign', 'middle')
             }}
           />
           <AlignRightOutlined
             className={
-              nodeConfig.textAnchor === 'end'
+              nodeConfig.horizontalAlign === 'right'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('textAnchor', 'end')
+              onNodeConfigChange('horizontalAlign', 'right')
             }}
           />
           <InputFontPosition

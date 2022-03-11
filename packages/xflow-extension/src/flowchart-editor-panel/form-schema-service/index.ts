@@ -2,29 +2,6 @@ import type { NsJsonSchemaForm } from '../../canvas-json-schema-form'
 
 export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = async args => {
   const { targetType } = args
-  const isGroup = args.targetData?.isGroup
-
-  const groupSchema: NsJsonSchemaForm.ISchema = {
-    tabs: [
-      {
-        name: '设置',
-        groups: [
-          {
-            name: 'groupName',
-            controls: [
-              {
-                label: '分组名',
-                name: 'group-service',
-                shape: 'group-service',
-                placeholder: '分组名称',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  }
-
   const nodeSchema: NsJsonSchemaForm.ISchema = {
     tabs: [
       {
@@ -98,11 +75,7 @@ export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = asy
     ],
   }
 
-  if (isGroup) {
-    return groupSchema
-  }
-
-  if (targetType === 'node') {
+  if (targetType === 'node' || targetType === 'group') {
     return nodeSchema
   }
 
