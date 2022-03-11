@@ -1,5 +1,14 @@
 # @antv/xflow-extension
 
+## 1.0.38
+
+### Patch Changes
+
+- ba4f7091: chore: release version 1.0.38
+- Updated dependencies [ba4f7091]
+  - @antv/xflow-core@1.0.38
+  - @antv/xflow-hook@1.0.38
+
 ## 1.0.37
 
 ### Patch Changes
