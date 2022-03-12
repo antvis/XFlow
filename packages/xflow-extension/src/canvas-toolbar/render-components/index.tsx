@@ -31,7 +31,7 @@ const ToolbarRender: React.FC<{
 }
 
 const InnerRender: React.FC<IToolbarProps> = props => {
-  const { isModelReady, state } = useToolbarModel(props)
+  const { isModelReady, state, commandService, modelService } = useToolbarModel(props)
   const positionStyle = usePositionStyle(props.position)
   const { mainGroups = [], extraGroups = [], layout, customRender } = state
   const containerClz = classNames(props.className, layout, 'xflow-toolbar')
@@ -65,15 +65,10 @@ const InnerRender: React.FC<IToolbarProps> = props => {
           ...props.style,
         }}
       >
-        {React.createElement<any>(customRender, {
-          config: {
-            name: state.name,
-            mainGroups: state.mainGroups,
-            extraGroups: state.extraGroups,
-            layout: state.layout,
-          },
-          commandService: state.commandService,
-          modelService: state.modelService,
+        {React.createElement(customRender, {
+          config: state,
+          commandService,
+          modelService,
         })}
       </div>
     )

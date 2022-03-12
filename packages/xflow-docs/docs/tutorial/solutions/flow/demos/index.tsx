@@ -26,7 +26,7 @@ import {
   CanvasSnapline,
   /** 通用组件：节点连接桩 */
   CanvasNodePortTooltip,
-  CanvasToolbar
+  CanvasToolbar,
 } from '@antv/xflow'
 import type { Graph } from '@antv/x6'
 /** 配置Command*/
@@ -48,8 +48,8 @@ export interface IProps {
   meta: { flowId: string }
 }
 
-export const customToolbar = (props) => {
-  console.log(props, '@@')
+export const customToolbar = props => {
+  console.log(props, '@@@@')
   return <div>123</div>
 }
 
@@ -86,19 +86,6 @@ export const Demo: React.FC<IProps> = props => {
     >
       <FlowchartExtension />
       <FlowchartNodePanel
-        /* registerNode={{
-          title: '自定义节点',
-          nodes: [
-            {
-              component: DndNode,
-              popover: () => <div>自定义节点</div>,
-              name: 'custom-node-indicator',
-              width: 210,
-              height: 130,
-              label: '自定义节点',
-            },
-          ],
-        }} */
         registerNode={[
           {
             title: '测试1',
@@ -141,7 +128,7 @@ export const Demo: React.FC<IProps> = props => {
         className="xflow-workspace-toolbar-top"
         layout="horizontal"
         position={{ top: 0, left: 0, right: 0, bottom: 0 }}
-        getCustomRenderComponent={({ modelService, commandService }) => {
+        getCustomRenderComponent={(modelService, commandService) => {
           console.log(modelService, commandService, '@')
           return customToolbar
           //return <Button>自定义按钮</Button>

@@ -26,7 +26,7 @@ export const useToolbarConfig = createToolbarConfig((toolbarConfig, proxy) => {
   // 自定义 toolbar
   if (getCustomRenderComponent) {
     toolbarConfig.setCustomToolbarRender(async (modelService, updateComponent, commandService) => {
-      const customRender = getCustomRenderComponent({ modelService, commandService })
+      const customRender = getCustomRenderComponent( modelService, commandService )
       updateComponent(customRender)
       return null
     })
