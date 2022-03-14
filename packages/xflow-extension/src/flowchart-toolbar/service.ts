@@ -2,13 +2,13 @@ import { createToolbarConfig } from '../canvas-toolbar'
 import { NSToolbarConfig, registerIcon } from './utils'
 export const useToolbarConfig = createToolbarConfig((toolbarConfig, proxy) => {
   const props = proxy.getValue()
-  const { getCustomRenderComponent } = props
+  const { getCustomRenderComponent, registerToolbarItems } = props
   registerIcon()
   /** 生产 toolbar item */
   toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
     const updateToolbarModel = async () => {
       const state = await NSToolbarConfig.getToolbarState(modelService)
-      const toolbarItems = await NSToolbarConfig.getToolbarItems(state)
+      const toolbarItems = await NSToolbarConfig.getToolbarItems(state, registerToolbarItems)
 
       toolbarModel.setValue(toolbar => {
         toolbar.mainGroups = toolbarItems

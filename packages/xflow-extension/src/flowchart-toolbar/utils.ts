@@ -3,17 +3,18 @@ import type {
   IToolbarItemOptions,
   NsGroupCmd,
   NsGraphCmd,
-  NsNodeCmd} from '@antv/xflow-core';
+  NsNodeCmd,
+} from '@antv/xflow-core'
 import {
   uuidv4,
   XFlowGroupCommands,
   XFlowNodeCommands,
   XFlowGraphCommands,
   MODELS,
-  IconStore
-} from '@antv/xflow-core';
+  IconStore,
+} from '@antv/xflow-core'
 import type { Cell } from '@antv/x6'
-import { Modal } from 'antd';
+import { Modal } from 'antd'
 import {
   UngroupOutlined,
   SaveOutlined,
@@ -26,22 +27,22 @@ import {
   CopyOutlined,
   SnippetsOutlined,
   ClearOutlined,
-} from '@ant-design/icons';
+} from '@ant-design/icons'
 
 /** 注册icon 类型 */
 export const registerIcon = () => {
-  IconStore.set('SaveOutlined', SaveOutlined);
-  IconStore.set('UndoOutlined', UndoOutlined);
-  IconStore.set('RedoOutlined', RedoOutlined);
-  IconStore.set('VerticalAlignTopOutlined', VerticalAlignTopOutlined);
-  IconStore.set('VerticalAlignBottomOutlined', VerticalAlignBottomOutlined);
-  IconStore.set('GatewayOutlined', GatewayOutlined);
-  IconStore.set('GroupOutlined', GroupOutlined);
-  IconStore.set('UngroupOutlined', UngroupOutlined);
-  IconStore.set('CopyOutlined', CopyOutlined);
-  IconStore.set('SnippetsOutlined', SnippetsOutlined);
-  IconStore.set('ClearOutlined', ClearOutlined);
-};
+  IconStore.set('SaveOutlined', SaveOutlined)
+  IconStore.set('UndoOutlined', UndoOutlined)
+  IconStore.set('RedoOutlined', RedoOutlined)
+  IconStore.set('VerticalAlignTopOutlined', VerticalAlignTopOutlined)
+  IconStore.set('VerticalAlignBottomOutlined', VerticalAlignBottomOutlined)
+  IconStore.set('GatewayOutlined', GatewayOutlined)
+  IconStore.set('GroupOutlined', GroupOutlined)
+  IconStore.set('UngroupOutlined', UngroupOutlined)
+  IconStore.set('CopyOutlined', CopyOutlined)
+  IconStore.set('SnippetsOutlined', SnippetsOutlined)
+  IconStore.set('ClearOutlined', ClearOutlined)
+}
 
 const GROUP_NODE_RENDER_ID = 'GROUP_NODE_RENDER_ID'
 
@@ -90,7 +91,19 @@ export namespace NSToolbarConfig {
     } as IToolbarState
   }
 
-  export const getToolbarItems = async (state: IToolbarState) => {
+  export const getToolbarItems = async (
+    state: IToolbarState,
+    registerToolbarItems?: IToolbarItemOptions[],
+  ) => {
+    if (registerToolbarItems) {
+      return [
+        {
+          name: 'graphData',
+          items: registerToolbarItems,
+        },
+      ]
+    }
+
     const toolbarGroup: IToolbarItemOptions[] = []
     /** 撤销 */
     toolbarGroup.push({
@@ -263,6 +276,7 @@ export namespace NSToolbarConfig {
         })
       },
     })
+
     return [
       {
         name: 'graphData',

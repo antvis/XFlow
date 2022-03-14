@@ -1,8 +1,9 @@
 import type { IToolbarProps,} from '../canvas-toolbar'
 import type {IToolbarCustomRenderProps } from '../canvas-toolbar/interface'
-import type {IGraphCommandService, IModelService} from '@antv/xflow-core'
+import type {IGraphCommandService, IModelService, IToolbarItemOptions} from '@antv/xflow-core'
 export interface IFlowchartToolbarProps extends Omit<IToolbarProps, 'config'> {
-  getCustomRenderComponent: ICustomRender
+  registerToolbarItems?: IToolbarItemOptions[]
+  getCustomRenderComponent?: ICustomRender
 }
 
 export interface ICustomRender {
