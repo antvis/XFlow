@@ -4,6 +4,8 @@ import { ToolbarConfig } from './config'
 import { XFlowToolbar } from './render-components'
 import type { IToolbarProps } from './interface'
 
+export type { IToolbarCustomRenderService, IToolbarCustomRenderProps } from './interface'
+
 export const CanvasToolbar: React.FC<IToolbarProps> = props => {
   const app = useXFlowApp()
   const hasApp = !!app

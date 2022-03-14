@@ -49,7 +49,7 @@ export interface IToolbarContribution {
    */
   registerToolbarItems: (registry: IToolbarService) => void
 }
-
+ 
 export interface ICustomRenderProps extends Omit<IToolbarItemOptions, 'onClick'> {
   /** call IToolbarItemOptions.onClick with args */
   onClick: () => void

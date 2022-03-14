@@ -19,7 +19,13 @@ export {
 } from './canvas-scale-toolbar'
 
 /** 画布 Toolbar */
-export { CanvasToolbar, IToolbarProps, createToolbarConfig } from './canvas-toolbar'
+export {
+  CanvasToolbar,
+  IToolbarProps,
+  createToolbarConfig,
+  IToolbarCustomRenderService,
+  IToolbarCustomRenderProps,
+} from './canvas-toolbar'
 
 /** demo utils */
 export { FormBuilder, IFormSchema, randomInt } from './demo-utils'

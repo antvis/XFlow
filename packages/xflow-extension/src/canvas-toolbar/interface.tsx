@@ -36,12 +36,12 @@ export interface IToolbarCustomRenderService {
   (
     modelService: IModelService,
     updateComponent: (fc: React.FC<IToolbarCustomRenderProps>) => void,
-    commandService: IGraphCommandService
+    commandService: IGraphCommandService,
   ): Promise<React.FC<IToolbarCustomRenderProps> | undefined>
 }
 
 export interface IToolbarCustomRenderProps {
-  config: IToolbarOptions,
-  commandService: IGraphCommandService,
+  config: IToolbarOptions
+  commandService: IGraphCommandService
   modelService: IModelService
 }

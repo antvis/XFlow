@@ -29,7 +29,7 @@ import {
   /** 通用组件：节点连接桩 */
   CanvasNodePortTooltip,
   //CanvasToolbar,
-  XFlowGraphCommands
+  XFlowGraphCommands,
 } from '@antv/xflow'
 import type { Graph } from '@antv/x6'
 /** 配置Command*/
@@ -55,8 +55,9 @@ export interface IProps {
 }
 
 export const customToolbar = props => {
-  console.log(props, '@@@@')
-  return <div>123</div>
+  const {commandService, modelService, config} = props
+  console.log(commandService, modelService, config, '@')
+  return <div>我是自定义的 FlowchartToolbar</div>
 }
 
 export const Demo: React.FC<IProps> = props => {
@@ -137,7 +138,6 @@ export const Demo: React.FC<IProps> = props => {
         /* getCustomRenderComponent={(modelService, commandService) => {
           console.log(modelService, commandService, '@')
           return customToolbar
-          //return <Button>自定义按钮</Button>
         }} */
         /* registerToolbarItems={[
           {

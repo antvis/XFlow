@@ -19,7 +19,13 @@ export {
 } from '@antv/xflow-extension'
 
 /** 画布 Toolbar */
-export { CanvasToolbar, IToolbarProps, createToolbarConfig } from '@antv/xflow-extension'
+export {
+  CanvasToolbar,
+  IToolbarProps,
+  createToolbarConfig,
+  IToolbarCustomRenderProps,
+  IToolbarCustomRenderService,
+} from '@antv/xflow-extension'
 
 /** demo utils */
 export { FormBuilder, IFormSchema, randomInt } from '@antv/xflow-extension'
@@ -80,5 +86,5 @@ export {
   IFlowchartFormPanelProps,
   IFlowchartFormWrapperProps,
   FlowchartToolbar,
-  IFlowchartToolbarProps
+  IFlowchartToolbarProps,
 } from '@antv/xflow-extension'
