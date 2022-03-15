@@ -35,7 +35,7 @@ export const FlowchartFormPanel: React.FC<IFlowchartFormPanelProps> = props => {
       <div className={`${CONTAINER_CLASS}-wrapper`}>
         {/* @ts-ignore */}
         <JsonSchemaForm
-          targetType={['node', 'edge', 'canvas', 'group']}
+          targetType={['node', 'edge', 'canvas', 'mix']}
           controlMapService={controlMapService}
           formSchemaService={formSchemaService}
           position={{

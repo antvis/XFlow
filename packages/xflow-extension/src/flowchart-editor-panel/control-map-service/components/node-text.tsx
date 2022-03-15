@@ -10,6 +10,7 @@ import {
   AlignCenterOutlined,
   AlignRightOutlined,
 } from '@ant-design/icons'
+import { Checkbox } from 'antd'
 import { DefaultNodeConfig } from '../../../flowchart-node-panel'
 import { FlowchartFormWrapper } from '../../form-wrapper'
 import {
@@ -19,11 +20,12 @@ import {
   InputOpacity,
   InputFontSpacing,
   InputFontPosition,
-  SelectField
+  SelectField,
 } from './fields'
 import { PREFIX } from './constants'
 import type { IControlProps } from './interface'
 import './style.less'
+
 export interface INodeTextConfig {
   label?: string
   fontSize?: number
@@ -40,7 +42,9 @@ export interface INodeTextConfig {
   opacity?: number
   dy?: number
   dx?: number
+  showTextBgColor?: boolean
   textBgColor?: string
+  showTextBdColor?: boolean
   textBdColor?: string
   fontFamily?: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu'
 }
@@ -143,8 +147,8 @@ const NodeComponent: React.FC<IControlProps> = props => {
           />
         </div>
         <div className={`${PREFIX}-node-text-style`}>
-          <label style={{ color: '#888' }}>颜色</label>
           <ColorPicker
+            label="颜色"
             value={nodeConfig.fontFill}
             onChange={(value: string) => {
               onNodeConfigChange('fontFill', value)
@@ -163,20 +167,40 @@ const NodeComponent: React.FC<IControlProps> = props => {
           />
         </div>
         <div className={`${PREFIX}-node-text-style`}>
-          <label style={{ color: '#888' }}>字体背景</label>
-          <ColorPicker
-            value={nodeConfig.textBgColor}
-            onChange={(value: string) => {
-              onNodeConfigChange('textBgColor', value)
+          <Checkbox
+            style={{ color: '#888' }}
+            onChange={e => {
+              onNodeConfigChange('showTextBgColor', e.target.checked)
             }}
-          />
-          <label style={{ color: '#888' }}>字体边框</label>
-          <ColorPicker
-            value={nodeConfig.textBdColor}
-            onChange={(value: string) => {
-              onNodeConfigChange('textBdColor', value)
+          >
+            字体背景
+          </Checkbox>
+          {nodeConfig.showTextBgColor && (
+            <ColorPicker
+              value={nodeConfig.textBgColor}
+              onChange={(value: string) => {
+                onNodeConfigChange('textBgColor', value)
+              }}
+            />
+          )}
+        </div>
+        <div className={`${PREFIX}-node-text-style`}>
+        <Checkbox
+            style={{ color: '#888' }}
+            onChange={e => {
+              onNodeConfigChange('showTextBdColor', e.target.checked)
             }}
-          />
+          >
+            字体边框
+          </Checkbox>
+          {nodeConfig.showTextBdColor && (
+            <ColorPicker
+              value={nodeConfig.textBdColor}
+              onChange={(value: string) => {
+                onNodeConfigChange('textBdColor', value)
+              }}
+            />
+          )}
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <BoldOutlined

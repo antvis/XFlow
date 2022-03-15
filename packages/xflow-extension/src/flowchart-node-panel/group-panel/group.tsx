@@ -29,7 +29,9 @@ export const GroupNode: NsGraph.INodeRender = props => {
       horizontalAlign = DefaultGroupConfig.horizontalAlign,
       textOpacity = DefaultGroupConfig.textOpacity,
       letterSpacing = DefaultGroupConfig.letterSpace,
+      showTextBdColor = DefaultGroupConfig.showTextBdColor,
       textBgColor = DefaultGroupConfig.textBdColor,
+      showTextBgColor = DefaultGroupConfig.showTextBgColor,
       textBdColor = DefaultGroupConfig.textBgColor,
       dx = DefaultGroupConfig.dx,
       dy = DefaultGroupConfig.dy,
@@ -82,7 +84,6 @@ export const GroupNode: NsGraph.INodeRender = props => {
         console.error('invalid gradientDirection')
     }
   }
-
   return (
     <div
       className="xflow-group-node"
@@ -102,26 +103,26 @@ export const GroupNode: NsGraph.INodeRender = props => {
           <div
             className={`flowchart-text-editor-wrapper horizontal-${horizontalAlign} y-${verticalAlign}`}
           >
-            <div
+            <span
               className="flowchart-text"
               style={{
                 //maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
                 //maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
-                backgroundColor: textBgColor,
+                backgroundColor: showTextBgColor ? textBgColor : 'rgba(0, 0, 0, 0)',
                 fontSize,
                 letterSpacing: letterSpacing,
                 color: textColor,
                 fontWeight,
                 fontStyle,
                 textDecoration,
-                border: `1px solid ${textBdColor}`,
+                border: showTextBdColor ? `1px solid ${textBdColor}` : 'none',
                 left: dx,
                 top: dy,
                 fontFamily,
               }}
             >
               {label}
-            </div>
+            </span>
           </div>
         </div>
         <div className="header-right">

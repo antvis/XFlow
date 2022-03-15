@@ -12,7 +12,7 @@ export interface IFlowchartFormPanelProps {
   prefixClz?: string
   controlMapService?: (editorMap: NsJsonSchemaForm.IControlMap) => NsJsonSchemaForm.IControlMap
   formSchemaService?: (args: {
-    cell: Cell
+    cells: Cell[]
     targetType: NsJsonSchemaForm.TargetType
     targetData: NsJsonSchemaForm.TargetData
     modelService: IModelService
@@ -29,7 +29,7 @@ export type IFlowchartFormWrapperProps = NsJsonSchemaForm.IControlProps & {
     plugin: {
       updateNode: (config: NsGraph.INodeConfig) => void
       updateEdge: (config: NsGraph.IEdgeConfig, type: 'text' | 'line', key?: string) => void
-      updateGroup: (config: NsGraph.INodeConfig) => void
     },
   ) => React.ReactElement
 }
+ 

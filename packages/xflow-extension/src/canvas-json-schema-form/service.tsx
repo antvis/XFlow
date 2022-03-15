@@ -12,7 +12,7 @@ export namespace NsJsonSchemaFormModel {
     schema: ISchema
     targetType: TargetType
     targetData: TargetData
-    targetCell: Cell | null
+    targetCells: Cell[]
   }
   export const useModel = async (model: IModelService) => {
     return model.awaitModel<IState>(id)
@@ -46,7 +46,7 @@ export const useJsonSchemaFormModel = (props: IProps) => {
       schema: { tabs: [] },
       targetType: null,
       targetData: null,
-      targetCell: null,
+      targetCells: [],
       loading: false,
     },
   )
@@ -63,17 +63,18 @@ export const useJsonSchemaFormModel = (props: IProps) => {
         modelFactory: () => model,
         /** 监听SELECTED_CELL的变化 */
         watchChange: async (self, modelSerccie) => {
-          const selectedCellModel = await MODELS.SELECTED_CELL.getModel(modelSerccie)
-          const nodeDisposable = selectedCellModel.watch(async cell => {
-            const updateState = async (targetCell: Cell | null, type: TargetType) => {
+          const selectedCellsModel = await MODELS.SELECTED_CELLS.getModel(modelSerccie)
+          const nodeDisposable = selectedCellsModel.watch(async cells => {
+            const updateState = async (targetCells: Cell[] | null, type: TargetType) => {
               self.setValue(m => {
                 m.loading = true
                 m.schema = { tabs: [] }
                 m.targetType = null
                 m.targetData = null
-                m.targetCell = null
+                m.targetCells = []
               })
-              const targetData = targetCell ? targetCell.getData() : null
+              const targetData =
+                targetCells && targetCells.length > 0 ? targetCells[0].getData() : null
               if (!formSchemaService) {
                 return
               }
@@ -82,7 +83,7 @@ export const useJsonSchemaFormModel = (props: IProps) => {
                 commandService,
                 modelService,
                 targetData,
-                cell: targetCell,
+                cells: targetCells,
                 targetType: type,
                 graph,
               })
@@ -90,30 +91,32 @@ export const useJsonSchemaFormModel = (props: IProps) => {
                 loading: false,
                 schema: schema,
                 targetType: type,
-                targetCell: targetCell,
+                targetCells: targetCells,
                 targetData: targetData,
               })
             }
-            const getCellType = (targetCell: Cell): TargetType => {
-              if (!targetCell) {
+            const getCellType = (targetCells: Cell[]): TargetType => {
+              if (!targetCells || targetCells.length === 0) {
                 return 'canvas'
-              } else if (
-                targetCell.isNode &&
-                targetCell.isNode() &&
-                targetCell.getProp('isGroup')
-              ) {
-                return 'group'
-              } else if (targetCell.isNode && targetCell.isNode()) {
-                return 'node'
-              } else if (targetCell.isEdge && targetCell.isEdge()) {
-                return 'edge'
               } else {
-                return 'canvas'
+                const targetSet = new Set<TargetType>()
+                targetCells.forEach(cell => {
+                  if (cell.isNode && cell.isNode()) {
+                    targetSet.add('node')
+                  } else if (cell.isEdge && cell.isEdge()) {
+                    targetSet.add('edge')
+                  }
+                })
+                if (targetSet.size === 2) {
+                  return 'mix'
+                } else {
+                  return [...targetSet][0]
+                }
               }
             }
-            const targetCellType = getCellType(cell)
+            const targetCellType = getCellType(cells)
             if ((props.targetType || ['node', 'canvas']).includes(targetCellType)) {
-              await updateState(cell, targetCellType)
+              await updateState(cells, targetCellType)
             }
           })
           return Disposable.create(() => {

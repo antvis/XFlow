@@ -55,14 +55,18 @@ export const DefaultNodeConfig = {
   textOpacity: 1,
   // 字间距
   letterSpace: 0,
+  // 是否显示文本边框
+  showTextBdColor: false,
   // 文本边框色
   textBdColor: '#FFFFFF',
+  // 是否显示文本背景
+  showTextBgColor: false,
   // 文本背景色
   textBgColor: '#FFFFFF',
   // 文本水平位置
   dx: 0,
   // 文本垂直位置
-  dy: 2,
+  dy: 0,
 } as const
 
 export const STROKE_MAP = {

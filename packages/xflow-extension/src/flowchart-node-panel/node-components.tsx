@@ -30,7 +30,9 @@ export const NodeComponent: NsGraph.INodeRender = props => {
     horizontalAlign = DefaultNodeConfig.horizontalAlign,
     textOpacity = DefaultNodeConfig.textOpacity,
     letterSpacing = DefaultNodeConfig.letterSpace,
+    showTextBgColor = DefaultNodeConfig.showTextBgColor,
     textBgColor = DefaultNodeConfig.textBgColor,
+    showTextBdColor = DefaultNodeConfig.showTextBdColor,
     textBdColor = DefaultNodeConfig.textBdColor,
     fontFamily = DefaultNodeConfig.fontFamily,
     dy,
@@ -82,26 +84,26 @@ export const NodeComponent: NsGraph.INodeRender = props => {
         <div
           className={`flowchart-text-editor-wrapper horizontal-${horizontalAlign} vertical-${verticalAlign}`}
         >
-          <div
+          <span
             className="flowchart-text"
             style={{
               maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
               maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
-              backgroundColor: textBgColor,
+              backgroundColor: showTextBgColor ? textBgColor : 'rgba(0, 0, 0, 0)',
               fontSize,
               letterSpacing: letterSpacing,
               color: textColor,
               fontWeight,
               fontStyle,
               textDecoration,
-              border: `1px solid ${textBdColor}`,
+              border: showTextBdColor ? `1px solid ${textBdColor}` : 'none',
               left: dx,
               top: dy,
               fontFamily,
             }}
           >
             {label}
-          </div>
+          </span>
         </div>
       </foreignObject>
       Sorry, your browser does not support inline SVG.
