@@ -7,9 +7,9 @@ export const CollateNodePath = (props) => {
 
   const path = [
     ['M', NODE_PADDING, NODE_PADDING],
-    ['L', width - 2 * NODE_PADDING, NODE_PADDING],
-    ['L', NODE_PADDING, height * NODE_PADDING],
-    ['L', width * NODE_PADDING, height * NODE_PADDING],
+    ['L', width -  NODE_PADDING, NODE_PADDING],
+    ['L', NODE_PADDING, height - NODE_PADDING],
+    ['L', width - NODE_PADDING, height - NODE_PADDING],
     ['Z'],
   ];
 

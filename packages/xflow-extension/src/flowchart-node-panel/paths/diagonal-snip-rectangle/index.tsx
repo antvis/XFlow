@@ -7,10 +7,10 @@ export const DiagonalSnipRectangleNodePath = (props) => {
 
   const path = [
     ['M', width / 8, NODE_PADDING],
-    ['L', width - 2, NODE_PADDING],
-    ['L', width - 2, height - height / 8],
-    ['L', width - width / 8, height],
-    ['L', NODE_PADDING, height],
+    ['L', width - NODE_PADDING, NODE_PADDING],
+    ['L', width - NODE_PADDING, height - height / 8],
+    ['L', width - width / 8, height - NODE_PADDING],
+    ['L', NODE_PADDING, height - NODE_PADDING],
     ['L', NODE_PADDING, height / 8],
     ['Z'],
   ];

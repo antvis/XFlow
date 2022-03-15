@@ -215,10 +215,6 @@ export const NODEPOOL = [
     type: 'advanced',
   },
   {
-    name: 'FiveSides',
-    type: 'advanced',
-  },
-  {
     name: 'Hexagon',
     type: 'advanced',
   },
