@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "xflow-docs",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "description": "xflow-docs",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

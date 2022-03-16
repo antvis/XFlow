@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.39
+
+### Patch Changes
+
+- 94bc5e8a: fix: graph render command order issue
+
 ## 1.0.38
 
 ### Patch Changes
