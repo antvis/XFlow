@@ -155,6 +155,20 @@ export class GraphRenderCommand implements ICommand {
       updateEdges,
     } = this.graphDataDiff(x6Graph, graphData, isNodeEqual, isEdgeEqual)
 
+    /** 更新节点/边 */
+    for (const updateNode of updateNodes) {
+      const nodeData = updateNode?.getData()
+      await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
+        nodeConfig: nodeData,
+      })
+    }
+    for (const updateEdge of updateEdges) {
+      const edgeData = updateEdge?.getData()
+      await commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
+        edgeConfig: edgeData,
+      })
+    }
+
     /** 新增节点/边 */
     for (const nodeConfig of addNodeConfigs) {
       await commandService.executeCommand<NsNodeCmd.AddNode.IArgs>(
@@ -208,20 +222,6 @@ export class GraphRenderCommand implements ICommand {
     for (const removeEdge of removeEdges) {
       const edgeData = removeEdge?.getData()
       await commandService.executeCommand(XFlowEdgeCommands.DEL_EDGE.id, { edgeConfig: edgeData })
-    }
-
-    /** 更新节点/边 */
-    for (const updateNode of updateNodes) {
-      const nodeData = updateNode?.getData()
-      await commandService.executeCommand(XFlowNodeCommands.UPDATE_NODE.id, {
-        nodeConfig: nodeData,
-      })
-    }
-    for (const updateEdge of updateEdges) {
-      const edgeData = updateEdge?.getData()
-      await commandService.executeCommand(XFlowEdgeCommands.UPDATE_EDGE.id, {
-        edgeConfig: edgeData,
-      })
     }
 
     if (x6Graph?.isFrozen()) {
