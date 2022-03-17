@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.40
+
+### Patch Changes
+
+- 82f1c2b9: chore: fix wrong release version
+
 ## 1.0.39
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @antv/xflow
 
+## 1.0.40
+
+### Patch Changes
+
+- 82f1c2b9: chore: fix wrong release version
+- Updated dependencies [82f1c2b9]
+  - @antv/xflow-core@1.0.40
+  - @antv/xflow-extension@1.0.40
+  - @antv/xflow-hook@1.0.40
+
 ## 1.0.39
 
 ### Patch Changes
