@@ -1,5 +1,17 @@
 # @antv/xflow-core
 
+## 2.0.0
+
+### Major Changes
+
+- c5578bb0: fix updateEdge when label is a own-property
+
+### Patch Changes
+
+- 94bc5e8a: fix: graph render command order issue
+- Updated dependencies [94bc5e8a]
+  - @antv/xflow-hook@1.0.39
+
 ## 1.0.38
 
 ### Patch Changes
