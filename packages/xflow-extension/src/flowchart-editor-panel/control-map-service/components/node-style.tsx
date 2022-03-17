@@ -77,7 +77,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
             onNodeConfigChange('stroke', value)
           }}
         />
-        <div className={`${PREFIX}-edge-stroke-style`}>
+        <div className={`${PREFIX}-edge-editor-style`}>
           <SelectField
             label="线形"
             width={69}
@@ -106,7 +106,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
             }}
           />
         </div>
-        <div className={`${PREFIX}-node-gradient-style`}>
+        <div className={`${PREFIX}-node-editor-style`}>
           <Checkbox
             style={{ color: 'rgba(0, 0, 0, 0.45)' }}
             checked={nodeConfig.isGradient}

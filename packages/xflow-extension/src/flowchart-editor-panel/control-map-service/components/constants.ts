@@ -12,6 +12,10 @@ export const DefaultEdgeConfig = {
       fontSize: 12,
       horizontalAlign: 'middle',
       textVerticalAnchor: 'middle',
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      textDecoration: '',
+      letterSpacing:0
     },
   },
 }
@@ -19,7 +23,7 @@ export const DefaultEdgeConfig = {
 export const ArrowConfig = {
   width: 12,
   height: 8,
-  name: 'block',
+  name: 'diamond',
 }
 
 export const DisableArrowConfig = {

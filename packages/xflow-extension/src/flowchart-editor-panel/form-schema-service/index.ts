@@ -57,15 +57,31 @@ export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = asy
   const edgeSchema: NsJsonSchemaForm.ISchema = {
     tabs: [
       {
-        name: '设置',
+        name: '样式',
         groups: [
           {
             name: 'groupName',
             controls: [
               {
-                label: '边',
+                label: '边样式',
                 name: 'edge-service',
                 shape: 'edge-service',
+                placeholder: '边名称',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: '文本',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '边文本',
+                name: 'edge-text',
+                shape: 'edge-text',
                 placeholder: '边名称',
               },
             ],
