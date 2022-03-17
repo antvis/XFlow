@@ -38,7 +38,7 @@ export const ToolbarItem: React.FC<IProps> = props => {
   }
   if (ToolbarItemWrap) {
     return (
-      <ToolbarItemWrap {...item} onClick={onItemClick}>
+      <ToolbarItemWrap commandService={app.commandService} modelService={app.modelService} {...item} onClick={onItemClick}>
         <Toolbar.Item
           {...item}
           icon={icon}

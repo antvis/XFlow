@@ -53,6 +53,9 @@ export interface IToolbarContribution {
 export interface ICustomRenderProps extends Omit<IToolbarItemOptions, 'onClick'> {
   /** call IToolbarItemOptions.onClick with args */
   onClick: () => void
+  commandService: IGraphCommandService
+  modelService: IModelService
+  
 }
 /** 描述toolbar的一个按钮 */
 export interface IToolbarItemOptions
