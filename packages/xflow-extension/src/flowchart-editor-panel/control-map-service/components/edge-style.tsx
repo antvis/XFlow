@@ -16,7 +16,7 @@ export interface IConfig {
       strokeWidth?: number
       sourceMarker?: MarkerCfg
       targetMarker?: MarkerCfg
-      strokeDasharray?: number[]
+      strokeDasharray?: string
       strokeOpacity?: number
     }
   }
@@ -61,7 +61,7 @@ const EdgeComponent = props => {
   const getSrokeDashValue = () => {
     const { attrs = {} } = edgeConfig
     const { line = {} } = attrs
-    return line.strokeDasharray ? 'dash' : 'solid'
+    return line.strokeDasharray === '5 5' ? 'dash' : 'solid'
   }
 
   const onEdgeConfigChange = (
@@ -145,7 +145,7 @@ const EdgeComponent = props => {
                 value: 'solid',
               },
               {
-                label: <DottedLine/>,
+                label: <DottedLine />,
                 value: 'dash',
               },
             ]}
@@ -156,7 +156,7 @@ const EdgeComponent = props => {
         </div>
         <div className={`${PREFIX}-edge-editor-style`}>
           <InputNumberFiled
-            label='线宽'
+            label="线宽"
             value={getAttrs('strokeWidth')}
             min={1}
             width={68}
@@ -174,7 +174,7 @@ const EdgeComponent = props => {
         />
         <div className={`${PREFIX}-edge-editor-style`}>
           <InputNumberFiled
-            label='透明度'
+            label="透明度"
             value={getAttrs('strokeOpacity')}
             min={0}
             max={1}

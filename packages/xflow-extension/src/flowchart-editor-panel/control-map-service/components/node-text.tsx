@@ -169,6 +169,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <div className={`${PREFIX}-node-editor-style`}>
           <Checkbox
             style={{ color: '#888' }}
+            checked={nodeConfig.showTextBgColor}
             onChange={e => {
               onNodeConfigChange('showTextBgColor', e.target.checked)
             }}
@@ -187,6 +188,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <div className={`${PREFIX}-node-editor-style`}>
         <Checkbox
             style={{ color: '#888' }}
+            checked={nodeConfig.showTextBdColor}
             onChange={e => {
               onNodeConfigChange('showTextBdColor', e.target.checked)
             }}
