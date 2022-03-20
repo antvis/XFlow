@@ -46,7 +46,7 @@ export const FlowchartFormWrapper: React.FC<
     })
   }
 
-  const updateEdge = async (value: object, type: 'text' | 'line' = 'line', key?: string) => {
+  const updateEdge = async (value: object, type: 'text' | 'line' | 'rect' = 'line', key?: string) => {
     const selectEdges = await getSelectEdges()
     selectEdges.forEach(async (edge: Edge) => {
       const currentEdgeData = edge.data

@@ -54,8 +54,6 @@ const EdgeComponent = props => {
     return attrs[type]?.[key]
   }
 
-  console.log(getAttrs('fillOpacity', 'rect'), '@@@')
-
   const onEdgeConfigChange = (
     key: string,
     value: number | string | object,
