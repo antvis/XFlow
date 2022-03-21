@@ -12,4 +12,10 @@ export const defaultControlMapService = controlMap => {
   controlMap.set('canvas-service', CanvasService)
   return controlMap
 }
-export { EditorPanels, NodeService, EdgeService, GroupService, CanvasService }
+export { EditorPanels }
+export const FlowchartService = {
+  NodeService,
+  EdgeService,
+  GroupService,
+  CanvasService,
+}
