@@ -1,5 +1,9 @@
-import type { IAppLoad ,
-  NsGraphCmd
+import type {
+  IAppLoad,
+  NsGraphCmd,
+  IGraphCommandService,
+  IModelService,
+  IToolbarOptions,
 } from '@antv/xflow'
 import React, { useRef, useEffect } from 'react'
 /** 交互组件 */
@@ -48,16 +52,46 @@ import { DndNode } from './react-node/dnd-node'
 import './index.less'
 
 import { Modal } from 'antd'
-import { ClearOutlined } from '@ant-design/icons'
+import { ClearOutlined, CopyOutlined, SnippetsOutlined } from '@ant-design/icons'
 
 export interface IProps {
   meta: { flowId: string }
 }
 
-export const customToolbar = props => {
-  const {commandService, modelService, config} = props
-  console.log(commandService, modelService, config, '@')
-  return <div>我是自定义的 FlowchartToolbar</div>
+interface ICustomToolbar {
+  commandService: IGraphCommandService
+  modelService: IModelService
+  config: IToolbarOptions
+}
+
+export const customToolbar: React.FC<ICustomToolbar> = props => {
+  const { commandService, modelService, config } = props
+  return (
+    <div style={{
+      height:'100%',
+      paddingLeft: '4px',
+      display: 'flex',
+      gridGap: '4px',
+      alignItems: 'center'
+    }}>
+      <CopyOutlined
+        onClick={() => {
+          commandService.executeCommand<NsGraphCmd.GraphCopySelection.IArgs>(
+            XFlowGraphCommands.GRAPH_COPY.id,
+            {},
+          )
+        }}
+      />
+      <SnippetsOutlined
+        onClick={() => {
+          commandService.executeCommand<NsGraphCmd.GraphPasteSelection.IArgs>(
+            XFlowGraphCommands.GRAPH_PASTE.id,
+            {},
+          )
+        }}
+      />
+    </div>
+  )
 }
 
 export const Demo: React.FC<IProps> = props => {
@@ -135,12 +169,13 @@ export const Demo: React.FC<IProps> = props => {
         className="xflow-workspace-toolbar-top"
         layout="horizontal"
         position={{ top: 0, left: 0, right: 0, bottom: 0 }}
-        /* getCustomRenderComponent={(modelService, commandService) => {
+        getCustomRenderComponent={(modelService, commandService) => {
           console.log(modelService, commandService, '@')
           return customToolbar
-        }} */
-        /* registerToolbarItems={[
-          {
+        }}
+        registerToolbarItems={
+          [
+            /* {
             tooltip: '清空画布',
             icon: <ClearOutlined />,
             id: 'clearGraph',
@@ -159,8 +194,9 @@ export const Demo: React.FC<IProps> = props => {
                 },
               })
             },
-          },
-        ]} */
+          }, */
+          ]
+        }
       />
       <FlowchartCanvas position={{ top: 40, left: 0, right: 0, bottom: 0 }}>
         <CanvasScaleToolbar

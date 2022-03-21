@@ -28,6 +28,7 @@ import {
   SnippetsOutlined,
   ClearOutlined,
 } from '@ant-design/icons'
+import React from 'react'
 
 /** 注册icon 类型 */
 export const registerIcon = () => {
@@ -139,6 +140,15 @@ export namespace NSToolbarConfig {
       iconName: 'VerticalAlignTopOutlined',
       id: XFlowNodeCommands.FRONT_NODE.id,
       isEnabled: state.isNodeSelected,
+      render: (props) => {
+        console.log(props, '@@@')
+        const {commandService} = props;
+        commandService.executeCommand<NsGraphCmd.GraphPasteSelection.IArgs>(
+          XFlowGraphCommands.GRAPH_PASTE.id,
+          {},
+        )
+        return <div/>
+      },
       onClick: async ({ commandService, modelService }) => {
         const node = await MODELS.SELECTED_NODE.useValue(modelService)
         commandService.executeCommand<NsNodeCmd.FrontNode.IArgs>(XFlowNodeCommands.FRONT_NODE.id, {

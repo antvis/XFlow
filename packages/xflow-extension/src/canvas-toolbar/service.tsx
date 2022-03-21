@@ -1,11 +1,11 @@
-import type { IToolbarOptions } from '@antv/xflow-core'
+import type { IToolbarOptions, IGraphCommandService, IModelService } from '@antv/xflow-core'
 import { useXFlowApp, createComponentModel, DisposableCollection } from '@antv/xflow-core'
 import React from 'react'
 import type { IToolbarProps } from './interface'
 
 namespace NsToolbarModel {
   export interface IState extends IToolbarOptions {
-    customRender?: React.FC<{ config: IToolbarOptions }>
+    customRender?: React.FC<{ config: IToolbarOptions, commandService: IGraphCommandService, modelService: IModelService}>
   }
 }
 
