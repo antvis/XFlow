@@ -5,6 +5,7 @@ import type { IHooks } from '../../hooks/interface'
 import { inject, injectable, postConstruct } from 'mana-syringe'
 import { XFlowGraphCommands } from '../constant'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
+import type { IGraphConfig } from '../../xflow-main'
 
 type ICommand = ICommandHandler<
   NsGraphSaveData.IArgs,
@@ -26,7 +27,12 @@ export namespace NsGraphSaveData {
   export interface IResult {}
   /** api service 类型 */
   export interface ISaveGraphDataService {
-    (graphMeta: NsGraph.IGraphMeta, graphData: NsGraph.IGraphData): Promise<IResult | void>
+    (
+      graphMeta: NsGraph.IGraphMeta,
+      graphData: NsGraph.IGraphData & {
+        graphConfig: IGraphConfig
+      },
+    ): Promise<IResult | void>
   }
   /** hooks 类型 */
   export interface ICmdHooks extends IHooks {
@@ -65,6 +71,7 @@ export class GraphSaveDataCommand implements ICommand {
         const x6Graph = await ctx.getX6Graph()
         const x6Nodes = x6Graph.getNodes()
         const x6Edges = x6Graph.getEdges()
+        const graphConfig =await ctx.getGraphConfig()
 
         const nodes = x6Nodes.map(node => {
           const data = node.getData<NsGraph.INodeConfig>()
@@ -94,7 +101,7 @@ export class GraphSaveDataCommand implements ICommand {
           return model
         })
 
-        const graphData = { nodes, edges }
+        const graphData = { nodes, edges, graphConfig }
         const graphMeta = await this.ctx.getGraphMeta()
         /** 执行 service */
         if (saveGraphDataService) {
