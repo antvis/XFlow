@@ -1,11 +1,11 @@
-import type { IToolbarOptions } from '@antv/xflow-core'
+import type { IToolbarOptions, IGraphCommandService, IModelService } from '@antv/xflow-core'
 import { useXFlowApp, createComponentModel, DisposableCollection } from '@antv/xflow-core'
 import React from 'react'
 import type { IToolbarProps } from './interface'
 
 namespace NsToolbarModel {
   export interface IState extends IToolbarOptions {
-    customRender?: React.FC<{ config: IToolbarOptions }>
+    customRender?: React.FC<{ config: IToolbarOptions, commandService: IGraphCommandService, modelService: IModelService}>
   }
 }
 
@@ -40,7 +40,7 @@ export const useToolbarModel = (props: IToolbarProps) => {
             const updateCustomRender = customRender => {
               self.setValue(m => (m.customRender = customRender))
             }
-            await toolbarCustomRender(app.modelService, updateCustomRender)
+            await toolbarCustomRender(app.modelService, updateCustomRender, app.commandService)
           }
           return toDispose
         },
@@ -53,5 +53,12 @@ export const useToolbarModel = (props: IToolbarProps) => {
     /* eslint-disable-next-line  */
   }, [])
 
-  return { isModelReady, state, setState, toolbarModel }
+  return {
+    isModelReady,
+    state,
+    setState,
+    toolbarModel,
+    commandService: app.commandService,
+    modelService: app.modelService,
+  }
 }

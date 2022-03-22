@@ -1,6 +1,7 @@
 import type {
   IPosition,
   IModelService,
+  IGraphCommandService,
   IToolbarModel,
   IToolbarLayout,
   DisposableCollection,
@@ -35,9 +36,12 @@ export interface IToolbarCustomRenderService {
   (
     modelService: IModelService,
     updateComponent: (fc: React.FC<IToolbarCustomRenderProps>) => void,
+    commandService: IGraphCommandService,
   ): Promise<React.FC<IToolbarCustomRenderProps> | undefined>
 }
 
 export interface IToolbarCustomRenderProps {
   config: IToolbarOptions
+  commandService: IGraphCommandService
+  modelService: IModelService
 }
