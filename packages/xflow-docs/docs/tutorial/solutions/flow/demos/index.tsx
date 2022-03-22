@@ -1,9 +1,5 @@
 import type {
   IAppLoad,
-  NsGraphCmd,
-  IGraphCommandService,
-  IModelService,
-  IToolbarOptions,
 } from '@antv/xflow'
 import React, { useRef, useEffect } from 'react'
 /** 交互组件 */
@@ -32,66 +28,21 @@ import {
   CanvasSnapline,
   /** 通用组件：节点连接桩 */
   CanvasNodePortTooltip,
-  //CanvasToolbar,
-  XFlowGraphCommands,
 } from '@antv/xflow'
 import type { Graph } from '@antv/x6'
 /** 配置Command*/
 import { useCmdConfig } from './config-cmd'
 /** 配置Menu */
 import { useMenuConfig } from './config-menu'
-/** 配置Toolbar */
-//import { useToolbarConfig } from './config-toolbar'
 /** 配置快捷键 */
 import { useKeybindingConfig } from './config-keybinding'
 /** 配置Dnd组件面板 */
 import { DndNode } from './react-node/dnd-node'
 
-//import {FlowchartToolbar} from '@antv/xflow-extension'
-
 import './index.less'
-
-import { Modal } from 'antd'
-import { ClearOutlined, CopyOutlined, SnippetsOutlined } from '@ant-design/icons'
 
 export interface IProps {
   meta: { flowId: string }
-}
-
-interface ICustomToolbar {
-  commandService: IGraphCommandService
-  modelService: IModelService
-  config: IToolbarOptions
-}
-
-export const customToolbar: React.FC<ICustomToolbar> = props => {
-  const { commandService, modelService, config } = props
-  return (
-    <div style={{
-      height:'100%',
-      paddingLeft: '4px',
-      display: 'flex',
-      gridGap: '4px',
-      alignItems: 'center'
-    }}>
-      <CopyOutlined
-        onClick={() => {
-          commandService.executeCommand<NsGraphCmd.GraphCopySelection.IArgs>(
-            XFlowGraphCommands.GRAPH_COPY.id,
-            {},
-          )
-        }}
-      />
-      <SnippetsOutlined
-        onClick={() => {
-          commandService.executeCommand<NsGraphCmd.GraphPasteSelection.IArgs>(
-            XFlowGraphCommands.GRAPH_PASTE.id,
-            {},
-          )
-        }}
-      />
-    </div>
-  )
 }
 
 export const Demo: React.FC<IProps> = props => {
@@ -159,44 +110,10 @@ export const Demo: React.FC<IProps> = props => {
         ]}
         position={{ width: 162, top: 40, bottom: 0, left: 0 }}
       />
-      {/* <CanvasToolbar
-        className="xflow-workspace-toolbar-top"
-        layout="horizontal"
-        config={toolbarConfig}
-        position={{ top: 0, left: 0, right: 0, bottom: 0 }}
-      /> */}
       <FlowchartToolbar
         className="xflow-workspace-toolbar-top"
         layout="horizontal"
         position={{ top: 0, left: 0, right: 0, bottom: 0 }}
-        getCustomRenderComponent={(modelService, commandService) => {
-          console.log(modelService, commandService, '@')
-          return customToolbar
-        }}
-        registerToolbarItems={
-          [
-            /* {
-            tooltip: '清空画布',
-            icon: <ClearOutlined />,
-            id: 'clearGraph',
-            onClick: async ({ commandService }) => {
-              Modal.confirm({
-                content: '是否确定清空画布?',
-                okText: '确定',
-                cancelText: '取消',
-                onOk: () => {
-                  commandService.executeCommand<NsGraphCmd.GraphRender.IArgs>(
-                    XFlowGraphCommands.GRAPH_RENDER.id,
-                    {
-                      graphData: { nodes: [], edges: [] },
-                    },
-                  )
-                },
-              })
-            },
-          }, */
-          ]
-        }
       />
       <FlowchartCanvas position={{ top: 40, left: 0, right: 0, bottom: 0 }}>
         <CanvasScaleToolbar
