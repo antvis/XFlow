@@ -1,5 +1,14 @@
 # @antv/xflow-extension
 
+## 1.0.41
+
+### Patch Changes
+
+- 354b4135: 'add mode for flowchart'
+- Updated dependencies [354b4135]
+  - @antv/xflow-core@1.0.41
+  - @antv/xflow-hook@1.0.41
+
 ## 1.0.40
 
 ### Patch Changes
