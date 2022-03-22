@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Tree, Empty, Popover } from 'antd'
 import { FolderFilled, FolderOpenFilled } from '@ant-design/icons'
 import type { Graph } from '@antv/x6'
@@ -74,7 +74,13 @@ interface ITitleProps {
 }
 
 export const NodeTitle = (props: ITitleProps) => {
-  const [isVisible, setVisible] = React.useState(false)
+  const [isVisible, setVisible] = useState(false)
+  const [appContainer, setAppContainer] = useState<HTMLElement>()
+  const { getGraphConfig } = useXFlowApp()
+  getGraphConfig().then(graphConfig => {
+    setAppContainer(graphConfig.appContainer)
+  })
+
   const {
     prefixClz,
     graphConfig,
@@ -95,6 +101,7 @@ export const NodeTitle = (props: ITitleProps) => {
           onVisibleChange={val => {
             setVisible(val)
           }}
+          getPopupContainer={() => appContainer || document.body}
         >
           <div
             className={`${prefixClz}-node-wrapper`}
@@ -185,7 +192,9 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
         return
       }
       const renderKey = graphConfig.nodeTypeParser(nodeConfig)
-      const reactComponent = nodeConfig.renderComponent ? nodeConfig.renderComponent : graphConfig.nodeRender.get(renderKey)
+      const reactComponent = nodeConfig.renderComponent
+        ? nodeConfig.renderComponent
+        : graphConfig.nodeRender.get(renderKey)
       const wrappedComponent = getNodeReactComponent(reactComponent, commandService, modelService)
       const nodeData = {
         data: nodeConfig,
