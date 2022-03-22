@@ -65,7 +65,7 @@ const XFlowEdge = Shape.Edge.registry.register(
 )
 
 export const useGraphConfig = createGraphConfig((config, proxy) => {
-  const { config: canvasConfig = {}, useConfig } = proxy.getValue()
+  const { config: canvasConfig = {}, useConfig, model = 'edit' } = proxy.getValue()
   config.setEdgeTypeParser(edge => edge?.renderKey as string)
   /** 这里比较黑，props 共享*/
   setProps({
@@ -204,7 +204,7 @@ export const useGraphConfig = createGraphConfig((config, proxy) => {
     {
       eventName: 'node:selected',
       callback: () => {
-        changePortsVisible(false)
+        model === 'edit' && changePortsVisible(false)
       },
     } as IEvent<'node:selected'>,
     {
@@ -222,7 +222,7 @@ export const useGraphConfig = createGraphConfig((config, proxy) => {
     {
       eventName: 'node:mouseenter',
       callback: e => {
-        changePortsVisible(true, e)
+        model === 'edit' && changePortsVisible(true, e)
       },
     } as IEvent<'node:mouseenter'>,
     {
