@@ -91,12 +91,53 @@ export const defaultFormSchemaService: NsJsonSchemaForm.IFormSchemaService = asy
     ],
   }
 
+  const nodeEdgeSchema: NsJsonSchemaForm.ISchema = {
+    tabs: [
+      {
+        name: '样式',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '',
+                name: 'node-edge-style',
+                shape: 'node-edge-style',
+                placeholder: '',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: '文本',
+        groups: [
+          {
+            name: 'groupName',
+            controls: [
+              {
+                label: '',
+                name: 'node-edge-text',
+                shape: 'node-edge-text',
+                placeholder: '',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  }
+
   if (targetType === 'node') {
     return nodeSchema
   }
 
   if (targetType === 'edge') {
     return edgeSchema
+  }
+
+  if (targetType === 'node-edge') {
+    return nodeEdgeSchema;
   }
 
   return {

@@ -12,7 +12,7 @@ export interface IPanelProps {
   footerPosition: IPosition
 }
 /** 画布选中会触发Form更新的画布元素类型 */
-export type TargetType = 'node' | 'edge' | 'canvas' | 'mix'
+export type TargetType = 'node' | 'edge' | 'canvas' | 'node-edge'
 /** 画布元素的数据 */
 export type TargetData = NsGraph.INodeConfig | NsGraph.IEdgeConfig | NsGraph.IGroupConfig | null
 

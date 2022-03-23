@@ -26,7 +26,7 @@ export const DefaultNodeConfig = {
   fontSize: 14,
   fontFamily: 'microsoftYahei',
   // 字体
-  strokeDash: 'solid',
+  strokeDasharray: '0 0',
   // 线框
   strokeWidth: 1,
   // 字体透明度

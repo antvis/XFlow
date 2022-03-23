@@ -13,6 +13,7 @@ export interface IConfig {
   label?: string
   attrs?: {
     line?: {
+      stroke?: string
       strokeWidth?: number
       sourceMarker?: MarkerCfg
       targetMarker?: MarkerCfg

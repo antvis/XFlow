@@ -51,7 +51,7 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
                     strokeOpacity: 1,
                   },
                   text: {
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: 'normal',
                     fontStyle: 'normal',
                     textDecoration: '',
