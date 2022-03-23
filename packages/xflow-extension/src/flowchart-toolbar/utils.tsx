@@ -249,9 +249,7 @@ export namespace NSToolbarConfig {
           XFlowGraphCommands.SAVE_GRAPH_DATA.id,
           {
             saveGraphDataService:async (meta, graphData) => {
-              const visibleNodeTypesModel =await modelService.awaitModel('visibleNodeTypes')
-              const visibleNodeTypes = visibleNodeTypesModel.getValue()
-              console.log(graphData, visibleNodeTypes)
+              console.log(graphData)
               return null
             },
           },

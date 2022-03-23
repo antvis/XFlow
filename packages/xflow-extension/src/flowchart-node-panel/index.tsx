@@ -28,9 +28,11 @@ export const NodePanelMain: React.FC<IProps> = props => {
     showHeader = true,
     showFooter = true,
     registerNode,
+    visibleNodeTypes: nodeTypes,
     ...rest
   } = props
   const [visibleNodeTypes, setVisibleNodeTypes] = useState<string[]>(() => {
+    if (nodeTypes) return nodeTypes;
     let initialState = BUILDIN_NODE_TYPES
     const set = new Set<string>()
     //加入自定义节点的类型

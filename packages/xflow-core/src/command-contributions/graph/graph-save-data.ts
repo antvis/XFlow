@@ -1,3 +1,4 @@
+import type { Graph as X6Graph } from '@antv/x6'
 import type { NsGraph } from '../../interface'
 import type { IContext, IArgsBase } from '../../command/interface'
 import type { HookHub } from '@antv/xflow-hook'
@@ -5,7 +6,6 @@ import type { IHooks } from '../../hooks/interface'
 import { inject, injectable, postConstruct } from 'mana-syringe'
 import { XFlowGraphCommands } from '../constant'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
-import type { IGraphConfig } from '../../xflow-main'
 
 type ICommand = ICommandHandler<
   NsGraphSaveData.IArgs,
@@ -30,8 +30,10 @@ export namespace NsGraphSaveData {
     (
       graphMeta: NsGraph.IGraphMeta,
       graphData: NsGraph.IGraphData & {
-        graphConfig: IGraphConfig
-      },
+        x6Options: X6Graph.Options
+        /** 流程图专属 */ 
+        visibleNodeTypes?: string[]
+      }, 
     ): Promise<IResult | void>
   }
   /** hooks 类型 */
@@ -71,7 +73,9 @@ export class GraphSaveDataCommand implements ICommand {
         const x6Graph = await ctx.getX6Graph()
         const x6Nodes = x6Graph.getNodes()
         const x6Edges = x6Graph.getEdges()
-        const graphConfig =await ctx.getGraphConfig()
+        const graphConfig = await ctx.getGraphConfig()
+        const x6Options = graphConfig.x6Options
+        const modelService = ctx.getModelService();
 
         const nodes = x6Nodes.map(node => {
           const data = node.getData<NsGraph.INodeConfig>()
@@ -101,7 +105,16 @@ export class GraphSaveDataCommand implements ICommand {
           return model
         })
 
-        const graphData = { nodes, edges, graphConfig }
+        //console.log(112222)
+        const visibleNodeTypesModel = modelService.findDeferredModel('visibleNodeTypes')
+        let graphData;
+        if (visibleNodeTypesModel) {
+          const visibleNodeTypes = await (await visibleNodeTypesModel?.promise).getValue()
+          graphData = { nodes, edges, x6Options, visibleNodeTypes }
+        } else {
+          graphData = { nodes, edges, x6Options }
+        }
+
         const graphMeta = await this.ctx.getGraphMeta()
         /** 执行 service */
         if (saveGraphDataService) {
