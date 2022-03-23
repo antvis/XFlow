@@ -80,7 +80,7 @@ export const Demo: React.FC<IProps> = props => {
       <FlowchartNodePanel
         registerNode={[
           {
-            title: '测试1',
+            title: '自定义节点1',
             type: 'test1',
             nodes: [
               {
@@ -88,13 +88,13 @@ export const Demo: React.FC<IProps> = props => {
                 popover: () => <div>自定义节点</div>,
                 name: 'custom-node-indicator',
                 width: 100,
-                height: 40,
+                height: 80,
                 label: '自定义节点',
               },
             ],
           },
           {
-            title: '测试2',
+            title: '自定义节点2',
             type: 'test2',
             nodes: [
               {
@@ -102,7 +102,7 @@ export const Demo: React.FC<IProps> = props => {
                 popover: () => <div>自定义节点</div>,
                 name: 'custom-node-indicator',
                 width: 100,
-                height: 40,
+                height: 80,
                 label: '自定义节点',
               },
             ],
