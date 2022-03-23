@@ -3,18 +3,15 @@ import { Checkbox } from 'antd'
 import { DefaultNodeConfig } from '../../../flowchart-node-panel'
 import { FlowchartFormWrapper } from '../../form-wrapper'
 import { ColorPicker, InputNumberFiled, SelectField } from './fields'
-import { PREFIX, canEditorRounded } from './constants'
+import { PREFIX, canEditorRounded, STROKE_MAP } from './constants'
 import { SolidLine, DottedLine } from './edit-icon'
 import type { IControlProps } from './interface'
 import './style.less'
 interface INodeStyleConfig {
-  width?: number
-  height?: number
-  label?: string
   stroke?: string
   fill?: string
   strokeWidth?: number
-  strokeDash?: string
+  strokeDasharray?: string
   fillOpacity?: number
   rounded?: boolean
   isGradient?: boolean
@@ -32,6 +29,10 @@ const NodeComponent: React.FC<IControlProps> = props => {
     ...DefaultNodeConfig,
     ...config,
   })
+
+  const getSrokeDashValue = () => {
+    return nodeConfig.strokeDasharray === '5 5' ? 'dash' : 'solid'
+  }
 
   const onNodeConfigChange = (key: string, value: number | string | boolean) => {
     setNodeConfig({
@@ -81,7 +82,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
           <SelectField
             label="线形"
             width={69}
-            value={nodeConfig.strokeDash}
+            value={getSrokeDashValue()}
             options={[
               {
                 label: <SolidLine />,
@@ -93,7 +94,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
               },
             ]}
             onChange={value => {
-              onNodeConfigChange('strokeDash', value)
+              onNodeConfigChange('strokeDasharray', STROKE_MAP[value])
             }}
           />
           <InputNumberFiled

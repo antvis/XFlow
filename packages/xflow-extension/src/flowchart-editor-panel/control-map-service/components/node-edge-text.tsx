@@ -19,14 +19,13 @@ import {
   InputNumberFiled,
   InputOpacity,
   InputFontSpacing,
-  InputFontPosition,
   SelectField,
 } from './fields'
 import { PREFIX } from './constants'
 import type { IControlProps } from './interface'
 import './style.less'
 
-export interface INodeTextConfig {
+export interface ITextConfig {
   label?: string
   fontSize?: number
   fontFill?: string
@@ -48,18 +47,18 @@ export interface INodeTextConfig {
   fontFamily?: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu'
 }
 
-const NodeComponent: React.FC<IControlProps> = props => {
+const NodeEdgeComponent: React.FC<IControlProps> = props => {
   const { config, plugin } = props
-  const { updateNode } = plugin
+  const { updateNode, updateEdge } = plugin
 
-  const [nodeConfig, setNodeConfig] = useState<INodeTextConfig>({
+  const [nodeEdgeConfig, setNodeEdgeConfig] = useState<ITextConfig>({
     ...DefaultNodeConfig,
     ...config,
   })
 
-  const onNodeConfigChange = (key: string, value: number | string | boolean) => {
-    setNodeConfig({
-      ...nodeConfig,
+  const onConfigChange = (key: string, value: number | string | boolean) => {
+    setNodeEdgeConfig({
+      ...nodeEdgeConfig,
       [key]: value,
     })
     updateNode({
@@ -68,22 +67,27 @@ const NodeComponent: React.FC<IControlProps> = props => {
   }
 
   useEffect(() => {
-    setNodeConfig({
+    setNodeEdgeConfig({
       ...DefaultNodeConfig,
       ...config,
     })
   }, [config])
-
-  
 
   return (
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
         <InputFiled
           label="标题"
-          value={nodeConfig.label}
+          value={nodeEdgeConfig.label}
           onChange={value => {
-            onNodeConfigChange('label', value)
+            onConfigChange('label', value)
+            updateEdge(
+              {
+                label: value,
+              },
+              'line',
+              '',
+            )
           }}
         />
       </div>
@@ -91,7 +95,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <SelectField
           label="字体"
           width={150}
-          value={nodeConfig.fontFamily}
+          value={nodeEdgeConfig.fontFamily}
           options={[
             {
               label: '微软雅黑',
@@ -120,7 +124,14 @@ const NodeComponent: React.FC<IControlProps> = props => {
             },
           ]}
           onChange={value => {
-            onNodeConfigChange('fontFamily', value)
+            onConfigChange('fontFamily', value)
+            updateEdge(
+              {
+                fontFamily: value,
+              },
+              'text',
+              '',
+            )
           }}
         />
       </div>
@@ -128,77 +139,105 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <div className={`${PREFIX}-node-editor-style`}>
           <InputNumberFiled
             label="字号"
-            value={nodeConfig.fontSize}
+            value={nodeEdgeConfig.fontSize}
             width={50}
             onChange={value => {
-              onNodeConfigChange('fontSize', value)
+              onConfigChange('fontSize', value)
+              updateEdge(
+                {
+                  fontSize: value,
+                },
+                'text',
+                '',
+              )
             }}
           />
           <InputFontSpacing
             label="间距"
-            value={nodeConfig.letterSpacing}
+            value={nodeEdgeConfig.letterSpacing}
             min={0}
             step={1}
             width={50}
             onChange={value => {
-              onNodeConfigChange('letterSpacing', value)
+              onConfigChange('letterSpacing', value)
+              updateEdge(
+                {
+                  letterSpacing: value,
+                },
+                'text',
+                '',
+              )
             }}
           />
         </div>
         <div className={`${PREFIX}-node-editor-style`}>
           <ColorPicker
             label="颜色"
-            value={nodeConfig.fontFill}
+            value={nodeEdgeConfig.fontFill}
             onChange={(value: string) => {
-              onNodeConfigChange('fontFill', value)
+              onConfigChange('fontFill', value)
+              updateEdge(
+                {
+                  fill: value,
+                },
+                'text',
+                '',
+              )
             }}
           />
           <InputOpacity
             label="透明度"
-            value={nodeConfig.textOpacity}
+            value={nodeEdgeConfig.textOpacity}
             max={1}
             min={0}
             step={0.1}
             width={65}
             onChange={value => {
-              onNodeConfigChange('textOpacity', value)
+              onConfigChange('textOpacity', value)
+              updateEdge(
+                {
+                  fillOpacity: value,
+                },
+                'text',
+                '',
+              )
             }}
           />
         </div>
         <div className={`${PREFIX}-node-editor-style`}>
           <Checkbox
             style={{ color: '#888' }}
-            checked={nodeConfig.showTextBgColor}
+            checked={nodeEdgeConfig.showTextBgColor}
             onChange={e => {
-              onNodeConfigChange('showTextBgColor', e.target.checked)
+              onConfigChange('showTextBgColor', e.target.checked)
             }}
           >
             字体背景
           </Checkbox>
-          {nodeConfig.showTextBgColor && (
+          {nodeEdgeConfig.showTextBgColor && (
             <ColorPicker
-              value={nodeConfig.textBgColor}
+              value={nodeEdgeConfig.textBgColor}
               onChange={(value: string) => {
-                onNodeConfigChange('textBgColor', value)
+                onConfigChange('textBgColor', value)
               }}
             />
           )}
         </div>
         <div className={`${PREFIX}-node-editor-style`}>
-        <Checkbox
+          <Checkbox
             style={{ color: '#888' }}
-            checked={nodeConfig.showTextBdColor}
+            checked={nodeEdgeConfig.showTextBdColor}
             onChange={e => {
-              onNodeConfigChange('showTextBdColor', e.target.checked)
+              onConfigChange('showTextBdColor', e.target.checked)
             }}
           >
             字体边框
           </Checkbox>
-          {nodeConfig.showTextBdColor && (
+          {nodeEdgeConfig.showTextBdColor && (
             <ColorPicker
-              value={nodeConfig.textBdColor}
+              value={nodeEdgeConfig.textBdColor}
               onChange={(value: string) => {
-                onNodeConfigChange('textBdColor', value)
+                onConfigChange('textBdColor', value)
               }}
             />
           )}
@@ -206,111 +245,141 @@ const NodeComponent: React.FC<IControlProps> = props => {
         <div className={`${PREFIX}-icon-container`}>
           <BoldOutlined
             className={
-              nodeConfig.isBold ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+              nodeEdgeConfig.isBold
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('isBold', !nodeConfig.isBold)
+              const isBold = !nodeEdgeConfig.isBold
+              onConfigChange('isBold', isBold)
+              updateEdge(
+                {
+                  fontWeight: isBold ? 'bold' : 'normal',
+                },
+                'text',
+                '',
+              )
             }}
           />
           <ItalicOutlined
             className={
-              nodeConfig.isItalic ? `${PREFIX}-icon-select-style` : `${PREFIX}-icon-noselect-style`
+              nodeEdgeConfig.isItalic
+                ? `${PREFIX}-icon-select-style`
+                : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('isItalic', !nodeConfig.isItalic)
+              const isItalic = !nodeEdgeConfig.isItalic
+              onConfigChange('isItalic', isItalic)
+              updateEdge(
+                {
+                  fontStyle: isItalic ? 'italic' : 'normal',
+                },
+                'text',
+                '',
+              )
             }}
           />
           <UnderlineOutlined
             className={
-              nodeConfig.isUnderline
+              nodeEdgeConfig.isUnderline
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('isUnderline', !nodeConfig.isUnderline)
+              const isUnderline = !nodeEdgeConfig.isUnderline
+              onConfigChange('isUnderline', isUnderline)
+              updateEdge(
+                {
+                  textDecoration: isUnderline ? 'underline' : '',
+                },
+                'text',
+                '',
+              )
             }}
           />
-          <label style={{ color: '#888' }}>文本位置</label>
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <VerticalAlignTopOutlined
             className={
-              nodeConfig.verticalAlign === 'top'
+              nodeEdgeConfig.verticalAlign === 'top'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('verticalAlign', 'top')
+              onConfigChange('verticalAlign', 'top')
             }}
           />
           <VerticalAlignMiddleOutlined
             className={
-              nodeConfig.verticalAlign === 'middle'
+              nodeEdgeConfig.verticalAlign === 'middle'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('verticalAlign', 'middle')
+              onConfigChange('verticalAlign', 'middle')
             }}
           />
           <VerticalAlignBottomOutlined
             className={
-              nodeConfig.verticalAlign === 'bottom'
+              nodeEdgeConfig.verticalAlign === 'bottom'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('verticalAlign', 'bottom')
-            }}
-          />
-          <InputFontPosition
-            label="Y"
-            value={nodeConfig.dy}
-            step={1}
-            width={60}
-            onChange={value => {
-              onNodeConfigChange('dy', value)
+              onConfigChange('verticalAlign', 'bottom')
             }}
           />
         </div>
         <div className={`${PREFIX}-icon-container`}>
           <AlignLeftOutlined
             className={
-              nodeConfig.horizontalAlign === 'left'
+              nodeEdgeConfig.horizontalAlign === 'left'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('horizontalAlign', 'left')
+              onConfigChange('horizontalAlign', 'left')
+              updateEdge(
+                {
+                  textAnchor: 'end',
+                },
+                'text',
+                '',
+              )
             }}
           />
           <AlignCenterOutlined
             className={
-              nodeConfig.horizontalAlign === 'middle'
+              nodeEdgeConfig.horizontalAlign === 'middle'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('horizontalAlign', 'middle')
+              onConfigChange('horizontalAlign', 'middle')
+              updateEdge(
+                {
+                  textAnchor: 'middle',
+                },
+                'text',
+                '',
+              )
             }}
           />
           <AlignRightOutlined
             className={
-              nodeConfig.horizontalAlign === 'right'
+              nodeEdgeConfig.horizontalAlign === 'right'
                 ? `${PREFIX}-icon-select-style`
                 : `${PREFIX}-icon-noselect-style`
             }
             onClick={() => {
-              onNodeConfigChange('horizontalAlign', 'right')
-            }}
-          />
-          <InputFontPosition
-            label="X"
-            value={nodeConfig.dx}
-            step={1}
-            width={60}
-            onChange={value => {
-              onNodeConfigChange('dx', value)
+              onConfigChange('horizontalAlign', 'right')
+              updateEdge(
+                {
+                  textAnchor: 'start',
+                },
+                'text',
+                '',
+              )
             }}
           />
         </div>
@@ -319,10 +388,10 @@ const NodeComponent: React.FC<IControlProps> = props => {
   )
 }
 
-export const NodeText: React.FC<any> = props => {
+export const NodeEdgeText: React.FC<any> = props => {
   return (
     <FlowchartFormWrapper {...props}>
-      {(config, plugin) => <NodeComponent {...props} plugin={plugin} config={config} />}
+      {(config, plugin) => <NodeEdgeComponent {...props} plugin={plugin} config={config} />}
     </FlowchartFormWrapper>
   )
 }

@@ -51,7 +51,7 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
                     strokeOpacity: 1,
                   },
                   text: {
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: 'normal',
                     fontStyle: 'normal',
                     textDecoration: '',
@@ -64,6 +64,7 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
                     fill: '#fff',
                     fillOpacity: 1,
                     strokeOpacity: 1,
+                    strokeWidth: 2
                   }
                 },
                 data: { ...edgeConfig },
