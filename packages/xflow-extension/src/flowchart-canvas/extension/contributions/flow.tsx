@@ -64,6 +64,7 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
                     fill: '#fff',
                     fillOpacity: 1,
                     strokeOpacity: 1,
+                    strokeWidth: 2
                   }
                 },
                 data: { ...edgeConfig },

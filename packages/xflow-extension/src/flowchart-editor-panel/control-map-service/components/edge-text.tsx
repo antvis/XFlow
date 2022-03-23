@@ -22,6 +22,8 @@ export interface ITextConfig {
       fontStyle?: 'normal' | 'italic'
       textDecoration?: '' | 'underline'
       textAnchor?: 'start' | 'middle' | 'end'
+      letterSpacing: number
+      fillOpacity: number
     }
     // 文本背景框
     rect?: {
@@ -109,7 +111,7 @@ const EdgeComponent = props => {
             label="字号"
             min={10}
             width={68}
-            value={getAttrs('fontSize', 'text') || 12}
+            value={getAttrs('fontSize', 'text') || 14}
             onChange={value => {
               onEdgeConfigChange('fontSize', value, 'text')
             }}
