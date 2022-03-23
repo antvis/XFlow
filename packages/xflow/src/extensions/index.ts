@@ -79,4 +79,6 @@ export {
   FlowchartFormWrapper,
   IFlowchartFormPanelProps,
   IFlowchartFormWrapperProps,
+  EditorPanels,
+  FlowchartService,
 } from '@antv/xflow-extension'

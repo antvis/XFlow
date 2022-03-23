@@ -5,6 +5,7 @@ import { FormItemHeight } from '../constants'
 interface IProps {
   x?: number
   y?: number
+  label?: string
   onChange?: (key: string, value: number) => void
 }
 
@@ -22,11 +23,11 @@ export const Item = ({ value, onChangeItem, addonBefore }) => (
 )
 
 const Position: React.FC<IProps> = props => {
-  const { x, y, onChange } = props
+  const { label = '位置', x, y, onChange } = props
 
   return (
     <div className="group">
-      <label>位置</label>
+      <label>{label}</label>
       <div className="split">
         <Item
           addonBefore="X"
