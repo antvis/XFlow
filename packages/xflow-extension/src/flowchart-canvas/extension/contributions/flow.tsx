@@ -48,7 +48,23 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
                     },
                     strokeDasharray: '5 5',
                     strokeWidth: 1,
+                    strokeOpacity: 1,
                   },
+                  text: {
+                    fontSize: 12,
+                    fontWeight: 'normal',
+                    fontStyle: 'normal',
+                    textDecoration: '',
+                    letterSpacing: 0,
+                    fillOpacity: 1,
+                    textAnchor: 'middle',
+                  },
+                  rect: {
+                    stroke: '#fff',
+                    fill: '#fff',
+                    fillOpacity: 1,
+                    strokeOpacity: 1,
+                  }
                 },
                 data: { ...edgeConfig },
               },

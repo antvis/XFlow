@@ -4,16 +4,17 @@ import type {
   NsGroupCmd,
   NsGraphCmd,
   NsNodeCmd,
-} from '@antv/xflow'
+} from '@antv/xflow-core'
 import {
-  createToolbarConfig,
   uuidv4,
   XFlowGroupCommands,
   XFlowNodeCommands,
   XFlowGraphCommands,
-  IconStore,
   MODELS,
-} from '@antv/xflow'
+  IconStore,
+} from '@antv/xflow-core'
+import type { Cell } from '@antv/x6'
+import { Modal } from 'antd'
 import {
   UngroupOutlined,
   SaveOutlined,
@@ -27,12 +28,26 @@ import {
   SnippetsOutlined,
   ClearOutlined,
 } from '@ant-design/icons'
-import type { Cell } from '@antv/x6'
-import { Modal } from 'antd'
+import React from 'react'
+
+/** 注册icon 类型 */
+export const registerIcon = () => {
+  IconStore.set('SaveOutlined', SaveOutlined)
+  IconStore.set('UndoOutlined', UndoOutlined)
+  IconStore.set('RedoOutlined', RedoOutlined)
+  IconStore.set('VerticalAlignTopOutlined', VerticalAlignTopOutlined)
+  IconStore.set('VerticalAlignBottomOutlined', VerticalAlignBottomOutlined)
+  IconStore.set('GatewayOutlined', GatewayOutlined)
+  IconStore.set('GroupOutlined', GroupOutlined)
+  IconStore.set('UngroupOutlined', UngroupOutlined)
+  IconStore.set('CopyOutlined', CopyOutlined)
+  IconStore.set('SnippetsOutlined', SnippetsOutlined)
+  IconStore.set('ClearOutlined', ClearOutlined)
+}
 
 const GROUP_NODE_RENDER_ID = 'GROUP_NODE_RENDER_ID'
 
-namespace NSToolbarConfig {
+export namespace NSToolbarConfig {
   /** toolbar依赖的状态 */
   export interface IToolbarState {
     isMultiSelctionActive: boolean
@@ -74,10 +89,22 @@ namespace NSToolbarConfig {
       isGroupSelected,
       isMultiSelctionActive,
       cells,
-    } as NSToolbarConfig.IToolbarState
+    } as IToolbarState
   }
 
-  export const getToolbarItems = async (state: IToolbarState) => {
+  export const getToolbarItems = async (
+    state: IToolbarState,
+    registerToolbarItems?: IToolbarItemOptions[],
+  ) => {
+    if (registerToolbarItems) {
+      return [
+        {
+          name: 'graphData',
+          items: registerToolbarItems,
+        },
+      ]
+    }
+
     const toolbarGroup: IToolbarItemOptions[] = []
     /** 撤销 */
     toolbarGroup.push({
@@ -252,6 +279,7 @@ namespace NSToolbarConfig {
         })
       },
     })
+
     return [
       {
         name: 'graphData',
@@ -260,40 +288,3 @@ namespace NSToolbarConfig {
     ]
   }
 }
-
-/** 注册icon 类型 */
-const registerIcon = () => {
-  IconStore.set('SaveOutlined', SaveOutlined)
-  IconStore.set('UndoOutlined', UndoOutlined)
-  IconStore.set('RedoOutlined', RedoOutlined)
-  IconStore.set('VerticalAlignTopOutlined', VerticalAlignTopOutlined)
-  IconStore.set('VerticalAlignBottomOutlined', VerticalAlignBottomOutlined)
-  IconStore.set('GatewayOutlined', GatewayOutlined)
-  IconStore.set('GroupOutlined', GroupOutlined)
-  IconStore.set('UngroupOutlined', UngroupOutlined)
-  IconStore.set('CopyOutlined', CopyOutlined)
-  IconStore.set('SnippetsOutlined', SnippetsOutlined)
-  IconStore.set('ClearOutlined', ClearOutlined)
-}
-
-export const useToolbarConfig = createToolbarConfig((toolbarConfig, proxy) => {
-  registerIcon()
-  /** 生产 toolbar item */
-  toolbarConfig.setToolbarModelService(async (toolbarModel, modelService, toDispose) => {
-    const updateToolbarModel = async () => {
-      const state = await NSToolbarConfig.getToolbarState(modelService)
-      const toolbarItems = await NSToolbarConfig.getToolbarItems(state)
-
-      toolbarModel.setValue(toolbar => {
-        toolbar.mainGroups = toolbarItems
-      })
-    }
-    const models = await NSToolbarConfig.getDependencies(modelService)
-    const subscriptions = models.map(model => {
-      return model.watch(async () => {
-        updateToolbarModel()
-      })
-    })
-    toDispose.pushAll(subscriptions)
-  })
-})

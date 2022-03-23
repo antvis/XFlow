@@ -10,9 +10,18 @@ export const DefaultEdgeConfig = {
     text: {
       fill: '#000',
       fontSize: 12,
-      horizontalAlign: 'middle',
+      textAnchor: 'middle',
       textVerticalAnchor: 'middle',
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      textDecoration: '',
+      letterSpacing:0
     },
+    // 文本背景框
+    rect: {
+      stroke: '#fff',
+      fill: '#fff'
+    }
   },
 }
 
@@ -50,6 +59,6 @@ export const ARROW_MAP = {
 export const canEditorRounded = ['Process', 'Extract'];
 
 export const STROKE_MAP = {
-  solid: [0, 0],
-  dash: [5, 5],
+  solid: '0 0',
+  dash: '5 5',
 }

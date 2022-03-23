@@ -126,7 +126,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
         />
       </div>
       <div className={`${PREFIX}-panel-group`}>
-        <div className={`${PREFIX}-node-text-style`}>
+        <div className={`${PREFIX}-node-editor-style`}>
           <InputNumberFiled
             label="字号"
             value={nodeConfig.fontSize}
@@ -146,7 +146,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
             }}
           />
         </div>
-        <div className={`${PREFIX}-node-text-style`}>
+        <div className={`${PREFIX}-node-editor-style`}>
           <ColorPicker
             label="颜色"
             value={nodeConfig.fontFill}
@@ -166,9 +166,10 @@ const NodeComponent: React.FC<IControlProps> = props => {
             }}
           />
         </div>
-        <div className={`${PREFIX}-node-text-style`}>
+        <div className={`${PREFIX}-node-editor-style`}>
           <Checkbox
             style={{ color: '#888' }}
+            checked={nodeConfig.showTextBgColor}
             onChange={e => {
               onNodeConfigChange('showTextBgColor', e.target.checked)
             }}
@@ -184,9 +185,10 @@ const NodeComponent: React.FC<IControlProps> = props => {
             />
           )}
         </div>
-        <div className={`${PREFIX}-node-text-style`}>
+        <div className={`${PREFIX}-node-editor-style`}>
         <Checkbox
             style={{ color: '#888' }}
+            checked={nodeConfig.showTextBdColor}
             onChange={e => {
               onNodeConfigChange('showTextBdColor', e.target.checked)
             }}

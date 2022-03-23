@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FlowchartFormWrapper } from '../../form-wrapper'
-import { ColorPicker, InputNumberFiled, InputFiled, SelectField } from './fields'
+import { ColorPicker, InputNumberFiled, SelectField } from './fields'
 import { LeftArrow, RightArrow, DoubleArrow, DottedLine, SolidLine } from './edit-icon'
 import { PREFIX, DefaultEdgeConfig, STROKE_MAP, ARROW_MAP } from './constants'
 
@@ -13,12 +13,11 @@ export interface IConfig {
   label?: string
   attrs?: {
     line?: {
-      fontSize?: number
-      fontFill?: string
       strokeWidth?: number
       sourceMarker?: MarkerCfg
       targetMarker?: MarkerCfg
-      strokeDasharray?: number[]
+      strokeDasharray?: string
+      strokeOpacity?: number
     }
   }
 }
@@ -62,7 +61,7 @@ const EdgeComponent = props => {
   const getSrokeDashValue = () => {
     const { attrs = {} } = edgeConfig
     const { line = {} } = attrs
-    return line.strokeDasharray ? 'dash' : 'solid'
+    return line.strokeDasharray === '5 5' ? 'dash' : 'solid'
   }
 
   const onEdgeConfigChange = (
@@ -107,19 +106,7 @@ const EdgeComponent = props => {
 
   return (
     <div className={`${PREFIX}-panel-body`}>
-      <div className={`${PREFIX}-panel-group`}>
-        <h5>内容</h5>
-        <InputFiled
-          label="标签"
-          value={edgeConfig.label}
-          onChange={value => {
-            onEdgeConfigChange('label', value)
-          }}
-        />
-      </div>
-      <h5 style={{ marginBottom: 12 }}>样式</h5>
       <div className={`${PREFIX}-panel-group`} style={{ marginBottom: 0 }}>
-        <h5>线</h5>
         <SelectField
           label="箭头"
           value={getArrowValue()}
@@ -147,7 +134,7 @@ const EdgeComponent = props => {
           }}
         />
 
-        <div className={`${PREFIX}-edge-stroke-style`}>
+        <div className={`${PREFIX}-edge-editor-style`}>
           <SelectField
             label="线形"
             width={68}
@@ -158,7 +145,7 @@ const EdgeComponent = props => {
                 value: 'solid',
               },
               {
-                label: <DottedLine/>,
+                label: <DottedLine />,
                 value: 'dash',
               },
             ]}
@@ -166,9 +153,13 @@ const EdgeComponent = props => {
               onEdgeConfigChange('strokeDasharray', STROKE_MAP[value], 'line')
             }}
           />
+        </div>
+        <div className={`${PREFIX}-edge-editor-style`}>
           <InputNumberFiled
+            label="线宽"
             value={getAttrs('strokeWidth')}
             min={1}
+            width={68}
             onChange={value => {
               onEdgeConfigChange('strokeWidth', value, 'line')
             }}
@@ -181,23 +172,16 @@ const EdgeComponent = props => {
             onEdgeConfigChange('stroke', value, 'line')
           }}
         />
-      </div>
-      <div className={`${PREFIX}-panel-group`}>
-        <h5>标签</h5>
-        <div className={`${PREFIX}-edge-text-style`}>
+        <div className={`${PREFIX}-edge-editor-style`}>
           <InputNumberFiled
-            label="字号"
-            min={10}
+            label="透明度"
+            value={getAttrs('strokeOpacity')}
+            min={0}
+            max={1}
+            step={0.1}
             width={68}
-            value={getAttrs('fontSize', 'text') || 12}
             onChange={value => {
-              onEdgeConfigChange('fontSize', value, 'text')
-            }}
-          />
-          <ColorPicker
-            value={getAttrs('fill', 'text') || '#000'}
-            onChange={(value: string) => {
-              onEdgeConfigChange('fill', value, 'text')
+              onEdgeConfigChange('strokeOpacity', value, 'line')
             }}
           />
         </div>
@@ -205,7 +189,7 @@ const EdgeComponent = props => {
     </div>
   )
 }
-export const EdgeService: React.FC<any> = props => {
+export const EdgeStyle: React.FC<any> = props => {
   return (
     <FlowchartFormWrapper {...props} type="edge">
       {(config, plugin) => <EdgeComponent {...props} plugin={plugin} config={config} />}
