@@ -76,24 +76,12 @@ export const STROKE_MAP = {
 
 export const NODEPOOL = [
   {
-    name: 'Decision',
-    type: 'common',
-  },
-  {
-    name: 'Multi Document',
-    type: 'common',
-  },
-  {
     name: 'DataIO',
     ports: ['top', 'bottom'],
     type: 'common',
   },
   {
     name: 'Hard Disk',
-    type: 'common',
-  },
-  {
-    name: 'Predefined Process',
     type: 'common',
   },
 
@@ -115,35 +103,42 @@ export const NODEPOOL = [
   },
   {
     name: 'Right Triangle',
+    ports: ['left', 'right'],
     type: 'common',
   },
   {
     name: 'Left Triangle',
+    ports: ['left', 'right'],
     type: 'common',
-  },
-  {
-    name: 'Step',
-    type: 'common',
-  },
-  {
-    name: 'Card',
-    type: 'advanced',
-  },
-
-  {
-    name: 'Callout',
-    type: 'advanced',
-  },
-
-  {
-    name: 'Message',
-    type: 'advanced',
   },
   {
     name: 'Text',
     label: 'text',
     type: 'common',
   },
+  {
+    name: 'Step',
+    ports: ['left', 'right'],
+    type: 'advanced',
+  },
+  {
+    name: 'Card',
+    type: 'flowchart',
+  },
+
+  {
+    name: 'Callout',
+    type: 'advanced',
+  },
+  {
+    name: 'Decision',
+    type: 'flowchart',
+  },
+  {
+    name: 'Multi Document',
+    type: 'flowchart',
+  },
+ 
   {
     name: 'Terminal',
     type: 'flowchart',
@@ -183,14 +178,6 @@ export const NODEPOOL = [
     type: 'flowchart',
   },
   {
-    name: 'Manual Input',
-    type: 'flowchart',
-  },
-  {
-    name: 'Preparation',
-    type: 'flowchart',
-  },
-  {
     name: 'Delay',
     type: 'flowchart',
   },
@@ -199,7 +186,7 @@ export const NODEPOOL = [
     type: 'flowchart',
   },
   {
-    name: 'Display',
+    name: 'Predefined Process',
     type: 'flowchart',
   },
   {
@@ -209,18 +196,6 @@ export const NODEPOOL = [
   {
     name: 'Internal Storage',
     type: 'flowchart',
-  },
-  {
-    name: 'Reference',
-    type: 'flowchart',
-  },
-  {
-    name: 'Diagonal Snip Rectangle',
-    type: 'advanced',
-  },
-  {
-    name: 'Hexagon',
-    type: 'advanced',
   },
   {
     name: 'Loop',
@@ -238,12 +213,41 @@ export const NODEPOOL = [
   },
   {
     name: 'Collate',
-    type: 'advanced',
+    type: 'flowchart',
   },
 
   {
     name: 'Document',
     type: 'flowchart',
+  },
+  {
+    name: 'Message',
+    type: 'advanced',
+  },
+  {
+    name: 'Reference',
+    type: 'advanced',
+  },
+  {
+    name: 'Diagonal Snip Rectangle',
+    type: 'advanced',
+  },
+  {
+    name: 'Hexagon',
+    type: 'advanced',
+  },
+  
+  {
+    name: 'Manual Input',
+    type: 'advanced',
+  },
+  {
+    name: 'Preparation',
+    type: 'advanced',
+  },
+  {
+    name: 'Display',
+    type: 'advanced',
   },
 ]
 // 缩放时保存同比例
@@ -252,9 +256,10 @@ export const ASPECTRATIONODE = ['Connector', 'Or']
 //内置节点分类
 export const BUILDIN_NODE_TYPES = ['common', 'flowchart', 'advanced']
 export const TYPE_IMG_MAP = {
-  common: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*HVZwQYtQ9cIAAAAAAAAAAAAAARQnAQ',
+  common: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*7YNJTpeO2gsAAAAAAAAAAAAAARQnAQ',
   flowchart:
-    'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*c-IOS6IAEAQAAAAAAAAAAAAAARQnAQ',
+    'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*ie2CTIvAZoIAAAAAAAAAAAAAARQnAQ',
+  advanced: 'https://gw.alipayobjects.com/mdn/rms_75bed3/afts/img/A*XdeSQL0806oAAAAAAAAAAAAAARQnAQ'
 }
 
 export const CHECKBOX_OPTIONS: ICheckboxOption[] = [

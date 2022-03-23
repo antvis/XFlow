@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Checkbox, Button, Layout, Menu } from 'antd'
+import { Modal, Checkbox, Button, Layout, Menu, Empty } from 'antd'
 import { usePanelContext } from '../base-panel/context'
 import type { IProps, ICheckboxOption } from './interface'
 import { CHECKBOX_OPTIONS, TYPE_IMG_MAP } from './constants'
@@ -59,7 +59,9 @@ export const NodePanelFooter: React.FC<IFooterProps> = props => {
         }}
       >
         {panelProps.footer && React.isValidElement(panelProps.footer) && panelProps.footer}
-        <Button onClick={() => setIsModalVisible(true)}>更多节点</Button>
+        <Button onClick={() => setIsModalVisible(true)} style={{border: 'none'}}>
+          更多节点...
+        </Button>
         <Modal
           title="更多节点"
           visible={isModalVisible}
@@ -95,11 +97,11 @@ export const NodePanelFooter: React.FC<IFooterProps> = props => {
               </Checkbox.Group>
             </Layout.Sider>
             <Layout.Content style={{ backgroundColor: '#fff' }}>
-              <div className={`content-wrapper`}>
+              <div className="modal-content-wrapper">
                 {BUILDIN_NODE_TYPES.includes(typeImg) ? (
                   <img src={TYPE_IMG_MAP[typeImg]} alt="type" />
                 ) : (
-                  <span className={`text`}>自定义节点</span>
+                  <Empty />
                 )}
               </div>
             </Layout.Content>
