@@ -73,6 +73,7 @@ export interface IProps extends Omit<TreeNodeProps, 'treeDataService' | 'onNodeD
   showFooter?: boolean
   /** 自定义节点 */
   registerNode?: IRegisterNode
+  visibleNodeTypes?: string[]
   treeDataService?: ITreeDataService
   /** 默认展开的折叠面板 */
   defaultActiveKey?: string[] // ['official', 'custom']

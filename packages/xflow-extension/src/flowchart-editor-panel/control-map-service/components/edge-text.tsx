@@ -111,7 +111,11 @@ const EdgeComponent = props => {
             label="字号"
             min={10}
             width={68}
+<<<<<<< HEAD
             value={getAttrs('fontSize', 'text') || 14}
+=======
+            value={getAttrs('fontSize', 'text') || 12}
+>>>>>>> feat/register-node-type-model
             onChange={value => {
               onEdgeConfigChange('fontSize', value, 'text')
             }}

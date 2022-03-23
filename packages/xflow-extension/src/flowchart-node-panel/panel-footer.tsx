@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Checkbox, Button, Layout, Menu, Empty } from 'antd'
+import { useXFlowApp } from '@antv/xflow-core'
 import { usePanelContext } from '../base-panel/context'
 import type { IProps, ICheckboxOption } from './interface'
 import { CHECKBOX_OPTIONS, TYPE_IMG_MAP } from './constants'
@@ -13,6 +14,7 @@ export interface IFooterProps extends IProps {
 }
 
 export const NodePanelFooter: React.FC<IFooterProps> = props => {
+  const app = useXFlowApp()
   const { prefixClz, visibleNodeTypes, setVisibleNodeTypes, registerNode = [] } = props
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
   const [checkedValue, setCheckedValue] = useState<string[]>([...visibleNodeTypes])
@@ -28,7 +30,7 @@ export const NodePanelFooter: React.FC<IFooterProps> = props => {
   }))
   const checkBoxOptions: ICheckboxOption[] = [...CHECKBOX_OPTIONS, ...extraCheckBoxOptions]
 
-  const handleModalOk = () => {
+  const handleModalOk = async () => {
     setIsModalVisible(false)
     // eslint-disable-next-line @typescript-eslint/no-shadow
     const visibleNodeTypes: string[] = []
@@ -37,7 +39,8 @@ export const NodePanelFooter: React.FC<IFooterProps> = props => {
       checkedValue.includes(option.value) && visibleNodeTypes.push(option.value)
     })
     setVisibleNodeTypes(visibleNodeTypes)
-    window.localStorage.setItem('visibleNodeTypes', JSON.stringify(visibleNodeTypes))
+    const visibleNodeTypesModel = await app.modelService.awaitModel('visibleNodeTypes')
+    visibleNodeTypesModel.setValue([...visibleNodeTypes])
   }
 
   const handleModalCancel = () => {
