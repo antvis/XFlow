@@ -4,15 +4,16 @@ import { Item } from './position'
 interface IProps {
   width?: number
   height?: number
+  label?: string
   onChange?: (key: string, value: number) => void
 }
 
 const Size: React.FC<IProps> = props => {
-  const { width, height, onChange } = props
+  const { width, height, label = '尺寸', onChange } = props
 
   return (
     <div className="group">
-      <label>尺寸</label>
+      <label>{label}</label>
       <div className="split">
         <Item
           addonBefore="W"
