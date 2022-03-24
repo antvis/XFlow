@@ -97,7 +97,10 @@ const NodeComponent: React.FC<IControlProps> = props => {
               onNodeConfigChange('strokeDasharray', STROKE_MAP[value])
             }}
           />
+        </div>
+        <div className={`${PREFIX}-node-editor-style`}>
           <InputNumberFiled
+            label='线宽'
             value={nodeConfig.strokeWidth}
             min={1}
             max={5}

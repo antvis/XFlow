@@ -106,50 +106,44 @@ const EdgeComponent = props => {
             onEdgeConfigChange('label', value)
           }}
         />
-        <div className={`${PREFIX}-edge-editor-style`}>
-          <InputNumberFiled
-            label="字号"
-            min={10}
-            width={68}
-            value={getAttrs('fontSize', 'text') || 14}
-            onChange={value => {
-              onEdgeConfigChange('fontSize', value, 'text')
-            }}
-          />
-        </div>
-        <div className={`${PREFIX}-edge-editor-style`}>
-          <InputNumberFiled
-            label="字间距"
-            min={0}
-            width={68}
-            value={getAttrs('letterSpacing', 'text')}
-            onChange={value => {
-              onEdgeConfigChange('letterSpacing', value, 'text')
-            }}
-          />
-        </div>
-        <div className={`${PREFIX}-edge-editor-style`}>
-          <ColorPicker
-            label="颜色"
-            value={getAttrs('fill', 'text') || '#000'}
-            onChange={(value: string) => {
-              onEdgeConfigChange('fill', value, 'text')
-            }}
-          />
-        </div>
-        <div className={`${PREFIX}-edge-editor-style`}>
-          <InputNumberFiled
-            label="透明度"
-            min={0}
-            max={1}
-            step={0.1}
-            width={68}
-            value={getAttrs('fillOpacity', 'text')}
-            onChange={value => {
-              onEdgeConfigChange('fillOpacity', value, 'text')
-            }}
-          />
-        </div>
+        <InputNumberFiled
+          label="字号"
+          min={10}
+          width={68}
+          value={getAttrs('fontSize', 'text') || 14}
+          onChange={value => {
+            onEdgeConfigChange('fontSize', value, 'text')
+          }}
+        />
+        <InputNumberFiled
+          label="字间距"
+          min={0}
+          width={68}
+          value={getAttrs('letterSpacing', 'text')}
+          onChange={value => {
+            onEdgeConfigChange('letterSpacing', value, 'text')
+          }}
+        />
+      </div>
+      <div className={`${PREFIX}-panel-group`}>
+        <ColorPicker
+          label="颜色"
+          value={getAttrs('fill', 'text') || '#000'}
+          onChange={(value: string) => {
+            onEdgeConfigChange('fill', value, 'text')
+          }}
+        />
+        <InputNumberFiled
+          label="透明度"
+          min={0}
+          max={1}
+          step={0.1}
+          width={68}
+          value={getAttrs('fillOpacity', 'text')}
+          onChange={value => {
+            onEdgeConfigChange('fillOpacity', value, 'text')
+          }}
+        />
         <div className={`${PREFIX}-edge-editor-style`}>
           <Checkbox
             checked={getAttrs('fillOpacity', 'rect') === 1}
@@ -188,7 +182,9 @@ const EdgeComponent = props => {
             />
           )}
         </div>
-        <div className={`${PREFIX}-icon-container`}>
+      </div>
+      <div className={`${PREFIX}-panel-group`}>
+      <div className={`${PREFIX}-icon-container`}>
           <BoldOutlined
             className={
               getAttrs('fontWeight', 'text') === 'bold'
@@ -259,6 +255,7 @@ const EdgeComponent = props => {
             }}
           />
         </div>
+       
       </div>
     </div>
   )

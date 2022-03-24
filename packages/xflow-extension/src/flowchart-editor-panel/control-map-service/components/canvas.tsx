@@ -100,7 +100,7 @@ export const CanvasService: React.FC = () => {
             onCanvasConfigChange('background', 'color', value)
           }}
         />
-        <Form.Item>
+        <div>
           <Button
             icon={<UploadOutlined />}
             onClick={() => {
@@ -109,7 +109,7 @@ export const CanvasService: React.FC = () => {
           >
             背景图片
           </Button>
-        </Form.Item>
+        </div>
         <Modal
           visible={visible}
           title="背景图片"
@@ -136,7 +136,7 @@ export const CanvasService: React.FC = () => {
           </Form.Item>
         </Modal>
         {canvasConfig.background.image && (
-          <Form.Item>
+          <div>
             <Button
               icon={<CloseOutlined />}
               onClick={() => {
@@ -145,7 +145,7 @@ export const CanvasService: React.FC = () => {
             >
               清除背景图片
             </Button>
-          </Form.Item>
+          </div>
         )}
         {canvasConfig.background.image && (
           <InputNumberFiled
@@ -167,11 +167,11 @@ export const CanvasService: React.FC = () => {
             value={canvasConfig.background.size}
             options={[
               {
-                label: 'auto auto',
+                label: '自适应',
                 value: 'auto auto',
               },
               {
-                label: 'cover',
+                label: '铺满',
                 value: 'cover',
               },
             ]}

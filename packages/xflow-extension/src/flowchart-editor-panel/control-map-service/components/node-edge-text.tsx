@@ -13,14 +13,7 @@ import {
 import { Checkbox } from 'antd'
 import { DefaultNodeConfig } from '../../../flowchart-node-panel'
 import { FlowchartFormWrapper } from '../../form-wrapper'
-import {
-  InputFiled,
-  ColorPicker,
-  InputNumberFiled,
-  InputOpacity,
-  InputFontSpacing,
-  SelectField,
-} from './fields'
+import { InputFiled, ColorPicker, InputNumberFiled, InputOpacity } from './fields'
 import { PREFIX } from './constants'
 import type { IControlProps } from './interface'
 import './style.less'
@@ -77,7 +70,7 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
         <InputFiled
-          label="标题"
+          label="标签"
           value={nodeEdgeConfig.label}
           onChange={value => {
             onConfigChange('label', value)
@@ -86,130 +79,83 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                 label: value,
               },
               'line',
-              '',
             )
           }}
         />
-      </div>
-      <div className={`${PREFIX}-panel-group`}>
-        <SelectField
-          label="字体"
-          width={150}
-          value={nodeEdgeConfig.fontFamily}
-          options={[
-            {
-              label: '微软雅黑',
-              value: 'microsoftYahei',
-            },
-            {
-              label: '仿宋',
-              value: 'fangsong',
-            },
-            {
-              label: '新宋体',
-              value: 'nsimSun',
-            },
-            {
-              label: '楷体',
-              value: 'kaiti',
-            },
-
-            {
-              label: '幼圆',
-              value: 'youyuan',
-            },
-            {
-              label: '隶书',
-              value: 'lisu',
-            },
-          ]}
+        <InputNumberFiled
+          label="字号"
+          value={nodeEdgeConfig.fontSize}
+          width={68}
           onChange={value => {
-            onConfigChange('fontFamily', value)
+            onConfigChange('fontSize', value)
             updateEdge(
               {
-                fontFamily: value,
+                fontSize: value,
               },
               'text',
-              '',
+            )
+          }}
+        />
+        <InputNumberFiled
+          label="间距"
+          value={nodeEdgeConfig.letterSpacing}
+          min={0}
+          step={1}
+          width={68}
+          onChange={value => {
+            onConfigChange('letterSpacing', value)
+            updateEdge(
+              {
+                letterSpacing: value,
+              },
+              'text',
             )
           }}
         />
       </div>
       <div className={`${PREFIX}-panel-group`}>
-        <div className={`${PREFIX}-node-editor-style`}>
-          <InputNumberFiled
-            label="字号"
-            value={nodeEdgeConfig.fontSize}
-            width={50}
-            onChange={value => {
-              onConfigChange('fontSize', value)
-              updateEdge(
-                {
-                  fontSize: value,
-                },
-                'text',
-                '',
-              )
-            }}
-          />
-          <InputFontSpacing
-            label="间距"
-            value={nodeEdgeConfig.letterSpacing}
-            min={0}
-            step={1}
-            width={50}
-            onChange={value => {
-              onConfigChange('letterSpacing', value)
-              updateEdge(
-                {
-                  letterSpacing: value,
-                },
-                'text',
-                '',
-              )
-            }}
-          />
-        </div>
-        <div className={`${PREFIX}-node-editor-style`}>
-          <ColorPicker
-            label="颜色"
-            value={nodeEdgeConfig.fontFill}
-            onChange={(value: string) => {
-              onConfigChange('fontFill', value)
-              updateEdge(
-                {
-                  fill: value,
-                },
-                'text',
-                '',
-              )
-            }}
-          />
-          <InputOpacity
-            label="透明度"
-            value={nodeEdgeConfig.textOpacity}
-            max={1}
-            min={0}
-            step={0.1}
-            width={65}
-            onChange={value => {
-              onConfigChange('textOpacity', value)
-              updateEdge(
-                {
-                  fillOpacity: value,
-                },
-                'text',
-                '',
-              )
-            }}
-          />
-        </div>
+        <ColorPicker
+          label="颜色"
+          value={nodeEdgeConfig.fontFill}
+          onChange={(value: string) => {
+            onConfigChange('fontFill', value)
+            updateEdge(
+              {
+                fill: value,
+              },
+              'text',
+            )
+          }}
+        />
+        <InputOpacity
+          label="透明度"
+          value={nodeEdgeConfig.textOpacity}
+          max={1}
+          min={0}
+          step={0.1}
+          width={65}
+          onChange={value => {
+            onConfigChange('textOpacity', value)
+            updateEdge(
+              {
+                fillOpacity: value,
+              },
+              'text',
+            )
+          }}
+        />
         <div className={`${PREFIX}-node-editor-style`}>
           <Checkbox
             style={{ color: '#888' }}
             checked={nodeEdgeConfig.showTextBgColor}
             onChange={e => {
               onConfigChange('showTextBgColor', e.target.checked)
+              updateEdge(
+                {
+                  fillOpacity: e.target.checked ? 1 : 0,
+                },
+                'rect',
+              )
             }}
           >
             字体背景
@@ -219,6 +165,12 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
               value={nodeEdgeConfig.textBgColor}
               onChange={(value: string) => {
                 onConfigChange('textBgColor', value)
+                updateEdge(
+                  {
+                    fill: value,
+                  },
+                  'rect',
+                )
               }}
             />
           )}
@@ -229,6 +181,12 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
             checked={nodeEdgeConfig.showTextBdColor}
             onChange={e => {
               onConfigChange('showTextBdColor', e.target.checked)
+              updateEdge(
+                {
+                  strokeOpacity: e.target.checked ? 1 : 0,
+                },
+                'rect',
+              )
             }}
           >
             字体边框
@@ -238,10 +196,18 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
               value={nodeEdgeConfig.textBdColor}
               onChange={(value: string) => {
                 onConfigChange('textBdColor', value)
+                updateEdge(
+                  {
+                    stroke: value,
+                  },
+                  'rect',
+                )
               }}
             />
           )}
         </div>
+      </div>
+      <div className={`${PREFIX}-panel-group`}>
         <div className={`${PREFIX}-icon-container`}>
           <BoldOutlined
             className={
@@ -257,7 +223,6 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                   fontWeight: isBold ? 'bold' : 'normal',
                 },
                 'text',
-                '',
               )
             }}
           />
@@ -275,7 +240,6 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                   fontStyle: isItalic ? 'italic' : 'normal',
                 },
                 'text',
-                '',
               )
             }}
           />
@@ -293,7 +257,6 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                   textDecoration: isUnderline ? 'underline' : '',
                 },
                 'text',
-                '',
               )
             }}
           />
@@ -344,7 +307,6 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                   textAnchor: 'end',
                 },
                 'text',
-                '',
               )
             }}
           />
@@ -361,7 +323,6 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                   textAnchor: 'middle',
                 },
                 'text',
-                '',
               )
             }}
           />
@@ -378,7 +339,6 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                   textAnchor: 'start',
                 },
                 'text',
-                '',
               )
             }}
           />

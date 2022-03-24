@@ -2,13 +2,13 @@ import React from 'react'
 import { Item } from './position'
 
 interface IProps {
-  width?: number
-  height?: number
+  value: number[]
   onChange?: (key: string, value: number) => void
 }
 
 const Size: React.FC<IProps> = props => {
-  const { width, height, onChange } = props
+  const { value = [], onChange } = props
+  const [width, height] = value
 
   return (
     <div className="group">
@@ -17,15 +17,15 @@ const Size: React.FC<IProps> = props => {
         <Item
           addonBefore="W"
           value={width}
-          onChangeItem={(value: number) => {
-            onChange?.('width', value)
+          onChangeItem={(val: number) => {
+            onChange?.('width', val)
           }}
         />
         <Item
           addonBefore="H"
           value={height}
-          onChangeItem={(value: number) => {
-            onChange?.('height', value)
+          onChangeItem={(val: number) => {
+            onChange?.('height', val)
           }}
         />
       </div>

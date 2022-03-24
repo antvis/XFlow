@@ -29,12 +29,11 @@ export const NodeComponent: NsGraph.INodeRender = props => {
     verticalAlign = DefaultNodeConfig.verticalAlign,
     horizontalAlign = DefaultNodeConfig.horizontalAlign,
     textOpacity = DefaultNodeConfig.textOpacity,
-    letterSpacing = DefaultNodeConfig.letterSpace,
+    letterSpacing = DefaultNodeConfig.letterSpacing,
     showTextBgColor = DefaultNodeConfig.showTextBgColor,
     textBgColor = DefaultNodeConfig.textBgColor,
     showTextBdColor = DefaultNodeConfig.showTextBdColor,
     textBdColor = DefaultNodeConfig.textBdColor,
-    fontFamily = DefaultNodeConfig.fontFamily,
     dy,
     dx,
   } = data
@@ -100,7 +99,6 @@ export const NodeComponent: NsGraph.INodeRender = props => {
               border: showTextBdColor ? `1px solid ${textBdColor}` : 'none',
               left: dx,
               top: dy,
-              fontFamily,
             }}
           >
             {label}
