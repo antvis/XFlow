@@ -54,7 +54,7 @@ export const DefaultNodeConfig = {
   // 字体透明度
   textOpacity: 1,
   // 字间距
-  letterSpace: 0,
+  letterSpacing: 0,
   // 是否显示文本边框
   showTextBdColor: false,
   // 文本边框色

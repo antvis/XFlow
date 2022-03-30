@@ -43,15 +43,13 @@ const NodeComponent: React.FC<IControlProps> = (props) => {
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
         <Position
-          x={nodeConfig.x}
-          y={nodeConfig.y}
+          value={[nodeConfig.x, nodeConfig.y]}
           onChange={(key, value) => {
             onNodeConfigChange(key, value);
           }}
         />
         <Size
-          width={nodeConfig.width}
-          height={nodeConfig.height}
+          value={[nodeConfig.width, nodeConfig.height]}
           onChange={(key, value) => {
             onNodeConfigChange(key, value);
           }}

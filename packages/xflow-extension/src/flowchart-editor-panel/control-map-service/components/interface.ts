@@ -1,6 +1,6 @@
 export interface IPlugn {
   updateNode: (config: object) => void
-  updateEdge: (config: object, type: string, key: 'arrow' | '') => void
+  updateEdge: (config: object, type: string, key?: 'arrow' | '') => void
 }
 
 export interface IControlProps {

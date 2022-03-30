@@ -56,7 +56,6 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                 stroke: value,
               },
               'line',
-              '',
             )
           }}
         />
@@ -74,7 +73,6 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                 strokeOpacity: value,
               },
               'line',
-              '',
             )
           }}
         />
@@ -88,53 +86,49 @@ const NodeEdgeComponent: React.FC<IControlProps> = props => {
                 stroke: value,
               },
               'line',
-              '',
             )
           }}
         />
-        <div className={`${PREFIX}-edge-editor-style`}>
-          <SelectField
-            label="线形"
-            width={69}
-            value={getSrokeDashValue()}
-            options={[
+        <SelectField
+          label="线形"
+          width={69}
+          value={getSrokeDashValue()}
+          options={[
+            {
+              label: <SolidLine />,
+              value: 'solid',
+            },
+            {
+              label: <DottedLine />,
+              value: 'dash',
+            },
+          ]}
+          onChange={value => {
+            onConfigChange('strokeDasharray', STROKE_MAP[value])
+            updateEdge(
               {
-                label: <SolidLine />,
-                value: 'solid',
+                strokeDasharray: STROKE_MAP[value],
               },
+              'line',
+            )
+          }}
+        />
+        <InputNumberFiled
+          label="线宽"
+          value={nodeEdgeConfig.strokeWidth}
+          min={1}
+          max={5}
+          width={69}
+          onChange={value => {
+            onConfigChange('strokeWidth', value)
+            updateEdge(
               {
-                label: <DottedLine />,
-                value: 'dash',
+                strokeWidth: value,
               },
-            ]}
-            onChange={value => {
-              onConfigChange('strokeDasharray', STROKE_MAP[value])
-              updateEdge(
-                {
-                  strokeDasharray: STROKE_MAP[value],
-                },
-                'line',
-                '',
-              )
-            }}
-          />
-          <InputNumberFiled
-            value={nodeEdgeConfig.strokeWidth}
-            min={1}
-            max={5}
-            width={69}
-            onChange={value => {
-              onConfigChange('strokeWidth', value)
-              updateEdge(
-                {
-                  strokeWidth: value,
-                },
-                'line',
-                '',
-              )
-            }}
-          />
-        </div>
+              'line',
+            )
+          }}
+        />
       </div>
     </div>
   )

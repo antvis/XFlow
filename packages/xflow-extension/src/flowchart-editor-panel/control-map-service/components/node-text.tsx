@@ -17,10 +17,6 @@ import {
   InputFiled,
   ColorPicker,
   InputNumberFiled,
-  InputOpacity,
-  InputFontSpacing,
-  InputFontPosition,
-  SelectField,
 } from './fields'
 import { PREFIX } from './constants'
 import type { IControlProps } from './interface'
@@ -45,7 +41,6 @@ export interface INodeTextConfig {
   textBgColor?: string
   showTextBdColor?: boolean
   textBdColor?: string
-  fontFamily?: 'fangsong' | 'kaiti' | 'microsoftYahei' | 'nsimSun' | 'youyuan' | 'lisu'
 }
 
 const NodeComponent: React.FC<IControlProps> = props => {
@@ -74,8 +69,6 @@ const NodeComponent: React.FC<IControlProps> = props => {
     })
   }, [config])
 
-  
-
   return (
     <div className={`${PREFIX}-panel-body`}>
       <div className={`${PREFIX}-panel-group`}>
@@ -86,85 +79,44 @@ const NodeComponent: React.FC<IControlProps> = props => {
             onNodeConfigChange('label', value)
           }}
         />
-      </div>
-      <div className={`${PREFIX}-panel-group`}>
-        <SelectField
-          label="字体"
-          width={150}
-          value={nodeConfig.fontFamily}
-          options={[
-            {
-              label: '微软雅黑',
-              value: 'microsoftYahei',
-            },
-            {
-              label: '仿宋',
-              value: 'fangsong',
-            },
-            {
-              label: '新宋体',
-              value: 'nsimSun',
-            },
-            {
-              label: '楷体',
-              value: 'kaiti',
-            },
-
-            {
-              label: '幼圆',
-              value: 'youyuan',
-            },
-            {
-              label: '隶书',
-              value: 'lisu',
-            },
-          ]}
+        <InputNumberFiled
+          label="字号"
+          value={nodeConfig.fontSize}
+          width={68}
           onChange={value => {
-            onNodeConfigChange('fontFamily', value)
+            onNodeConfigChange('fontSize', value)
+          }}
+        />
+        <InputNumberFiled
+          label="间距"
+          value={nodeConfig.letterSpacing}
+          min={0}
+          step={1}
+          width={68}
+          onChange={value => {
+            onNodeConfigChange('letterSpacing', value)
           }}
         />
       </div>
       <div className={`${PREFIX}-panel-group`}>
-        <div className={`${PREFIX}-node-editor-style`}>
-          <InputNumberFiled
-            label="字号"
-            value={nodeConfig.fontSize}
-            width={50}
-            onChange={value => {
-              onNodeConfigChange('fontSize', value)
-            }}
-          />
-          <InputFontSpacing
-            label="间距"
-            value={nodeConfig.letterSpacing}
-            min={0}
-            step={1}
-            width={50}
-            onChange={value => {
-              onNodeConfigChange('letterSpacing', value)
-            }}
-          />
-        </div>
-        <div className={`${PREFIX}-node-editor-style`}>
-          <ColorPicker
-            label="颜色"
-            value={nodeConfig.fontFill}
-            onChange={(value: string) => {
-              onNodeConfigChange('fontFill', value)
-            }}
-          />
-          <InputOpacity
-            label="透明度"
-            value={nodeConfig.textOpacity}
-            max={1}
-            min={0}
-            step={0.1}
-            width={65}
-            onChange={value => {
-              onNodeConfigChange('textOpacity', value)
-            }}
-          />
-        </div>
+        <ColorPicker
+          label="颜色"
+          value={nodeConfig.fontFill}
+          onChange={(value: string) => {
+            onNodeConfigChange('fontFill', value)
+          }}
+        />
+        <InputNumberFiled
+          label="透明度"
+          value={nodeConfig.textOpacity}
+          max={1}
+          min={0}
+          step={0.1}
+          width={68}
+          onChange={value => {
+            onNodeConfigChange('textOpacity', value)
+          }}
+        />
         <div className={`${PREFIX}-node-editor-style`}>
           <Checkbox
             style={{ color: '#888' }}
@@ -185,7 +137,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
           )}
         </div>
         <div className={`${PREFIX}-node-editor-style`}>
-        <Checkbox
+          <Checkbox
             style={{ color: '#888' }}
             checked={nodeConfig.showTextBdColor}
             onChange={e => {
@@ -203,6 +155,8 @@ const NodeComponent: React.FC<IControlProps> = props => {
             />
           )}
         </div>
+      </div>
+      <div  className={`${PREFIX}-panel-group`}>
         <div className={`${PREFIX}-icon-container`}>
           <BoldOutlined
             className={
@@ -263,7 +217,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
               onNodeConfigChange('verticalAlign', 'bottom')
             }}
           />
-          <InputFontPosition
+          <InputNumberFiled
             label="Y"
             value={nodeConfig.dy}
             step={1}
@@ -304,7 +258,7 @@ const NodeComponent: React.FC<IControlProps> = props => {
               onNodeConfigChange('horizontalAlign', 'right')
             }}
           />
-          <InputFontPosition
+          <InputNumberFiled
             label="X"
             value={nodeConfig.dx}
             step={1}

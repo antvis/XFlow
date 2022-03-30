@@ -6,9 +6,7 @@ import Size from './size'
 import Position from './position'
 import SelectField from './select'
 import Rotate from './rotate'
-import InputFontSpacing from './font-spacing'
 import InputOpacity from './input-opacity'
-import InputFontPosition from './font-position'
 export const EditorPanels: Record<string, React.FC | React.NamedExoticComponent<IProps>> = {
   InputFiled,
   ColorPicker,
@@ -17,9 +15,7 @@ export const EditorPanels: Record<string, React.FC | React.NamedExoticComponent<
   Position,
   SelectField,
   Rotate,
-  InputFontSpacing,
   InputOpacity,
-  InputFontPosition,
 }
 
 export {
@@ -30,7 +26,5 @@ export {
   Position,
   SelectField,
   Rotate,
-  InputFontSpacing,
   InputOpacity,
-  InputFontPosition,
 }

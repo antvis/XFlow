@@ -3,8 +3,7 @@ import { InputNumber } from 'antd'
 import { FormItemHeight } from '../constants'
 
 interface IProps {
-  x?: number
-  y?: number
+  value?: number[]
   onChange?: (key: string, value: number) => void
 }
 
@@ -22,7 +21,8 @@ export const Item = ({ value, onChangeItem, addonBefore }) => (
 )
 
 const Position: React.FC<IProps> = props => {
-  const { x, y, onChange } = props
+  const { value = [], onChange } = props
+  const [x, y] = value
 
   return (
     <div className="group">
@@ -31,15 +31,15 @@ const Position: React.FC<IProps> = props => {
         <Item
           addonBefore="X"
           value={x}
-          onChangeItem={(value: number) => {
-            onChange?.('x', value)
+          onChangeItem={(val: number) => {
+            onChange?.('x', val)
           }}
         />
         <Item
           addonBefore="Y"
           value={y}
-          onChangeItem={(value: number) => {
-            onChange?.('y', value)
+          onChangeItem={(val: number) => {
+            onChange?.('y', val)
           }}
         />
       </div>
