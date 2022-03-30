@@ -244,11 +244,11 @@ export namespace NSToolbarConfig {
       tooltip: '保存',
       iconName: 'SaveOutlined',
       id: XFlowGraphCommands.SAVE_GRAPH_DATA.id,
-      onClick: async ({ commandService }) => {
+      onClick: async ({ commandService, modelService }) => {
         commandService.executeCommand<NsGraphCmd.SaveGraphData.IArgs>(
           XFlowGraphCommands.SAVE_GRAPH_DATA.id,
           {
-            saveGraphDataService: (meta, graphData) => {
+            saveGraphDataService:async (meta, graphData) => {
               console.log(graphData)
               return null
             },

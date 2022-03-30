@@ -90,7 +90,7 @@ export const NodeComponent: NsGraph.INodeRender = props => {
               maxWidth: `${width % 2 === 1 ? width - 2 : width - 3}px`,
               maxHeight: `${height % 2 === 1 ? height - 2 : height - 3}px`,
               backgroundColor: showTextBgColor ? textBgColor : 'rgba(0, 0, 0, 0)',
-              fontSize: fontSize,
+              fontSize,
               letterSpacing: letterSpacing,
               color: textColor,
               fontWeight,
