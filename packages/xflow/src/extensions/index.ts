@@ -87,4 +87,5 @@ export {
   IFlowchartFormWrapperProps,
   FlowchartToolbar,
   IFlowchartToolbarProps,
+  EditorPanels
 } from '@antv/xflow-extension'
