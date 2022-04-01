@@ -1,7 +1,8 @@
 import React from 'react'
 import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xflow-core'
-import type { IProps, IFlowchartNode } from './interface'
+import type { IProps, IFlowchartNode, ICustomNode } from './interface'
 import { nodeService } from './utils'
+import { isArray } from 'lodash'
 
 export namespace NsPanelData {
   export const id = 'NODE_PANEL_DATA'
@@ -23,7 +24,17 @@ const DefaultsearchService = async (nodeList = [], keyword: string) => {
 
 export const usePanelData = (props: IProps) => {
   const { registerNode, searchService = DefaultsearchService } = props
-  const { nodes } = registerNode ?? {}
+  let nodes = []
+  if (isArray(registerNode)) {
+    registerNode.forEach(item => {
+      nodes = nodes.concat(
+        item.nodes.map(node => ({
+          ...node,
+          parentKey: item.key,
+        })),
+      )
+    })
+  }
   const { modelService } = useXFlowApp()
 
   /** 使用model */

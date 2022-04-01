@@ -44,16 +44,20 @@ export interface IFlowchartNode {
   readonly popoverContent?: React.ReactNode
   /** 内部使用 */
   isCustom?: boolean
+  /** 内部使用 */
+  parentKey?: string
 }
 
 export interface IProps extends Omit<TreeNodeProps, 'treeDataService' | 'onNodeDrop'> {
   show?: boolean
   showHeader?: boolean
+  showOfficial?: boolean
   /** 自定义节点 */
   registerNode?: {
     title?: string
+    key: string
     nodes: ICustomNode[]
-  }
+  }[]
   treeDataService?: ITreeDataService
   /** 默认展开的折叠面板 */
   defaultActiveKey?: string[] // ['official', 'custom']
