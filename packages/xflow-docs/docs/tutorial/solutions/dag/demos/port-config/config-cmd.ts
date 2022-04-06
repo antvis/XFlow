@@ -17,7 +17,7 @@ export const useCmdConfig = createCmdConfig(config => {
           args.graphMetaService = MockApi.queryGraphMeta
         },
       }),
-      hooks.saveGrpahData.registerHook({
+      hooks.saveGraphData.registerHook({
         name: 'save graph data',
         handler: async args => {
           if (!args.saveGraphDataService) {
