@@ -88,7 +88,7 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
             })
             const onAddEdge = getProps('onAddEdge')
             if (typeof onAddEdge === 'function') {
-              onAddEdge(config)
+              onAddEdge(config.edgeConfig)
             }
             args.edge.remove()
           })
