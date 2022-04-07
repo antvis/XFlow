@@ -23,18 +23,21 @@ const DefaultsearchService = async (nodeList = [], keyword: string) => {
 }
 
 export const usePanelData = (props: IProps) => {
-  const { registerNode, searchService = DefaultsearchService } = props
+  const {  searchService = DefaultsearchService } = props
+
+  const registerNode = isArray(props.registerNode) ? props.registerNode : [props.registerNode]
+
   let nodes = []
-  if (isArray(registerNode)) {
-    registerNode.forEach(item => {
-      nodes = nodes.concat(
-        item.nodes.map(node => ({
-          ...node,
-          parentKey: item.key,
-        })),
-      )
-    })
-  }
+
+  registerNode.forEach(item => {
+    nodes = nodes.concat(
+      item.nodes.map(node => ({
+        ...node,
+        parentKey: item.key,
+      })),
+    )
+  })
+
   const { modelService } = useXFlowApp()
 
   /** 使用model */

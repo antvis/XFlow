@@ -9,6 +9,7 @@ import { Addon } from '@antv/x6'
 import { getNodeReactComponent, useXFlowApp, uuidv4, XFlowNodeCommands } from '@antv/xflow-core'
 import { getProps } from '../flowchart-canvas/utils'
 import { NodeTitle, defaultNodeFactory } from '../canvas-node-tree-panel/panel-body'
+import { isArray } from 'lodash'
 
 const { Panel } = Collapse
 
@@ -22,10 +23,11 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
     dndOptions,
     state,
     prefixClz,
-    registerNode,
-    defaultActiveKey = ['official', 'custom'],
+    defaultActiveKey = ['official'],
     showOfficial = true
   } = props
+
+  const registerNode = isArray(props.registerNode) ? props.registerNode : [props.registerNode]
 
   const { graphProvider, modelService, commandService } = useXFlowApp()
 
@@ -158,7 +160,7 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
           {registerNode?.length > 0 &&
             registerNode.map(
               item =>
-                item.nodes.length > 0 && (
+                !item.hidden && item.nodes.length > 0 && (
                   <Panel header={item.title} key={item.key} style={{ border: 'none' }}>
                     {!state.keyword && (
                       <div className={`${prefixClz}-custom`}>

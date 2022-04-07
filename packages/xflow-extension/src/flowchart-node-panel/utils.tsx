@@ -3,7 +3,7 @@ import { isNumber } from 'lodash'
 import { setProps, getProps } from '../flowchart-canvas/utils'
 import * as NodesComponent from './nodes'
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL } from './constants'
-import type { ICustomNode } from './interface'
+import type { ICustomNode, IRegisterNode } from './interface'
 import { isArray } from 'lodash'
 
 /** 和 graph config 注册的节点保持一致 */
@@ -81,21 +81,18 @@ export const nodeService = async nodes => {
 }
 
 export const registerCustomNode = (
-  props: {
-    title?: string
-    key: string
-    nodes: ICustomNode[]
-  }[],
+  panelConfigs: IRegisterNode | IRegisterNode[],
 ) => {
+  const registerNodes = isArray(panelConfigs) ? panelConfigs : [panelConfigs]
   let nodes = []
-  if (isArray(props)) {
-    props.forEach(item => {
-      nodes = nodes.concat(item.nodes.map(node => ({
+  registerNodes.forEach(item => {
+    nodes = nodes.concat(
+      item.nodes.map(node => ({
         ...node,
         parentKey: item.key,
-      })))
-    })
-  }
+      })),
+    )
+  })
 
   if (nodes.length) {
     setProps({
