@@ -3,6 +3,8 @@ import { isNumber } from 'lodash'
 import { setProps, getProps } from '../flowchart-canvas/utils'
 import * as NodesComponent from './nodes'
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL } from './constants'
+import type { ICustomNode, IRegisterNode } from './interface'
+import { isArray } from 'lodash'
 
 /** 和 graph config 注册的节点保持一致 */
 const getAnchorStyle = (position: string) => {
@@ -40,7 +42,7 @@ const getPorts = (position = ['top', 'right', 'bottom', 'left']) => {
 
 export const getRegisterNode = nodes => {
   return (nodes || []).map(item => {
-    const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports } = item
+    const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports, parentKey } = item
     const id = uuidv4() // 暂不使用上层数据
     return {
       id,
@@ -53,6 +55,7 @@ export const getRegisterNode = nodes => {
       ports: ports || getPorts(),
       originData: { ...item },
       isCustom: true,
+      parentKey,
     }
   })
 }
@@ -77,7 +80,20 @@ export const nodeService = async nodes => {
   ]
 }
 
-export const registerCustomNode = (nodes = []) => {
+export const registerCustomNode = (
+  panelConfigs: IRegisterNode | IRegisterNode[],
+) => {
+  const registerNodes = isArray(panelConfigs) ? panelConfigs : [panelConfigs]
+  let nodes = []
+  registerNodes.forEach(item => {
+    nodes = nodes.concat(
+      item.nodes.map(node => ({
+        ...node,
+        parentKey: item.key,
+      })),
+    )
+  })
+
   if (nodes.length) {
     setProps({
       registerNode: nodes,
