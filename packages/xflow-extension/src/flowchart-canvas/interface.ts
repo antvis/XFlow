@@ -29,4 +29,6 @@ export interface IFlowchartGraphProps {
   }) => void
   /** 内部使用 */
   isXFlowCanvas?: boolean
+  /** 处于阅读态(scan)时禁用部分画布事件与交互功能 */
+  mode?: 'edit' | 'scan'
 }

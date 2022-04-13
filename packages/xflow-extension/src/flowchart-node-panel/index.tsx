@@ -63,7 +63,7 @@ export const NodePanelMain: React.FC<IProps> = props => {
 }
 
 export const FlowchartNodePanel: React.FC<IProps> = props => {
-  registerCustomNode(get(props, 'registerNode.nodes'))
+  registerCustomNode(get(props, 'registerNode'))
   const prefixClz = useXflowPrefixCls('node-panel')
   const [collpased, setCollpased] = useState(false)
   const { show = true, position = { width: 240, top: 40, bottom: 0, left: 0 }, ...rest } = props

@@ -49,8 +49,15 @@ export class GraphModelContribution implements IModelContribution {
     registry.registerModel<MODELS.GRAPH_FULLSCREEN.IState>({
       id: MODELS.GRAPH_FULLSCREEN.id,
       getInitialValue: () => false,
-      watchChange: async self => {
+      watchChange: async (self, modelService) => {
+        const handleFullScreenChange = async () => {
+          const fullscreen = !!document.fullscreenElement
+          const fullscreenModel = await MODELS.GRAPH_FULLSCREEN.getModel(modelService)
+          fullscreenModel.setValue(fullscreen)
+        }
+        document.addEventListener('fullscreenchange', handleFullScreenChange, false)
         return Disposable.create(() => {
+          document.removeEventListener('fullscreenchange', handleFullScreenChange)
           self.setValue(false)
         })
       },

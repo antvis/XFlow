@@ -1,5 +1,17 @@
 # @antv/xflow-hook
 
+## 1.0.41
+
+### Patch Changes
+
+- 354b4135: 'add mode for flowchart'
+
+## 1.0.40
+
+### Patch Changes
+
+- 82f1c2b9: chore: fix wrong release version
+
 ## 1.0.39
 
 ### Patch Changes

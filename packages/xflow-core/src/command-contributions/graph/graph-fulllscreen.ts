@@ -1,7 +1,6 @@
 import { inject, injectable, postConstruct } from 'mana-syringe'
 import type { IContext, IArgsBase } from '../../command/interface'
 import { ICommandHandler, ICommandContextProvider } from '../../command/interface'
-import { MODELS } from '../../model-service'
 import type { HookHub } from '@antv/xflow-hook'
 import type { IHooks } from '../../hooks/interface'
 import { XFlowGraphCommands } from '../constant'
@@ -59,9 +58,7 @@ export class GraphFullscreenCommand implements ICommand {
       /** 执行hooks pipeline处理args */
       args,
       /** 执行 callback */
-      async handlerArgs => {
-        const { modelService } = handlerArgs
-        const graphEnableFullscreen = await MODELS.GRAPH_FULLSCREEN.getModel(modelService)
+      async () => {
         let fulllscreen = false
         if (!document.fullscreenElement) {
           appContainer.requestFullscreen?.()
@@ -69,7 +66,6 @@ export class GraphFullscreenCommand implements ICommand {
         } else {
           document.exitFullscreen?.()
         }
-        graphEnableFullscreen.setValue(fulllscreen)
         return { fulllscreen }
       },
       /** execute command 时创建的hook */
