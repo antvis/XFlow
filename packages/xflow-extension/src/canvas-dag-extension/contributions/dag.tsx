@@ -52,12 +52,11 @@ export const ANT_PREFIX = 'ant'
 
 export const getDagOptions = (props: IProps) => {
   const {
-    layout = LayoutEnum.TOP_BOTTOM,
+    layout,
     router = DAG_DEFAULT_CONIFG.router,
     connector = DAG_DEFAULT_CONIFG.connector,
   } = props
-  const targetPortType =
-    layout === LayoutEnum.TOP_BOTTOM ? NsGraph.AnchorGroup.TOP : NsGraph.AnchorGroup.LEFT
+
   const dagOptions: Graph.Options = {
     grid: false,
     keyboard: {
@@ -77,9 +76,9 @@ export const getDagOptions = (props: IProps) => {
     },
     connecting: {
       //链接桩的位置 https://x6.antv.vision/zh/docs/api/registry/node-anchor
-      sourceAnchor: layout === LayoutEnum.TOP_BOTTOM ? 'bottom' : 'right',
+      sourceAnchor: layout ? layout === LayoutEnum.TOP_BOTTOM ? 'bottom' : 'right' : "center",
       //链接桩的位置 https://x6.antv.vision/zh/docs/api/registry/node-anchor
-      targetAnchor: layout === LayoutEnum.TOP_BOTTOM ? 'center' : 'left',
+      targetAnchor: layout ? layout === LayoutEnum.TOP_BOTTOM ? 'center' : 'left' : "center",
       connectionPoint: 'anchor',
       snap: { radius: 20 },
       router: router,
@@ -143,8 +142,12 @@ export const getDagOptions = (props: IProps) => {
         return !!(edge?.target as any)?.port
       },
       // 是否触发交互事件
-      validateMagnet({ magnet }) {
-        return magnet.getAttribute('port-group') !== targetPortType
+      validateMagnet({ magnet, cell }) {
+        const inputPortInfo = cell.getData().ports.filter(portItem => portItem.type === NsGraph.AnchorType.INPUT)
+        if (inputPortInfo.length > 0) {
+          return magnet.getAttribute('port-group') !== inputPortInfo[0].group
+        }
+        return false
       },
       // 显示可用的链接桩
       validateConnection({ sourceView, targetView, sourceMagnet, targetMagnet }) {
@@ -152,19 +155,51 @@ export const getDagOptions = (props: IProps) => {
         if (sourceView === targetView) {
           return false
         }
-        // 只能从上游节点的输出链接桩创建连接
-        if (!sourceMagnet || sourceMagnet.getAttribute('port-group') === targetPortType) {
+
+        if (!sourceMagnet || !targetMagnet) {
           return false
         }
-        // 只能连接到下游节点的输入桩
-        if (!targetMagnet || targetMagnet.getAttribute('port-group') !== targetPortType) {
+
+        // 非自定义布局
+        if (layout) {
+          const targetPortType =
+            layout === LayoutEnum.TOP_BOTTOM ? NsGraph.AnchorGroup.TOP : NsGraph.AnchorGroup.LEFT
+          // 只能从上游节点的输出链接桩创建连接
+          if (sourceMagnet.getAttribute('port-group') === targetPortType) {
+            return false
+          }
+
+          // 只能连接到下游节点的输入桩
+          if (targetMagnet.getAttribute('port-group') !== targetPortType) {
+            return false
+          }
+        }
+
+        // 判断源链接桩是否可连接
+        const sourceNode = sourceView!.cell as any
+        const sourcePortId = sourceMagnet.getAttribute('port')
+        if (!sourcePortId) {
           return false
         }
-        const node = targetView!.cell as any
+
+        const sourcePort = sourceNode.getPort(sourcePortId)
+        if (sourcePort.type !== NsGraph.AnchorType.OUTPUT) {
+          return false
+        }
+
         // 判断目标链接桩是否可连接
-        const portId = targetMagnet.getAttribute('port')!
-        const port = node.getPort(portId)
-        return !(port && port.connected)
+        const targetNode = targetView!.cell as any
+        const targetPortId = targetMagnet.getAttribute('port')!
+        if (!targetPortId) {
+          return false
+        }
+
+        const targetPort = targetNode.getPort(targetPortId)
+        if (targetPort.type !== NsGraph.AnchorType.INPUT) {
+          return false
+        }
+
+        return !(targetPort && targetPort.connected)
       },
     },
     highlighting: {
@@ -203,8 +238,7 @@ export const getDagOptions = (props: IProps) => {
   contrib: [IHookContribution, IModelContribution, IGraphCommandContribution],
 })
 export class DagHooksContribution
-  implements IHookContribution<ICmdHooks>, IGraphCommandContribution, IModelContribution
-{
+  implements IHookContribution<ICmdHooks>, IGraphCommandContribution, IModelContribution {
   /** IGraphCommandFactory */
   @ManaSyringe.inject(IGraphCommandFactory)
   commandFactory: IGraphCommandFactory
@@ -323,7 +357,7 @@ export class DagHooksContribution
       }),
     ]
     toDispose.pushAll(disposables)
-    return Disposable.create(() => {})
+    return Disposable.create(() => { })
   }
 
   /** 注册Hub */
@@ -348,3 +382,6 @@ export class DagHooksContribution
     })
   }
 }
+
+
+
