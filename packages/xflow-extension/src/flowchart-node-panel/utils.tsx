@@ -1,9 +1,10 @@
+import type { GraphConfig } from '@antv/xflow-core'
 import { uuidv4 } from '@antv/xflow-core'
 import { isNumber } from 'lodash'
 import { setProps, getProps } from '../flowchart-canvas/utils'
 import * as NodesComponent from './nodes'
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL } from './constants'
-import type { ICustomNode, IRegisterNode } from './interface'
+import type { IRegisterNode } from './interface'
 import { isArray } from 'lodash'
 
 /** 和 graph config 注册的节点保持一致 */
@@ -42,7 +43,15 @@ const getPorts = (position = ['top', 'right', 'bottom', 'left']) => {
 
 export const getRegisterNode = nodes => {
   return (nodes || []).map(item => {
-    const { name, popover, label = '', width = NODE_HEIGHT, height = NODE_HEIGHT, ports, parentKey } = item
+    const {
+      name,
+      popover,
+      label = '',
+      width = NODE_HEIGHT,
+      height = NODE_HEIGHT,
+      ports,
+      parentKey,
+    } = item
     const id = uuidv4() // 暂不使用上层数据
     return {
       id,
@@ -80,9 +89,7 @@ export const nodeService = async nodes => {
   ]
 }
 
-export const registerCustomNode = (
-  panelConfigs: IRegisterNode | IRegisterNode[],
-) => {
+export const registerCustomNode = (panelConfigs: IRegisterNode | IRegisterNode[]) => {
   const registerNodes = isArray(panelConfigs) ? panelConfigs : [panelConfigs]
   let nodes = []
   registerNodes.forEach(item => {
@@ -110,12 +117,14 @@ export const registerCustomNode = (
   })
 }
 
-export const setNodeRender = config => {
-  registerCustomNode()
+export const setNodeRender = (graphConfig: any) => {
   /** 默认节点，通过 Terminal 标识，避免多次调用*/
-  if (!config.nodeRender.get('Terminal')) {
+  if (!graphConfig.nodeRender.get('Terminal')) {
     NODEPOOL.forEach(item => {
-      config.setNodeRender(item.name, NodesComponent[`${item.name.replace(/\s+/g, '')}Node`])
+      ;(graphConfig as GraphConfig).setNodeRender(
+        item.name,
+        NodesComponent[`${item.name.replace(/\s+/g, '')}Node`],
+      )
     })
   }
 }

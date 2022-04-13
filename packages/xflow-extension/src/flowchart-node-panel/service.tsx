@@ -23,7 +23,7 @@ const DefaultsearchService = async (nodeList = [], keyword: string) => {
 }
 
 export const usePanelData = (props: IProps) => {
-  const {  searchService = DefaultsearchService } = props
+  const { searchService = DefaultsearchService } = props
 
   const registerNode = isArray(props.registerNode) ? props.registerNode : [props.registerNode]
 

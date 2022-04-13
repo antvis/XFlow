@@ -15,6 +15,7 @@ import {
   setGroupRender,
 } from '../flowchart-node-panel'
 import { movedNode, resizeNode, changePortsVisible, addTools, removeTools, setProps } from './utils'
+import { IFlowchartGraphProps } from './interface'
 
 /** 临时边 */
 const TEMP_EGDE = 'flowchart-connecting-edge'
@@ -64,7 +65,7 @@ const XFlowEdge = Shape.Edge.registry.register(
   true,
 )
 
-export const useGraphConfig = createGraphConfig((config, proxy) => {
+export const useGraphConfig = createGraphConfig<IFlowchartGraphProps>((config, proxy) => {
   const { config: canvasConfig = {}, useConfig, mode = 'edit' } = proxy.getValue()
   config.setEdgeTypeParser(edge => edge?.renderKey as string)
   /** 这里比较黑，props 共享*/
