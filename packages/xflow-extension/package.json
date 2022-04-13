@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow-extension",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist es lib",
