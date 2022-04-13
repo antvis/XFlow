@@ -1,9 +1,10 @@
+import type { GraphConfig } from '@antv/xflow-core'
 import { uuidv4 } from '@antv/xflow-core'
 import { isNumber } from 'lodash'
 import { setProps, getProps } from '../flowchart-canvas/utils'
 import * as NodesComponent from './nodes'
 import { NODE_HEIGHT, NODE_WIDTH, NODEPOOL } from './constants'
-import type { ICustomNode, IRegisterNode } from './interface'
+import type { IRegisterNode } from './interface'
 import { isArray } from 'lodash'
 
 /** 和 graph config 注册的节点保持一致 */
@@ -116,12 +117,14 @@ export const registerCustomNode = (panelConfigs: IRegisterNode | IRegisterNode[]
   })
 }
 
-export const setNodeRender = config => {
-  registerCustomNode()
+export const setNodeRender = (graphConfig: any) => {
   /** 默认节点，通过 Terminal 标识，避免多次调用*/
-  if (!config.nodeRender.get('Terminal')) {
+  if (!graphConfig.nodeRender.get('Terminal')) {
     NODEPOOL.forEach(item => {
-      config.setNodeRender(item.name, NodesComponent[`${item.name.replace(/\s+/g, '')}Node`])
+      ;(graphConfig as GraphConfig).setNodeRender(
+        item.name,
+        NodesComponent[`${item.name.replace(/\s+/g, '')}Node`],
+      )
     })
   }
 }
