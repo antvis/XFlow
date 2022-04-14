@@ -113,8 +113,8 @@ export class DelEdgeCommand implements ICommand {
           const sourceCell = edgeCell.getSourceCell()
           const sourcePortId = edgeCell.getSourcePortId()
           const targetPortId = edgeCell.getTargetPortId()
-          const source = sourceCell.id
-          const target = targetCell.id
+          const source = sourceCell ? sourceCell.id : edgeCell.source;
+          const target = targetCell ? targetCell.id : edgeCell.target;
           /** 执行remove */
           edgeCell.remove({ ...options, isCommand: true })
 

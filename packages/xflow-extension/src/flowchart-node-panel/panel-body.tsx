@@ -167,12 +167,12 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
                   <Panel header={item.title} key={item.key} style={{ border: 'none' }}>
                     {!state.keyword && (
                       <div className={`${prefixClz}-custom`}>
-                        {renderTree(searchCustomNode(item.key))}
+                        {renderTree(customNode(item.key))}
                       </div>
                     )}
                     {state.searchList.length > 0 && (
                       <div className={`${prefixClz}-custom`}>
-                        {renderTree(customNode(item.key))}
+                        {renderTree(searchCustomNode(item.key))}
                       </div>
                     )}
                   </Panel>
