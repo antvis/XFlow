@@ -51,13 +51,13 @@ export class GraphModelContribution implements IModelContribution {
       getInitialValue: () => false,
       watchChange: async (self, modelService) => {
         const handleFullScreenChange = async () => {
-          const fullscreen = !! document.fullscreenElement;
-          const fullscreenModel = await MODELS.GRAPH_FULLSCREEN.getModel(modelService);
-          fullscreenModel.setValue(fullscreen);
+          const fullscreen = !!document.fullscreenElement
+          const fullscreenModel = await MODELS.GRAPH_FULLSCREEN.getModel(modelService)
+          fullscreenModel.setValue(fullscreen)
         }
-        document.addEventListener('fullscreenchange', handleFullScreenChange, false);
+        document.addEventListener('fullscreenchange', handleFullScreenChange, false)
         return Disposable.create(() => {
-          document.removeEventListener('fullscreenchange', handleFullScreenChange);
+          document.removeEventListener('fullscreenchange', handleFullScreenChange)
           self.setValue(false)
         })
       },

@@ -132,7 +132,7 @@ export const useConfig = createToolbarConfig(config => {
     })
     const graphFullscreenModel = await MODELS.GRAPH_FULLSCREEN.getModel(modelService)
     /** 初始化全屏默认值 */
-    graphFullscreenModel.setValue(false);
+    graphFullscreenModel.setValue(false)
     /** 全屏 */
     graphFullscreenModel.watch(fullscreen => {
       model.setValue(m => {
