@@ -52,7 +52,7 @@ export interface IFlowchartNode {
 export interface IRegisterNode {
   title?: string
   key: string
-  hidden: boolean
+  hidden?: boolean
   nodes: ICustomNode[]
 }
 
