@@ -1,5 +1,19 @@
 # @antv/xflow-hook
 
+## 1.0.43
+
+### Patch Changes
+
+- 214c5531: fix cant add edge when use customLayOut
+
+## 1.0.42
+
+### Patch Changes
+
+- 0d6cb480: fix: 修复全屏导致的 GRAPH_SCALE 无法更新
+- a0702137: fix: node-panel type error
+- a0702137: chore: fix wrong release version
+
 ## 1.0.41
 
 ### Patch Changes

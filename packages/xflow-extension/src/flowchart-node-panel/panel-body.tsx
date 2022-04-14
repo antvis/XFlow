@@ -24,7 +24,7 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
     state,
     prefixClz,
     defaultActiveKey = ['official'],
-    showOfficial = true
+    showOfficial = true,
   } = props
 
   const registerNode = isArray(props.registerNode) ? props.registerNode : [props.registerNode]
@@ -149,27 +149,30 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
     <React.Fragment>
       <div className={`${prefixClz}-body`}>
         <Collapse defaultActiveKey={defaultActiveKey} style={{ border: 'none' }}>
-          {showOfficial && <Panel header="通用节点" key="official" style={{ border: 'none' }}>
-            {!state.keyword && (
-              <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>
-            )}
-            {state.searchList.length > 0 && (
-              <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
-            )}
-          </Panel>}
+          {showOfficial && (
+            <Panel header="通用节点" key="official" style={{ border: 'none' }}>
+              {!state.keyword && (
+                <div className={`${prefixClz}-official`}>{renderTree(officialNode)}</div>
+              )}
+              {state.searchList.length > 0 && (
+                <div className={`${prefixClz}-official`}>{renderTree(searchOfficialNode)}</div>
+              )}
+            </Panel>
+          )}
           {registerNode?.length > 0 &&
             registerNode.map(
               item =>
-                !item.hidden && item.nodes.length > 0 && (
+                !item.hidden &&
+                item.nodes.length > 0 && (
                   <Panel header={item.title} key={item.key} style={{ border: 'none' }}>
                     {!state.keyword && (
                       <div className={`${prefixClz}-custom`}>
-                        {renderTree(searchCustomNode(item.key))}
+                        {renderTree(customNode(item.key))}
                       </div>
                     )}
                     {state.searchList.length > 0 && (
                       <div className={`${prefixClz}-custom`}>
-                        {renderTree(customNode(item.key))}
+                        {renderTree(searchCustomNode(item.key))}
                       </div>
                     )}
                   </Panel>
