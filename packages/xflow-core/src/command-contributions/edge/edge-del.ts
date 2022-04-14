@@ -34,8 +34,8 @@ export namespace NsDelEdge {
   export interface IResult {
     err: any
     edgeConfig?: {
-      source: string
-      target: string
+      source: string | Edge.TerminalData
+      target: string | Edge.TerminalData
       sourcePortId: string
       targetPortId: string
     }
@@ -113,8 +113,8 @@ export class DelEdgeCommand implements ICommand {
           const sourceCell = edgeCell.getSourceCell()
           const sourcePortId = edgeCell.getSourcePortId()
           const targetPortId = edgeCell.getTargetPortId()
-          const source = sourceCell ? sourceCell.id : edgeCell.source;
-          const target = targetCell ? targetCell.id : edgeCell.target;
+          const source = sourceCell ? sourceCell.id : (sourceCell as Edge).source
+          const target = targetCell ? targetCell.id : (targetCell as Edge).target
           /** 执行remove */
           edgeCell.remove({ ...options, isCommand: true })
 
