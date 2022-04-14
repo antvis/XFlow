@@ -1,5 +1,14 @@
 # @antv/xflow-extension
 
+## 1.0.43
+
+### Patch Changes
+
+- 214c5531: fix cant add edge when use customLayOut
+- Updated dependencies [214c5531]
+  - @antv/xflow-core@1.0.43
+  - @antv/xflow-hook@1.0.43
+
 ## 1.0.42
 
 ### Patch Changes
