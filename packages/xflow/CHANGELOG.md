@@ -1,5 +1,17 @@
 # @antv/xflow
 
+## 1.0.44
+
+### Patch Changes
+
+- 411c9fa4: fix: 默认显示与搜索结果相反及 type 可选
+- 54c875d3: fix: Type of source & target in edgeConfig
+- Updated dependencies [411c9fa4]
+- Updated dependencies [54c875d3]
+  - @antv/xflow-core@1.0.44
+  - @antv/xflow-extension@1.0.44
+  - @antv/xflow-hook@1.0.44
+
 ## 1.0.43
 
 ### Patch Changes
