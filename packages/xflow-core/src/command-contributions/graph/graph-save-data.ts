@@ -16,7 +16,7 @@ export namespace NsGraphSaveData {
   /** Command Id: 用于注册named factory */
   export const command = XFlowGraphCommands.SAVE_GRAPH_DATA
   /** hookName */
-  export const hookKey = 'saveGrpahData'
+  export const hookKey = 'saveGraphData'
   /** hook 参数类型 */
   export interface IArgs extends IArgsBase {
     includeAttrs?: boolean
@@ -30,7 +30,7 @@ export namespace NsGraphSaveData {
   }
   /** hooks 类型 */
   export interface ICmdHooks extends IHooks {
-    saveGrpahData: HookHub<IArgs, IResult>
+    saveGraphData: HookHub<IArgs, IResult>
   }
 }
 
@@ -56,7 +56,7 @@ export class GraphSaveDataCommand implements ICommand {
     const hooks = ctx.getHooks()
 
     /** 执行hooks */
-    await hooks.saveGrpahData.call(
+    await hooks.saveGraphData.call(
       /** 执行hooks pipeline处理args */
       args.args,
       /** 执行 callback */
