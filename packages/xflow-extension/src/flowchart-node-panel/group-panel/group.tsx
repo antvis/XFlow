@@ -12,7 +12,7 @@ export const GroupNode: NsGraph.INodeRender = props => {
       label = DefaultGroupConfig.label,
       stroke = DefaultGroupConfig.stroke,
       strokeWidth = DefaultGroupConfig.strokeWidth,
-      strokeDash = DefaultGroupConfig.strokeDash,
+      strokeDasharray = DefaultGroupConfig.strokeDasharray,
       fill: startColor = DefaultGroupConfig.fill,
       isGradient = DefaultGroupConfig.rounded,
       gradientDirection = DefaultGroupConfig.gradientDirection,
@@ -28,7 +28,7 @@ export const GroupNode: NsGraph.INodeRender = props => {
       verticalAlign = DefaultGroupConfig.verticalAlign,
       horizontalAlign = DefaultGroupConfig.horizontalAlign,
       textOpacity = DefaultGroupConfig.textOpacity,
-      letterSpacing = DefaultGroupConfig.letterSpace,
+      letterSpacing = DefaultGroupConfig.letterSpacing,
       showTextBdColor = DefaultGroupConfig.showTextBdColor,
       textBgColor = DefaultGroupConfig.textBdColor,
       showTextBgColor = DefaultGroupConfig.showTextBgColor,
@@ -84,13 +84,14 @@ export const GroupNode: NsGraph.INodeRender = props => {
         console.error('invalid gradientDirection')
     }
   }
+  
   return (
     <div
       className="xflow-group-node"
       style={{
         borderColor: stroke,
         borderWidth: strokeWidth,
-        borderStyle: strokeDash === 'dash' ? 'dotted' : 'solid',
+        borderStyle: strokeDasharray === '5 5' ? 'dotted' : 'solid',
         backgroundColor: fill,
         background: fill,
         opacity: fillOpacity,

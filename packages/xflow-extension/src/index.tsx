@@ -82,5 +82,6 @@ export {
   FlowchartFormWrapper,
   IFlowchartFormPanelProps,
   IFlowchartFormWrapperProps,
+  EditorPanels
 } from './flowchart-editor-panel'
 export { FlowchartToolbar, IFlowchartToolbarProps } from './flowchart-toolbar'

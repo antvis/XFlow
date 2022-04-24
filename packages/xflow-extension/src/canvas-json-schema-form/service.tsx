@@ -110,7 +110,7 @@ export const useJsonSchemaFormModel = (props: IProps) => {
                 if (targetSet.size === 2) {
                   return 'node-edge'
                 } else {
-                  return [...targetSet][0]
+                  return Array.from(targetSet)[0]
                 }
               }
             }
