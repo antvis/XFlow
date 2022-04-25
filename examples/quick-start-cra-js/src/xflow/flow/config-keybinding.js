@@ -8,8 +8,8 @@ import {
 
 export const useKeybindingConfig = createKeybindingConfig(config => {
   // delete
-  config.setKeybindingFunc(regsitry => {
-    return regsitry.registerKeybinding([
+  config.setKeybindingFunc(registry => {
+    return registry.registerKeybinding([
       {
         id: 'delete node or edge',
         keybinding: 'backspace',

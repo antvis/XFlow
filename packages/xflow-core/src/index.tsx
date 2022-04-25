@@ -8,7 +8,7 @@ export { NsGraph } from './interface'
 /*******************************************************
  * 核心组件：
  * 1. Application：XFlow
- * 2. Application Extension：XFlowAppExtensionMoudle
+ * 2. Application Extension：XFlowAppExtensionModule
  * 3. Graph：XFlowCanvas
  *****************************************************/
 
@@ -16,7 +16,7 @@ export {
   // 组件
   XFlow,
   XFlowCanvas,
-  XFlowAppExtensionMoudle,
+  XFlowAppExtensionModule,
   // app context
   XFlowAppProvider,
   XFlowAppContext,
@@ -96,7 +96,7 @@ export { AppContext, useAppContext, getNodeReactComponent } from './command-cont
 export {
   // 扩展Hooks
   IHookService,
-  IRegsiterHookFn,
+  IRegisterHookFn,
   IRegisterHookHubFn,
   IHookContribution,
   // Graph的类型

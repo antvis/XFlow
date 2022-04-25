@@ -7,7 +7,7 @@ import { HookHub } from '@antv/xflow-hook'
 import { Syringe } from 'mana-syringe'
 import type { EventArgs } from '@antv/x6/es/graph/events'
 import type { IGraphConfig } from '../xflow-main/graph/config'
-export interface IRegsiterHookFn<T = IHooks> {
+export interface IRegisterHookFn<T = IHooks> {
   (hooks: T): Disposable
 }
 
@@ -21,7 +21,7 @@ export interface IRegisterHookHubFn<T = IHooks> {
 export const IHookService = Syringe.defineToken('IHookService')
 export interface IHookService<T = IHooks> {
   registerHookHub: (hookName: string, hook: HookHub) => Disposable
-  registerHook: (registerHookFunc: IRegsiterHookFn<T>) => Disposable
+  registerHook: (registerHookFunc: IRegisterHookFn<T>) => Disposable
   hookProvider: () => T
 }
 

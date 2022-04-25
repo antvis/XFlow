@@ -79,7 +79,7 @@ export interface IMenuOptions<T = any> {
   submenu?: IMenuOptions[]
   /** The display label for the menu item. */
   label?: string
-  /** Whether submenu is actived */
+  /** Whether submenu is active */
   active?: boolean
   /** The hotkey for the menu item */
   hotkey?: string
@@ -112,7 +112,7 @@ export interface IClickArgs {
 
 export type IMenuModel = RxModel<IMenuOptions>
 
-/** 渲染menu的锚点数据 */
+/** 渲染 menu 的锚点数据 */
 export interface IAnchor {
   x: number
   y: number
@@ -120,9 +120,9 @@ export interface IAnchor {
 
 /** Config */
 export interface IConfig {
-  /** 画布的root节点 */
+  /** 画布的 root 节点 */
   getProps: () => any
-  /** 从事件对象中解析出menuid */
+  /** 从事件对象中解析出 menuid */
   createMenuOptions: (
     data: MODELS.CONTEXTMENU_TARGET.IState,
     modelService: IModelService,

@@ -56,7 +56,7 @@ export namespace NsRenameNodeCmd {
   export interface IResult {
     err: string | null
     preNodeName?: string
-    currenNodetName?: string
+    currentNodeName?: string
   }
   /** hooks 类型 */
   export interface ICmdHooks extends IHooks {

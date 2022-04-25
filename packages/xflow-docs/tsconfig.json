@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDirs": ["./src", "./dcos"]
+    "rootDirs": ["./src", "./docs"]
   },
   "lib": ["ESNext", "DOM"],
   "include": ["src/**/*", "docs/**/*"]

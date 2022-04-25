@@ -2,7 +2,7 @@ import React from 'react'
 import { createModule } from '../module'
 import type { IPosition } from '@antv/xflow-core'
 import { insertCss } from '@antv/xflow-core'
-import { XFlowAppExtensionMoudle, usePositionStyle } from '@antv/xflow-core'
+import { XFlowAppExtensionModule, usePositionStyle } from '@antv/xflow-core'
 import { SimpleNodeView } from '../x6-node-view'
 import type { IMinimapOptions } from '../interface'
 
@@ -97,7 +97,7 @@ export const CanvasMiniMap: React.FC<IProps> = props => {
         margin: 0;
       }
       ${containerSelector} .x6-widget-minimap-viewport-zoom {
-        border: 1px solid ${handlerColor}; 
+        border: 1px solid ${handlerColor};
       }
     `
     const $style = insertCss(cssString)
@@ -110,7 +110,7 @@ export const CanvasMiniMap: React.FC<IProps> = props => {
   const clzName = Array.from(classNameSet).join(' ')
 
   return (
-    <XFlowAppExtensionMoudle<IMinimapOptions>
+    <XFlowAppExtensionModule<IMinimapOptions>
       config={{
         getConfig,
         CONFIG_TYPE,
@@ -118,6 +118,6 @@ export const CanvasMiniMap: React.FC<IProps> = props => {
       createModule={createModule}
     >
       <div ref={minimapRef} className={clzName} style={style} />
-    </XFlowAppExtensionMoudle>
+    </XFlowAppExtensionModule>
   )
 }

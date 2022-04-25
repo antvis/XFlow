@@ -29,7 +29,7 @@ export interface XFlowEventRecord {
 /** 事件名: 扩展事件 */
 export type XFlowEventName = keyof XFlowEventRecord
 
-/** localstorage key */
+/** localStorage key */
 export const LOCAL_STORAGE_KEY = 'XFLOW_COPY_ITEMS'
 
 /** node height */

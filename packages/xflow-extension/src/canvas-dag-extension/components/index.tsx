@@ -1,7 +1,7 @@
 import React from 'react'
 import { createDagExtensionModule } from '../module'
 import type { IModuleConfig } from '@antv/xflow-core'
-import { useExtensionRegistry, XFlowAppExtensionMoudle } from '@antv/xflow-core'
+import { useExtensionRegistry, XFlowAppExtensionModule } from '@antv/xflow-core'
 import type { IProps } from '../interface'
 
 export const DagGraphExtension: React.FC<IProps> = props => {
@@ -24,5 +24,5 @@ export const DagGraphExtension: React.FC<IProps> = props => {
     [props],
   )
 
-  return <XFlowAppExtensionMoudle<IProps> config={config} createModule={createDagExtensionModule} />
+  return <XFlowAppExtensionModule<IProps> config={config} createModule={createDagExtensionModule} />
 }

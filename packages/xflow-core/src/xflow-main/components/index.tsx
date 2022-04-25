@@ -7,7 +7,7 @@ import type { FrontendApplication as IApplication } from '../application'
 /** app-extension */
 import { ExtensionRegistryContext } from './extension-context'
 import { useXflowPrefixCls } from './global-config-context'
-import { XFlowAppExtensionMoudle } from './app-extension-module'
+import { XFlowAppExtensionModule } from './app-extension-module'
 import { ExtensionRegistry, createExtensionRegistry } from './extension-registry'
 /** graph */
 import { XFlowCanvas } from './canvas'
@@ -30,7 +30,7 @@ import type { NsGraphCmd } from '../../command-contributions'
 export interface IProps {
   /** XFlow 工作台组件元信息, 会储存在全局Model中并在调用Service时作为额外的参数传入 */
   meta?: { flowId?: string; [key: string]: any }
-  /** 画布的配置，用于配置X6的Grpah.Options和绑定Graph的事件 */
+  /** 画布的配置，用于配置X6的 Graph.Options 和绑定 Graph 的事件 */
   graphConfig?: GraphConfig
   /** 画布数据 */
   graphData?: NsGraph.IGraphData
@@ -95,7 +95,7 @@ export const XFlow: React.FC<IProps> = props => {
   /** XFlow App 配置中心 */
   const extensionRegistry = createExtensionRegistry()
 
-  /** didmount */
+  /** didMount */
   React.useEffect(() => {
     /** before app start */
     if (onAppConfigReady) {
@@ -193,7 +193,7 @@ export const XFlow: React.FC<IProps> = props => {
       <ExtensionRegistryContext.Provider value={extensionRegistry}>
         <div
           className={appClzName}
-          id={extensionRegistry.getInstaceId()}
+          id={extensionRegistry.getInstanceId()}
           ref={appContainerRef}
           style={style}
         >
@@ -221,6 +221,6 @@ export {
   useXFlowApp,
   useXflowPrefixCls,
   XFlowCanvas,
-  XFlowAppExtensionMoudle as XFlowAppExtension,
+  XFlowAppExtensionModule as XFlowAppExtension,
   ExtensionRegistry,
 }

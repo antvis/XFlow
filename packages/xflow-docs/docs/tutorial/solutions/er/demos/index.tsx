@@ -173,7 +173,7 @@ const Demo: React.FC<IProps> = (demoProps: IProps) => {
         target: 'other2',
         renderKey: 'EDGE1',
         edgeContentWidth: 20,
-        edgeContentHeigt: 20,
+        edgeContentHeight: 20,
         /** 设置连线样式 */
         attrs: {
           line: {

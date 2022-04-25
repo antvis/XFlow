@@ -6,7 +6,7 @@ import { XFlowAppProvider, XFlowAppContext, useXFlowApp } from './components/app
 /** 通过context 注册Extension模块 */
 import { useExtensionRegistry, ExtensionRegistryContext } from './components/extension-context'
 /** XFlowAppExtension */
-import { XFlowAppExtensionMoudle } from './components/app-extension-module'
+import { XFlowAppExtensionModule } from './components/app-extension-module'
 /** classname  prefix  context */
 import { useXflowPrefixCls, XFlowConfigProviderContext } from './components/global-config-context'
 
@@ -14,7 +14,7 @@ export {
   // 组件
   XFlow,
   XFlowCanvas,
-  XFlowAppExtensionMoudle,
+  XFlowAppExtensionModule,
   // app context
   XFlowAppProvider,
   XFlowAppContext,

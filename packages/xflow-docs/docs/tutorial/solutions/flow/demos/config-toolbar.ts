@@ -43,7 +43,7 @@ export namespace TOOLBAR_ITEMS {
 namespace NSToolbarConfig {
   /** toolbar依赖的状态 */
   export interface IToolbarState {
-    isMultiSelctionActive: boolean
+    isMultiSelectionActive: boolean
     isGroupSelected: boolean
     isNodeSelected: boolean
     isUndoable: boolean
@@ -59,8 +59,8 @@ namespace NSToolbarConfig {
 
   /** toolbar依赖的状态 */
   export const getToolbarState = async (modelService: IModelService) => {
-    // isMultiSelctionActive
-    const { isEnable: isMultiSelctionActive } = await MODELS.GRAPH_ENABLE_MULTI_SELECT.useValue(
+    // isMultiSelectionActive
+    const { isEnable: isMultiSelectionActive } = await MODELS.GRAPH_ENABLE_MULTI_SELECT.useValue(
       modelService,
     )
     // isGroupSelected
@@ -76,7 +76,7 @@ namespace NSToolbarConfig {
       isRedoable,
       isNodeSelected: isNormalNodesSelected,
       isGroupSelected,
-      isMultiSelctionActive,
+      isMultiSelectionActive,
     } as NSToolbarConfig.IToolbarState
   }
 
@@ -139,7 +139,7 @@ namespace NSToolbarConfig {
       tooltip: '开启框选',
       iconName: 'GatewayOutlined',
       id: TOOLBAR_ITEMS.MULTI_SELECT,
-      active: state.isMultiSelctionActive,
+      active: state.isMultiSelectionActive,
       onClick: async ({ commandService }) => {
         commandService.executeCommand<NsGraphCmd.GraphToggleMultiSelect.IArgs>(
           TOOLBAR_ITEMS.MULTI_SELECT,

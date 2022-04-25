@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tooltip } from 'antd'
-import { useXFlowApp, createComponentModel, XFlowAppExtensionMoudle } from '@antv/xflow-core'
+import { useXFlowApp, createComponentModel, XFlowAppExtensionModule } from '@antv/xflow-core'
 import type { IConfigProps } from '../interface'
 import { ACTIVE_NODE_PORT } from '../interface'
 import { createModule } from '../module'
@@ -51,11 +51,11 @@ export const CanvasNodePortTooltip: React.FC<IConfigProps> = props => {
   const getConfig = React.useCallback(async () => null, [])
 
   return (
-    <XFlowAppExtensionMoudle<null>
+    <XFlowAppExtensionModule<null>
       createModule={createModule}
       config={{ CONFIG_TYPE: CONFIG_TYPE, getConfig }}
     >
       <RenderTooltip {...props} />
-    </XFlowAppExtensionMoudle>
+    </XFlowAppExtensionModule>
   )
 }
