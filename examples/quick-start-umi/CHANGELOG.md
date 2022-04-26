@@ -1,5 +1,11 @@
 # xflow-quick-start-umi
 
+## 0.1.28
+
+### Patch Changes
+
+- @antv/xflow@1.0.45
+
 ## 0.1.27
 
 ### Patch Changes

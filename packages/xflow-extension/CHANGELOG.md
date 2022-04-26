@@ -1,5 +1,11 @@
 # @antv/xflow-extension
 
+## 2.0.0
+
+### Major Changes
+
+- 3e0f028d: fix: 修复自定义节点注册失败
+
 ## 1.0.44
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # xflow-quick-start-cra
 
+## 0.1.29
+
+### Patch Changes
+
+- @antv/xflow@1.0.45
+
 ## 0.1.28
 
 ### Patch Changes
