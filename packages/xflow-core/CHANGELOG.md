@@ -1,5 +1,15 @@
 # @antv/xflow-core
 
+## 1.0.46
+
+### Patch Changes
+
+- 779a9705: chore: fix wrong release version
+- 779a9705: release 1.0.45
+- Updated dependencies [779a9705]
+- Updated dependencies [779a9705]
+  - @antv/xflow-hook@1.0.46
+
 ## 1.0.44
 
 ### Patch Changes
