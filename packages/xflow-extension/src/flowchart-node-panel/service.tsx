@@ -1,6 +1,6 @@
 import React from 'react'
 import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xflow-core'
-import type { IProps, IFlowchartNode, ICustomNode } from './interface'
+import type { IProps, IFlowchartNode } from './interface'
 import { nodeService } from './utils'
 import { isArray } from 'lodash'
 
@@ -25,7 +25,11 @@ const DefaultsearchService = async (nodeList = [], keyword: string) => {
 export const usePanelData = (props: IProps) => {
   const { searchService = DefaultsearchService } = props
 
-  const registerNode = isArray(props.registerNode) ? props.registerNode : [props.registerNode]
+  const registerNode = props.registerNode
+    ? isArray(props.registerNode)
+      ? props.registerNode
+      : [props.registerNode]
+    : []
 
   let nodes = []
 

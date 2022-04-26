@@ -90,17 +90,15 @@ export const nodeService = async nodes => {
 }
 
 export const registerCustomNode = (panelConfigs?: IRegisterNode | IRegisterNode[]) => {
-  const registerNodes = isArray(panelConfigs) ? panelConfigs : [panelConfigs]
+  const registerNodes = panelConfigs ? (isArray(panelConfigs) ? panelConfigs : [panelConfigs]) : []
   let nodes = []
   registerNodes.forEach(item => {
-    if (item) {
-      nodes = nodes.concat(
-        item.nodes.map(node => ({
-          ...node,
-          parentKey: item.key,
-        })),
-      )
-    }
+    nodes = nodes.concat(
+      item.nodes.map(node => ({
+        ...node,
+        parentKey: item.key,
+      })),
+    )
   })
 
   if (nodes.length) {
