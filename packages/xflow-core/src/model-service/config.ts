@@ -7,14 +7,14 @@ export namespace NsModelServiceConfig {
   export const CONFIG_TYPE = 'MODEL_SERVICE_CONFIG'
 }
 
-const dispoableNoop = () => Disposable.create(() => {})
+const disposableNoop = () => Disposable.create(() => {})
 
 export class ModelServiceConfig implements IModuleConfig {
   /** CONFIG_TYPE */
   readonly CONFIG_TYPE = NsModelServiceConfig.CONFIG_TYPE
 
   /** 外部注册context的方法 */
-  private registerModelFn?: IModelRegisterFunction = dispoableNoop
+  private registerModelFn?: IModelRegisterFunction = disposableNoop
 
   /** CONFIG_TYPE */
   private isMounted = new Deferred<boolean>()
@@ -31,12 +31,12 @@ export class ModelServiceConfig implements IModuleConfig {
     await this.isMounted.promise
     return {
       CONFIG_TYPE: this.CONFIG_TYPE,
-      modelRegisterFunc: this.registerModelFn || dispoableNoop,
+      modelRegisterFunc: this.registerModelFn || disposableNoop,
     }
   }
 
   dispose = () => {
-    this.registerModelFn = dispoableNoop
+    this.registerModelFn = disposableNoop
     this.isMounted = new Deferred()
   }
 }

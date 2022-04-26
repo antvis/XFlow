@@ -1,7 +1,7 @@
 import React from 'react'
 import type { IConfig } from '../module'
 import { createModule } from '../module'
-import { XFlowAppExtensionMoudle, useExtensionRegistry, insertCss } from '@antv/xflow-core'
+import { XFlowAppExtensionModule, useExtensionRegistry, insertCss } from '@antv/xflow-core'
 
 export interface IProps {
   color?: string
@@ -29,7 +29,7 @@ export const CanvasSnapline: React.FC<IProps> = props => {
     extension.addContainerClassNames(className)
 
     const cssString = `
-    .${className} .xflow-snapline .x6-widget-snapline-horizontal, 
+    .${className} .xflow-snapline .x6-widget-snapline-horizontal,
     .${className} .xflow-snapline .x6-widget-snapline-vertical {
       border-color: ${color};
     }`
@@ -40,5 +40,5 @@ export const CanvasSnapline: React.FC<IProps> = props => {
     }
   }, [color, extension])
 
-  return <XFlowAppExtensionMoudle<IConfig> config={config} createModule={createModule} />
+  return <XFlowAppExtensionModule<IConfig> config={config} createModule={createModule} />
 }

@@ -56,7 +56,7 @@ export namespace MockApi {
             ...relation,
             renderKey: 'EDGE1',
             edgeContentWidth: 20,
-            edgeContentHeigt: 20,
+            edgeContentHeight: 20,
             /** 设置连线样式 */
             attrs: {
               line: {

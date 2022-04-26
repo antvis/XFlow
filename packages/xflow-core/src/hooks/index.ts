@@ -1,6 +1,6 @@
 import {
   IHookService,
-  IRegsiterHookFn,
+  IRegisterHookFn,
   IRegisterHookHubFn,
   IHookContribution,
   IEvent,
@@ -15,7 +15,7 @@ export {
   HookRegistry,
   // 扩展Hooks
   IHookService,
-  IRegsiterHookFn,
+  IRegisterHookFn,
   IRegisterHookHubFn,
   IHookContribution,
   // Graph的类型

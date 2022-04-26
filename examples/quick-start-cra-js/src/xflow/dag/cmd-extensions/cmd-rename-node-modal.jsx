@@ -48,9 +48,9 @@ export class RenameNodeCommand {
       if (newName) {
         const cellData = cell.getData()
         cell.setData({ ...cellData, label: newName })
-        return { err: null, preNodeName, currenNodetName: newName }
+        return { err: null, preNodeName, currentNodeName: newName }
       }
-      return { err: null, preNodeName, currenNodetName: '' }
+      return { err: null, preNodeName, currentNodeName: '' }
     })
 
     ctx.setResult(result)

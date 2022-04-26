@@ -8,7 +8,7 @@ export interface IProps {
   createModule: IExtensionModule['createModule']
 }
 
-export function XFlowAppExtensionMoudle<T>(props: PropsWithChildren<IProps>) {
+export function XFlowAppExtensionModule<T>(props: PropsWithChildren<IProps>) {
   const { createModule, children } = props
   /** 获取扩展Registry */
   const extensionRegistry = useExtensionRegistry()

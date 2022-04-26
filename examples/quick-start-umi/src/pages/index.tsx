@@ -60,7 +60,7 @@ const Demo: React.FC<IProps> = () => {
         target: 'down1',
         renderKey: 'EDGE1',
         edgeContentWidth: 60,
-        edgeContentHeigt: 30,
+        edgeContentHeight: 30,
         info: { line: 'root1-down1' },
       },
       {
@@ -69,7 +69,7 @@ const Demo: React.FC<IProps> = () => {
         target: 'down2',
         renderKey: 'EDGE2',
         edgeContentWidth: 60,
-        edgeContentHeigt: 30,
+        edgeContentHeight: 30,
         info: { line: 'root1-down2' },
       },
       {

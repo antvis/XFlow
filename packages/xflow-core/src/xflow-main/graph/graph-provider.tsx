@@ -39,7 +39,7 @@ export interface IGraphManager {
 @singleton()
 export class GraphManager implements IGraphManager {
   /** 处理画布实例的销毁 */
-  private toDisposce = new DisposableCollection()
+  private toDispose = new DisposableCollection()
   /** 储存画布实例 */
   private graphMap = new Map<string, Deferred<X6Graph>>()
 
@@ -124,7 +124,7 @@ export class GraphManager implements IGraphManager {
         })
       })
 
-      this.toDisposce.push(
+      this.toDispose.push(
         Disposable.create(async () => {
           await hooks.beforeGraphDestroy.call({
             graph,
@@ -172,12 +172,12 @@ export class GraphManager implements IGraphManager {
     const content = Dom.createElementNS<HTMLDivElement>('div', Dom.ns.xhtml)
 
     const edgeData = x6Edge?.data
-    const foWdith = edgeData?.edgeContentWidth || 100
-    const foHeight = edgeData?.edgeContentHeigt || 30
+    const foWidth = edgeData?.edgeContentWidth || 100
+    const foHeight = edgeData?.edgeContentHeight || 30
 
-    fo.setAttribute('width', `${foWdith}`)
+    fo.setAttribute('width', `${foWidth}`)
     fo.setAttribute('height', `${foHeight}`)
-    fo.setAttribute('x', `${(-1.0 * foWdith) / 2}`)
+    fo.setAttribute('x', `${(-1.0 * foWidth) / 2}`)
     fo.setAttribute('y', `${(-1.0 * foHeight) / 2}`)
 
     body.setAttribute('xhtmls', Dom.ns.xhtml)
@@ -200,7 +200,7 @@ export class GraphManager implements IGraphManager {
   }
 
   dispose() {
-    this.toDisposce.dispose()
+    this.toDispose.dispose()
   }
 }
 

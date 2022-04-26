@@ -1,4 +1,4 @@
-import type { IRegisterHookHubFn, IRegsiterHookFn } from './interface'
+import type { IRegisterHookHubFn, IRegisterHookFn } from './interface'
 import type { IModuleConfig } from '../xflow-main/interface'
 
 export const noop = () => {
@@ -17,13 +17,13 @@ export class HookConfig implements IModuleConfig {
   public time = Date.now()
 
   /** 外部注册hook的方法 */
-  private hookRegisterFunc?: IRegsiterHookFn
+  private hookRegisterFunc?: IRegisterHookFn
 
   /** 外部注册hookhub的方法 */
   private hookhubRegisterFn?: IRegisterHookHubFn
 
   /** 提供一个runtime注册hook的方式 */
-  setRegisterHook = (fn: IRegsiterHookFn) => {
+  setRegisterHook = (fn: IRegisterHookFn) => {
     this.hookRegisterFunc = fn
   }
 

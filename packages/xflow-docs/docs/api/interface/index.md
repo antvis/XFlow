@@ -175,7 +175,7 @@ export interface IEdgeConfig {
   /** 边上渲染内容的宽度 */
   edgeContentWidth?: number
   /** 边上渲染内容的高度 */
-  edgeContentHeigt?: number
+  edgeContentHeight?: number
   /** 用户自定义字段 */
   [key: string]: any
 }

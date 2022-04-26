@@ -51,7 +51,7 @@ export const XFlowCanvas: React.FC<IProps> = props => {
     graphConfig.setGraphContainer(canvasRef.current)
 
     /** 关联XflowApp和Graph*/
-    graphConfig.xflowInstanceId = extensionRegistry.getInstaceId()
+    graphConfig.xflowInstanceId = extensionRegistry.getInstanceId()
     extensionRegistry.addCoreModule({ config: graphConfig, createModule: createX6GraphModule })
 
     /** unmount */

@@ -51,8 +51,8 @@ NSToolbarConfig.getDependencies = async modelService => {
 
 /** toolbar依赖的状态 */
 NSToolbarConfig.getToolbarState = async modelService => {
-  // isMultiSelctionActive
-  const { isEnable: isMultiSelctionActive } = await MODELS.GRAPH_ENABLE_MULTI_SELECT.useValue(
+  // isMultiSelectionActive
+  const { isEnable: isMultiSelectionActive } = await MODELS.GRAPH_ENABLE_MULTI_SELECT.useValue(
     modelService,
   )
   // isGroupSelected
@@ -68,7 +68,7 @@ NSToolbarConfig.getToolbarState = async modelService => {
     isRedoable,
     isNodeSelected: isNormalNodesSelected,
     isGroupSelected,
-    isMultiSelctionActive,
+    isMultiSelectionActive,
   }
 }
 
@@ -131,7 +131,7 @@ NSToolbarConfig.getToolbarItems = async state => {
     tooltip: '开启框选',
     iconName: 'GatewayOutlined',
     id: TOOLBAR_ITEMS.MULTI_SELECT,
-    active: state.isMultiSelctionActive,
+    active: state.isMultiSelectionActive,
     onClick: async ({ commandService }) => {
       commandService.executeCommand(TOOLBAR_ITEMS.MULTI_SELECT, {})
     },

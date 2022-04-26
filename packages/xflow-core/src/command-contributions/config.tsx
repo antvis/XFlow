@@ -1,5 +1,5 @@
 import { Syringe } from 'mana-syringe'
-import type { IRegsiterHookFn, IRegisterHookHubFn, IHookService } from '../hooks/interface'
+import type { IRegisterHookFn, IRegisterHookHubFn, IHookService } from '../hooks/interface'
 import { IHookContribution } from '../hooks/interface'
 import type { ICmdHooks, ICommandContributionConfig } from './interface'
 import { disposableNoop } from '../common/utils'
@@ -49,9 +49,9 @@ export class CommandConfig implements IHookContribution<ICmdHooks> {
   readonly CONFIG_TYPE = CONFIG_TYPE
 
   /** 注册 command hook */
-  private registerHookFn: IRegsiterHookFn<ICmdHooks>
+  private registerHookFn: IRegisterHookFn<ICmdHooks>
   /** set command hook fn */
-  setRegisterHookFn = (fn: IRegsiterHookFn<ICmdHooks>) => {
+  setRegisterHookFn = (fn: IRegisterHookFn<ICmdHooks>) => {
     this.registerHookFn = fn
   }
   /** 注册 command hook hub */

@@ -209,7 +209,7 @@ export class GraphConfig {
         min: MIN_ZOOM,
         max: MAX_ZOOM,
       },
-      /** keyboad */
+      /** keyboard */
       keyboard: {
         enabled: true,
       },

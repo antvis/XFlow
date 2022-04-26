@@ -43,7 +43,7 @@ export class ExtensionRegistry {
     }
   }
 
-  getInstaceId = () => {
+  getInstanceId = () => {
     return this.instanceId
   }
 

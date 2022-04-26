@@ -37,7 +37,7 @@ export namespace NsRenameNodeCmd {
   export interface IResult {
     err: string | null
     preNodeName?: string
-    currenNodetName?: string
+    currentNodeName?: string
   }
   /** hooks 类型 */
   export interface ICmdHooks extends IHooks {
@@ -81,9 +81,9 @@ export class RenameNodeCommand implements ICommand {
       if (newName) {
         const cellData = cell.getData<NsGraph.INodeConfig>()
         cell.setData({ ...cellData, label: newName } as NsGraph.INodeConfig)
-        return { err: null, preNodeName, currenNodetName: newName }
+        return { err: null, preNodeName, currentNodeName: newName }
       }
-      return { err: null, preNodeName, currenNodetName: '' }
+      return { err: null, preNodeName, currentNodeName: '' }
     })
 
     ctx.setResult(result)

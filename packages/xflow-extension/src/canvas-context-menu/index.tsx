@@ -1,5 +1,5 @@
 import React from 'react'
-import { useXFlowApp, XFlowAppExtensionMoudle } from '@antv/xflow-core'
+import { useXFlowApp, XFlowAppExtensionModule } from '@antv/xflow-core'
 import { ContextMenuConfig } from './config'
 import { createModule } from './module'
 import { ContextMenuRender } from './components'
@@ -22,12 +22,12 @@ export const CanvasContextMenu: React.FC<IProps> = props => {
   )
 
   return (
-    <XFlowAppExtensionMoudle<ContextMenuConfig>
+    <XFlowAppExtensionModule<ContextMenuConfig>
       createModule={createModule}
       config={contextMenuConfig}
     >
       {canRender && <ContextMenuRender config={contextMenuConfig} />}
-    </XFlowAppExtensionMoudle>
+    </XFlowAppExtensionModule>
   )
 }
 
