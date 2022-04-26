@@ -89,16 +89,18 @@ export const nodeService = async nodes => {
   ]
 }
 
-export const registerCustomNode = (panelConfigs: IRegisterNode | IRegisterNode[]) => {
+export const registerCustomNode = (panelConfigs?: IRegisterNode | IRegisterNode[]) => {
   const registerNodes = isArray(panelConfigs) ? panelConfigs : [panelConfigs]
   let nodes = []
   registerNodes.forEach(item => {
-    nodes = nodes.concat(
-      item.nodes.map(node => ({
-        ...node,
-        parentKey: item.key,
-      })),
-    )
+    if (item) {
+      nodes = nodes.concat(
+        item.nodes.map(node => ({
+          ...node,
+          parentKey: item.key,
+        })),
+      )
+    }
   })
 
   if (nodes.length) {
@@ -118,6 +120,8 @@ export const registerCustomNode = (panelConfigs: IRegisterNode | IRegisterNode[]
 }
 
 export const setNodeRender = (graphConfig: any) => {
+  /** props 共享 */
+  registerCustomNode()
   /** 默认节点，通过 Terminal 标识，避免多次调用*/
   if (!graphConfig.nodeRender.get('Terminal')) {
     NODEPOOL.forEach(item => {
