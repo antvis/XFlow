@@ -27,7 +27,11 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
     showOfficial = true,
   } = props
 
-  const registerNode = isArray(props.registerNode) ? props.registerNode : [props.registerNode]
+  const registerNode = props.registerNode
+    ? isArray(props.registerNode)
+      ? props.registerNode
+      : [props.registerNode]
+    : []
 
   const { graphProvider, modelService, commandService } = useXFlowApp()
 
