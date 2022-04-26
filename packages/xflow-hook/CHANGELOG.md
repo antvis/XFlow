@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.47
+
+### Patch Changes
+
+- 58382676: fix:修复注册节点为空时出错
+
 ## 1.0.46
 
 ### Patch Changes
