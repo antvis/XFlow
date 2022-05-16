@@ -89,7 +89,7 @@ export class UpdateEdgeCommand implements ICommand {
 
         const x6Edge = x6Graph?.getCellById(edgeConfig?.id) as X6Edge
         x6Edge?.setData(edgeConfig, options)
-        
+
         if (edgeConfig?.hasOwnProperty('label')) {
           // 默认更新edge的第一个label
           await updateEdgeLabelService(x6Edge, edgeConfig, options)
@@ -115,7 +115,7 @@ export class UpdateEdgeCommand implements ICommand {
           x6Edge.setSource(edgeConfig.source)
         }
         if (isObject(edgeConfig.target)) {
-          x6Edge.setTarget(edgeConfig.target)
+          x6Edge.setTarget(edgeConfig.target as any)
         }
 
         return {
