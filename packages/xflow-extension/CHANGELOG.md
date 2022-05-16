@@ -1,5 +1,14 @@
 # @antv/xflow-extension
 
+## 1.0.47
+
+### Patch Changes
+
+- 58382676: fix:修复注册节点为空时出错
+- Updated dependencies [58382676]
+  - @antv/xflow-core@1.0.47
+  - @antv/xflow-hook@1.0.47
+
 ## 1.0.46
 
 ### Patch Changes
