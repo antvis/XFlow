@@ -1,3 +1,4 @@
+import react from 'react'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 
 export type IconComponent = typeof QuestionCircleOutlined
