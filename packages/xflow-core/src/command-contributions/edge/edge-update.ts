@@ -113,7 +113,7 @@ export class UpdateEdgeCommand implements ICommand {
         }
         if (isObject(edgeConfig.source)) {
           //@ts-ignore
-          x6Edge.setSource(edgeConfig.source)
+          x6Edge.setSource(edgeConfig.source as any)
         }
         if (isObject(edgeConfig.target)) {
           //@ts-ignore
