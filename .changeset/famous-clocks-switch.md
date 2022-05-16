@@ -5,4 +5,4 @@
 '@antv/xflow-hook': patch
 ---
 
-fix: add isGraphRender options to graph render command
+chore: release version 1.0.48
