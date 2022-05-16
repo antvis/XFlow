@@ -1,5 +1,12 @@
 # @antv/xflow-hook
 
+## 1.0.48
+
+### Patch Changes
+
+- cd8c2be5: chore: release version
+- cd8c2be5: chore: add changelog
+
 ## 1.0.47
 
 ### Patch Changes

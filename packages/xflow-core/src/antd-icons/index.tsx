@@ -1,4 +1,3 @@
-import react from 'react'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 
 export type IconComponent = typeof QuestionCircleOutlined
@@ -22,7 +21,7 @@ export class IconStoreBase implements IReactComponentStore {
   }
 
   /** 获取全局的icon component */
-  // @ts-ignore
+  //@ts-ignore
   get(id: string) {
     const component = this.map.get(id)
     return component

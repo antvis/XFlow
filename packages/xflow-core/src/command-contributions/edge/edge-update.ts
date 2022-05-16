@@ -112,9 +112,11 @@ export class UpdateEdgeCommand implements ICommand {
           x6Edge.setConnector(edgeConfig.connector)
         }
         if (isObject(edgeConfig.source)) {
-          x6Edge.setSource(edgeConfig.source)
+          //@ts-ignore
+          x6Edge.setSource(edgeConfig.source as any)
         }
         if (isObject(edgeConfig.target)) {
+          //@ts-ignore
           x6Edge.setTarget(edgeConfig.target as any)
         }
 
