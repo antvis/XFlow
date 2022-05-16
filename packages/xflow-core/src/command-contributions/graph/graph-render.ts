@@ -175,6 +175,9 @@ export class GraphRenderCommand implements ICommand {
         XFlowNodeCommands.ADD_NODE.id,
         {
           nodeConfig,
+          options: {
+            isRenderGraph: true,
+          },
         },
         {
           name: 'remove servcie',
@@ -197,6 +200,9 @@ export class GraphRenderCommand implements ICommand {
         XFlowEdgeCommands.ADD_EDGE.id,
         {
           edgeConfig,
+          options: {
+            isRenderGraph: true,
+          },
         },
         {
           name: 'remove servcie',
