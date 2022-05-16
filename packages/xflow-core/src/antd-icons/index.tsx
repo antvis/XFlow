@@ -21,19 +21,18 @@ export class IconStoreBase implements IReactComponentStore {
   }
 
   /** 获取全局的icon component */
-  //@ts-ignore
-  get(id: string) {
+  get(id: string): IconComponent {
     const component = this.map.get(id)
     return component
   }
 
   /** 设置全局的icon component */
-  set(id: string, component: IconComponent) {
+  set(id: string, component: IconComponent): void {
     this.map.set(id, component)
   }
 
   /** 判断是否有值 */
-  has(id: string) {
+  has(id: string): boolean {
     return this.map.has(id)
   }
 }
