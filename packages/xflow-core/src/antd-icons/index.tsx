@@ -21,6 +21,7 @@ export class IconStoreBase implements IReactComponentStore {
   }
 
   /** 获取全局的icon component */
+  //@ts-ignore
   get(id: string): IconComponent {
     const component = this.map.get(id)
     return component
