@@ -4,6 +4,7 @@ import type { Attr } from '@antv/x6/lib/registry/attr'
 import type { PortManager } from '@antv/x6/lib/model/port'
 import type { IGraphCommandService } from './command/interface'
 import type { IModelService } from './model-service/interface'
+import type React from 'react'
 /**
  * XFlow画布数据
  */

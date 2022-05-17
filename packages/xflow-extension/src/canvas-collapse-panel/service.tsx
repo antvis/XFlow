@@ -24,6 +24,7 @@ export const executeCollapsePanelCommand = (
     XFlowModelCommands.UPDATE_MODEL.id,
     {
       getModel: async modelService => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         return NsCollapsePanelModel.useModel(modelService)
       },
       updateModel: updateModel,
@@ -46,7 +47,7 @@ export const useCollapsePanelData = (props: IProps) => {
   })
   /** 注册model成为全局状态，方便其他组件联动 */
   React.useEffect(() => {
-    if (modelService.findDeferredModel(NsCollapsePanelModel.id)) {
+    if (modelService.findDeferredModel<NsCollapsePanelModel.IState>(NsCollapsePanelModel.id)) {
       return
     }
     modelService.registerModel<NsCollapsePanelModel.IState>({

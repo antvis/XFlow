@@ -1,6 +1,6 @@
 import React from 'react'
 import { createComponentModel, Disposable, MODELS, useXFlowApp } from '@antv/xflow-core'
-import type { IProps, IFlowchartNode } from './interface'
+import type { IProps, IFlowchartNode, IRegisterNode } from './interface'
 import { nodeService } from './utils'
 import { isArray } from 'lodash'
 
@@ -25,11 +25,13 @@ const DefaultsearchService = async (nodeList = [], keyword: string) => {
 export const usePanelData = (props: IProps) => {
   const { searchService = DefaultsearchService } = props
 
-  const registerNode = props.registerNode
-    ? isArray(props.registerNode)
-      ? props.registerNode
-      : [props.registerNode]
-    : []
+  const registerNode = (
+    props.registerNode
+      ? isArray(props.registerNode)
+        ? props.registerNode
+        : [props.registerNode]
+      : []
+  ) as IRegisterNode[]
 
   let nodes = []
 
@@ -54,7 +56,7 @@ export const usePanelData = (props: IProps) => {
 
   /** 注册成为全局状态，方便其他组件联动 */
   React.useEffect(() => {
-    if (modelService.findDeferredModel(NsPanelData.id)) {
+    if (modelService.findDeferredModel<NsPanelData.IState>(NsPanelData.id)) {
       return
     }
 

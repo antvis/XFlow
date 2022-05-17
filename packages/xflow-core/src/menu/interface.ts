@@ -1,4 +1,5 @@
 // utils
+import type React from 'react'
 import { Syringe } from 'mana-syringe'
 import type { Disposable } from '../common/disposable'
 import type { RxModel } from '../common/rx-model'
