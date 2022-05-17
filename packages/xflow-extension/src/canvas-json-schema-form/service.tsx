@@ -56,7 +56,9 @@ export const useJsonSchemaFormModel = (props: IProps) => {
       return
     }
     const toDispose = new DisposableCollection()
-    const deferredModel = app.modelService.findDeferredModel(NsJsonSchemaFormModel.id)
+    const deferredModel = app.modelService.findDeferredModel<NsJsonSchemaFormModel.IState>(
+      NsJsonSchemaFormModel.id,
+    )
     if (!deferredModel) {
       const d = app.modelService.registerModel<NsJsonSchemaFormModel.IState>({
         id: NsJsonSchemaFormModel.id,

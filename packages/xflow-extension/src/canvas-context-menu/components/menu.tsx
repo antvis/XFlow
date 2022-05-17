@@ -19,7 +19,7 @@ export const XFlowMenu: React.FC<IProps> = props => {
     target,
     commandService,
     modelService,
-    menuOptions: state,
+    menuOptions: state as any,
     onHide,
   })
 }

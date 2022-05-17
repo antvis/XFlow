@@ -1,3 +1,4 @@
+import type React from 'react'
 import { Syringe } from 'mana-syringe'
 /** 工具类型 */
 import type { Disposable } from '../common/disposable'
