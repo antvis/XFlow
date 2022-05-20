@@ -1,5 +1,5 @@
 ---
-"@antv/xflow-core": patch
+"@antv/xflow-hook": patch
 "@antv/xflow": patch
 "@antv/xflow-core": patch
 "@antv/xflow-extension": patch
