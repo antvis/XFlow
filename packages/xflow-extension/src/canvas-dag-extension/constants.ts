@@ -1,6 +1,6 @@
 import type { DisposableCollection } from '@antv/xflow-core'
 import type { IGraphCommand } from '@antv/xflow-core'
-import { getModelUtil, useModelValueUtil } from '@antv/xflow-core/es/model-service/constant'
+import { MODELS } from '@antv/xflow-core'
 
 export const EDGE_PATH_TYPE = {
   /** node 水平 */
@@ -45,8 +45,8 @@ export namespace GRAPH_STATUS_INFO {
     subscription: DisposableCollection
   }
   /** Model Utils */
-  export const getModel = getModelUtil<IState>(id)
-  export const useValue = useModelValueUtil<IState>(id)
+  export const getModel = MODELS.getModelUtil<IState>(id)
+  export const useValue = MODELS.useModelValueUtil<IState>(id)
 }
 
 export namespace XFlowDagCommands {
