@@ -225,9 +225,17 @@ export class GraphRenderCommand implements ICommand {
         await commandService.executeCommand(XFlowNodeCommands.DEL_NODE.id, { nodeConfig: nodeData })
       }
     }
-    for (const removeEdge of removeEdges) {
-      const edgeData = removeEdge?.getData()
-      await commandService.executeCommand(XFlowEdgeCommands.DEL_EDGE.id, { edgeConfig: edgeData })
+    /** 节点删除会同步删除其关联的边, 获取当前边的集合, 判断该边是否已经删除 */
+    const allEdges = x6Graph.getEdges()
+    if (allEdges.length > 0) {
+      for (const removeEdge of removeEdges) {
+        if (allEdges.includes(removeEdge)) {
+          const edgeData = removeEdge?.getData()
+          await commandService.executeCommand(XFlowEdgeCommands.DEL_EDGE.id, {
+            edgeConfig: edgeData,
+          })
+        }
+      }
     }
 
     if (x6Graph?.isFrozen()) {

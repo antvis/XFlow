@@ -51,7 +51,7 @@ export namespace NsDelNode {
 @injectable({
   token: { token: ICommandHandler, named: NsDelNode.command.id },
 })
-/** 创建节点命令 */
+/** 删除节点命令 */
 export class DelNodeCommand implements ICommand {
   /** api */
   @inject(ICommandContextProvider) contextProvider: ICommand['contextProvider']
