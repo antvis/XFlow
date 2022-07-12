@@ -21,7 +21,7 @@ export namespace NsGraph {
   /** 图数据包括节点和边 */
   export interface IGraphData {
     /** 节点 */
-    nodes: INodeConfig[]
+    nodes: (INodeConfig | IGroupConfig)[]
     /** 边 */
     edges: IEdgeConfig[]
   }
