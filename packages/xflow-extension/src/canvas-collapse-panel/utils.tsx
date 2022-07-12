@@ -2,7 +2,7 @@ import { usePositionStyle } from '@antv/xflow-core'
 import type { ILayoutProps } from './interface'
 import { PANEL_HEADER_HEIGHT, PANEL_FOOTER_HEIGHT } from './constants'
 
-export const usePanelLyaoutStyle = (config: ILayoutProps) => {
+export const usePanelLayoutStyle = (config: ILayoutProps) => {
   const headerHeight =
     (config && config.headerPosition && config.headerPosition.height) || PANEL_HEADER_HEIGHT
   const footerHeight =
@@ -34,3 +34,10 @@ export const usePanelLyaoutStyle = (config: ILayoutProps) => {
     }),
   }
 }
+
+/**
+ * @deprecated usePanelLayoutStyle 的错误拼写
+ *
+ * 保留以兼容旧应用
+ */
+export const usePanelLyaoutStyle = usePanelLayoutStyle

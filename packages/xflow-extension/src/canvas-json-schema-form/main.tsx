@@ -4,7 +4,7 @@ import { useXflowPrefixCls } from '@antv/xflow-core'
 import { PanelFooter } from './panel-footer'
 import { PanelHeader } from './panel-header'
 import { PanelBody } from './panel-body'
-import { usePanelLyaoutStyle } from './utils'
+import { usePanelLayoutStyle } from './utils'
 import { useJsonSchemaFormModel } from './service'
 export { FormItemWrapper } from './schema-form'
 export { executeJsonSchemaFormCommand } from './service'
@@ -82,7 +82,7 @@ export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
     }
   }, [state.schema])
 
-  const { headerStyle, bodyStyle, footerStyle } = usePanelLyaoutStyle(
+  const { headerStyle, bodyStyle, footerStyle } = usePanelLayoutStyle(
     props as IPanelProps,
     noSchema,
   )

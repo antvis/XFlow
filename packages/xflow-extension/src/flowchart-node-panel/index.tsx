@@ -9,7 +9,7 @@ import { registerCustomNode } from './utils'
 import { NodePanelBody } from './panel-body'
 // import { NodePanelHeader } from '../canvas-node-tree-panel/panel-header'
 import { NodePanelHeader } from './panel-header'
-import { usePanelLyaoutStyle } from '../canvas-node-tree-panel/utils'
+import { usePanelLayoutStyle } from '../canvas-node-tree-panel/utils'
 import { usePanelData } from './service'
 import { CONTAINER_CLASS, PANEL_HEADER_HEIGHT } from './constants'
 export { setGroupRender } from './group-panel'
@@ -25,7 +25,7 @@ export const NodePanelMain: React.FC<IProps> = props => {
     ...rest
   } = props
   const { width = 200 } = position
-  const { headerStyle, bodyStyle } = usePanelLyaoutStyle(props as IPanelProps)
+  const { headerStyle, bodyStyle } = usePanelLayoutStyle(props as IPanelProps)
   const { state, onKeywordChange } = usePanelData(props)
 
   return (
