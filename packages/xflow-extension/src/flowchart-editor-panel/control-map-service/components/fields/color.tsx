@@ -16,6 +16,7 @@ const ColorPicker: React.FC<IProps> = props => {
   const { label, value = '', onChange } = props
   const [show, setShow] = useState(false)
   const colorRef = useRef<string>(value)
+  const containerRef = useRef<HTMLDivElement>()
   const { graphProvider } = useXFlowApp()
   const graphConfig = useRef<IGraphConfig>()
   graphProvider.getGraphOptions().then(x6GraphConfig => {
@@ -54,6 +55,23 @@ const ColorPicker: React.FC<IProps> = props => {
     )
   }
 
+  const getParentContainerByClassName = (currentEle: HTMLDivElement, className: string) => {
+    const containers = document.getElementsByClassName(className)
+    if (containers.length === 1) {
+      return containers[0]
+    }
+    let containter = null
+    let currentNode = currentEle.parentElement
+    while (!containter) {
+      const current = currentNode.getElementsByClassName(className)
+      if (current?.length > 0) {
+        containter = current[0]
+      }
+      currentNode = currentNode.parentElement
+    }
+    return containter
+  }
+
   const createPickColorContainer = (visible: boolean) => {
     const existElements = document.getElementsByClassName(`${PREFIX}-pick-color-container`)
     if (existElements.length) {
@@ -65,11 +83,17 @@ const ColorPicker: React.FC<IProps> = props => {
       return
     }
     const div = document.createElement('div')
-    render(createPortal(<PickContainer />, document.getElementsByTagName('body')[0]), div)
+    render(
+      createPortal(
+        <PickContainer />,
+        getParentContainerByClassName(containerRef.current, 'flowchart-editor-panel-body'),
+      ),
+      div,
+    )
   }
 
   return (
-    <div className="group">
+    <div className="group" ref={containerRef}>
       {label && <label>{label}</label>}
       <div
         className={`${PREFIX}-color-container`}
