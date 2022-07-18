@@ -65,7 +65,7 @@ export const useTreePanelData = (props: IProps) => {
     if (modelService.findDeferredModel(NsNodeTreePanelModel.id)) {
       return
     }
-    modelService.registerModel<NsNodeTreePanelModel.IState>({
+    modelService.registerModel({
       id: NsNodeTreePanelModel.id,
       modelFactory: () => panelModel,
       watchChange: async self => {

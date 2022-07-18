@@ -56,11 +56,11 @@ export const useJsonSchemaFormModel = (props: IProps) => {
       return
     }
     const toDispose = new DisposableCollection()
-    const deferredModel = app.modelService.findDeferredModel<NsJsonSchemaFormModel.IState>(
+    const deferredModel = app.modelService.findDeferredModel(
       NsJsonSchemaFormModel.id,
     )
     if (!deferredModel) {
-      const d = app.modelService.registerModel<NsJsonSchemaFormModel.IState>({
+      const d = app.modelService.registerModel({
         id: NsJsonSchemaFormModel.id,
         modelFactory: () => model,
         /** 监听SELECTED_CELL的变化 */

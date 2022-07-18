@@ -29,7 +29,7 @@ export const useToolbarModel = (props: IToolbarProps) => {
     const deferredModel = app.modelService.findDeferredModel(modelId)
     if (!deferredModel) {
       const { toolbarCustomRender, toolbarModelService } = config.getConfig()
-      const d = app.modelService.registerModel<NsToolbarModel.IState>({
+      const d = app.modelService.registerModel({
         id: modelId,
         modelFactory: () => toolbarModel,
         watchChange: async self => {

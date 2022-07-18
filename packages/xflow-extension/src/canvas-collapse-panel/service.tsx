@@ -47,10 +47,10 @@ export const useCollapsePanelData = (props: IProps) => {
   })
   /** 注册model成为全局状态，方便其他组件联动 */
   React.useEffect(() => {
-    if (modelService.findDeferredModel<NsCollapsePanelModel.IState>(NsCollapsePanelModel.id)) {
+    if (modelService.findDeferredModel(NsCollapsePanelModel.id)) {
       return
     }
-    modelService.registerModel<NsCollapsePanelModel.IState>({
+    modelService.registerModel({
       id: NsCollapsePanelModel.id,
       modelFactory: () => panelModel,
       watchChange: async self => {
