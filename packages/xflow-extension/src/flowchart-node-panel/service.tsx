@@ -56,11 +56,11 @@ export const usePanelData = (props: IProps) => {
 
   /** 注册成为全局状态，方便其他组件联动 */
   React.useEffect(() => {
-    if (modelService.findDeferredModel<NsPanelData.IState>(NsPanelData.id)) {
+    if (modelService.findDeferredModel(NsPanelData.id)) {
       return
     }
 
-    modelService.registerModel<NsPanelData.IState>({
+    modelService.registerModel({
       id: NsPanelData.id,
       modelFactory: () => panelModel,
       watchChange: async self => {
