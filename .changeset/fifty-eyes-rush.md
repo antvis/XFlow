@@ -4,5 +4,4 @@
 '@antv/xflow-extension': patch
 '@antv/xflow-hook': patch
 ---
-
 chore: update npmrc config
