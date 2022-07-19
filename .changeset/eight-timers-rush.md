@@ -5,4 +5,4 @@
 '@antv/xflow-hook': patch
 ---
 
-fix build error
+bump version
