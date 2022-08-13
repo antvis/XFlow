@@ -1,5 +1,20 @@
 # @antv/xflow-extension
 
+## 1.0.49
+
+### Patch Changes
+
+- 706c98dc: bump version
+- 706c98dc: chore: update npmrc config
+- 1bfa63a4: 修复 isFunction 类型错误
+- 372f453b: 新增 edgeConfig 和 showPortOnNodeSelected
+- Updated dependencies [706c98dc]
+- Updated dependencies [706c98dc]
+- Updated dependencies [1bfa63a4]
+- Updated dependencies [372f453b]
+  - @antv/xflow-core@1.0.49
+  - @antv/xflow-hook@1.0.49
+
 ## 1.0.48
 
 ### Patch Changes
