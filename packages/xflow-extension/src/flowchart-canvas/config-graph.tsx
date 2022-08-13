@@ -8,7 +8,6 @@ import { ConfigProvider, Tooltip } from 'antd'
 import merge from 'lodash/merge'
 import { createGraphConfig } from '@antv/xflow-core'
 import { Shape } from '@antv/x6'
-import { isFunction } from 'lodash'
 import {
   NODE_HEIGHT,
   ASPECTRATIONODE,
@@ -131,7 +130,8 @@ export const useGraphConfig = createGraphConfig<IFlowchartGraphProps>((config, p
                   const sourcePortId = edge.getSourcePortId()
                   const sourceCellId = edge.getSourceCellId()
                   const targetCellId = edge.getTargetCellId()
-                  const customEdgeConfig = isFunction(edgeConfig) ? edgeConfig(edge) : edgeConfig
+                  const customEdgeConfig =
+                    typeof edgeConfig === 'function' ? edgeConfig(edge) : edgeConfig
                   this.trigger(NsAddEdgeEvent.EVENT_NAME, {
                     targetPortId,
                     sourcePortId,
