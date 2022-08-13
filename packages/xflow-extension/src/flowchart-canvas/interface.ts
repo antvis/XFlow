@@ -1,7 +1,7 @@
 import type React from 'react'
 import type { IPosition, NsGraph } from '@antv/xflow-core'
 import type { GraphConfig } from '@antv/xflow-core/es/xflow-main/graph/config'
-import type { Graph as X6Graph } from '@antv/x6'
+import type { Graph as X6Graph, Edge } from '@antv/x6'
 
 export type Datum = {
   nodes?: unknown[]
@@ -13,6 +13,20 @@ export interface IFlowchartGraphProps {
   style?: React.CSSProperties
   className?: string
   position?: IPosition
+
+  /** 内部使用 */
+  isXFlowCanvas?: boolean
+  /** 处于阅读态(scan)时禁用部分画布事件与交互功能 */
+  mode?: 'edit' | 'scan'
+  /**
+   * @description 节点处于选中状态时鼠标移入是否显示 ports
+   * @default false
+   */
+  showPortsOnNodeSelected?: boolean
+  /**
+   * @description 自定义边配置
+   */
+  edgeConfig?: Partial<NsGraph.IEdgeConfig> | ((edge: Edge) => Partial<NsGraph.IEdgeConfig>)
   useConfig?: (config: GraphConfig) => void
   /**
    * 这种几个方法应该移动到最外层，后续
@@ -27,8 +41,4 @@ export interface IFlowchartGraphProps {
     type: string
     config?: NsGraph.INodeConfig | NsGraph.IEdgeConfig
   }) => void
-  /** 内部使用 */
-  isXFlowCanvas?: boolean
-  /** 处于阅读态(scan)时禁用部分画布事件与交互功能 */
-  mode?: 'edit' | 'scan'
 }

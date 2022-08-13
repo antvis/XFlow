@@ -44,18 +44,6 @@ export class FlowHooksContribution implements IHookContribution<ICmdHooks> {
                   port: edgeConfig.targetPortId,
                 },
                 zIndex: 1,
-                attrs: {
-                  line: {
-                    stroke: '#A2B1C3',
-                    targetMarker: {
-                      name: 'block',
-                      width: 12,
-                      height: 8,
-                    },
-                    strokeDasharray: '5 5',
-                    strokeWidth: 1,
-                  },
-                },
                 data: { ...rest },
               },
             }

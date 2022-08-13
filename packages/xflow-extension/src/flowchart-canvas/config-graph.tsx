@@ -1,5 +1,5 @@
 import type { TooltipPlacement } from 'antd/es/tooltip'
-import type { IEvent } from '@antv/xflow-core'
+import type { IEvent, NsGraph } from '@antv/xflow-core'
 import type { Edge } from '@antv/x6'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -8,6 +8,7 @@ import { ConfigProvider, Tooltip } from 'antd'
 import merge from 'lodash/merge'
 import { createGraphConfig } from '@antv/xflow-core'
 import { Shape } from '@antv/x6'
+import { isFunction } from 'lodash'
 import {
   NODE_HEIGHT,
   ASPECTRATIONODE,
@@ -15,7 +16,7 @@ import {
   setGroupRender,
 } from '../flowchart-node-panel'
 import { movedNode, resizeNode, changePortsVisible, addTools, removeTools, setProps } from './utils'
-import { IFlowchartGraphProps } from './interface'
+import type { IFlowchartGraphProps } from './interface'
 
 /** 临时边 */
 const TEMP_EGDE = 'flowchart-connecting-edge'
@@ -30,7 +31,23 @@ export namespace NsAddEdgeEvent {
     target: string
     edge: Edge
     tempEdgeId?: string
+    attrs?: NsGraph.IEdgeConfig['attrs']
   }
+}
+
+const defaultEdgeConfig = {
+  attrs: {
+    line: {
+      stroke: '#A2B1C3',
+      targetMarker: {
+        name: 'block',
+        width: 12,
+        height: 8,
+      },
+      strokeDasharray: '5 5',
+      strokeWidth: 1,
+    },
+  },
 }
 
 const XFlowEdge = Shape.Edge.registry.register(
@@ -46,18 +63,7 @@ const XFlowEdge = Shape.Edge.registry.register(
         dx: 10,
       },
     },
-    attrs: {
-      line: {
-        stroke: '#A2B1C3',
-        targetMarker: {
-          name: 'block',
-          width: 12,
-          height: 8,
-        },
-        strokeDasharray: '5 5',
-        strokeWidth: 1,
-      },
-    },
+    attrs: defaultEdgeConfig.attrs,
     data: {
       label: '',
     },
@@ -66,7 +72,13 @@ const XFlowEdge = Shape.Edge.registry.register(
 )
 
 export const useGraphConfig = createGraphConfig<IFlowchartGraphProps>((config, proxy) => {
-  const { config: canvasConfig = {}, useConfig, mode = 'edit' } = proxy.getValue()
+  const {
+    config: canvasConfig = {},
+    useConfig,
+    mode = 'edit',
+    showPortsOnNodeSelected = false,
+    edgeConfig = {},
+  } = proxy.getValue()
   config.setEdgeTypeParser(edge => edge?.renderKey as string)
   /** 这里比较黑，props 共享*/
   setProps({
@@ -119,6 +131,7 @@ export const useGraphConfig = createGraphConfig<IFlowchartGraphProps>((config, p
                   const sourcePortId = edge.getSourcePortId()
                   const sourceCellId = edge.getSourceCellId()
                   const targetCellId = edge.getTargetCellId()
+                  const customEdgeConfig = isFunction(edgeConfig) ? edgeConfig(edge) : edgeConfig
                   this.trigger(NsAddEdgeEvent.EVENT_NAME, {
                     targetPortId,
                     sourcePortId,
@@ -126,6 +139,7 @@ export const useGraphConfig = createGraphConfig<IFlowchartGraphProps>((config, p
                     target: targetCellId,
                     edge: edge,
                     tempEdgeId: tempEdge.id,
+                    ...merge(defaultEdgeConfig, customEdgeConfig),
                   } as NsAddEdgeEvent.IArgs)
                 }
               }
@@ -223,7 +237,7 @@ export const useGraphConfig = createGraphConfig<IFlowchartGraphProps>((config, p
     {
       eventName: 'node:mouseenter',
       callback: e => {
-        mode === 'edit' && changePortsVisible(true, e)
+        mode === 'edit' && changePortsVisible(true, e, showPortsOnNodeSelected)
       },
     } as IEvent<'node:mouseenter'>,
     {
