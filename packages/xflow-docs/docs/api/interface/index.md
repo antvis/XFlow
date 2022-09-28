@@ -166,7 +166,7 @@ export interface IEdgeConfig {
   target: string
   /** 边的上游节点的锚点Id */
   sourcePortId?: string
-  /** 边的上游节点的锚点Id */
+  /** 边的下游节点的锚点Id */
   targetPortId?: string
   /** 边上label */
   label?: string
