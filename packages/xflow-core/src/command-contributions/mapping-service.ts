@@ -81,6 +81,8 @@ export class GraphMappingHelper {
       target: this.nodeMappingRecord.get(target),
       sourcePortId: this.portMappingRecord.get(sourcePortId),
       targetPortId: this.portMappingRecord.get(targetPortId),
+      sourcePort: this.portMappingRecord.get(sourcePortId),
+      targetPort: this.portMappingRecord.get(targetPortId),
     } as NsGraph.IEdgeConfig
   }
   // 更新GroupNode的NodeId
