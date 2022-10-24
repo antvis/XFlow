@@ -1,5 +1,15 @@
 # @antv/xflow
 
+## 1.0.52
+
+### Patch Changes
+
+- 42d593f6: fix: cannot copy edge Close#322
+- Updated dependencies [42d593f6]
+  - @antv/xflow-core@1.0.52
+  - @antv/xflow-extension@1.0.52
+  - @antv/xflow-hook@1.0.52
+
 ## 1.0.51
 
 ### Patch Changes

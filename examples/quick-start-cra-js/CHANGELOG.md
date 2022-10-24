@@ -1,5 +1,12 @@
 # xflow-quick-start-cra-js
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [42d593f6]
+  - @antv/xflow@1.0.52
+
 ## 0.1.6
 
 ### Patch Changes
