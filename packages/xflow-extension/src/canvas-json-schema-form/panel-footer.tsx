@@ -30,6 +30,7 @@ export const PanelFooter: React.FC<IFooterProps> = props => {
             targetType: state.targetType,
             modelService: app.modelService,
             commandService: app.commandService,
+            app,
           })}
         {!panelProps.footer && (
           <div className={`${props.prefixClz}-footer-title`}>{panelProps.footerText}</div>

@@ -34,6 +34,7 @@ export const PanelHeader: React.FC<IHeaderProps> = props => {
             targetType: state.targetType,
             modelService: app.modelService,
             commandService: app.commandService,
+            app,
           })}
         {!panelProps.header && (
           <div className={`${prefixClz}-header-title`}>{panelProps.headerText || 'Panel'}</div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { IProps, IInternalProps, IPanelProps, ITriggerUpdate, FieldData } from './interface'
-import { useXflowPrefixCls } from '@antv/xflow-core'
+import { useXFlowApp, useXflowPrefixCls } from '@antv/xflow-core'
 import { PanelFooter } from './panel-footer'
 import { PanelHeader } from './panel-header'
 import { PanelBody } from './panel-body'
@@ -13,6 +13,7 @@ import { WorkspacePanel } from '../base-panel'
 /** useFormPanelData获取数据 */
 export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
   const { prefixClz } = props
+  const app = useXFlowApp()
   const { getCustomRenderComponent, afterUpdatingCb, formValueUpdateService = () => {} } = props
   const { state, commandService, modelService } = useJsonSchemaFormModel(props)
 
@@ -26,6 +27,7 @@ export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
       const allFields = Object.entries(state.targetData).map(([key, val]) => {
         return { name: key, value: val } as FieldData
       })
+      const graph = await app?.getGraphInstance()
       const result = await formValueUpdateService({
         allFields: allFields,
         values: changedFields,
@@ -33,12 +35,14 @@ export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
         commandService,
         targetData: state.targetData,
         targetType: state.targetType,
+        graph,
       })
       if (afterUpdatingCb) {
         afterUpdatingCb(result)
       }
     },
     [
+      app,
       afterUpdatingCb,
       commandService,
       formValueUpdateService,
@@ -51,6 +55,7 @@ export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
   // 在fields change时的回调
   const onFieldsChange = React.useCallback(
     async (changedFields: FieldData[], allFields: FieldData[]) => {
+      const graph = await app?.getGraphInstance()
       const result = await formValueUpdateService({
         values: changedFields,
         allFields,
@@ -58,12 +63,14 @@ export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
         commandService,
         targetData: state.targetData,
         targetType: state.targetType,
+        graph,
       })
       if (afterUpdatingCb) {
         afterUpdatingCb(result)
       }
     },
     [
+      app,
       afterUpdatingCb,
       commandService,
       formValueUpdateService,
@@ -94,6 +101,7 @@ export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
       state.targetData,
       modelService,
       commandService,
+      app,
     )
     if (Component) {
       return React.createElement(Component, {
@@ -105,6 +113,7 @@ export const JsonSchemaFormMain: React.FC<IInternalProps> = props => {
         targetType: state.targetType,
         modelService: modelService,
         commandService: commandService,
+        app,
       })
     }
   }

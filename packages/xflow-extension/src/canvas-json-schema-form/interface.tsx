@@ -3,6 +3,7 @@ import type { FormInstance } from 'antd'
 import type { FieldData, Rule } from 'rc-field-form/es/interface'
 import type { IPosition, NsGraph, IModelService, IGraphCommandService } from '@antv/xflow-core'
 import type { Cell, Graph as X6Graph } from '@antv/x6'
+import type { FrontendApplication } from '@antv/xflow-core/es/xflow-main/application'
 
 export { FieldData }
 /** Panel 布局 */
@@ -108,6 +109,7 @@ export interface ICustomRender {
     targetData: TargetData,
     modelService: IModelService,
     commandService: IGraphCommandService,
+    app: FrontendApplication,
   ): React.FC<ICustomProps> | null
 }
 
@@ -122,6 +124,8 @@ export interface ICustomProps {
   // service
   modelService: IModelService
   commandService: IGraphCommandService
+  // x6 graph
+  app: FrontendApplication
 }
 
 /** service: form value change 时触发 */
@@ -135,6 +139,8 @@ export interface IFormValueUpdateService {
     // service
     modelService: IModelService
     commandService: IGraphCommandService
+    // x6 graph
+    graph: X6Graph
   }): Promise<any>
 }
 
