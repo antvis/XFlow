@@ -37,3 +37,5 @@ export interface IFrontendApplicationContribution {
    */
   onStop?: (app: FrontendApplication) => void
 }
+
+export type { FrontendApplication }

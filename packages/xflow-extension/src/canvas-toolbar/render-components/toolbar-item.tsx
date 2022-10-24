@@ -31,7 +31,7 @@ export const ToolbarItem: React.FC<IProps> = props => {
   const { commandService, modelService } = app
   const onItemClick = () => {
     if (item.onClick) {
-      item.onClick({ toolbarItem: item, commandService, modelService })
+      item.onClick({ toolbarItem: item, commandService, modelService, app })
     }
   }
   if (ToolbarItemWrap) {

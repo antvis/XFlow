@@ -13,6 +13,7 @@ import type { ToolbarGroup as X6ToolbarGroup } from '@antv/x6-react-components/e
 import type { ToolbarItem as X6ToolbarItem } from '@antv/x6-react-components/es/toolbar/item'
 import type { Simplify } from '../common/types'
 import type { ReactElement } from 'react'
+import type { FrontendApplication } from '../xflow-main/interface'
 
 /** 用于了批量注册 可销毁的 Toolbar Item*/
 export interface IStandaloneToolbarService {
@@ -84,6 +85,7 @@ export interface IClickArgs {
   toolbarItem: IToolbarItemOptions
   commandService: IGraphCommandService
   modelService: IModelService
+  app: FrontendApplication
 }
 /**
  * Toolbar的布局方向
