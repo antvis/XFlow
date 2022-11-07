@@ -1,11 +1,12 @@
 {
-  "exclude": ["node_modules", "**/es", "**/lib"],
   "compilerOptions": {
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "node",
+    "jsx": "react",
+    "baseUrl": ".",
+    "importHelpers": true,
     "sourceMap": true,
-    "declaration": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -13,8 +14,10 @@
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
-    "jsx": "react",
-    "target": "es5",
-    "lib": ["DOM", "ES2020"]
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }

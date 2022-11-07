@@ -1,0 +1,17 @@
+
+> @antv/xflow@2.0.0 build /Users/wenyu/vector/code/AntV/XFlow/packages/xflow
+> run-p -s build:dev build:umd
+
+[36m
+[1m./src/index.ts[22m → [1mdist/index.js[22m...[39m
++--------------------------------+
+|                                |
+|   [32m[1mBundle Format:[22m[39m [33mumd[39m           |
+|   [32m[1mBundle Name:[22m[39m [33mXFlow[39m           |
+|   [32m[1mDestination:[22m[39m [33mdist/index.js[39m   |
+|   [32m[1mBundle   Size:[22m[39m [33m281 B[39m         |
+|   [32m[1mMinified Size:[22m[39m [33m246 B[39m         |
+|   [32m[1mGzipped  Size:[22m[39m [33m177 B[39m         |
+|                                |
++--------------------------------+
+[32mcreated [1mdist/index.js[22m in [1m1.4s[22m[39m
