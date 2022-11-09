@@ -159,6 +159,7 @@ importers:
       '@antv/x6': ^2.0.6-beta.0
       '@antv/x6-common': ^2.0.0
       '@antv/x6-plugin-dnd': ^2.0.0
+      '@antv/x6-plugin-export': ^2.0.0
       '@antv/x6-react-shape': ^2.0.6-beta.0
       '@types/react': ^18.0.0
       '@types/react-dom': ^18.0.0
@@ -169,6 +170,7 @@ importers:
       '@antv/x6': registry.npmmirror.com/@antv/x6/2.0.6-beta.26
       '@antv/x6-common': 2.0.0
       '@antv/x6-plugin-dnd': 2.0.0_@antv+x6@2.0.6-beta.26
+      '@antv/x6-plugin-export': 2.0.0_@antv+x6@2.0.6-beta.26
       '@antv/x6-react-shape': registry.npmmirror.com/@antv/x6-react-shape/2.0.6-beta.26_aou2leotru3erhom2io6loixom
     devDependencies:
       '@types/react': registry.npmmirror.com/@types/react/18.0.25
@@ -216,6 +218,18 @@ packages:
       {
         integrity: sha512-EDios7A+yHceopcF4moz6fYlRrDe1gqCNo5APLIE3tY9MBAdxuoNHCQtSKnDOZWhYrwOyZLmGPVYOIBlIRx4FA==,
         tarball: '@antv/x6-plugin-dnd/download/@antv/x6-plugin-dnd-2.0.0.tgz',
+      }
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': registry.npmmirror.com/@antv/x6/2.0.6-beta.26
+    dev: false
+
+  /@antv/x6-plugin-export/2.0.0_@antv+x6@2.0.6-beta.26:
+    resolution:
+      {
+        integrity: sha512-MBx/78dVTXJOfFmpRcZvcyEY/wos0cBr5SNKC0SWsoViLjlpezD2XxkiU9bOMf8/Ohpu01lTBvvGMG82JIhCzw==,
+        tarball: '@antv/x6-plugin-export/download/@antv/x6-plugin-export-2.0.0.tgz',
       }
     peerDependencies:
       '@antv/x6': ^2.x
