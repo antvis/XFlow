@@ -42,19 +42,20 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@antv/x6": "^2.0.6-beta.0",
+    "@antv/x6": "2.0.0-beta.1",
     "@antv/x6-common": "^2.0.0",
     "@antv/x6-plugin-clipboard": "^2.0.0",
     "@antv/x6-plugin-dnd": "^2.0.0",
     "@antv/x6-plugin-export": "^2.0.0",
-    "@antv/x6-react-shape": "^2.0.6-beta.0"
+    "@antv/x6-plugin-history": "^2.0.0",
+    "@antv/x6-react-shape": "2.0.0-beta.1"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "antd": "^4.24.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "antd": "^4.24.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "peerDependencies": {
     "antd": "^4.24.0",

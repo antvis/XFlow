@@ -24,7 +24,7 @@ export const useClipboard = (options: Clipboard.Options) => {
   const graph = useGraph()
 
   useEffect(() => {
-    if (graph || options) {
+    if (options) {
       SINGLETON.init(graph, options)
     }
   }, [graph, options])
