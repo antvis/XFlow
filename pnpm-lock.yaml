@@ -162,6 +162,7 @@ importers:
       '@antv/x6-plugin-dnd': ^2.0.0
       '@antv/x6-plugin-export': ^2.0.0
       '@antv/x6-plugin-history': ^2.0.0
+      '@antv/x6-plugin-minimap': ^2.0.0
       '@antv/x6-react-shape': 2.0.0-beta.1
       '@types/react': ^18.0.25
       '@types/react-dom': ^18.0.8
@@ -175,6 +176,7 @@ importers:
       '@antv/x6-plugin-dnd': 2.0.0_@antv+x6@2.0.0-beta.1
       '@antv/x6-plugin-export': 2.0.0_@antv+x6@2.0.0-beta.1
       '@antv/x6-plugin-history': 2.0.0_@antv+x6@2.0.0-beta.1
+      '@antv/x6-plugin-minimap': 2.0.0_@antv+x6@2.0.0-beta.1
       '@antv/x6-react-shape': 2.0.0-beta.1_7m4h34xfpefavvjlfrh3sju3zi
     devDependencies:
       '@types/react': 18.0.25
@@ -311,6 +313,18 @@ packages:
       {
         integrity: sha512-ApAJNhnfyw4qcatfEyCMhtBK78WwVQ9LPBG6R8gzv2bYUVHLGfGH0I7rDYbCZc5HjsXAVTkz3H5/yiTe6QhGkg==,
         tarball: '@antv/x6-plugin-history/download/@antv/x6-plugin-history-2.0.0.tgz',
+      }
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.0.0-beta.1
+    dev: false
+
+  /@antv/x6-plugin-minimap/2.0.0_@antv+x6@2.0.0-beta.1:
+    resolution:
+      {
+        integrity: sha512-CXMCuP6zCxzJtoO3s6yMEsbbDsKLSd3PzDd192MQahoTPZ/EKdJrNKA8aGLAdA2g7V7PaV9pp6kFe/YzrU/Vrw==,
+        tarball: '@antv/x6-plugin-minimap/download/@antv/x6-plugin-minimap-2.0.0.tgz',
       }
     peerDependencies:
       '@antv/x6': ^2.x
