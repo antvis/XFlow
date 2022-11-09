@@ -1,24 +1,30 @@
+import { useMemo } from 'react'
 import { History } from '@antv/x6-plugin-history'
 import { useGraph } from '../graph'
 
 export const useHistory = (options?: History.Options) => {
   const graph = useGraph()
-  const history = graph.getPlugin<History>(History.name)
 
-  if (options) {
-    if (history) {
-      // TODO: add setOptions function
-      // history.setOptions(options)
-    } else {
-      const graphHistory = new History(options)
+  return useMemo(() => {
+    if (graph) {
+      const history = graph.getPlugin<History>(History.name)
 
-      graph.use(graphHistory)
+      if (options) {
+        if (history) {
+          // TODO: add setOptions function
+          // history.setOptions(options)
+        } else {
+          const graphHistory = new History(options)
 
-      return graphHistory
+          graph.use(graphHistory)
+
+          return graphHistory
+        }
+      }
+
+      return history
     }
-  }
-
-  return history
+  }, [graph, options])
 }
 
 export const useOnHistoryUndo = (callback: () => void) => {

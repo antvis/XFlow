@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { Export } from '@antv/x6-plugin-export'
 import { useGraph } from '../graph'
 
@@ -7,16 +7,16 @@ export const useFormat = (formatOptions?: Export.ToImageOptions) => {
   const graph = useGraph()
 
   const initFormat = useCallback(() => {
-    const format = new Export()
+    if (graph) {
+      const format = new Export()
 
-    format.init(graph)
+      format.init(graph)
 
-    graph.use(format)
+      graph.use(format)
 
-    return format
+      return format
+    }
   }, [graph])
-
-  const graphFormat = graph.getPlugin<Export>(Export.name) || initFormat()
 
   useEffect(() => {
     if (formatOptions) {
@@ -24,8 +24,18 @@ export const useFormat = (formatOptions?: Export.ToImageOptions) => {
     }
   }, [formatOptions])
 
-  return {
-    exportPng: (fileName: string) => graphFormat.exportPNG(fileName, options),
-    exportJPEG: (fileName: string) => graphFormat.exportJPEG(fileName, options),
-  }
+  return useMemo(() => {
+    if (graph) {
+      const graphFormat = graph.getPlugin<Export>(Export.name) || initFormat()
+
+      return (
+        graphFormat && {
+          exportPng: (fileName: string) =>
+            graphFormat.exportPNG(fileName, options),
+          exportJPEG: (fileName: string) =>
+            graphFormat.exportJPEG(fileName, options),
+        }
+      )
+    }
+  }, [graph, options, initFormat])
 }

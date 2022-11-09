@@ -28,8 +28,10 @@ export const Minimap: FC<Omit<MiniMap.Options, 'container'>> = (props) => {
   }, [mapRef, props, graph])
 
   useEffect(() => {
-    initMinimap()
-  }, [mapRef])
+    if (graph) {
+      initMinimap()
+    }
+  }, [mapRef, graph])
 
   return <div ref={mapRef} />
 }
