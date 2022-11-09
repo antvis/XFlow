@@ -7,7 +7,7 @@ export const Minimap: FC<Omit<MiniMap.Options, 'container'>> = (props) => {
   const mapRef = useRef<HTMLDivElement | null>(null)
 
   const initMinimap = useCallback(() => {
-    if (mapRef.current) {
+    if (mapRef.current && graph) {
       const options = { ...props, container: mapRef.current }
       const minimap = graph.getPlugin<MiniMap>(MiniMap.name)
 
