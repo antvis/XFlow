@@ -1,44 +1,31 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { Export } from '@antv/x6-plugin-export'
-import { Graph } from '@antv/x6'
 import { useGraph } from '../graph'
 
-class XFlowExport {
-  protected export: Export
-  protected options: Export.ToImageOptions
-
-  init(graph: Graph, options?: Export.ToImageOptions) {
-    if (!this.export) {
-      this.export = new Export()
-    }
-
-    this.export.init(graph)
-
-    if (options) {
-      this.options = options
-    }
-  }
-
-  exportPng = (fileName: string) => {
-    this.export.exportPNG(fileName, this.options)
-  }
-
-  exportJPEG = (fileName: string) => {
-    this.export.exportJPEG(fileName, this.options)
-  }
-}
-
-export const SINGLETON = new XFlowExport()
-
-export const useFormat = (options?: Export.ToImageOptions) => {
+export const useFormat = (formatOptions?: Export.ToImageOptions) => {
+  const [options, setOptions] = useState<Export.ToImageOptions>()
   const graph = useGraph()
 
+  const initFormat = useCallback(() => {
+    const format = new Export()
+
+    format.init(graph)
+
+    graph.use(format)
+
+    return format
+  }, [graph])
+
+  const graphFormat = graph.getPlugin<Export>(Export.name) || initFormat()
+
   useEffect(() => {
-    SINGLETON.init(graph, options)
-  }, [graph, options])
+    if (formatOptions) {
+      setOptions(formatOptions)
+    }
+  }, [formatOptions])
 
   return {
-    exportPng: SINGLETON.exportPng,
-    exportJPEG: SINGLETON.exportJPEG,
+    exportPng: (fileName: string) => graphFormat.exportPNG(fileName, options),
+    exportJPEG: (fileName: string) => graphFormat.exportJPEG(fileName, options),
   }
 }
