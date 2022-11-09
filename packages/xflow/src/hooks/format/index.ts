@@ -7,13 +7,16 @@ class XFlowExport {
   protected export: Export
   protected options: Export.ToImageOptions
 
-  init(graph: Graph, options: Export.ToImageOptions) {
+  init(graph: Graph, options?: Export.ToImageOptions) {
     if (!this.export) {
       this.export = new Export()
     }
 
     this.export.init(graph)
-    this.options = options
+
+    if (options) {
+      this.options = options
+    }
   }
 
   exportPng = (fileName: string) => {
@@ -27,7 +30,7 @@ class XFlowExport {
 
 export const SINGLETON = new XFlowExport()
 
-export const useFormat = (options: Export.ToImageOptions) => {
+export const useFormat = (options?: Export.ToImageOptions) => {
   const graph = useGraph()
 
   useEffect(() => {
