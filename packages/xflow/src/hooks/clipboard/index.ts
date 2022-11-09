@@ -1,33 +1,22 @@
-import { useEffect } from 'react'
 import { Clipboard } from '@antv/x6-plugin-clipboard'
-import { Graph } from '@antv/x6'
 import { useGraph } from '../graph'
 
-class XFlowClipboard {
-  protected clipboard: Clipboard
+export const useClipboard = (options?: Clipboard.Options) => {
+  const graph = useGraph()
+  const clipboard = graph.getPlugin<Clipboard>(Clipboard.name)
 
-  init(graph: Graph, options: Clipboard.Options) {
-    if (this.clipboard) {
-      this.clipboard.dispose()
+  if (options) {
+    if (clipboard) {
+      // TODO: add setOptions function
+      // clipboard.setOptions(options)
+    } else {
+      const graphClipboard = new Clipboard(options)
+
+      graphClipboard.init(graph)
+
+      return graphClipboard
     }
-
-    this.clipboard = new Clipboard(options)
-    this.clipboard.init(graph)
   }
 
-  getClipboard = () => this.clipboard
-}
-
-export const SINGLETON = new XFlowClipboard()
-
-export const useClipboard = (options: Clipboard.Options) => {
-  const graph = useGraph()
-
-  useEffect(() => {
-    if (options) {
-      SINGLETON.init(graph, options)
-    }
-  }, [graph, options])
-
-  return SINGLETON.getClipboard()
+  return clipboard
 }
