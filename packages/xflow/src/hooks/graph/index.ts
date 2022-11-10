@@ -1,5 +1,8 @@
-import type { Graph } from '@antv/x6'
+import { useContext } from 'react'
+import { GraphContext } from '../../context/GraphContext'
 
 export const useGraph = () => {
-  return new Graph({})
+  const { graph } = useContext(GraphContext)
+
+  return graph
 }
