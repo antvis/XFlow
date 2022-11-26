@@ -38,8 +38,11 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
   const [dnd, setDnd] = React.useState<Addon.Dnd>()
   /** 获取graph实例 */
   const [graph, setGraph] = React.useState<Graph>()
-  graphProvider.getGraphInstance().then(x6Graph => {
-    setGraph(x6Graph)
+
+  React.useEffect(() => {
+    graphProvider.getGraphInstance().then(x6Graph => {
+      setGraph(x6Graph)
+    })
   })
 
   let graphConfig = undefined
