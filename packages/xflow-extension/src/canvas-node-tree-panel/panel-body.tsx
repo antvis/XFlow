@@ -77,8 +77,11 @@ export const NodeTitle = (props: ITitleProps) => {
   const [isVisible, setVisible] = useState(false)
   const [appContainer, setAppContainer] = useState<HTMLElement>()
   const { getGraphConfig } = useXFlowApp()
-  getGraphConfig().then(graphConfig => {
-    setAppContainer(graphConfig.appContainer)
+
+  React.useEffect(() => {
+    getGraphConfig().then(graphConfig => {
+      setAppContainer(graphConfig.appContainer)
+    })
   })
 
   const {
@@ -150,8 +153,11 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
   const [dnd, setDnd] = React.useState<Addon.Dnd>()
 
   const [graph, setGraph] = React.useState<Graph>()
-  graphProvider.getGraphInstance().then(x6Graph => {
-    setGraph(x6Graph)
+
+  React.useEffect(() => {
+    graphProvider.getGraphInstance().then(x6Graph => {
+      setGraph(x6Graph)
+    })
   })
 
   React.useEffect(() => {
@@ -269,7 +275,7 @@ export const NodePanelBody: React.FC<IBodyProps> = props => {
         {state.searchList.length > 0 && (
           <ul className={`${prefixClz}-body-list`}>
             {state.searchList.map(treeNode => (
-              <li className={`${prefixClz}-body-list-item`}>
+              <li key={treeNode.id} className={`${prefixClz}-body-list-item`}>
                 <NodeTitle
                   item={treeNode}
                   onMouseDown={onMouseDown(treeNode)}
