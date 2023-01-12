@@ -66,7 +66,7 @@ export const useCmdConfig = createCmdConfig(config => {
     hooks.delNode.registerHook({
       name: 'notify delete node event to backend api',
       handler: async args => {
-        args.createNodeService = MockApi.addNode
+        args.deleteNodeService = MockApi.delNode
       },
     })
   })
