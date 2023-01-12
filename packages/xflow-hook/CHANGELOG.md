@@ -1,5 +1,11 @@
 # @antv/xflow-hook
 
+## 1.0.52
+
+### Patch Changes
+
+- ec6e7203: fix: cannot copy edge Close#322
+
 ## 1.0.51
 
 ### Patch Changes
