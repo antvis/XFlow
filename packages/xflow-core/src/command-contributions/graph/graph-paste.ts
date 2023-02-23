@@ -77,12 +77,25 @@ export class GraphPasteSelectionCommand implements ICommand {
     nodeConfig.x += dx
     nodeConfig.y += dy
     // 删除 id
-    nodeConfig.originId = nodeConfig.id
+    nodeConfig.originalId = nodeConfig.id
     delete nodeConfig.id
     // 修改label
-    nodeConfig.label = `${nodeConfig.label}_copied`
+    nodeConfig.label = nodeConfig.label ? `${nodeConfig.label}_copied` : ''
     nodeConfig.isCollapsed = false
     return nodeConfig
+  }
+
+  // 复制的 edge 包含了节点 id, 需要去除, 按照新节点来处理
+  getEdgeCopiedConfig = (edgeConfig: NsGraph.IEdgeConfig) => {
+    const { nodeMappingRecord } = this.mappingHelper
+    const { id, source, target, ...otherEdgeConfig } = edgeConfig
+
+    return {
+      ...otherEdgeConfig,
+      originalId: id,
+      source: nodeMappingRecord.get((source?.cell || source) as string),
+      target: nodeMappingRecord.get((target?.cell || target) as string),
+    } as unknown as NsGraph.IEdgeConfig
   }
 
   /** 执行Cmd */
@@ -143,12 +156,12 @@ export class GraphPasteSelectionCommand implements ICommand {
         // 处理连线
         await Promise.all(
           edges.map(edgeConfig => {
-            const newEdge = this.mappingHelper.createEdgeBetweenNodes(edgeConfig)
+            const copiedEdgeConfig = this.getEdgeCopiedConfig(edgeConfig)
             return commandService.executeCommand<
               NsEdgeCmd.AddEdge.IArgs,
               NsEdgeCmd.AddEdge.IResult
             >(XFlowEdgeCommands.ADD_EDGE.id, {
-              edgeConfig: newEdge,
+              edgeConfig: copiedEdgeConfig,
             })
           }),
         )

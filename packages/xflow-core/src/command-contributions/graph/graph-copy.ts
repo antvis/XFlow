@@ -82,8 +82,9 @@ export class GraphCopySelectionCommand implements ICommand {
       async () => {
         const graph = await ctx.getX6Graph()
         const cells = graph.getSelectedCells()
+        const edges = graph.getEdges()
         // 处理 Group cells/过滤无效的edges
-        const jsonObject: NsGraph.IGraphData = this.parseCells(cells)
+        const jsonObject: NsGraph.IGraphData = this.parseCells([...cells, ...edges])
         const oldJsonString = window.localStorage.getItem(LOCAL_STORAGE_KEY)
         // 写cache
         window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(jsonObject))

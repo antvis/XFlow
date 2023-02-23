@@ -60,7 +60,7 @@ export class GraphMappingHelper {
   }
   // 添加node的映射关系
   buildNodeMapping = (currentNode: NsGraph.INodeConfig, nextNode: NsGraph.INodeConfig) => {
-    const currentNodeId = currentNode.id || currentNode.originId
+    const currentNodeId = currentNode.id || currentNode.originalId
     const nextNodeId = nextNode.id
     this.nodeMappingRecord.set(currentNodeId, nextNodeId)
     const ports = this.getNodePorts(currentNode)
@@ -77,13 +77,13 @@ export class GraphMappingHelper {
     const { source, sourcePortId, target, targetPortId } = edgeConfig
     return {
       ...edgeConfig,
-      source: this.nodeMappingRecord.get(source),
-      target: this.nodeMappingRecord.get(target),
+      source: this.nodeMappingRecord.get((source?.cell || source) as string),
+      target: this.nodeMappingRecord.get((target?.cell || target) as string),
       sourcePortId: this.portMappingRecord.get(sourcePortId),
       targetPortId: this.portMappingRecord.get(targetPortId),
       sourcePort: this.portMappingRecord.get(sourcePortId),
       targetPort: this.portMappingRecord.get(targetPortId),
-    } as NsGraph.IEdgeConfig
+    } as unknown as NsGraph.IEdgeConfig
   }
   // 更新GroupNode的NodeId
   buildGroupRelations = (groupNode: NsGraph.INodeConfig) => {
