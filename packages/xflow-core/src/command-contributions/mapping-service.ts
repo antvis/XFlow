@@ -77,13 +77,13 @@ export class GraphMappingHelper {
     const { source, sourcePortId, target, targetPortId } = edgeConfig
     return {
       ...edgeConfig,
-      source: this.nodeMappingRecord.get((source?.cell || source) as string),
-      target: this.nodeMappingRecord.get((target?.cell || target) as string),
+      source: this.nodeMappingRecord.get(source),
+      target: this.nodeMappingRecord.get(target),
       sourcePortId: this.portMappingRecord.get(sourcePortId),
       targetPortId: this.portMappingRecord.get(targetPortId),
       sourcePort: this.portMappingRecord.get(sourcePortId),
       targetPort: this.portMappingRecord.get(targetPortId),
-    } as unknown as NsGraph.IEdgeConfig
+    } as NsGraph.IEdgeConfig
   }
   // 更新GroupNode的NodeId
   buildGroupRelations = (groupNode: NsGraph.INodeConfig) => {
