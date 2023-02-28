@@ -1,4 +1,4 @@
-import type { Point, Graph as X6Graph } from '@antv/x6'
+import type { Edge, Point, Graph as X6Graph } from '@antv/x6'
 import type { EventArgs } from '@antv/x6/lib/graph/events'
 import type { Attr } from '@antv/x6/lib/registry/attr'
 import type { PortManager } from '@antv/x6/lib/model/port'
@@ -73,10 +73,10 @@ export namespace NsGraph {
   export interface IEdgeConfig {
     /** 边的唯一标识 */
     id: string
-    /** 边的上游节点id */
-    source: string
-    /** 边的下游节点id */
-    target: string
+    /** 边的上游节点id 和连接桩 */
+    source: Edge.TerminalCellLooseData
+    /** 边的下游节点id 和连接桩 */
+    target: Edge.TerminalCellLooseData
     /** 边的上游节点的锚点Id */
     sourcePortId?: string
     /** 边的下游节点的锚点Id */

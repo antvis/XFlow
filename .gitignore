@@ -27,7 +27,7 @@ bak
 # ide
 /.vscode
 /.idea
-
+.history
 
 coverage
 

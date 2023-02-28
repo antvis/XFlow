@@ -60,7 +60,7 @@ export class GraphMappingHelper {
   }
   // 添加node的映射关系
   buildNodeMapping = (currentNode: NsGraph.INodeConfig, nextNode: NsGraph.INodeConfig) => {
-    const currentNodeId = currentNode.id || currentNode.originId
+    const currentNodeId = currentNode.id || currentNode.originalId
     const nextNodeId = nextNode.id
     this.nodeMappingRecord.set(currentNodeId, nextNodeId)
     const ports = this.getNodePorts(currentNode)
