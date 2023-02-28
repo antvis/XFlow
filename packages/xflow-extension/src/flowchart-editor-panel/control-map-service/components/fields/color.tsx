@@ -1,5 +1,5 @@
 import React, { useState, useRef, memo } from 'react'
-import { render, createPortal } from 'react-dom'
+import { createPortal } from 'react-dom'
 import type { IGraphConfig } from '@antv/xflow-core'
 import { useXFlowApp } from '@antv/xflow-core'
 import { Button } from 'antd'
@@ -10,10 +10,11 @@ export interface IProps {
   label?: string
   value?: string
   onChange?: (value: string) => void
+  getContainer?: () => HTMLDivElement
 }
 
 const ColorPicker: React.FC<IProps> = props => {
-  const { label, value = '', onChange } = props
+  const { label, value = '', onChange, getContainer } = props
   const [show, setShow] = useState(false)
   const colorRef = useRef<string>(value)
   const containerRef = useRef<HTMLDivElement>()
@@ -60,36 +61,24 @@ const ColorPicker: React.FC<IProps> = props => {
     if (containers.length === 1) {
       return containers[0]
     }
-    let containter = null
+    let container = null
     let currentNode = currentEle.parentElement
-    while (!containter) {
+    while (!container) {
       const current = currentNode.getElementsByClassName(className)
       if (current?.length > 0) {
-        containter = current[0]
+        container = current[0]
       }
       currentNode = currentNode.parentElement
     }
-    return containter
+    return container
   }
 
-  const createPickColorContainer = (visible: boolean) => {
-    const existElements = document.getElementsByClassName(`${PREFIX}-pick-color-container`)
-    if (existElements.length) {
-      Array.from(existElements).forEach(ele => {
-        ele.parentNode?.removeChild(ele)
-      })
-    }
-    if (!visible) {
-      return
-    }
-    const div = document.createElement('div')
-    render(
-      createPortal(
-        <PickContainer />,
-        getParentContainerByClassName(containerRef.current, 'flowchart-editor-panel-body'),
-      ),
-      div,
-    )
+  const createPickColorContainer = () => {
+    const container =
+      getContainer?.() ??
+      getParentContainerByClassName(containerRef.current, 'flowchart-editor-panel-body')
+
+    return createPortal(<PickContainer />, container)
   }
 
   return (
@@ -109,7 +98,7 @@ const ColorPicker: React.FC<IProps> = props => {
           }}
         />
       </div>
-      {createPickColorContainer(show)}
+      {show && createPickColorContainer()}
     </div>
   )
 }
