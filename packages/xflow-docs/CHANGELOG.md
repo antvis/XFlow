@@ -1,5 +1,14 @@
 # @antv/xflow-docs
 
+## 1.0.54
+
+### Patch Changes
+
+- 013cfc5e: fix: cannot paste group in flowchart
+- Updated dependencies [013cfc5e]
+- Updated dependencies [013cfc5e]
+  - @antv/xflow@1.0.54
+
 ## 1.0.52
 
 ### Patch Changes

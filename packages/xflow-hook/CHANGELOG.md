@@ -1,5 +1,12 @@
 # @antv/xflow-hook
 
+## 1.0.54
+
+### Patch Changes
+
+- 013cfc5e: fix: cannot paste group in flowchart
+- 013cfc5e: fix: cannot paste group in flow chart
+
 ## 1.0.52
 
 ### Patch Changes

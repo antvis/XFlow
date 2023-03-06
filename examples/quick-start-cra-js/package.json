@@ -1,6 +1,6 @@
 {
   "name": "xflow-quick-start-cra-js",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": true,
   "dependencies": {
     "@antv/xflow": "workspace:*",
