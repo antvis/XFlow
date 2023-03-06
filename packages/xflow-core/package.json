@@ -10,7 +10,7 @@
     "build:cjs": "tsc --module commonjs --target es5 --outDir ./lib",
     "build:umd": "rollup -c",
     "build:watch": "pnpm build:esm -- --w",
-    "build:watch:esm": "pnpm build:esm --w",
+    "build:watch:esm": "pnpm build:esm -- --w",
     "build:watch:cjs": "pnpm build:cjs -- --w",
     "build:ts": "run-p build:cjs build:esm build:umd",
     "build:less": "node ./scripts/less.js",

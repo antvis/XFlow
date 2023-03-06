@@ -85,19 +85,6 @@ export class GraphPasteSelectionCommand implements ICommand {
     return nodeConfig
   }
 
-  // 复制的 edge 包含了节点 id, 需要去除, 按照新节点来处理
-  getEdgeCopiedConfig = (edgeConfig: NsGraph.IEdgeConfig) => {
-    const { nodeMappingRecord } = this.mappingHelper
-    const { id, source, target, ...otherEdgeConfig } = edgeConfig
-
-    return {
-      ...otherEdgeConfig,
-      originalId: id,
-      source: nodeMappingRecord.get((source?.cell || source) as string),
-      target: nodeMappingRecord.get((target?.cell || target) as string),
-    } as unknown as NsGraph.IEdgeConfig
-  }
-
   /** 执行Cmd */
   execute = async () => {
     const ctx = this.contextProvider()
@@ -156,7 +143,7 @@ export class GraphPasteSelectionCommand implements ICommand {
         // 处理连线
         await Promise.all(
           edges.map(edgeConfig => {
-            const copiedEdgeConfig = this.getEdgeCopiedConfig(edgeConfig)
+            const copiedEdgeConfig = this.mappingHelper.createEdgeBetweenNodes(edgeConfig)
             return commandService.executeCommand<
               NsEdgeCmd.AddEdge.IArgs,
               NsEdgeCmd.AddEdge.IResult

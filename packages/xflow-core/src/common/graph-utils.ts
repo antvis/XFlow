@@ -24,9 +24,16 @@ export const node2Json = (cell: Node) => {
 
 export const edge2Json = (cell: Edge) => {
   const data = cell.getData<any>() || {}
+  debugger
   return {
-    id: cell.id,
     ...data,
+    id: cell.id,
+    source: cell.getSourceCellId(),
+    target: cell.getTargetCellId(),
+    sourcePortId: cell.getSourcePortId(),
+    targetPortId: cell.getTargetPortId(),
+    sourcePort: cell.getSourcePortId(),
+    targetPort: cell.getTargetPortId(),
   }
 }
 
