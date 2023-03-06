@@ -74,9 +74,9 @@ export namespace NsGraph {
     /** 边的唯一标识 */
     id: string
     /** 边的上游节点id 和连接桩 */
-    source: Edge.TerminalCellLooseData
+    source: string
     /** 边的下游节点id 和连接桩 */
-    target: Edge.TerminalCellLooseData
+    target: string
     /** 边的上游节点的锚点Id */
     sourcePortId?: string
     /** 边的下游节点的锚点Id */

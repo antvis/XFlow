@@ -74,9 +74,11 @@ export class GraphMappingHelper {
   }
   // 更新Edge的NodeId和PortId
   createEdgeBetweenNodes = (edgeConfig: NsGraph.IEdgeConfig) => {
-    const { source, sourcePortId, target, targetPortId } = edgeConfig
+    const { id, source, sourcePortId, target, targetPortId, ...rest } = edgeConfig
     return {
-      ...edgeConfig,
+      ...rest,
+      id: undefined,
+      originalId: id,
       source: this.nodeMappingRecord.get(source),
       target: this.nodeMappingRecord.get(target),
       sourcePortId: this.portMappingRecord.get(sourcePortId),
