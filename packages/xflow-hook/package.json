@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@antv/xflow-hook",
-  "version": "1.0.54",
+  "version": "1.0.55",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist es lib",
