@@ -24,7 +24,6 @@ export const node2Json = (cell: Node) => {
 
 export const edge2Json = (cell: Edge) => {
   const data = cell.getData<any>() || {}
-  debugger
   return {
     ...data,
     id: cell.id,
