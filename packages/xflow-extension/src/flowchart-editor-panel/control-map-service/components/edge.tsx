@@ -61,7 +61,7 @@ const EdgeComponent = props => {
   const getSrokeDashValue = () => {
     const { attrs = {} } = edgeConfig
     const { line = {} } = attrs
-    return line.strokeDasharray ? 'dash' : 'solid'
+    return line.strokeDasharray.toString() === ArrowStrokeMaps['dash'].toString() ? 'dash' : 'solid'
   }
 
   const onEdgeConfigChange = (
