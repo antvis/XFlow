@@ -141,9 +141,15 @@ export const XFlow: React.FC<IProps> = props => {
 
   /** 自动更新meta */
   React.useEffect(() => {
-    if (appRef) {
-      appRef.commandService.executeCommand(XFlowGraphCommands.LOAD_META.id, { meta })
+    const fn = async () => {
+      if (appRef) {
+        await appRef.commandService.executeCommand(XFlowGraphCommands.LOAD_META.id, { meta })
+        await appRef.commandService.executeCommand(XFlowGraphCommands.GRAPH_RENDER.id, {
+          graphData,
+        })
+      }
     }
+    fn()
     /** 不要删 只和meta联动 */
     // eslint-disable-next-line
   }, [meta])
