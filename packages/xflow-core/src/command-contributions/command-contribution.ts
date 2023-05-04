@@ -27,6 +27,7 @@ import { CommandConfig } from './config'
 import type { ICmdHooks } from './interface'
 import type { IEvent } from '../hooks/interface'
 import type { NsGraph } from '../interface'
+import { NsAddGroup } from './group/group-add'
 
 /** Commands 配置项目*/
 const hookhubList = [...nodeHooks, ...edgeHooks, ...groupHooks, ...graphHooks, ...observablesHooks]
@@ -86,7 +87,6 @@ export class XFlowCommandContribution
 
             const isCollapsed = group.getProp('isCollapsed')
             let originSize = group.getProp('originSize')
-            let hasChange = false
 
             if (originSize == null) {
               originSize = group.size()
@@ -98,52 +98,27 @@ export class XFlowCommandContribution
               group.prop('originPosition', originPosition)
             }
 
-            let x = originPosition.x
-            let y = originPosition.y
-            let cornerX = originPosition.x + originSize.width
-            let cornerY = originPosition.y + originSize.height
             const childs = group.getChildren()
             if (childs) {
-              childs.forEach(child => {
-                const bbox = child.getBBox().inflate(12)
-                const corner = bbox.getCorner()
+              const bbox = graph.getCellsBBox(childs).inflate(NsAddGroup.GROUP_PADDING)
+              const x = bbox.x
+              const y = bbox.y - NsAddGroup.GROUP_HEADER_HEIGHT
+              const width = bbox!.width
+              const height = bbox!.height + NsAddGroup.GROUP_HEADER_HEIGHT
 
-                if (bbox.x < x) {
-                  x = bbox.x
-                  hasChange = true
-                }
-
-                if (bbox.y < y) {
-                  y = bbox.y
-                  hasChange = true
-                }
-
-                if (corner.x > cornerX) {
-                  cornerX = corner.x
-                  hasChange = true
-                }
-
-                if (corner.y > cornerY) {
-                  cornerY = corner.y
-                  hasChange = true
-                }
-              })
-            }
-
-            if (hasChange) {
               group.prop({
                 position: { x, y },
-                size: { width: cornerX - x, height: cornerY - y },
+                size: { width, height },
               })
               const groupData: NsGraph.INodeConfig = {
                 ...group.getData(),
                 x,
                 y,
-                width: cornerX - x,
-                height: cornerY - y,
+                width,
+                height,
               }
               if (isCollapsed !== true) {
-                groupData.groupChildrenSize = { width: cornerX - x, height: cornerY - y }
+                groupData.groupChildrenSize = { width, height }
               }
               group.setData(groupData)
             }
