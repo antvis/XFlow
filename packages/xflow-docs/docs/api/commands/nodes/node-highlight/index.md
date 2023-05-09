@@ -28,6 +28,7 @@ XFlow 提供节点添加的命令 `XFlowNodeCommands.HIGHLIGHT_NODE`, 通过该�
 |             strokeWidth |  number |      |      - | 节点高亮边框宽度         |
 | isHighlightRelatedLines | boolean |      |      - | 是否联动高亮节点的关联边 |
 |              edgeStroke |  string |      |      - | 边高亮颜色               |
+|         edgeStrokeWidth |  number |      |      - | 边高亮宽度               |
 
 | edgeStrokeWidth?: number
 | number | | - | 边高亮宽度 |

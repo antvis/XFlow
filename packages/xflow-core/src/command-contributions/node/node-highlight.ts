@@ -77,14 +77,14 @@ export class HighlightNodeCommand implements ICommand {
           /** 节点关联的连线, 联动高亮 */
           if (handlerArgs?.isHighlightRelatedLines) {
             const { edgeStroke, edgeStrokeWidth } = handlerArgs
-            const allEdges = x6Graph?.getEdges()
-            allEdges.forEach((x6Edge: X6Edge) => {
-              const x6EdgeData = x6Edge?.getData<any>()
-              handlerArgs?.commandService.executeCommand(XFlowEdgeCommands.HIGHLIGHT_EDGE.id, {
-                edgeId: x6EdgeData?.id,
-                strokeColor: edgeStroke,
-                strokeWidth: edgeStrokeWidth,
-              } as NsEdgeCmd.HighlightEdge.IArgs)
+            const connectedEdges = x6Graph?.getConnectedEdges(x6Node)
+            connectedEdges.forEach((x6Edge: X6Edge) => {
+              x6Edge.setAttrs({
+                line: {
+                  stroke: edgeStroke,
+                  strokeWidth: edgeStrokeWidth,
+                }
+              })
             })
           }
         }
