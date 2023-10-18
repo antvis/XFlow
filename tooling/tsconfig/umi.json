@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.json",
+  "display": "Umi",
+  "compilerOptions": {
+    "sourceMap": true
+  },
+  "exclude": ["node_modules", "dist", "src/.umi*"]
+}

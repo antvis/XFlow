@@ -1,0 +1,75 @@
+{
+  "files.associations": {
+    ".vscode/*.json": "jsonc",
+    "turbo.json": "jsonc",
+    "nx.json": "jsonc",
+    "tsconfig.*.json": "jsonc",
+    "tsconfig.json": "jsonc"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/coverage": true
+  },
+  "editor.insertSpaces": true,
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.insertFinalNewline": true,
+  "editor.rulers": [88],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
+  "cSpell.allowCompoundWords": true,
+  "cSpell.enabled": true,
+  "cSpell.words": [
+    "ahooks",
+    "ahooksjs",
+    "antd",
+    "antv",
+    "dumi",
+    "dumirc",
+    "esbuild",
+    "favicons",
+    "hljs",
+    "immer",
+    "lcov",
+    "mfsu",
+    "nocheck",
+    "npmrc",
+    "pannable",
+    "svgr",
+    "tsup",
+    "umijs",
+    "umirc",
+    "xflow",
+    "zustand"
+  ]
+}

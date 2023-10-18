@@ -1,0 +1,11 @@
+{
+  "extends": "@antv/config-tsconfig/mana.json",
+  "compilerOptions": {
+    "declarationDir": "./dist/typing",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["./src/**/*"]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@antv/config-tsup",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "types": "index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@swc/core": "^1.3.42",
+    "colorette": "^2.0.19",
+    "esbuild-plugin-svgr": "^1.1.0",
+    "tsup": "^6.7.0"
+  }
+}

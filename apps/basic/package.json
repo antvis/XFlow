@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@antv/xflow": "workspace:*",
+    "highlight.js": "^10.7.3",
+    "umi": "^4.0.64"
+  },
+  "devDependencies": {
+    "@types/highlight.js": "^9.12.4",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "antd": "^5.0.0"
+  },
+  "peerDependencies": {
+    "antd": "^5.0.0",
+    "react": "^18.0.0"
+  }
+}

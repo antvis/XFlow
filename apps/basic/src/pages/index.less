@@ -1,0 +1,40 @@
+.page {
+  width: 1200px;
+  margin: 100px auto;
+
+  .tools {
+    margin-bottom: 24px;
+  }
+
+  .content {
+    width: 1200px;
+    height: 600px;
+    display: flex;
+  }
+
+  :global {
+    .x6-graph {
+      border-radius: 5px;
+      box-shadow: 0 12px 5px -10px rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .x6-node-selected rect {
+      stroke: #ea9e07;
+      stroke-width: 2;
+    }
+
+    .x6-edge-selected {
+      path:nth-child(2) {
+        stroke: #ea9e07;
+        stroke-width: 1.5px;
+      }
+    }
+  }
+
+  .json-code {
+    width: 400px;
+    height: 100%;
+    overflow: auto;
+    box-shadow: 0 12px 5px -10px rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  }
+}

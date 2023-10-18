@@ -1,0 +1,16 @@
+{
+  "name": "@antv/testing",
+  "version": "0.0.0",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.4.0",
+    "@types/testing-library__jest-dom": "^5.14.5",
+    "jest-environment-jsdom": "^29.5.0",
+    "ts-jest": "^29.0.5"
+  },
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  }
+}

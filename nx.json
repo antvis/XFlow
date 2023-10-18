@@ -1,0 +1,43 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/nx@latest/schemas/nx-schema.json",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "parallel": 6,
+        "cacheableOperations": [
+          "setup",
+          "build",
+          "lint",
+          "lint:js",
+          "lint:css",
+          "lint:format",
+          "lint:typing",
+          "test"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "setup": {
+      "dependsOn": ["^setup"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "lint": {
+      "executor": "nx:noop",
+      "dependsOn": ["lint:js", "lint:css", "lint:format" /* "lint:typing" */]
+    },
+    "test": {
+      "outputs": ["{projectRoot}/coverage"]
+    },
+    "ci": {
+      "executor": "nx:noop",
+      "dependsOn": ["lint", "test"]
+    }
+  },
+  "defaultBase": "main"
+}

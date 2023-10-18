@@ -1,136 +1,106 @@
-# Code Contribution Guidelines
+English (US) | [简体中文](CONTRIBUTING.zh-Hans.md)
 
-<img src="https://gw.alipayobjects.com/zos/antfincdn/R8sN%24GNdh6/language.svg" width="18"> English | [简体中文](./CONTRIBUTING.zh-CN.md)
+# Contributing
 
-If you have any questions, please submit [issue](https://github.com/antvis/xflow/issues) or consider submiting a code change via a [Pull Request](https://github.com/antvis/xflow/pulls)!
+## Development
 
-## Submit an issue
-
-- Determine the type of issue.
-- Demonstrate clear intent in labels, titles or content.
-- Avoid submitting duplicate issues, please refer to the links below to check if your issue already existsbefore submitting:
-  - XFlow's Issue's tab: https://github.com/antvis/XFlow/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc
-  - XFlow's Closed issues tab: https://github.com/antvis/XFlow/issues?q=is%3Aissue+sort%3Aupdated-desc+is%3Aclosed
-  - XFlow Discussion's tab: https://github.com/antvis/XFlow/discussions
-
-Then the AntV person in charge will confirm the intention of the issue, update the appropriate tags, associate milestones, and assign developers.
-
-## Submit Code
-
-### Submit Pull Request
-
-If you have developer permission in the repository and want to contribute code, you can create a branch to modify the code and submit a PR, and the AntV development team will review the code and merge it into the trunk.
+Make sure you have [pnpm](https://pnpm.io/installation) and
+[Turborepo](https://turbo.build/repo/docs/installing) installed globally.
 
 ```bash
-# First create a development branch for development, the branch name should have meaning, avoid using update, tmp and the like
-$ git checkout -b branch-name
-# First create a development branch for development, the branch name should have meaning, avoid using update, tmp and the like
-$ npm test
-# After the test is passed, submit the code, message see the specification below
-$ git add . # git add -u delete files
-$ git commit -m "fix(role): role.use must xxx"
-$ git push origin branch-name
+npm -g install pnpm nx
+npm -g exec pnpm setup
 ```
 
-After submitting, you can create a Pull Request at [xflow](https://github.com/antvis/xflow/pulls).
+### First time setup
 
-Since no one can guarantee how much will be remembered after a long time, for the convenience of retrospecting the history later, please make sure to provide the following information when submitting a Pull Request
-
-1. Demand points (generally related issues or comments are counted)
-2. The reason for the upgrade (different from the issue, you can briefly describe why it needs to be dealt with)
-3. Framework test points (can be associated with test files, no need to describe in detail, just the key points)
-4. Concerns (for users, it is optional, generally incompatible updates, etc., additional prompts are required)
-
-### Code Style
-
-Your code style must pass eslint, you can run `$ pnpm lint -r` to test locally.
-
-### Commit Specification
-
-Submit a commit according to the [angular specification](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit-message-format), so that the history looks clearer and the changelog can be automatically generated.
-
-```xml
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
+```bash
+pnpm bootstrap
 ```
 
-（1）type
+> This will install deps with `pnpm install`, ant then setup all packages with
+> `nx run-many setup`.
 
-Submit the type of commit, including the following
+### Starting the dev server
 
-- feat: new function
-- fix: fix issues
-- docs: modify documentation
-- style: Modify the code format without affecting the code logic
-- refactor: refactoring code, theoretically does not affect existing functionality
-- perf: improve performance
-- test: add and modify test cases
-- chore: Modify tool related (including but not limited to documentation, code generation, etc.)
-- deps: upgrade dependencies
-
-（2）scope
-
-Modify the scope of the file
-
-（3）subject
-
-Modify the scope of the file
-
-（4）body
-
-Supplement subject, and appropriately add relevant factors such as reason and purpose, or not write it
-
-（5）footer
-
-- **When there are incompatible changes (Breaking Change), it must be clearly described here**
-- Associate related issues, such as `Closes #1, Closes #2, #3`
-
-Example
-
-```
-fix($compile): [BREAKING_CHANGE] couple of unit tests for IE9
-Older IEs serialize html uppercased, but IE9 does not...
-Would be better to expect case insensitive, unfortunately jasmine does
-not allow to user regexps for throw expectations.
-Document change on antvis/xflow#12
-Closes #392
-BREAKING CHANGE:
-  Breaks foo.bar api, foo.baz should be used instead
+```bash
+pnpm dev
 ```
 
-See the specific [documentation](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit)
+The example app will be available at http://localhost:8000 by default.
 
-## Release Management
+### Formatting
 
-- [Publishing maintenance releases](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/maintenance-releases.md)
-- [Publishing pre-releases](https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/pre-releases.md)
+```bash
+pnpm fix
+# run ESLint/Stylelint/Prettier and attempt to fix found issues
+```
 
-XFlow is released based on the [semver](http://semver.org/lang/zh-CN/) semantic version number.
+### Linting and testing
 
-`master` The branch is the current stable release version.
+```bash
+pnpm lint
+pnpm test
+```
 
-- Branch the develop branch directly from `master`.
-- All API deprecations require a `deprecate` prompt on the current stable version, and guarantee compatibility on the current stable version until the new version is released.
+### Building
 
-### Release Strategy
+```bash
+pnpm build
+```
 
-Every major release has a release manager managing (PM) what he/she has to do
+You may then serve the built app with `pnpm serve`.
 
-#### Ready to work:
+### Per-package operations
 
-- Establish milestones, confirm requirements are associated with milestones, assign and update issues
+[https://pnpm.io/filtering](https://pnpm.io/filtering)
 
-#### Before Release
+Use either the package name (the `"name"` field in `package.json`) or the **relative**
+path to the package's folder (must be prefixed with `./`) to specify the package(s) on
+which the command should be run.
 
-- Confirm that all current Milestone issues are closed or extendable, and complete performance testing.
-- Initiate a new [Release Proposal MR](https://github.com/nodejs/node/pull/4181), follow [node CHANGELOG](https://github.com/nodejs/node/blob/master/ CHANGELOG.md) Write `History`, and correct the version-related content in the document.
-- Specifies the PM for the next major release.
+```bash
+pnpm --filter <package> <command> [...]
 
-#### When Published:
+pnpm --filter web add react react-dom
+pnpm --filter ./apps/web add react react-dom
+# add react and react-dom as dependencies to the package named "web"
+# whose folder is located at ./apps/web
 
-- Back up the old stable version (master) to a branch with the name of the current major version (eg `1.x`), and set the tag to {v}.x`( v is the current version, such as`1.x` `).
-- Publish a new stable version to [npm](http://npmjs.com) and notify the upper framework to update.
-- Before `npm publish`, please read ["How I publish an npm package"](https://fengmk2.com/blog/2016/how-i-publish-a-npm-package).
+pnpm --filter "@scope/*" run clean
+pnpm --filter "./packages/*" run clean
+# use glob to select multiple packages, the pattern must be quoted
+```
+
+#### Adding dependencies
+
+[https://pnpm.io/cli/add](https://pnpm.io/cli/add)
+
+`add` for normal dependencies `dependencies`
+
+```bash
+pnpm --filter <package> add [dependency ...]
+# pnpm --filter web add react react-dom
+```
+
+`add -D` for development dependencies `devDependencies`
+
+```bash
+pnpm --filter <package> add -D [dependency ...]
+# pnpm --filter web add -D jest
+```
+
+`add --save-peer` for peer dependencies `peerDependencies`
+
+```bash
+pnpm --filter <package> add --save-peer [dependency ...]
+# pnpm --filter ui add --save-peer react "monaco-editor@^0.31.0"
+```
+
+💡 for adding workspace packages as dependencies, use the same command as above, but
+append `--workspace`
+
+```bash
+pnpm --filter <package> add [--save-dev|--save-peer] [dependency ...] --workspace
+# pnpm --filter web add -D eslint-config-project --workspace
+```

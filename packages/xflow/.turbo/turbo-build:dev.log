@@ -1,4 +1,0 @@
-
-> @antv/xflow@2.0.0 build:dev /Users/wenyu/vector/code/AntV/XFlow/packages/xflow
-> run-p -s build:cjs build:esm
-

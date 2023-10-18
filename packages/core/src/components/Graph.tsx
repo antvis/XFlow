@@ -1,0 +1,168 @@
+import { useContext, useRef, useEffect, FC } from 'react';
+import { GraphContext } from '../context/GraphContext';
+import { Graph, Options } from '@antv/x6';
+import { Selection } from '@antv/x6-plugin-selection';
+import type { GraphOptions } from '../types';
+import { XFlowState } from './State';
+import { Wrapper } from './Wrapper';
+
+const XFlowGraph = (props: GraphOptions) => {
+  const container = useRef<HTMLDivElement>(null);
+  const {
+    className,
+    style,
+    readonly,
+    virtual,
+    minScale,
+    maxScale,
+    zoomable,
+    zoomOptions,
+    pannable,
+    panOptions,
+    embedable,
+    embedOptions,
+    restrict,
+    restrictOptions,
+    connectionOptions,
+    selectOptions,
+    connectionEdgeOptions,
+    defaultHighlightOptions,
+    embedHighlightOptions,
+    nodeAvailableHighlightOptions,
+    magnetAvailableHighlightOptions,
+    magnetAdsorbedHighlightOptions,
+  } = props;
+  const { graph, setGraph } = useContext(GraphContext);
+  useEffect(() => {
+    const graph = new Graph({
+      container: container.current!,
+      autoResize: true,
+      virtual,
+      scaling: {
+        min: minScale,
+        max: maxScale,
+      },
+      connecting: {
+        ...connectionOptions,
+        createEdge() {
+          return this.createEdge({
+            shape: 'edge',
+            ...connectionEdgeOptions,
+          });
+        },
+      },
+      highlighting: {
+        default: defaultHighlightOptions,
+        embedding: embedHighlightOptions,
+        nodeAvailable: nodeAvailableHighlightOptions,
+        magnetAvailable: magnetAvailableHighlightOptions,
+        magnetAdsorbed: magnetAdsorbedHighlightOptions,
+      },
+    });
+
+    graph.use(new Selection(selectOptions));
+
+    setGraph(graph);
+
+    return () => {
+      if (graph) {
+        graph.dispose();
+        setGraph(null);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (graph) {
+      if (readonly) {
+        graph.options.interacting = false;
+      } else {
+        // todo
+        graph.options.interacting = {
+          nodeMovable: (view) => {
+            const cell = view.cell;
+            return cell.prop('draggable') !== false;
+          },
+          edgeMovable: (view) => {
+            const cell = view.cell;
+            return cell.prop('draggable') !== false;
+          },
+        };
+      }
+    }
+  }, [graph, readonly]);
+
+  useEffect(() => {
+    if (graph) {
+      if (zoomable) {
+        graph.options.mousewheel = {
+          ...Options.defaults.mousewheel,
+          enabled: true,
+          ...zoomOptions,
+        };
+        graph.enableMouseWheel();
+      } else {
+        graph.disableMouseWheel();
+      }
+    }
+  }, [graph, zoomable, zoomOptions]);
+
+  useEffect(() => {
+    if (graph) {
+      if (pannable) {
+        graph.options.panning = {
+          ...Options.defaults.panning,
+          enabled: true,
+          ...panOptions,
+        };
+        graph.enablePanning();
+      } else {
+        graph.disablePanning();
+      }
+    }
+  }, [graph, pannable, panOptions]);
+
+  useEffect(() => {
+    if (graph) {
+      if (embedable) {
+        graph.options.embedding = {
+          ...Options.defaults.embedding,
+          enabled: true,
+          validate: () => true,
+          ...embedOptions,
+        };
+      } else {
+        graph.options.embedding = { enabled: false, validate: () => false };
+      }
+    }
+  }, [graph, embedable, embedOptions]);
+
+  useEffect(() => {
+    if (graph) {
+      if (restrict) {
+        graph.options.translating = {
+          restrict: restrictOptions ? restrictOptions.bound : restrict,
+        };
+      } else {
+        graph.options.translating = { restrict: false };
+      }
+    }
+  }, [graph, restrict, restrictOptions]);
+
+  return (
+    <div style={{ width: '100%', height: '100%', ...style }} className={className}>
+      <div ref={container} />
+      <Wrapper>
+        <XFlowState
+          connectionEdgeOptions={connectionEdgeOptions}
+          centerView={props.centerView}
+          centerViewOptions={props.centerViewOptions}
+          fitView={props.fitView}
+          fitViewOptions={props.fitViewOptions}
+        />
+      </Wrapper>
+    </div>
+  );
+};
+
+export { XFlowGraph };
