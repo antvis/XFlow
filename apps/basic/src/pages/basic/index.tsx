@@ -1,9 +1,10 @@
 import { XFlow, XFlowGraph } from '@antv/xflow';
 import styles from './index.less';
-import { useGraphStore, useGraphInstance } from '@antv/xflow';
+import { useGraphStore } from '@antv/xflow';
 import { useEffect } from 'react';
 import { Button } from 'antd';
 import { JSONCode } from './json';
+import { REACT_NODE } from './shape';
 
 const initialData = {
   nodes: [
@@ -23,45 +24,88 @@ const initialData = {
           ry: 6,
         },
       },
-      label: 'source',
+      label: 'svg',
       selected: true,
-      ports: [
-        {
-          id: 'port-1',
-          attrs: {
-            circle: {
-              stroke: '#8f8f8f',
-              r: 4,
-              magnet: true,
+      ports: {
+        groups: {
+          top: {
+            position: 'top',
+            attrs: {
+              circle: {
+                stroke: '#8f8f8f',
+                r: 4,
+                magnet: true,
+              },
+            },
+          },
+          bottom: {
+            position: 'bottom',
+            attrs: {
+              circle: {
+                stroke: '#8f8f8f',
+                r: 4,
+                magnet: true,
+              },
+            },
+          },
+          left: {
+            position: 'left',
+            attrs: {
+              circle: {
+                stroke: '#8f8f8f',
+                r: 4,
+                magnet: true,
+              },
+            },
+          },
+          right: {
+            position: 'right',
+            attrs: {
+              circle: {
+                stroke: '#8f8f8f',
+                r: 4,
+                magnet: true,
+              },
             },
           },
         },
-      ],
+        items: [
+          {
+            id: 'port-1',
+            group: 'top',
+          },
+          {
+            id: 'port-2',
+            group: 'bottom',
+          },
+          {
+            id: 'port-3',
+            group: 'left',
+          },
+          {
+            id: 'port-4',
+            group: 'right',
+          },
+        ],
+      },
     },
     {
       id: '2',
-      shape: 'rect',
+      shape: REACT_NODE,
       x: 150,
       y: 100,
-      width: 100,
-      height: 40,
-      attrs: {
-        body: {
-          stroke: '#8f8f8f',
-          strokeWidth: 1,
-          fill: '#fff',
-          rx: 6,
-          ry: 6,
+      data: {
+        animal: {
+          name: 'dog',
+          age: 1,
         },
       },
-      label: 'target',
     },
   ],
   edges: [],
 };
 
 const Page = () => {
-  const graph = useGraphInstance();
   const initData = useGraphStore((state) => state.initData);
   const addNodes = useGraphStore((state) => state.addNodes);
   const removeNodes = useGraphStore((state) => state.removeNodes);
@@ -93,7 +137,6 @@ const Page = () => {
           },
         },
         label: 'added',
-        animated: true,
       },
     ]);
   };
@@ -103,8 +146,18 @@ const Page = () => {
   };
 
   const onUpdateNode = () => {
-    updateNode('1', { attrs: { body: { stroke: 'red' } } });
-    updateNode('2', { label: 'updated' });
+    updateNode('1', { width: 100, height: 100 });
+  };
+
+  const onUpdateNodeData = () => {
+    updateNode('2', {
+      data: {
+        animal: {
+          name: 'cat',
+          age: 2,
+        },
+      },
+    });
   };
 
   const onAddEdges = () => {
@@ -140,11 +193,11 @@ const Page = () => {
   };
 
   const onSelectEdge = () => {
-    updateNode('edge-1', { selected: true });
+    updateEdge('edge-1', { selected: true });
   };
 
   const onUnSelectEdge = () => {
-    updateNode('edge-1', { selected: false });
+    updateEdge('edge-1', { selected: false });
   };
 
   const changePosition = () => {
@@ -155,11 +208,11 @@ const Page = () => {
   };
 
   const animateEdge = () => {
-    updateNode('edge-1', { animated: true });
+    updateEdge('edge-1', { animated: true });
   };
 
   const unAnimateEdge = () => {
-    updateNode('edge-1', { animated: false });
+    updateEdge('edge-1', { animated: false });
   };
 
   return (
@@ -168,6 +221,7 @@ const Page = () => {
         <Button onClick={onAddNodes}>addNode</Button>
         <Button onClick={onRemoveNodes}>removeNode</Button>
         <Button onClick={onUpdateNode}>updateNode</Button>
+        <Button onClick={onUpdateNodeData}>updateNodeData</Button>
         <Button onClick={onAddEdges}>addEdge</Button>
         <Button onClick={onRemoveEdges}>removeEdge</Button>
         <Button onClick={onUpdateEdge}>updateEdge</Button>
@@ -182,6 +236,10 @@ const Page = () => {
       <div className={styles.content}>
         <XFlow>
           <XFlowGraph
+            zoomable
+            pannable
+            centerView
+            fitView
             connectionEdgeOptions={{
               attrs: {
                 line: {

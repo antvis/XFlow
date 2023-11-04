@@ -85,11 +85,14 @@ importers:
   packages/core:
     dependencies:
       '@antv/x6':
-        specifier: ^2.15.2
-        version: 2.15.2
+        specifier: ^2.15.3
+        version: 2.15.3
       '@antv/x6-plugin-selection':
         specifier: ^2.2.1
-        version: 2.2.1(@antv/x6@2.15.2)
+        version: 2.2.1(@antv/x6@2.15.3)
+      '@antv/x6-react-shape':
+        specifier: ^2.2.2
+        version: 2.2.2(@antv/x6@2.15.3)(react-dom@18.2.0)(react@18.0.0)
       immer:
         specifier: ^10.0.3
         version: 10.0.3
@@ -295,16 +298,28 @@ packages:
     resolution: {integrity: sha512-MId6riEQkxphBpVeTcL4ZNXL4lScyvDEPLyIafvWMcWNTGK0jgkK7N20XSzqt8ltJb0mGUso5s56mrk8ysHu2A==}
     dev: false
 
-  /@antv/x6-plugin-selection@2.2.1(@antv/x6@2.15.2):
+  /@antv/x6-plugin-selection@2.2.1(@antv/x6@2.15.3):
     resolution: {integrity: sha512-9rV4jKcvqNqcGNBAm14nwOBtC+XC8/6qJTce8f8YBsE3XGSxrr8gNn2bmgzcV+3R+McXbAUaQT5P+vQV1Q6raA==}
     peerDependencies:
       '@antv/x6': ^2.x
     dependencies:
-      '@antv/x6': 2.15.2
+      '@antv/x6': 2.15.3
     dev: false
 
-  /@antv/x6@2.15.2:
-    resolution: {integrity: sha512-xYJzRr/MKUT+mjn4wNgd4Ko+J7N1NN+meyZrcF7GtrVAm9NvYEO4ugiKOrLiw9haYPU/e/C0D/SrNrFE5d6kEQ==}
+  /@antv/x6-react-shape@2.2.2(@antv/x6@2.15.3)(react-dom@18.2.0)(react@18.0.0):
+    resolution: {integrity: sha512-uwehrdNCPkgBpVfsxEQk1M77Q+q9D7+HkqIm4Fm3Oz4kzkKCoc3KoxCIoLimbANAhqAPEJ40sRR0ZY+lzmP7WQ==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+      react: '>=18.0.0'
+      react-dom: '>= 18.0.0'
+    dependencies:
+      '@antv/x6': 2.15.3
+      react: 18.0.0
+      react-dom: 18.2.0(react@18.0.0)
+    dev: false
+
+  /@antv/x6@2.15.3:
+    resolution: {integrity: sha512-mI8Aqc/0+/ZlXguibnKovGkKy3w7UFg+CMwAq5oYdBrMEgwgvQ/Rw9tK2LOTgKAINv+5QQ9zJTY058Kv1UfeRA==}
     dependencies:
       '@antv/x6-common': 2.0.15
       '@antv/x6-geometry': 2.0.5

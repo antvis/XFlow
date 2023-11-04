@@ -1,1 +1,1 @@
-export const routes = [{ path: '/', component: 'index' }];
+export const routes = [{ path: '/', component: '@/pages/basic' }];

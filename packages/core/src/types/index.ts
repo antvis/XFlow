@@ -1,6 +1,7 @@
 import type { Node, Edge, Graph, Options, Rectangle } from '@antv/x6';
 import type { Selection } from '@antv/x6-plugin-selection';
 
+export type { Node, Edge };
 export interface NodeOptions extends Node.Metadata {
   selected?: boolean;
   draggable?: boolean;
@@ -11,6 +12,8 @@ export interface EdgeOptions extends Edge.Metadata {
   draggable?: boolean;
   animated?: boolean;
 }
+
+export type GraphModel = { nodes: NodeOptions[]; edges: EdgeOptions[] };
 
 export interface GraphOptions {
   // graph

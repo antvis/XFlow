@@ -1,10 +1,9 @@
 import { useEffect, FC } from 'react';
-import { useGraphInstance, useGraphStore } from '../hooks';
+import { useGraphEvent, useGraphInstance, useGraphStore } from '../hooks';
 import type { Graph } from '@antv/x6';
 import type { ChangeItem } from '../hooks';
-import type { GraphOptions, NodeOptions, EdgeOptions } from '../types';
+import type { GraphOptions, NodeOptions, EdgeOptions, GraphModel } from '../types';
 import { ObjectExt } from '@antv/x6';
-import { useSelectionChanged, usePositionChanged, useEdgeConnected } from '../hooks';
 
 const XFlowState: FC<
   Pick<
@@ -18,9 +17,9 @@ const XFlowState: FC<
 > = (props) => {
   const { centerView, centerViewOptions, fitView, fitViewOptions } = props;
   const graph = useGraphInstance();
-  const updateNodeSilent = useGraphStore((state) => state.updateNodeSilent);
-  const updateEdgeSilent = useGraphStore((state) => state.updateEdgeSilent);
-  const addEdgesSilent = useGraphStore((state) => state.addEdgesSilent);
+  const updateNode = useGraphStore((state) => state.updateNode);
+  const updateEdge = useGraphStore((state) => state.updateEdge);
+  const addEdges = useGraphStore((state) => state.addEdges);
   const changeList = useGraphStore((state) => state.changeList);
   const clearChangeList = useGraphStore((state) => state.clearChangeList);
 
@@ -66,35 +65,44 @@ const XFlowState: FC<
     }
   };
 
+  const initData = (graph: Graph, data: GraphModel) => {
+    graph.fromJSON(ObjectExt.cloneDeep(data));
+
+    if (centerView) {
+      graph.centerContent(centerViewOptions);
+    }
+
+    if (fitView) {
+      graph.zoomToFit({ maxScale: 1, ...fitViewOptions });
+    }
+
+    const { nodes, edges }: { nodes: NodeOptions[]; edges: EdgeOptions[] } = data;
+
+    setSelectionStatus([
+      ...nodes
+        .filter((item) => item.selected)
+        .map((item) => ({ id: item.id!, selected: true })),
+      ...edges
+        .filter((item) => item.selected)
+        .map((item) => ({ id: item.id!, selected: true })),
+    ]);
+
+    setAnimatedStatus(
+      edges
+        .filter((item) => item.animated)
+        .map((item) => ({
+          id: item.id,
+          animated: true,
+        })),
+    );
+  };
+
   const handleGraphChange = (graph: Graph, changeList: ChangeItem[]) => {
     changeList.forEach((changeItem) => {
       const { command, data } = changeItem;
       switch (command) {
         case 'init':
-          graph.fromJSON(ObjectExt.cloneDeep(data));
-          if (centerView) {
-            graph.centerContent(centerViewOptions);
-          }
-          if (fitView) {
-            graph.zoomToFit({ maxScale: 1, ...fitViewOptions });
-          }
-          const { nodes, edges }: { nodes: NodeOptions[]; edges: EdgeOptions[] } = data;
-          setSelectionStatus([
-            ...nodes
-              .filter((item) => item.selected)
-              .map((item) => ({ id: item.id!, selected: true })),
-            ...edges
-              .filter((item) => item.selected)
-              .map((item) => ({ id: item.id!, selected: true })),
-          ]);
-          setAnimatedStatus(
-            edges
-              .filter((item) => item.animated)
-              .map((item) => ({
-                id: item.id,
-                animated: true,
-              })),
-          );
+          initData(graph, data);
           break;
         case 'addNodes':
           graph.addNodes(ObjectExt.cloneDeep(data));
@@ -137,39 +145,39 @@ const XFlowState: FC<
     }
   }, [changeList]);
 
-  useSelectionChanged(({ added, removed }) => {
+  useGraphEvent('selection:changed', ({ added, removed }) => {
     added.forEach((item) => {
       if (item.isNode()) {
-        updateNodeSilent(item.id, { selected: true });
+        updateNode(item.id, { selected: true }, { silent: true });
       } else if (item.isEdge()) {
-        updateEdgeSilent(item.id, { selected: true });
+        updateEdge(item.id, { selected: true }, { silent: true });
       }
     });
 
     removed.forEach((item) => {
       if (item.isNode()) {
-        updateNodeSilent(item.id, { selected: false });
+        updateNode(item.id, { selected: false }, { silent: true });
       } else if (item.isEdge()) {
-        updateEdgeSilent(item.id, { selected: false });
+        updateEdge(item.id, { selected: false }, { silent: true });
       }
     });
   });
 
-  usePositionChanged(({ node }) => {
+  useGraphEvent('node:change:position', ({ node }) => {
     const { x, y } = node.position();
-    updateNodeSilent(node.id, { x, y });
+    updateNode(node.id, { x, y }, { silent: true });
   });
 
-  useEdgeConnected(({ isNew, edge }) => {
+  useGraphEvent('edge:connected', ({ isNew, edge }) => {
     const source = edge.getTerminal('source');
     const target = edge.getTerminal('target');
     if (source && target) {
       if (isNew) {
-        addEdgesSilent([
-          { ...props.connectionEdgeOptions, id: edge.id, source, target },
-        ]);
+        addEdges([{ ...props.connectionEdgeOptions, id: edge.id, source, target }], {
+          silent: true,
+        });
       } else {
-        updateEdgeSilent(edge.id, { source: source, target: target });
+        updateEdge(edge.id, { source: source, target: target }, { silent: true });
       }
     }
   });

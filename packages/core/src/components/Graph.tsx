@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect, FC } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import { GraphContext } from '../context/GraphContext';
 import { Graph, Options } from '@antv/x6';
 import { Selection } from '@antv/x6-plugin-selection';
@@ -77,7 +77,6 @@ const XFlowGraph = (props: GraphOptions) => {
       if (readonly) {
         graph.options.interacting = false;
       } else {
-        // todo
         graph.options.interacting = {
           nodeMovable: (view) => {
             const cell = view.cell;
@@ -95,12 +94,11 @@ const XFlowGraph = (props: GraphOptions) => {
   useEffect(() => {
     if (graph) {
       if (zoomable) {
+        graph.enableMouseWheel();
         graph.options.mousewheel = {
           ...Options.defaults.mousewheel,
-          enabled: true,
           ...zoomOptions,
         };
-        graph.enableMouseWheel();
       } else {
         graph.disableMouseWheel();
       }
@@ -151,7 +149,7 @@ const XFlowGraph = (props: GraphOptions) => {
 
   return (
     <div style={{ width: '100%', height: '100%', ...style }} className={className}>
-      <div ref={container} />
+      <div ref={container} style={{ width: '100%', height: '100%' }} />
       <Wrapper>
         <XFlowState
           connectionEdgeOptions={connectionEdgeOptions}

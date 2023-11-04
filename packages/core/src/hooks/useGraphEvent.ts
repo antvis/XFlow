@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react';
 import type { DependencyList } from 'react';
 import { useGraphInstance } from './useGraphInstance';
+import type { EventArgs } from '@antv/x6';
 
-type Noop = (this: any, ...args: any[]) => any;
-
-export const useGraphEvent = (
-  name: string,
-  callback: Noop,
+export const useGraphEvent = <T extends keyof EventArgs>(
+  name: T,
+  callback: (args: EventArgs[T]) => any,
   deps: DependencyList = [],
 ) => {
   const ref = useRef(callback);
