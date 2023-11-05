@@ -1,12 +1,13 @@
-import { useState, PropsWithChildren, FC } from 'react';
-import { Provider } from '../context/GraphContext';
-import type { Graph } from '@antv/x6';
+import { type PropsWithChildren, type FC } from 'react';
+import { GraphProvider, StoreProvider } from '../context';
 import '../styles/index.less';
 
 const XFlow: FC<PropsWithChildren> = ({ children }) => {
-  const [graph, setGraph] = useState<Graph | null>(null);
-
-  return <Provider value={{ graph, setGraph }}>{children}</Provider>;
+  return (
+    <StoreProvider>
+      <GraphProvider>{children}</GraphProvider>
+    </StoreProvider>
+  );
 };
 
 export { XFlow };

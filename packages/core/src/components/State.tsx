@@ -1,7 +1,7 @@
-import { useEffect, FC } from 'react';
+import { useEffect, type FC } from 'react';
 import { useGraphEvent, useGraphInstance, useGraphStore } from '../hooks';
 import type { Graph } from '@antv/x6';
-import type { ChangeItem } from '../hooks';
+import type { ChangeItem } from '../store';
 import type { GraphOptions, NodeOptions, EdgeOptions, GraphModel } from '../types';
 import { ObjectExt } from '@antv/x6';
 

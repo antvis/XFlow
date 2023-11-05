@@ -1,5 +1,5 @@
 import { useContext, useRef, useEffect } from 'react';
-import { GraphContext } from '../context/GraphContext';
+import { GraphContext } from '../context';
 import { Graph, Options } from '@antv/x6';
 import { Selection } from '@antv/x6-plugin-selection';
 import type { GraphOptions } from '../types';
@@ -33,6 +33,7 @@ const XFlowGraph = (props: GraphOptions) => {
     magnetAdsorbedHighlightOptions,
   } = props;
   const { graph, setGraph } = useContext(GraphContext);
+
   useEffect(() => {
     const graph = new Graph({
       container: container.current!,
