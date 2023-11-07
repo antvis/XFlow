@@ -2,31 +2,37 @@
   width: 1200px;
   margin: 100px auto;
 
-  .tools {
-    margin-bottom: 24px;
-
-    button {
-      margin-right: 12px;
-      margin-bottom: 8px;
-    }
-  }
-
-  .content {
+  .container {
     width: 1200px;
     height: 600px;
-    display: flex;
+    margin-bottom: 50px;
     border-radius: 5px;
-    box-shadow: 0 12px 5px -10px rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
-  }
 
-  .json-code {
-    width: 400px;
-    height: 100%;
-    overflow: auto;
-    border-left: 1px solid #ccc;
+    .tools {
+      height: 80px;
 
-    pre {
-      margin: 0;
+      button {
+        margin-right: 12px;
+        margin-bottom: 8px;
+      }
+    }
+
+    .content {
+      display: flex;
+      height: calc(100% - 80px);
+      box-shadow: 0 12px 5px -10px rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+
+      .json-code {
+        width: 400px;
+        flex-shrink: 0;
+        height: 100%;
+        overflow: auto;
+        border-left: 1px solid #ccc;
+
+        pre {
+          margin: 0;
+        }
+      }
     }
   }
 
