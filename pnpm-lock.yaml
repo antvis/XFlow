@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@antv/x6-plugin-dnd':
+        specifier: ^2.0.5
+        version: 2.0.5(@antv/x6@2.15.3)
     devDependencies:
       '@antv/config-eslint':
         specifier: workspace:^
@@ -87,6 +91,9 @@ importers:
       '@antv/x6':
         specifier: ^2.15.3
         version: 2.15.3
+      '@antv/x6-plugin-dnd':
+        specifier: ^2.1.1
+        version: 2.1.1(@antv/x6@2.15.3)
       '@antv/x6-plugin-selection':
         specifier: ^2.2.1
         version: 2.2.1(@antv/x6@2.15.3)
@@ -296,6 +303,22 @@ packages:
 
   /@antv/x6-geometry@2.0.5:
     resolution: {integrity: sha512-MId6riEQkxphBpVeTcL4ZNXL4lScyvDEPLyIafvWMcWNTGK0jgkK7N20XSzqt8ltJb0mGUso5s56mrk8ysHu2A==}
+    dev: false
+
+  /@antv/x6-plugin-dnd@2.0.5(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-g8GGJS2XmM8C59juOBiFqaR/f8i8y8tqw9sJNwta7s1Phh3hwDd7o4kk36Kk5eTKkfZfnjEyWHMOqp/h+EDibQ==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-dnd@2.1.1(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-v0szzik1RkadPDn4Qi5mOSaB2AeI78D40/YuCYbPVzplG+HydGsHwO3MLTgJPQ+R5n0eM0W5F850p1VfTOHR7g==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
     dev: false
 
   /@antv/x6-plugin-selection@2.2.1(@antv/x6@2.15.3):

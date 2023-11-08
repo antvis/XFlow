@@ -28,6 +28,7 @@
   "dependencies": {
     "@antv/x6": "^2.15.3",
     "@antv/x6-plugin-selection": "^2.2.1",
+    "@antv/x6-plugin-dnd": "^2.1.1",
     "@antv/x6-react-shape": "^2.2.2",
     "zustand": "^4.4.3",
     "immer": "^10.0.3"

@@ -102,7 +102,7 @@ const initialData = {
   edges: [],
 };
 
-const ToolButton = () => {
+const ToolsButton = () => {
   const initData = useGraphStore((state) => state.initData);
   const addNodes = useGraphStore((state) => state.addNodes);
   const removeNodes = useGraphStore((state) => state.removeNodes);
@@ -233,4 +233,4 @@ const ToolButton = () => {
   );
 };
 
-export default ToolButton;
+export { ToolsButton };

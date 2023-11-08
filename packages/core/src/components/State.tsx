@@ -1,9 +1,11 @@
-import { useEffect, type FC } from 'react';
-import { useGraphEvent, useGraphInstance, useGraphStore } from '../hooks';
+/* eslint-disable no-case-declarations */
 import type { Graph } from '@antv/x6';
+import { ObjectExt } from '@antv/x6';
+import { useEffect, type FC } from 'react';
+
+import { useGraphEvent, useGraphInstance, useGraphStore } from '../hooks';
 import type { ChangeItem } from '../store';
 import type { GraphOptions, NodeOptions, EdgeOptions, GraphModel } from '../types';
-import { ObjectExt } from '@antv/x6';
 
 const XFlowState: FC<
   Pick<
@@ -65,15 +67,15 @@ const XFlowState: FC<
     }
   };
 
-  const initData = (graph: Graph, data: GraphModel) => {
-    graph.fromJSON(ObjectExt.cloneDeep(data));
+  const initData = (g: Graph, data: GraphModel) => {
+    g.fromJSON(ObjectExt.cloneDeep(data));
 
     if (centerView) {
-      graph.centerContent(centerViewOptions);
+      g.centerContent(centerViewOptions);
     }
 
     if (fitView) {
-      graph.zoomToFit({ maxScale: 1, ...fitViewOptions });
+      g.zoomToFit({ maxScale: 1, ...fitViewOptions });
     }
 
     const { nodes, edges }: { nodes: NodeOptions[]; edges: EdgeOptions[] } = data;
@@ -81,10 +83,10 @@ const XFlowState: FC<
     setSelectionStatus([
       ...nodes
         .filter((item) => item.selected)
-        .map((item) => ({ id: item.id!, selected: true })),
+        .map((item) => ({ id: item.id, selected: true })),
       ...edges
         .filter((item) => item.selected)
-        .map((item) => ({ id: item.id!, selected: true })),
+        .map((item) => ({ id: item.id, selected: true })),
     ]);
 
     setAnimatedStatus(
@@ -97,36 +99,36 @@ const XFlowState: FC<
     );
   };
 
-  const handleGraphChange = (graph: Graph, changeList: ChangeItem[]) => {
-    changeList.forEach((changeItem) => {
+  const handleGraphChange = (g: Graph, changes: ChangeItem[]) => {
+    changes.forEach((changeItem) => {
       const { command, data } = changeItem;
       switch (command) {
         case 'init':
-          initData(graph, data);
+          initData(g, data);
           break;
         case 'addNodes':
-          graph.addNodes(ObjectExt.cloneDeep(data));
+          g.addNodes(ObjectExt.cloneDeep(data));
           break;
         case 'removeNodes':
-          graph.removeCells(data);
+          g.removeCells(data);
           break;
         case 'updateNode':
           const { id: nodeId, data: changedNodeData } = data;
-          const node = graph.getCellById(nodeId);
+          const node = g.getCellById(nodeId);
           if (node) {
             node.prop(changedNodeData);
             handleSpecialPropChange(nodeId, changedNodeData);
           }
           break;
         case 'addEdges':
-          graph.addEdges(ObjectExt.cloneDeep(data));
+          g.addEdges(ObjectExt.cloneDeep(data));
           break;
         case 'removeEdges':
-          graph.removeCells(data);
+          g.removeCells(data);
           break;
         case 'updateEdge':
           const { id: edgeId, data: changedEdgeData } = data;
-          const edge = graph.getCellById(edgeId);
+          const edge = g.getCellById(edgeId);
           if (edge) {
             edge.prop(changedEdgeData);
             handleSpecialPropChange(edgeId, changedEdgeData);
@@ -143,7 +145,8 @@ const XFlowState: FC<
     if (graph && changeList.length) {
       handleGraphChange(graph, changeList);
     }
-  }, [changeList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [changeList, graph]);
 
   useGraphEvent('selection:changed', ({ added, removed }) => {
     added.forEach((item) => {

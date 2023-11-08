@@ -1,13 +1,23 @@
-import { useGraphInstance } from '../hooks/useGraphInstance';
-import { Graph } from '@antv/x6';
+import { type Registry } from '@antv/x6';
 import { useEffect } from 'react';
 
-const Grid = (props: Graph.GridManager.DrawGridOptions) => {
+import { useGraphInstance } from '../hooks/useGraphInstance';
+
+type GridTypes = keyof Registry.Grid.Presets;
+interface GridProps<T extends GridTypes> {
+  type: T;
+  options: Registry.Grid.OptionsMap[T];
+}
+
+const Grid: <T extends GridTypes>(props: GridProps<T>) => null = (props) => {
   const graph = useGraphInstance();
 
   useEffect(() => {
     if (graph) {
-      graph.drawGrid(props);
+      graph.drawGrid({
+        ...props.options,
+        type: props.type,
+      });
       graph.showGrid();
     }
   }, [graph, props]);

@@ -1,0 +1,36 @@
+.page {
+  width: 1200px;
+  margin: 100px auto;
+
+  .container {
+    display: flex;
+    width: 1200px;
+    height: 600px;
+    border-radius: 5px;
+    box-shadow: 0 12px 5px -10px rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .dnd {
+    width: 200px;
+    flex-shrink: 0;
+    border-right: 1px solid #ccc;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin: 0 4px;
+        padding: 5px 10px;
+        cursor: move;
+
+        &:hover {
+          background-color: #fff;
+          border: 1px solid #d9dadd;
+          box-shadow: 0 1px 3px #0000000f;
+        }
+      }
+    }
+  }
+}
