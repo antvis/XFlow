@@ -1,4 +1,4 @@
-import { XFlow, XFlowGraph } from '@antv/xflow';
+import { XFlow, XFlowGraph, Grid } from '@antv/xflow';
 import styles from './index.less';
 import { JSONCode } from './json';
 import ToolsButton from './tools';
@@ -24,6 +24,7 @@ const Page = () => {
                 },
               }}
             />
+            <Grid type="mesh" args={{ color: '#ccc', thickness: 1 }} />
             <JSONCode />
           </div>
         </XFlow>
