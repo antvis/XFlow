@@ -1,3 +1,1 @@
-import * as Util from './main';
-
-export { Util };
+export * from './algorithm';

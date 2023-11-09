@@ -17,10 +17,9 @@ export const useGraphEvent = <T extends keyof EventArgs>(
     if (ref.current) {
       graph?.off(name, ref.current);
     }
-    if (callback) {
-      ref.current = callback;
-      graph?.on(name, ref.current);
-    }
+
+    ref.current = callback;
+    graph?.on(name, ref.current);
 
     return () => {
       if (ref.current) {

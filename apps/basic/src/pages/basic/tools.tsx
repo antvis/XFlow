@@ -1,6 +1,7 @@
-import styles from './index.less';
-import { useGraphStore } from '@antv/xflow';
+import { useGraphStore, useClipboard } from '@antv/xflow';
 import { Button } from 'antd';
+
+import styles from './index.less';
 import { REACT_NODE } from './shape';
 
 const initialData = {
@@ -110,6 +111,7 @@ const ToolsButton = () => {
   const addEdges = useGraphStore((state) => state.addEdges);
   const removeEdges = useGraphStore((state) => state.removeEdges);
   const updateEdge = useGraphStore((state) => state.updateEdge);
+  const { copy, paste } = useClipboard();
 
   const onInit = () => {
     initData(initialData);
@@ -197,19 +199,27 @@ const ToolsButton = () => {
     updateEdge('edge-1', { selected: false });
   };
 
-  const changePosition = () => {
+  const onChangePosition = () => {
     updateNode('1', {
       x: Math.floor(Math.random() * 900),
       y: Math.floor(Math.random() * 600),
     });
   };
 
-  const animateEdge = () => {
+  const onAnimateEdge = () => {
     updateEdge('edge-1', { animated: true });
   };
 
-  const unAnimateEdge = () => {
+  const onUnAnimateEdge = () => {
     updateEdge('edge-1', { animated: false });
+  };
+
+  const onCopy = () => {
+    copy(['1']);
+  };
+
+  const onPaste = () => {
+    paste();
   };
 
   return (
@@ -226,9 +236,11 @@ const ToolsButton = () => {
       <Button onClick={onUnSelectNode}>UnSelectNode</Button>
       <Button onClick={onSelectEdge}>SelectEdge</Button>
       <Button onClick={onUnSelectEdge}>UnSelectEdge</Button>
-      <Button onClick={changePosition}>changePosition</Button>
-      <Button onClick={animateEdge}>animateEdge</Button>
-      <Button onClick={unAnimateEdge}>unAnimateEdge</Button>
+      <Button onClick={onChangePosition}>changePosition</Button>
+      <Button onClick={onAnimateEdge}>animateEdge</Button>
+      <Button onClick={onUnAnimateEdge}>unAnimateEdge</Button>
+      <Button onClick={onCopy}>copy</Button>
+      <Button onClick={onPaste}>paste</Button>
     </div>
   );
 };

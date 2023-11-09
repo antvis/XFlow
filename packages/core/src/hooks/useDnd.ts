@@ -1,13 +1,14 @@
 import { Dnd } from '@antv/x6-plugin-dnd';
-import { useCallback, useContext, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-import { GraphContext } from '../context/GraphContext';
 import type { NodeOptions } from '../types';
+
+import { useGraphInstance } from './useGraphInstance';
 
 export const useDnd = (
   options?: Omit<Dnd.Options, 'target' | 'getDragNode' | 'getDropNode'>,
 ) => {
-  const { graph } = useContext(GraphContext);
+  const graph = useGraphInstance();
   const ref = useRef<Dnd>();
 
   useEffect(() => {

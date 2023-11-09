@@ -9,7 +9,7 @@ interface GridProps<T extends GridTypes> {
   options: Registry.Grid.OptionsMap[T];
 }
 
-const Grid: <T extends GridTypes>(props: GridProps<T>) => null = (props) => {
+const Grid = <T extends GridTypes>(props: GridProps<T>) => {
   const graph = useGraphInstance();
 
   useEffect(() => {
