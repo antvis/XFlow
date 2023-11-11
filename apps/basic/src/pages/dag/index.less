@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+}
+
+.page {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  .container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+
+    .left {
+      display: flex;
+      width: 240px;
+      height: 100%;
+      flex-direction: column;
+      background-color: #f7f8fa;
+
+      .leftTop {
+        display: flex;
+        width: 100%;
+        height: 42px;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        border-bottom: 1px solid #eaebed;
+        background: #f7f8fa;
+      }
+    }
+
+    .center {
+      position: relative;
+      width: calc(100% - 240px);
+      height: 100%;
+      outline: none;
+
+      .toolbar {
+        display: flex;
+        width: 100%;
+        height: 42px;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        background-color: #f6f8fa;
+      }
+
+      .graph {
+        position: relative;
+        width: 100%;
+        height: calc(100% - 42px);
+
+        .controlTool {
+          position: absolute;
+          right: 24px;
+          bottom: 24px;
+        }
+      }
+    }
+  }
+}
