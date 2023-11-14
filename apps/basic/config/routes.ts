@@ -1,4 +1,6 @@
 export const routes = [
-  { path: '/', component: '@/pages/basic' },
+  { path: '/', redirect: '/basic' },
+  { path: '/basic', component: '@/pages/basic' },
+  { path: '/dnd', component: '@/pages/dnd' },
   { path: '/diff', component: '@/pages/diff' },
 ];

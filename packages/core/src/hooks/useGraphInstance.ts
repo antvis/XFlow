@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { GraphContext } from '../context/GraphContext';
 
 export const useGraphInstance = () => {

@@ -1,6 +1,7 @@
-import styles from './index.less';
-import { useGraphStore } from '@antv/xflow';
+import { useGraphStore, useClipboard, useExport, useHistory } from '@antv/xflow';
 import { Button } from 'antd';
+
+import styles from './index.less';
 import { REACT_NODE } from './shape';
 
 const initialData = {
@@ -102,7 +103,7 @@ const initialData = {
   edges: [],
 };
 
-const ToolButton = () => {
+const ToolsButton = () => {
   const initData = useGraphStore((state) => state.initData);
   const addNodes = useGraphStore((state) => state.addNodes);
   const removeNodes = useGraphStore((state) => state.removeNodes);
@@ -110,6 +111,9 @@ const ToolButton = () => {
   const addEdges = useGraphStore((state) => state.addEdges);
   const removeEdges = useGraphStore((state) => state.removeEdges);
   const updateEdge = useGraphStore((state) => state.updateEdge);
+  const { copy, paste } = useClipboard();
+  const { exportPNG } = useExport();
+  const { undo, redo, canUndo, canRedo } = useHistory();
 
   const onInit = () => {
     initData(initialData);
@@ -197,19 +201,39 @@ const ToolButton = () => {
     updateEdge('edge-1', { selected: false });
   };
 
-  const changePosition = () => {
+  const onChangePosition = () => {
     updateNode('1', {
       x: Math.floor(Math.random() * 900),
       y: Math.floor(Math.random() * 600),
     });
   };
 
-  const animateEdge = () => {
+  const onAnimateEdge = () => {
     updateEdge('edge-1', { animated: true });
   };
 
-  const unAnimateEdge = () => {
+  const onUnAnimateEdge = () => {
     updateEdge('edge-1', { animated: false });
+  };
+
+  const onCopy = () => {
+    copy(['1']);
+  };
+
+  const onPaste = () => {
+    paste();
+  };
+
+  const onExport = () => {
+    exportPNG('xflow', { padding: 20, copyStyles: false });
+  };
+
+  const onUndo = () => {
+    undo();
+  };
+
+  const onRedo = () => {
+    redo();
   };
 
   return (
@@ -226,11 +250,20 @@ const ToolButton = () => {
       <Button onClick={onUnSelectNode}>UnSelectNode</Button>
       <Button onClick={onSelectEdge}>SelectEdge</Button>
       <Button onClick={onUnSelectEdge}>UnSelectEdge</Button>
-      <Button onClick={changePosition}>changePosition</Button>
-      <Button onClick={animateEdge}>animateEdge</Button>
-      <Button onClick={unAnimateEdge}>unAnimateEdge</Button>
+      <Button onClick={onChangePosition}>changePosition</Button>
+      <Button onClick={onAnimateEdge}>animateEdge</Button>
+      <Button onClick={onUnAnimateEdge}>unAnimateEdge</Button>
+      <Button onClick={onCopy}>copy</Button>
+      <Button onClick={onPaste}>paste</Button>
+      <Button onClick={onExport}>export</Button>
+      <Button onClick={onUndo} disabled={!canUndo}>
+        undo
+      </Button>
+      <Button onClick={onRedo} disabled={!canRedo}>
+        redo
+      </Button>
     </div>
   );
 };
 
-export default ToolButton;
+export { ToolsButton };

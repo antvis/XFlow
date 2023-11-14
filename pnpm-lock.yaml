@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@antv/x6-plugin-dnd':
+        specifier: ^2.0.5
+        version: 2.0.5(@antv/x6@2.15.3)
     devDependencies:
       '@antv/config-eslint':
         specifier: workspace:^
@@ -90,6 +94,21 @@ importers:
       '@antv/x6':
         specifier: ^2.15.3
         version: 2.15.3
+      '@antv/x6-plugin-clipboard':
+        specifier: ^2.1.6
+        version: 2.1.6(@antv/x6@2.15.3)
+      '@antv/x6-plugin-dnd':
+        specifier: ^2.1.1
+        version: 2.1.1(@antv/x6@2.15.3)
+      '@antv/x6-plugin-export':
+        specifier: ^2.1.6
+        version: 2.1.6(@antv/x6@2.15.3)
+      '@antv/x6-plugin-history':
+        specifier: ^2.2.4
+        version: 2.2.4(@antv/x6@2.15.3)
+      '@antv/x6-plugin-keyboard':
+        specifier: ^2.2.1
+        version: 2.2.1(@antv/x6@2.15.3)
       '@antv/x6-plugin-selection':
         specifier: ^2.2.1
         version: 2.2.1(@antv/x6@2.15.3)
@@ -99,6 +118,9 @@ importers:
       immer:
         specifier: ^10.0.3
         version: 10.0.3
+      lodash.isequal:
+        specifier: ^4.5.0
+        version: 4.5.0
       react:
         specifier: ^18.0.0
         version: 18.0.0
@@ -115,6 +137,9 @@ importers:
       '@antv/testing':
         specifier: workspace:^
         version: link:../../tooling/jest
+      '@types/lodash.isequal':
+        specifier: ^4.5.8
+        version: 4.5.8
       '@types/react':
         specifier: ^18.0.28
         version: 18.0.28
@@ -321,6 +346,55 @@ packages:
 
   /@antv/x6-geometry@2.0.5:
     resolution: {integrity: sha512-MId6riEQkxphBpVeTcL4ZNXL4lScyvDEPLyIafvWMcWNTGK0jgkK7N20XSzqt8ltJb0mGUso5s56mrk8ysHu2A==}
+    dev: false
+
+  /@antv/x6-plugin-clipboard@2.1.6(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-roZPLnZx6PK8MBvee0QMo90fz/TXeF0WNe4EGin2NBq5M1I5XTWrYvA6N2XVIiWAAI67gjQeEE8TpkL7f8QdqA==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-dnd@2.0.5(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-g8GGJS2XmM8C59juOBiFqaR/f8i8y8tqw9sJNwta7s1Phh3hwDd7o4kk36Kk5eTKkfZfnjEyWHMOqp/h+EDibQ==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-dnd@2.1.1(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-v0szzik1RkadPDn4Qi5mOSaB2AeI78D40/YuCYbPVzplG+HydGsHwO3MLTgJPQ+R5n0eM0W5F850p1VfTOHR7g==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-export@2.1.6(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-m0ukMmZhrFE5n7uCR43DVQBdiUfpjGN+vm1mc+6RTZdHK8pa6Mxr0RZztaxPy34YA4tli+bGY3ePslsNPfh6PQ==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-history@2.2.4(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-9gHHvEW4Fla+1hxUV49zNgJyIMoV9CjVM52MrFgAJcvyRn1Kvxz4MfxiKlG+DEZUs+/zvfjl9pS6gJOd8laRkg==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-keyboard@2.2.1(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-sqfN0h4txVO211uIeKBd3zQ/IN2zPzDThWNTEhRx7Lecg1fO7uRXWBbOA48j3EgpRFXVexdSzIEVJEx+IWUdYw==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+      mousetrap: 1.6.5
     dev: false
 
   /@antv/x6-plugin-selection@2.2.1(@antv/x6@2.15.3):
@@ -3698,6 +3772,16 @@ packages:
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: false
+
+  /@types/lodash.isequal@4.5.8:
+    resolution: {integrity: sha512-uput6pg4E/tj2LGxCZo9+y27JNyB2OZuuI/T5F+ylVDYuqICLG2/ktjxx0v6GvVntAf8TvEzeQLcV0ffRirXuA==}
+    dependencies:
+      '@types/lodash': 4.14.201
+    dev: true
+
+  /@types/lodash@4.14.201:
+    resolution: {integrity: sha512-y9euML0cim1JrykNxADLfaG0FgD1g/yTHwUs/Jg9ZIU7WKj2/4IW9Lbb1WZbvck78W/lfGXFfe+u2EGfIJXdLQ==}
+    dev: true
 
   /@types/minimist@1.2.3:
     resolution: {integrity: sha512-ZYFzrvyWUNhaPomn80dsMNgMeXxNWZBdkuG/hWlUvXvbdUH8ZERNBGXnU87McuGcWDsyzX2aChCv/SVN348k3A==}
@@ -8956,6 +9040,10 @@ packages:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
     dev: false
 
+  /lodash.isequal@4.5.0:
+    resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    dev: false
+
   /lodash.isfunction@3.0.9:
     resolution: {integrity: sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==}
     dev: true
@@ -9222,6 +9310,10 @@ packages:
   /moment@2.29.4:
     resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
     dev: true
+
+  /mousetrap@1.6.5:
+    resolution: {integrity: sha512-QNo4kEepaIBwiT8CDhP98umTetp+JNfQYBWvC1pc6/OAibuXtRcxZ58Qz8skvEHYvURne/7R8T5VoOI7rDsEUA==}
+    dev: false
 
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}

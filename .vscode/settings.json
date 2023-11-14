@@ -60,6 +60,7 @@
     "favicons",
     "hljs",
     "immer",
+    "isequal",
     "lcov",
     "mfsu",
     "nocheck",
