@@ -1,0 +1,106 @@
+.components {
+  width: 240px;
+  height: 100%;
+  flex-shrink: 0;
+  border-right: 1px solid #d4d7da;
+  background-color: #f7f8fa;
+
+  .action {
+    padding: 8px 12px;
+
+    .search {
+      height: 28px;
+      margin: 0;
+
+      &:hover {
+        border-color: #0068fa;
+      }
+    }
+
+    :global(.ant-input-affix-wrapper-focused) {
+      border-color: #0068fa;
+    }
+  }
+
+  .tree {
+    overflow: auto;
+    height: 100%;
+    padding: 0 4px;
+    background-color: #f7f8fa;
+
+    :global {
+      .ant-tree-treenode {
+        &:hover {
+          background-color: unset;
+        }
+
+        .ant-tree-node-content-wrapper-normal {
+          &:hover {
+            background-color: #f7f8fa;
+          }
+        }
+      }
+
+      .ant-tree-indent,
+      .ant-tree-switcher-noop {
+        display: none;
+      }
+
+      .ant-tree-node-selected {
+        background-color: unset !important;
+      }
+
+      .ant-tree-treenode-selected::before {
+        background: transparent !important;
+      }
+
+      .ant-tree-switcher-icon {
+        color: rgb(135 136 137 / 100%);
+      }
+    }
+
+    .dir {
+      margin-left: -4px;
+      color: rgb(0 10 26 / 68%);
+      font-size: 12px;
+    }
+
+    .node {
+      display: flex;
+      width: 200px;
+      height: 32px;
+      align-items: center;
+      padding: 0 8px;
+      border: 1px solid #d4d7da;
+      border-radius: 4px;
+      margin: 0 4px;
+      background-color: #fff;
+      color: rgb(0 10 26 / 68%);
+      font-size: 12px;
+
+      &:hover {
+        border: 1px solid #0068fa;
+        background-color: #fff;
+        box-shadow: 0 0 0 2px rgb(0 104 250 / 15%);
+
+        .nodeDragHolder {
+          display: block;
+        }
+      }
+
+      .nodeTitle {
+        flex: 1;
+      }
+
+      .nodeDragHolder {
+        display: none;
+        width: 10px;
+      }
+
+      .icon {
+        margin-right: 8px;
+        color: #bbbcbc;
+      }
+    }
+  }
+}
