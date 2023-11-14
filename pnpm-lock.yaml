@@ -73,6 +73,9 @@ importers:
         specifier: ^4.0.64
         version: 4.0.64(@babel/core@7.23.2)(@types/node@20.5.1)(@types/react@18.0.28)(eslint@8.51.0)(jest@29.5.0)(postcss@8.4.31)(prettier@2.8.8)(react-dom@18.2.0)(react@18.0.0)(styled-components@6.0.8)(stylelint@14.16.1)(typescript@4.9.5)(webpack@5.88.2)
     devDependencies:
+      '@ant-design/icons':
+        specifier: ^5.2.6
+        version: 5.2.6(react-dom@18.2.0)(react@18.0.0)
       '@types/highlight.js':
         specifier: ^9.12.4
         version: 9.12.4
@@ -85,6 +88,9 @@ importers:
       antd:
         specifier: ^5.0.0
         version: 5.0.0(react-dom@18.2.0)(react@18.0.0)
+      classnames:
+        specifier: ^2.3.2
+        version: 2.3.2
 
   packages/core:
     dependencies:
@@ -109,9 +115,18 @@ importers:
       '@antv/x6-plugin-minimap':
         specifier: ^2.0.6
         version: 2.0.6(@antv/x6@2.15.3)
+      '@antv/x6-plugin-scroller':
+        specifier: ^2.0.10
+        version: 2.0.10(@antv/x6@2.15.3)
       '@antv/x6-plugin-selection':
         specifier: ^2.2.1
         version: 2.2.1(@antv/x6@2.15.3)
+      '@antv/x6-plugin-snapline':
+        specifier: ^2.1.7
+        version: 2.1.7(@antv/x6@2.15.3)
+      '@antv/x6-plugin-transform':
+        specifier: ^2.1.8
+        version: 2.1.8(@antv/x6@2.15.3)
       '@antv/x6-react-shape':
         specifier: ^2.2.2
         version: 2.2.2(@antv/x6@2.15.3)(react-dom@18.2.0)(react@18.0.0)
@@ -253,6 +268,12 @@ packages:
       '@ctrl/tinycolor': 3.6.1
     dev: true
 
+  /@ant-design/colors@7.0.0:
+    resolution: {integrity: sha512-iVm/9PfGCbC0dSMBrz7oiEXZaaGH7ceU40OJEfKmyuzR9R5CRimJYPlRiFtMQGQcbNMea/ePcoIebi4ASGYXtg==}
+    dependencies:
+      '@ctrl/tinycolor': 3.6.1
+    dev: true
+
   /@ant-design/cssinjs@0.0.0-alpha.60(react-dom@18.2.0)(react@18.0.0):
     resolution: {integrity: sha512-EQlU5f20flZMQ9XDbR/RL5MhQedgkHXR6o4pfbe6cMv0YMXK/jv669++N8msC7ZoNnGf2OxbmGRkvVS0OqG3iw==}
     peerDependencies:
@@ -286,6 +307,22 @@ packages:
       '@babel/runtime': 7.23.2
       classnames: 2.3.2
       lodash: 4.17.21
+      rc-util: 5.38.0(react-dom@18.2.0)(react@18.0.0)
+      react: 18.0.0
+      react-dom: 18.2.0(react@18.0.0)
+    dev: true
+
+  /@ant-design/icons@5.2.6(react-dom@18.2.0)(react@18.0.0):
+    resolution: {integrity: sha512-4wn0WShF43TrggskBJPRqCD0fcHbzTYjnaoskdiJrVHg86yxoZ8ZUqsXvyn4WUqehRiFKnaclOhqk9w4Ui2KVw==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      '@ant-design/colors': 7.0.0
+      '@ant-design/icons-svg': 4.3.1
+      '@babel/runtime': 7.23.2
+      classnames: 2.3.2
       rc-util: 5.38.0(react-dom@18.2.0)(react@18.0.0)
       react: 18.0.0
       react-dom: 18.2.0(react@18.0.0)
@@ -383,8 +420,32 @@ packages:
       '@antv/x6': 2.15.3
     dev: false
 
+  /@antv/x6-plugin-scroller@2.0.10(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-CrC5zCbtPe7LJEKK8ucLcDN+9lMtTJNApFmFObAiR/y2LO1QFCHz8GGLVeNOZaIEmJbR/Z/etpJkvc1LE7WhTg==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
   /@antv/x6-plugin-selection@2.2.1(@antv/x6@2.15.3):
     resolution: {integrity: sha512-9rV4jKcvqNqcGNBAm14nwOBtC+XC8/6qJTce8f8YBsE3XGSxrr8gNn2bmgzcV+3R+McXbAUaQT5P+vQV1Q6raA==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-snapline@2.1.7(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-AsysoCb9vES0U2USNhEpYuO/W8I0aYfkhlbee5Kt4NYiMfQfZKQyqW/YjDVaS2pm38C1NKu1LdPVk/BBr4CasA==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-transform@2.1.8(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-GvJuiJ4BKp0H7+qx3R1I+Vzbw5gXp9+oByXo/WyVxE3urOC7LC5sqnaDfIjyYMN6ROLPYPZraLSeSyYBgMgcDw==}
     peerDependencies:
       '@antv/x6': ^2.x
     dependencies:
@@ -3086,7 +3147,7 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.23.2
       hoist-non-react-statics: 3.3.2
       react: 18.0.0
       react-is: 16.13.1
@@ -3098,7 +3159,7 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.23.2
       hoist-non-react-statics: 3.3.2
       react: 18.1.0
       react-is: 16.13.1
@@ -4406,7 +4467,7 @@ packages:
   /@umijs/history@5.3.1:
     resolution: {integrity: sha512-/e0cEGrR2bIWQD7pRl3dl9dcyRGeC9hoW0OCvUTT/hjY0EfUrkd6G8ZanVghPMpDuY5usxq9GVcvrT8KNXLWvA==}
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.23.2
       query-string: 6.14.1
     dev: false
 
@@ -7538,7 +7599,7 @@ packages:
   /history@5.3.0:
     resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.23.2
     dev: false
 
   /hmac-drbg@1.0.1:
@@ -11097,7 +11158,7 @@ packages:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.23.2
       invariant: 2.2.4
       prop-types: 15.8.1
       react: 18.1.0
@@ -11112,7 +11173,7 @@ packages:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.23.2
       invariant: 2.2.4
       prop-types: 15.8.1
       react: 18.0.0

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { ObjectExt } from '@antv/x6';
 import { produce } from 'immer';
 import { create } from 'zustand';
 import type { UseBoundStore, StoreApi } from 'zustand';
@@ -89,7 +90,7 @@ export const createGraphStore = () => {
       set(
         produce((state: State) => {
           if (!ids.length) return;
-          state.nodes = state.nodes.filter((n) => !ids.includes(n.id));
+          state.nodes = state.nodes.filter((n) => !ids.includes(n.id!));
           if (!options?.silent) {
             state.changeList.push({
               command: 'removeNodes',
@@ -104,7 +105,7 @@ export const createGraphStore = () => {
         produce((state: State) => {
           const node = state.nodes.find((n) => n.id === id);
           if (node) {
-            Object.assign(node, data);
+            ObjectExt.merge(node, data);
             if (!options?.silent) {
               state.changeList.push({
                 command: 'updateNode',
@@ -153,7 +154,7 @@ export const createGraphStore = () => {
         produce((state: State) => {
           const edge = state.edges.find((n) => n.id === id);
           if (edge) {
-            Object.assign(edge, data);
+            ObjectExt.merge(edge, data);
             if (!options?.silent) {
               state.changeList.push({
                 command: 'updateEdge',

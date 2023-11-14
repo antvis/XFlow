@@ -1,15 +1,14 @@
 import type { Node, Edge, Graph, Options, Rectangle } from '@antv/x6';
+import type { Scroller } from '@antv/x6-plugin-scroller';
 import type { Selection } from '@antv/x6-plugin-selection';
 
 export type { Node, Edge };
 export interface NodeOptions extends Node.Metadata {
-  id: string;
   selected?: boolean;
   draggable?: boolean;
 }
 
 export interface EdgeOptions extends Edge.Metadata {
-  id: string;
   selected?: boolean;
   draggable?: boolean;
   animated?: boolean;
@@ -33,9 +32,11 @@ export interface GraphOptions {
   centerViewOptions?: Graph.TransformManager.CenterOptions;
   fitView?: boolean;
   fitViewOptions?: Graph.TransformManager.ScaleContentToFitOptions;
+  scroller?: boolean;
+  scrollerOptions?: Omit<Scroller.Options, 'enabled'>;
 
   // node & edge
-  connectionEdgeOptions?: EdgeOptions;
+  connectionEdgeOptions?: Partial<EdgeOptions>;
 
   // interactive
   embedable?: boolean;
