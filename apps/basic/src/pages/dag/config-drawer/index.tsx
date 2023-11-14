@@ -22,7 +22,6 @@ const ConfigDrawer = () => {
     if (graph) {
       graph.on('node:click', ({ node }: { node: Node }) => {
         const data = node.getData();
-        console.log(data, 'data');
         SetOpen(true);
         setNodeData(data);
       });
