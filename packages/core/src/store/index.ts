@@ -89,7 +89,7 @@ export const createGraphStore = () => {
       set(
         produce((state: State) => {
           if (!ids.length) return;
-          state.nodes = state.nodes.filter((n) => !ids.includes(n.id!));
+          state.nodes = state.nodes.filter((n) => !ids.includes(n.id));
           if (!options?.silent) {
             state.changeList.push({
               command: 'removeNodes',
@@ -138,7 +138,7 @@ export const createGraphStore = () => {
       set(
         produce((state: State) => {
           if (!ids.length) return;
-          state.edges = state.edges.filter((n) => !ids.includes(n.id!));
+          state.edges = state.edges.filter((n) => !ids.includes(n.id));
           if (!options?.silent) {
             state.changeList.push({
               command: 'removeEdges',

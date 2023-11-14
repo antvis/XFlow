@@ -5,3 +5,4 @@ export * from './useDnd';
 export * from './useClipboard';
 export * from './useExport';
 export * from './useHistory';
+export * from './useKeyboard';

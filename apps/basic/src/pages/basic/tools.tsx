@@ -1,4 +1,10 @@
-import { useGraphStore, useClipboard, useExport, useHistory } from '@antv/xflow';
+import {
+  useGraphStore,
+  useClipboard,
+  useExport,
+  useHistory,
+  useKeyboard,
+} from '@antv/xflow';
 import { Button } from 'antd';
 
 import styles from './index.less';
@@ -105,6 +111,7 @@ const initialData = {
 
 const ToolsButton = () => {
   const initData = useGraphStore((state) => state.initData);
+  const nodes = useGraphStore((state) => state.nodes);
   const addNodes = useGraphStore((state) => state.addNodes);
   const removeNodes = useGraphStore((state) => state.removeNodes);
   const updateNode = useGraphStore((state) => state.updateNode);
@@ -114,6 +121,20 @@ const ToolsButton = () => {
   const { copy, paste } = useClipboard();
   const { exportPNG } = useExport();
   const { undo, redo, canUndo, canRedo } = useHistory();
+
+  useKeyboard('ctrl+c', () => {
+    onCopy();
+  });
+
+  useKeyboard('ctrl+v', () => {
+    onPaste();
+  });
+
+  useKeyboard('backspace', () => {
+    const selected = nodes.filter((node) => node.selected);
+    const ids: string[] = selected.map((node) => node.id);
+    removeNodes(ids);
+  });
 
   const onInit = () => {
     initData(initialData);

@@ -3,11 +3,13 @@ import type { Selection } from '@antv/x6-plugin-selection';
 
 export type { Node, Edge };
 export interface NodeOptions extends Node.Metadata {
+  id: string;
   selected?: boolean;
   draggable?: boolean;
 }
 
 export interface EdgeOptions extends Edge.Metadata {
+  id: string;
   selected?: boolean;
   draggable?: boolean;
   animated?: boolean;
@@ -42,6 +44,11 @@ export interface GraphOptions {
   restrictOptions?: { bound: Rectangle.RectangleLike };
   connectionOptions?: Partial<Omit<Options.Connecting, 'createEdge'>>;
   selectOptions?: Omit<Selection.Options, 'enabled'>;
+  keyboardOptions?: {
+    global?: boolean;
+    format?: (key: string) => string;
+    guard?: (e: KeyboardEvent) => boolean;
+  };
 
   // highlight
   defaultHighlightOptions?: Graph.HighlightManager.Options;
