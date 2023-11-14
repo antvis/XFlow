@@ -14,6 +14,7 @@ const Grid = <T extends GridTypes>(props: GridProps<T>) => {
 
   useEffect(() => {
     if (graph) {
+      graph.clearGrid();
       graph.drawGrid({
         ...props.options,
         type: props.type,

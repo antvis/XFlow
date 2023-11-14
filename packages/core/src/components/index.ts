@@ -4,3 +4,4 @@ export * from './Graph';
 export * from './Grid';
 export * from './Background';
 export * from './Clipboard';
+export * from './History';

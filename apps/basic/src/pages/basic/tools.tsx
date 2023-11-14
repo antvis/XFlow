@@ -1,4 +1,4 @@
-import { useGraphStore, useClipboard } from '@antv/xflow';
+import { useGraphStore, useClipboard, useExport, useHistory } from '@antv/xflow';
 import { Button } from 'antd';
 
 import styles from './index.less';
@@ -112,6 +112,8 @@ const ToolsButton = () => {
   const removeEdges = useGraphStore((state) => state.removeEdges);
   const updateEdge = useGraphStore((state) => state.updateEdge);
   const { copy, paste } = useClipboard();
+  const { exportPNG } = useExport();
+  const { undo, redo, canUndo, canRedo } = useHistory();
 
   const onInit = () => {
     initData(initialData);
@@ -222,6 +224,18 @@ const ToolsButton = () => {
     paste();
   };
 
+  const onExport = () => {
+    exportPNG('xflow', { padding: 20, copyStyles: false });
+  };
+
+  const onUndo = () => {
+    undo();
+  };
+
+  const onRedo = () => {
+    redo();
+  };
+
   return (
     <div className={styles.tools}>
       <Button onClick={onInit}>initData</Button>
@@ -241,6 +255,13 @@ const ToolsButton = () => {
       <Button onClick={onUnAnimateEdge}>unAnimateEdge</Button>
       <Button onClick={onCopy}>copy</Button>
       <Button onClick={onPaste}>paste</Button>
+      <Button onClick={onExport}>export</Button>
+      <Button onClick={onUndo} disabled={!canUndo}>
+        undo
+      </Button>
+      <Button onClick={onRedo} disabled={!canRedo}>
+        redo
+      </Button>
     </div>
   );
 };

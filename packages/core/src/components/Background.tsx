@@ -8,6 +8,7 @@ const Background = (props: Graph.BackgroundManager.Options) => {
 
   useEffect(() => {
     if (graph) {
+      graph.clearBackground();
       graph.drawBackground(props);
     }
   }, [graph, props]);

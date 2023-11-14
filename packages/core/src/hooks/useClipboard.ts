@@ -2,15 +2,12 @@ import type { Clipboard } from '@antv/x6-plugin-clipboard';
 import { useCallback } from 'react';
 
 import { useGraphInstance } from './useGraphInstance';
-import { useGraphStore } from './useGraphStore';
 
 export const useClipboard = () => {
   const graph = useGraphInstance();
-  const addNodes = useGraphStore((state) => state.addNodes);
-  const addEdges = useGraphStore((state) => state.addEdges);
 
   const isLoaded = useCallback(() => {
-    const loaded = graph && graph.getPlugin('clipboard');
+    const loaded = !!(graph && graph.getPlugin('clipboard'));
     if (!loaded) {
       console.warn('clipboard is not loaded, please use clipboard component first');
     }
@@ -41,16 +38,11 @@ export const useClipboard = () => {
     (pasteOptions?: Clipboard.PasteOptions) => {
       if (graph && isLoaded()) {
         const cells = graph.paste(pasteOptions);
-        cells.forEach((cell) => {
-          if (cell.isNode()) {
-            addNodes([cell.toJSON()], { silent: true });
-          } else if (cell.isEdge()) {
-            addEdges([cell.toJSON()], { silent: true });
-          }
-        });
+        return cells;
       }
+      return [];
     },
-    [graph, isLoaded, addNodes, addEdges],
+    [graph, isLoaded],
   );
 
   return { copy, cut, paste };

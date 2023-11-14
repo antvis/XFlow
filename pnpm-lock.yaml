@@ -97,6 +97,12 @@ importers:
       '@antv/x6-plugin-dnd':
         specifier: ^2.1.1
         version: 2.1.1(@antv/x6@2.15.3)
+      '@antv/x6-plugin-export':
+        specifier: ^2.1.6
+        version: 2.1.6(@antv/x6@2.15.3)
+      '@antv/x6-plugin-history':
+        specifier: ^2.2.4
+        version: 2.2.4(@antv/x6@2.15.3)
       '@antv/x6-plugin-keyboard':
         specifier: ^2.2.1
         version: 2.2.1(@antv/x6@2.15.3)
@@ -335,6 +341,22 @@ packages:
 
   /@antv/x6-plugin-dnd@2.1.1(@antv/x6@2.15.3):
     resolution: {integrity: sha512-v0szzik1RkadPDn4Qi5mOSaB2AeI78D40/YuCYbPVzplG+HydGsHwO3MLTgJPQ+R5n0eM0W5F850p1VfTOHR7g==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-export@2.1.6(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-m0ukMmZhrFE5n7uCR43DVQBdiUfpjGN+vm1mc+6RTZdHK8pa6Mxr0RZztaxPy34YA4tli+bGY3ePslsNPfh6PQ==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.3
+    dev: false
+
+  /@antv/x6-plugin-history@2.2.4(@antv/x6@2.15.3):
+    resolution: {integrity: sha512-9gHHvEW4Fla+1hxUV49zNgJyIMoV9CjVM52MrFgAJcvyRn1Kvxz4MfxiKlG+DEZUs+/zvfjl9pS6gJOd8laRkg==}
     peerDependencies:
       '@antv/x6': ^2.x
     dependencies:
