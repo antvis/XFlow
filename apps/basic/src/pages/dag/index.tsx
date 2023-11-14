@@ -1,7 +1,9 @@
 import { XFlow, XFlowGraph, Background } from '@antv/xflow';
 
+import { ConfigDrawer } from './config-drawer';
 import { Control } from './control';
 import { Dnd } from './dnd/dnd';
+import { ExecuteAll } from './execute-all';
 import styles from './index.less';
 import { DAG_EDGE, DAG_CONNECTOR } from './shape';
 
@@ -15,7 +17,9 @@ const Page = () => {
             <Dnd />
           </div>
           <div className={styles.center}>
-            <div className={styles.toolbar}>{/* <ToolbarComponent /> */}</div>
+          <div className={styles.toolbar}>
+              <ExecuteAll />
+            </div>
             <div className={styles.graph}>
               <XFlowGraph
                 pannable
@@ -44,12 +48,13 @@ const Page = () => {
               <Background color="#FFF" />
               <div className={styles.controlTool}>
                 <Control
-                  items={['zoomIn', 'zoomTo', 'zoomOut', 'zoomToFit', 'zoomToOrigin']}
+                  items={['zoomOut', 'zoomTo', 'zoomIn', 'zoomToFit', 'zoomToOrigin']}
                 />
               </div>
             </div>
           </div>
         </div>
+        <ConfigDrawer />
       </div>
     </XFlow>
   );
