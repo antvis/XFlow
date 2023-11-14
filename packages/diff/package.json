@@ -1,0 +1,51 @@
+{
+  "name": "@antv/xflow-diff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/typing/index.d.ts",
+  "private": true,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "xflow",
+    "x6",
+    "antv"
+  ],
+  "scripts": {
+    "setup": "tsup src/index.ts",
+    "build": "tsup src/index.ts",
+    "dev": "tsup src/index.ts --watch",
+    "lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:css": "stylelint --allow-empty-input 'src/**/*.{css,less}'",
+    "lint:format": "prettier --check *.md *.json 'src/**/*.{js,jsx,ts,tsx,css,less,md,json}'",
+    "lint:typing": "tsc --noEmit",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "@antv/xflow": "workspace:^"
+  },
+  "devDependencies": {
+    "@antv/config-tsconfig": "workspace:^",
+    "@antv/config-tsup": "workspace:^",
+    "@antv/testing": "workspace:^",
+    "@types/react": "^18.0.28"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/antvis/XFlow/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antvis/XFlow.git",
+    "directory": "packages/diff"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

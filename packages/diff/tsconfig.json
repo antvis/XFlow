@@ -1,0 +1,13 @@
+{
+  "extends": "@antv/config-tsconfig/mana.json",
+  "compilerOptions": {
+    "declarationDir": "./dist/typing",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "esModuleInterop": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["./src/**/*"]
+}

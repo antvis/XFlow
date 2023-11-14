@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@antv/xflow": "workspace:*",
+    "@antv/xflow-diff": "workspace:*",
     "highlight.js": "^10.7.3",
     "umi": "^4.0.64"
   },
