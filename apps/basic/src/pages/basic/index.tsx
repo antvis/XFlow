@@ -1,4 +1,12 @@
-import { XFlow, XFlowGraph, Grid, Background, Clipboard, History } from '@antv/xflow';
+import {
+  XFlow,
+  XFlowGraph,
+  Grid,
+  Background,
+  Clipboard,
+  History,
+  Minimap,
+} from '@antv/xflow';
 
 import styles from './index.less';
 import { JSONCode } from './json';
@@ -47,7 +55,7 @@ const Page = () => {
               }}
             />
             <Background color="#F2F7FA" />
-            <JSONCode />
+            <Minimap simple />
           </div>
         </XFlow>
       </div>

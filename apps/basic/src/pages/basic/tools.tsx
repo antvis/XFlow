@@ -236,31 +236,76 @@ const ToolsButton = () => {
     redo();
   };
 
+  const onAddTools = () => {
+    updateNode('1', {
+      tools: ['button-remove', 'boundary'],
+    });
+  };
+
   return (
     <div className={styles.tools}>
-      <Button onClick={onInit}>initData</Button>
-      <Button onClick={onAddNodes}>addNode</Button>
-      <Button onClick={onRemoveNodes}>removeNode</Button>
-      <Button onClick={onUpdateNode}>updateNode</Button>
-      <Button onClick={onUpdateNodeData}>updateNodeData</Button>
-      <Button onClick={onAddEdges}>addEdge</Button>
-      <Button onClick={onRemoveEdges}>removeEdge</Button>
-      <Button onClick={onUpdateEdge}>updateEdge</Button>
-      <Button onClick={onSelectNode}>SelectNode</Button>
-      <Button onClick={onUnSelectNode}>UnSelectNode</Button>
-      <Button onClick={onSelectEdge}>SelectEdge</Button>
-      <Button onClick={onUnSelectEdge}>UnSelectEdge</Button>
-      <Button onClick={onChangePosition}>changePosition</Button>
-      <Button onClick={onAnimateEdge}>animateEdge</Button>
-      <Button onClick={onUnAnimateEdge}>unAnimateEdge</Button>
-      <Button onClick={onCopy}>copy</Button>
-      <Button onClick={onPaste}>paste</Button>
-      <Button onClick={onExport}>export</Button>
-      <Button onClick={onUndo} disabled={!canUndo}>
+      <Button size="small" onClick={onInit}>
+        initData
+      </Button>
+      <Button size="small" onClick={onAddNodes}>
+        addNode
+      </Button>
+      <Button size="small" onClick={onRemoveNodes}>
+        removeNode
+      </Button>
+      <Button size="small" onClick={onUpdateNode}>
+        updateNode
+      </Button>
+      <Button size="small" onClick={onUpdateNodeData}>
+        updateNodeData
+      </Button>
+      <Button size="small" onClick={onAddEdges}>
+        addEdge
+      </Button>
+      <Button size="small" onClick={onRemoveEdges}>
+        removeEdge
+      </Button>
+      <Button size="small" onClick={onUpdateEdge}>
+        updateEdge
+      </Button>
+      <Button size="small" onClick={onSelectNode}>
+        SelectNode
+      </Button>
+      <Button size="small" onClick={onUnSelectNode}>
+        UnSelectNode
+      </Button>
+      <Button size="small" onClick={onSelectEdge}>
+        SelectEdge
+      </Button>
+      <Button size="small" onClick={onUnSelectEdge}>
+        UnSelectEdge
+      </Button>
+      <Button size="small" onClick={onChangePosition}>
+        changePosition
+      </Button>
+      <Button size="small" onClick={onAnimateEdge}>
+        animateEdge
+      </Button>
+      <Button size="small" onClick={onUnAnimateEdge}>
+        unAnimateEdge
+      </Button>
+      <Button size="small" onClick={onCopy}>
+        copy
+      </Button>
+      <Button size="small" onClick={onPaste}>
+        paste
+      </Button>
+      <Button size="small" onClick={onExport}>
+        export
+      </Button>
+      <Button size="small" onClick={onUndo} disabled={!canUndo}>
         undo
       </Button>
-      <Button onClick={onRedo} disabled={!canRedo}>
+      <Button size="small" onClick={onRedo} disabled={!canRedo}>
         redo
+      </Button>
+      <Button size="small" onClick={onAddTools}>
+        addTools
       </Button>
     </div>
   );

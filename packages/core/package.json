@@ -32,6 +32,7 @@
     "@antv/x6-plugin-export": "^2.1.6",
     "@antv/x6-plugin-history": "^2.2.4",
     "@antv/x6-plugin-keyboard": "^2.2.1",
+    "@antv/x6-plugin-minimap": "^2.0.6",
     "@antv/x6-plugin-selection": "^2.2.1",
     "@antv/x6-react-shape": "^2.2.2",
     "immer": "^10.0.3",
