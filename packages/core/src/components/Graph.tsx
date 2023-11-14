@@ -1,8 +1,10 @@
-import { useContext, useRef, useEffect } from 'react';
-import { GraphContext } from '../context';
 import { Graph, Options } from '@antv/x6';
 import { Selection } from '@antv/x6-plugin-selection';
+import { useContext, useRef, useEffect } from 'react';
+
+import { GraphContext } from '../context';
 import type { GraphOptions } from '../types';
+
 import { XFlowState } from './State';
 import { Wrapper } from './Wrapper';
 
@@ -35,7 +37,8 @@ const XFlowGraph = (props: GraphOptions) => {
   const { graph, setGraph } = useContext(GraphContext);
 
   useEffect(() => {
-    const graph = new Graph({
+    const g = new Graph({
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       container: container.current!,
       autoResize: true,
       virtual,
@@ -61,16 +64,17 @@ const XFlowGraph = (props: GraphOptions) => {
       },
     });
 
-    graph.use(new Selection(selectOptions));
+    g.use(new Selection(selectOptions));
 
-    setGraph(graph);
+    setGraph(g);
 
     return () => {
-      if (graph) {
-        graph.dispose();
+      if (g) {
+        g.dispose();
         setGraph(null);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

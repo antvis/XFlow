@@ -1,4 +1,5 @@
 import { createContext, useRef, type FC, type PropsWithChildren } from 'react';
+
 import { createGraphStore, type GraphStore } from '../store';
 
 export const StoreContext = createContext<GraphStore | null>(null);

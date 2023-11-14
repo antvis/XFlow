@@ -1,4 +1,5 @@
 import type { FC, PropsWithChildren } from 'react';
+
 import { useGraphInstance } from '../hooks/useGraphInstance';
 
 const Wrapper: FC<PropsWithChildren> = ({ children }) => {

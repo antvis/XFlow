@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
 import { useGraphStore } from '@antv/xflow';
 import hljs from 'highlight.js/lib/core';
 import json from 'highlight.js/lib/languages/json';
+import { useEffect, useRef } from 'react';
+
 import 'highlight.js/styles/github.css';
 import styles from './index.less';
 
@@ -21,6 +22,7 @@ const JSONCode = () => {
 
   useEffect(() => {
     parse();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nodes, edges]);
 
   return (

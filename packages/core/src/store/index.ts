@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { produce } from 'immer';
 import { create } from 'zustand';
 import type { UseBoundStore, StoreApi } from 'zustand';
-import { produce } from 'immer';
+
 import type { NodeOptions, EdgeOptions } from '../types';
 
 export type Command =
@@ -14,6 +16,7 @@ export type Command =
 
 export type ChangeItem = {
   command: Command;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
 };
 

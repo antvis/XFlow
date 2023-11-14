@@ -1,4 +1,5 @@
 import { type PropsWithChildren, type FC } from 'react';
+
 import { GraphProvider, StoreProvider } from '../context';
 import '../styles/index.less';
 
