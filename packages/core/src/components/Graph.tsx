@@ -1,4 +1,6 @@
 import { Graph, Options } from '@antv/x6';
+import { Keyboard } from '@antv/x6-plugin-keyboard';
+import { Scroller } from '@antv/x6-plugin-scroller';
 import { Selection } from '@antv/x6-plugin-selection';
 import { useContext, useRef, useEffect } from 'react';
 
@@ -27,6 +29,9 @@ const XFlowGraph = (props: GraphOptions) => {
     restrictOptions,
     connectionOptions,
     selectOptions,
+    keyboardOptions,
+    scroller,
+    scrollerOptions,
     connectionEdgeOptions,
     defaultHighlightOptions,
     embedHighlightOptions,
@@ -64,7 +69,12 @@ const XFlowGraph = (props: GraphOptions) => {
       },
     });
 
-    g.use(new Selection(selectOptions));
+    g.use(new Selection({ enabled: true, ...selectOptions }));
+    g.use(new Keyboard({ enabled: true, ...keyboardOptions }));
+
+    if (scroller) {
+      g.use(new Scroller({ enabled: true, ...scrollerOptions }));
+    }
 
     setGraph(g);
 

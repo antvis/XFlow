@@ -1,4 +1,14 @@
-import { XFlow, XFlowGraph, Grid, Background, Clipboard, History } from '@antv/xflow';
+import {
+  XFlow,
+  XFlowGraph,
+  Grid,
+  Background,
+  Clipboard,
+  History,
+  Minimap,
+  Snapline,
+  Transform,
+} from '@antv/xflow';
 
 import styles from './index.less';
 import { JSONCode } from './json';
@@ -29,6 +39,8 @@ const Page = () => {
             <JSONCode />
             <Clipboard />
             <History />
+            <Snapline sharp />
+            <Transform resizing rotating />
           </div>
         </XFlow>
       </div>
@@ -37,6 +49,7 @@ const Page = () => {
           <ToolsButton />
           <div className={styles.content}>
             <XFlowGraph
+              scroller
               connectionEdgeOptions={{
                 attrs: {
                   line: {
@@ -47,7 +60,7 @@ const Page = () => {
               }}
             />
             <Background color="#F2F7FA" />
-            <JSONCode />
+            <Minimap simple />
           </div>
         </XFlow>
       </div>

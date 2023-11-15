@@ -1,4 +1,5 @@
 import type { Node, Edge, Graph, Options, Rectangle } from '@antv/x6';
+import type { Scroller } from '@antv/x6-plugin-scroller';
 import type { Selection } from '@antv/x6-plugin-selection';
 
 export type { Node, Edge };
@@ -31,9 +32,11 @@ export interface GraphOptions {
   centerViewOptions?: Graph.TransformManager.CenterOptions;
   fitView?: boolean;
   fitViewOptions?: Graph.TransformManager.ScaleContentToFitOptions;
+  scroller?: boolean;
+  scrollerOptions?: Omit<Scroller.Options, 'enabled'>;
 
   // node & edge
-  connectionEdgeOptions?: EdgeOptions;
+  connectionEdgeOptions?: Partial<EdgeOptions>;
 
   // interactive
   embedable?: boolean;
@@ -42,6 +45,11 @@ export interface GraphOptions {
   restrictOptions?: { bound: Rectangle.RectangleLike };
   connectionOptions?: Partial<Omit<Options.Connecting, 'createEdge'>>;
   selectOptions?: Omit<Selection.Options, 'enabled'>;
+  keyboardOptions?: {
+    global?: boolean;
+    format?: (key: string) => string;
+    guard?: (e: KeyboardEvent) => boolean;
+  };
 
   // highlight
   defaultHighlightOptions?: Graph.HighlightManager.Options;
