@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import type { Graph, EventArgs, Cell } from '@antv/x6';
-import { FunctionExt, ObjectExt } from '@antv/x6';
+import { FunctionExt, ObjectExt, Point } from '@antv/x6';
 import { useEffect, type FC } from 'react';
 
 import { useGraphEvent, useGraphInstance, useGraphStore } from '../hooks';
@@ -10,11 +10,12 @@ import type { GraphOptions, NodeOptions, EdgeOptions, GraphModel } from '../type
 const INNER_CALL = '__inner__';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const preprocess = (key: keyof Cell.Properties, value: any) => {
+const preprocess = (key: keyof Cell.Properties, value: any, graph: Graph) => {
   if (key === 'position') {
+    const { x, y } = Point.create(value).snapToGrid(graph.getGridSize());
     return {
-      x: value.x,
-      y: value.y,
+      x,
+      y,
     };
   }
   if (key === 'size') {
@@ -213,7 +214,7 @@ const XFlowState: FC<
       ({ cell, key, current, options }: EventArgs['cell:change:*']) => {
         if (!options[INNER_CALL]) {
           if (cell.isNode()) {
-            updateNode(cell.id, preprocess(key, current), { silent: true });
+            updateNode(cell.id, preprocess(key, current, graph), { silent: true });
           } else if (cell.isEdge()) {
             updateEdge(cell.id, { [key]: current }, { silent: true });
           }
