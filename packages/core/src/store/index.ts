@@ -82,7 +82,6 @@ export const createGraphStore = () => {
           if (!duplicated) {
             state.nodes.push(...ns);
             if (!options?.silent) {
-              console.log(ns);
               state.changeList.push({
                 command: 'addNodes',
                 data: ns,

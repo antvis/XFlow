@@ -2,21 +2,15 @@ import type { Clipboard } from '@antv/x6-plugin-clipboard';
 import { useCallback } from 'react';
 
 import { useGraphInstance } from './useGraphInstance';
+import { useLoaded } from './useLoaded';
 
 export const useClipboard = () => {
   const graph = useGraphInstance();
-
-  const isLoaded = useCallback(() => {
-    const loaded = !!(graph && graph.getPlugin('clipboard'));
-    if (!loaded) {
-      console.warn('clipboard is not loaded, please use clipboard component first');
-    }
-    return loaded;
-  }, [graph]);
+  const { isLoaded } = useLoaded('clipboard');
 
   const copy = useCallback(
     (ids: string[], copyOptions?: Clipboard.CopyOptions) => {
-      if (graph && isLoaded()) {
+      if (isLoaded() && graph) {
         const cells = ids.map((id) => graph?.getCellById(id)).filter(Boolean);
         graph.copy(cells, copyOptions);
       }
@@ -26,7 +20,7 @@ export const useClipboard = () => {
 
   const cut = useCallback(
     (ids: string[], cutOptions?: Clipboard.CopyOptions) => {
-      if (graph && isLoaded()) {
+      if (isLoaded() && graph) {
         const cells = ids.map((id) => graph?.getCellById(id)).filter(Boolean);
         graph.cut(cells, cutOptions);
       }
@@ -36,7 +30,7 @@ export const useClipboard = () => {
 
   const paste = useCallback(
     (pasteOptions?: Clipboard.PasteOptions) => {
-      if (graph && isLoaded()) {
+      if (isLoaded() && graph) {
         const cells = graph.paste(pasteOptions);
         return cells;
       }
