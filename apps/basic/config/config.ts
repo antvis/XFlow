@@ -10,4 +10,5 @@ export default defineConfig({
   title: 'XFlow Basic',
   favicons: ['/favicon.ico'],
   mfsu: false,
+  esbuildMinifyIIFE: true,
 });
