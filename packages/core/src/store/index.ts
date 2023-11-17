@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ObjectExt } from '@antv/x6';
-import { produce } from 'immer';
+import { produce, original } from 'immer';
 import { create } from 'zustand';
 import type { UseBoundStore, StoreApi } from 'zustand';
 
 import type { NodeOptions, EdgeOptions } from '../types';
+import { apply } from '../util';
 
 export type Command =
   | 'init'
@@ -31,6 +31,13 @@ type ActionOptions = {
   silent?: boolean;
 };
 
+type UpdateNodeDataOrFn =
+  | Partial<NodeOptions>
+  | ((node: NodeOptions) => Partial<NodeOptions>);
+type UpdateEdgeDataOrFn =
+  | Partial<EdgeOptions>
+  | ((edge: EdgeOptions) => Partial<NodeOptions>);
+
 export type Actions = {
   initData: (
     data: { nodes: NodeOptions[]; edges: EdgeOptions[] },
@@ -38,10 +45,10 @@ export type Actions = {
   ) => void;
   addNodes: (ns: NodeOptions[], options?: ActionOptions) => void;
   removeNodes: (ids: string[], options?: ActionOptions) => void;
-  updateNode: (id: string, data: Partial<NodeOptions>, options?: ActionOptions) => void;
+  updateNode: (id: string, data: UpdateNodeDataOrFn, options?: ActionOptions) => void;
   addEdges: (es: EdgeOptions[], options?: ActionOptions) => void;
   removeEdges: (ids: string[], options?: ActionOptions) => void;
-  updateEdge: (id: string, data: Partial<EdgeOptions>, options?: ActionOptions) => void;
+  updateEdge: (id: string, data: UpdateEdgeDataOrFn, options?: ActionOptions) => void;
   clearChangeList: () => void;
 };
 
@@ -105,11 +112,17 @@ export const createGraphStore = () => {
         produce((state: State) => {
           const node = state.nodes.find((n) => n.id === id);
           if (node) {
-            ObjectExt.merge(node, data);
+            const changed =
+              typeof data === 'function' ? data(original(node) || {}) : data;
+            if (changed.id !== undefined || changed.shape !== undefined) {
+              console.error(`id and shape can't be changed`);
+              return;
+            }
+            apply(node, changed);
             if (!options?.silent) {
               state.changeList.push({
                 command: 'updateNode',
-                data: { id, data },
+                data: { id, data: changed },
               });
             }
           }
@@ -154,11 +167,17 @@ export const createGraphStore = () => {
         produce((state: State) => {
           const edge = state.edges.find((n) => n.id === id);
           if (edge) {
-            ObjectExt.merge(edge, data);
+            const changed =
+              typeof data === 'function' ? data(original(edge) || {}) : data;
+            if (changed.id !== undefined || changed.shape !== undefined) {
+              console.error(`id and shape can't be changed`);
+              return;
+            }
+            apply(edge, changed);
             if (!options?.silent) {
               state.changeList.push({
                 command: 'updateEdge',
-                data: { id, data },
+                data: { id, data: changed },
               });
             }
           }

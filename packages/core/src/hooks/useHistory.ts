@@ -3,23 +3,17 @@ import { useCallback, useState } from 'react';
 
 import { useGraphEvent } from './useGraphEvent';
 import { useGraphInstance } from './useGraphInstance';
+import { useLoaded } from './useLoaded';
 
 export const useHistory = () => {
   const graph = useGraphInstance();
+  const { isLoaded } = useLoaded('history');
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
 
-  const isLoaded = useCallback(() => {
-    const loaded = !!(graph && graph.getPlugin('history'));
-    if (!loaded) {
-      console.warn('history is not loaded, please use history component first');
-    }
-    return loaded;
-  }, [graph]);
-
   const undo = useCallback(
     (options?: KeyValue) => {
-      if (graph && isLoaded()) {
+      if (isLoaded() && graph) {
         return graph.undo(options);
       }
       return null;
@@ -29,7 +23,7 @@ export const useHistory = () => {
 
   const redo = useCallback(
     (options?: KeyValue) => {
-      if (graph && isLoaded()) {
+      if (isLoaded() && graph) {
         return graph.redo(options);
       }
       return null;

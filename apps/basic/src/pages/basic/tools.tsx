@@ -132,7 +132,7 @@ const ToolsButton = () => {
 
   useKeyboard('backspace', () => {
     const selected = nodes.filter((node) => node.selected);
-    const ids: string[] = selected.map((node) => node.id!);
+    const ids: string[] = selected.map((node) => node.id || '');
     removeNodes(ids);
   });
 
@@ -259,7 +259,7 @@ const ToolsButton = () => {
 
   const onAddTools = () => {
     updateNode('1', {
-      tools: ['button-remove', 'boundary'],
+      tools: ['boundary', 'button-remove'],
     });
   };
 

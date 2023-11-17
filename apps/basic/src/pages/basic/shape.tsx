@@ -1,5 +1,6 @@
 import { register } from '@antv/xflow';
 import type { Node } from '@antv/xflow';
+
 import styles from './index.less';
 
 const REACT_NODE = 'react-node';
