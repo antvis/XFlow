@@ -1,20 +1,22 @@
 /* eslint-disable no-case-declarations */
 import type { Graph, EventArgs, Cell } from '@antv/x6';
-import { FunctionExt, ObjectExt } from '@antv/x6';
+import { FunctionExt, ObjectExt, Point } from '@antv/x6';
 import { useEffect, type FC } from 'react';
 
 import { useGraphEvent, useGraphInstance, useGraphStore } from '../hooks';
 import type { ChangeItem } from '../store';
 import type { GraphOptions, NodeOptions, EdgeOptions, GraphModel } from '../types';
+import { flatten } from '../util';
 
 const INNER_CALL = '__inner__';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const preprocess = (key: keyof Cell.Properties, value: any) => {
+const preprocess = (key: keyof Cell.Properties, value: any, graph: Graph) => {
   if (key === 'position') {
+    const { x, y } = Point.create(value).snapToGrid(graph.getGridSize());
     return {
-      x: value.x,
-      y: value.y,
+      x,
+      y,
     };
   }
   if (key === 'size') {
@@ -49,7 +51,7 @@ const XFlowState: FC<
   const changeList = useGraphStore((state) => state.changeList);
   const clearChangeList = useGraphStore((state) => state.clearChangeList);
 
-  const setSelectionStatus = (status: { id: string; selected: boolean }[]) => {
+  const changeSelectionStatus = (status: Partial<NodeOptions | EdgeOptions>[]) => {
     if (graph) {
       const added = status.filter((item) => item.selected);
       const removed = status.filter((item) => !item.selected);
@@ -64,7 +66,7 @@ const XFlowState: FC<
     }
   };
 
-  const setAnimatedStatus = (status: { id: string; animated: boolean }[]) => {
+  const changeAnimatedStatus = (status: Partial<EdgeOptions>[]) => {
     if (graph) {
       status.forEach((item) => {
         const cell = graph.getCellById(item.id);
@@ -83,22 +85,6 @@ const XFlowState: FC<
     }
   };
 
-  const handleSpecialPropChange = (
-    id: string,
-    data: Partial<NodeOptions> | Partial<EdgeOptions>,
-  ) => {
-    if (graph) {
-      const keys = Object.keys(data);
-      if (keys.includes('selected')) {
-        const selected = !!data.selected;
-        setSelectionStatus([{ id, selected }]);
-      } else if (keys.includes('animated')) {
-        const animated = !!data.animated;
-        setAnimatedStatus([{ id, animated }]);
-      }
-    }
-  };
-
   const initData = (g: Graph, data: GraphModel) => {
     g.fromJSON(ObjectExt.cloneDeep(data));
 
@@ -111,24 +97,47 @@ const XFlowState: FC<
     }
 
     const { nodes, edges }: { nodes: NodeOptions[]; edges: EdgeOptions[] } = data;
+    changeSelectionStatus([...nodes, ...edges]);
+    changeAnimatedStatus([...edges]);
+  };
 
-    setSelectionStatus([
-      ...nodes
-        .filter((item) => item.selected)
-        .map((item) => ({ id: item.id, selected: true })),
-      ...edges
-        .filter((item) => item.selected)
-        .map((item) => ({ id: item.id, selected: true })),
-    ]);
+  const onSpecialPropChange = (
+    id: string,
+    data: Partial<NodeOptions> | Partial<EdgeOptions>,
+  ) => {
+    if (graph) {
+      const keys = Object.keys(data);
+      if (keys.includes('selected')) {
+        const selected = !!data.selected;
+        changeSelectionStatus([{ id, selected }]);
+      } else if (keys.includes('animated')) {
+        const animated = !!data.animated;
+        changeAnimatedStatus([{ id, animated }]);
+      }
+    }
+  };
 
-    setAnimatedStatus(
-      edges
-        .filter((item) => item.animated)
-        .map((item) => ({
-          id: item.id,
-          animated: true,
-        })),
-    );
+  const onPropChange = (
+    id: string,
+    data: Partial<NodeOptions> | Partial<EdgeOptions>,
+    batchName: string,
+  ) => {
+    if (graph) {
+      const cell = graph.getCellById(id);
+      if (cell) {
+        graph.startBatch(batchName);
+        const changed = cell.preprocess(data, true);
+        const properties = flatten(changed);
+        Object.keys(properties).forEach((key) => {
+          cell.setPropByPath(key, properties[key], {
+            [INNER_CALL]: true,
+            rewrite: true,
+          });
+        });
+        onSpecialPropChange(id, data);
+        graph.stopBatch(batchName);
+      }
+    }
   };
 
   const handleGraphChange = (g: Graph, changes: ChangeItem[]) => {
@@ -139,36 +148,27 @@ const XFlowState: FC<
           initData(g, data);
           break;
         case 'addNodes':
-          g.addNodes(ObjectExt.cloneDeep(data), { [INNER_CALL]: true });
+          const nodes = ObjectExt.cloneDeep(data);
+          g.addNodes(nodes, { [INNER_CALL]: true });
+          changeSelectionStatus(nodes);
           break;
         case 'removeNodes':
           g.removeCells(data, { [INNER_CALL]: true });
           break;
         case 'updateNode':
-          const { id: nodeId, data: changedNodeData } = data;
-          const node = g.getCellById(nodeId);
-          if (node) {
-            g.startBatch('updateNode');
-            node.prop(changedNodeData, { [INNER_CALL]: true });
-            handleSpecialPropChange(nodeId, changedNodeData);
-            g.stopBatch('updateNode');
-          }
+          onPropChange(data.id, data.data, 'updateNode');
           break;
         case 'addEdges':
-          g.addEdges(ObjectExt.cloneDeep(data), { [INNER_CALL]: true });
+          const edges = ObjectExt.cloneDeep(data);
+          g.addEdges(edges, { [INNER_CALL]: true });
+          changeSelectionStatus(edges);
+          changeAnimatedStatus(edges);
           break;
         case 'removeEdges':
           g.removeCells(data, { [INNER_CALL]: true });
           break;
         case 'updateEdge':
-          const { id: edgeId, data: changedEdgeData } = data;
-          const edge = g.getCellById(edgeId);
-          if (edge) {
-            g.startBatch('updateEdge');
-            edge.prop(changedEdgeData, { [INNER_CALL]: true });
-            handleSpecialPropChange(edgeId, changedEdgeData);
-            g.stopBatch('updateEdge');
-          }
+          onPropChange(data.id, data.data, 'updateEdge');
           break;
         default:
           break;
@@ -188,9 +188,14 @@ const XFlowState: FC<
   useGraphEvent('cell:added', ({ cell, options }) => {
     if (!options[INNER_CALL]) {
       if (cell.isNode()) {
-        addNodes([cell.toJSON()], { silent: true });
+        const nodes = [cell.toJSON()];
+        addNodes(nodes, { silent: true });
+        changeSelectionStatus(nodes);
       } else if (cell.isEdge()) {
-        addEdges([cell.toJSON()], { silent: true });
+        const edges = [cell.toJSON()];
+        addEdges(edges, { silent: true });
+        changeSelectionStatus(edges);
+        changeAnimatedStatus(edges);
       }
     }
   });
@@ -211,9 +216,9 @@ const XFlowState: FC<
     'cell:change:*',
     FunctionExt.debounce(
       ({ cell, key, current, options }: EventArgs['cell:change:*']) => {
-        if (!options[INNER_CALL]) {
+        if (!options[INNER_CALL] && graph) {
           if (cell.isNode()) {
-            updateNode(cell.id, preprocess(key, current), { silent: true });
+            updateNode(cell.id, preprocess(key, current, graph), { silent: true });
           } else if (cell.isEdge()) {
             updateEdge(cell.id, { [key]: current }, { silent: true });
           }

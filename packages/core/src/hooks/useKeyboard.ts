@@ -1,21 +1,33 @@
-import { Keyboard } from '@antv/x6-plugin-keyboard';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 import { useGraphInstance } from './useGraphInstance';
+import { useLatest } from './useLatest';
 
-export const useBindKey = () => {
+export const useKeyboard = (
+  key: string | string[],
+  callback: (e: KeyboardEvent) => void,
+  action?: 'keypress' | 'keydown' | 'keyup',
+) => {
+  const cbRef = useLatest(callback);
   const graph = useGraphInstance();
-  const ref = useRef<Keyboard>();
 
-  graph?.bindKey();
   useEffect(() => {
-    if (graph && !ref.current) {
-      ref.current = new Keyboard({
-        enabled: true,
-      });
+    if (graph) {
+      cbRef.current = callback;
+      graph.bindKey(
+        key,
+        (e) => {
+          cbRef.current(e);
+        },
+        action,
+      );
     }
+
+    return () => {
+      if (graph) {
+        graph.unbindKey(key);
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [graph]);
-
-  return { clipboard: ref.current };
 };

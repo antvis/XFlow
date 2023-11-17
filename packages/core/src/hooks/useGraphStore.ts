@@ -7,7 +7,7 @@ import type { State, Actions } from '../store';
 export const useGraphStore = <T>(selector: (state: State & Actions) => T) => {
   const store = useContext(StoreContext);
   if (!store) {
-    throw new Error('Missing StoreProvider');
+    throw new Error('can only be get inside the xflow component.');
   }
   return useStore(store, selector);
 };

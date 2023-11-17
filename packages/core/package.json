@@ -32,17 +32,19 @@
     "@antv/x6-plugin-export": "^2.1.6",
     "@antv/x6-plugin-history": "^2.2.4",
     "@antv/x6-plugin-keyboard": "^2.2.1",
+    "@antv/x6-plugin-minimap": "^2.0.6",
+    "@antv/x6-plugin-scroller": "^2.0.10",
     "@antv/x6-plugin-selection": "^2.2.1",
+    "@antv/x6-plugin-snapline": "^2.1.7",
+    "@antv/x6-plugin-transform": "^2.1.8",
     "@antv/x6-react-shape": "^2.2.2",
     "immer": "^10.0.3",
-    "lodash.isequal": "^4.5.0",
     "zustand": "^4.4.3"
   },
   "devDependencies": {
     "@antv/config-tsconfig": "workspace:^",
     "@antv/config-tsup": "workspace:^",
     "@antv/testing": "workspace:^",
-    "@types/lodash.isequal": "^4.5.8",
     "@types/react": "^18.0.28",
     "antd": "^5.0.0"
   },
