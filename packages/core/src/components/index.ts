@@ -5,3 +5,6 @@ export * from './Grid';
 export * from './Background';
 export * from './Clipboard';
 export * from './History';
+export * from './Minimap';
+export * from './Snapline';
+export * from './Transform';

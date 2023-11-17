@@ -24,7 +24,7 @@ const ConfigDrawer = () => {
         data: {
           ...nodeData,
           label,
-        }
+        },
       });
       onClose();
     });

@@ -1,6 +1,11 @@
 import { PlayCircleOutlined } from '@ant-design/icons';
 import type { Edge, NodeOptions, Node } from '@antv/xflow';
-import { useGraphInstance, useClipboard, useGraphEvent, useGraphStore } from '@antv/xflow';
+import {
+  useGraphInstance,
+  useClipboard,
+  useGraphEvent,
+  useGraphStore,
+} from '@antv/xflow';
 import { Button, Space } from 'antd';
 
 const Toolbar = () => {
@@ -28,13 +33,12 @@ const Toolbar = () => {
       edges?.forEach((edge: Edge) => {
         if (status === 'running') {
           updateEdge(edge.id, {
-            animated: true
-
-          })
+            animated: true,
+          });
         } else {
           updateEdge(edge.id, {
-            animated: false
-          })
+            animated: false,
+          });
         }
       });
     }
@@ -47,35 +51,44 @@ const Toolbar = () => {
         updateNode(node.id!, {
           data: {
             ...node.data,
-            status: 'running'
-          }
-        })
+            status: 'running',
+          },
+        });
 
         setTimeout(() => {
           updateNode(node.id!, {
             data: {
               ...node.data,
-              status: edges ? 'success' : Number(node.id!.slice(-1)) % 2 !== 0 ? 'success' : 'failed'
-            }
-          })
+              status: edges
+                ? 'success'
+                : Number(node.id!.slice(-1)) % 2 !== 0
+                ? 'success'
+                : 'failed',
+            },
+          });
         }, 1000 * index + 1);
       });
     }
   };
 
   const onCopy = () => {
-    const selected = nodes.filter(node => node.selected);
-    const ids: string[] = selected.map(node => node.id || '');
+    const selected = nodes.filter((node) => node.selected);
+    const ids: string[] = selected.map((node) => node.id || '');
     copy(ids);
-  }
+  };
 
   const onPaste = () => {
-    paste()
-  }
+    paste();
+  };
 
   return (
     <Space>
-      <Button type="primary" size="small" style={{ fontSize: 12 }} onClick={handleExcute}>
+      <Button
+        type="primary"
+        size="small"
+        style={{ fontSize: 12 }}
+        onClick={handleExcute}
+      >
         <PlayCircleOutlined rev />
         全部执行
       </Button>
