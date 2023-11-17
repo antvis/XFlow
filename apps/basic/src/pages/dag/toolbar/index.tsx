@@ -5,6 +5,7 @@ import {
   useClipboard,
   useGraphEvent,
   useGraphStore,
+  useKeyboard,
 } from '@antv/xflow';
 import { Button, Space } from 'antd';
 
@@ -14,17 +15,17 @@ const Toolbar = () => {
   const nodes = useGraphStore((state) => state.nodes);
   const updateNode = useGraphStore((state) => state.updateNode);
   const updateEdge = useGraphStore((state) => state.updateEdge);
-  // const removeNodes = useGraphStore((state) => state.removeNodes);
+  const removeNodes = useGraphStore((state) => state.removeNodes);
 
-  // useKeyboard('ctrl+c', () => onCopy());
+  useKeyboard('ctrl+c', () => onCopy());
 
-  // useKeyboard('ctrl+v', () => onPaste());
+  useKeyboard('ctrl+v', () => onPaste());
 
-  // useKeyboard('backspace', () => {
-  //   const selected = nodes.filter(node => node.selected);
-  //   const ids: string[] = selected.map(node => node.id || '');
-  //   removeNodes(ids)
-  // })
+  useKeyboard('backspace', () => {
+    const selected = nodes.filter((node) => node.selected);
+    const ids: string[] = selected.map((node) => node.id || '');
+    removeNodes(ids);
+  });
 
   useGraphEvent('node:change:data', ({ node }) => {
     if (graph) {

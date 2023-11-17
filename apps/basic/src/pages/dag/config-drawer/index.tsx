@@ -31,7 +31,7 @@ const ConfigDrawer = () => {
   };
 
   useGraphEvent('node:click', ({ node }) => {
-    const data = node.getData();
+    const { data } = node;
     setOpen(true);
     setNodeData(data);
     form.setFieldsValue(data);
