@@ -48,8 +48,8 @@ const ExecuteAll = () => {
             status: edges
               ? 'success'
               : Number(node.id.slice(-1)) % 2 !== 0
-                ? 'success'
-                : 'failed',
+              ? 'success'
+              : 'failed',
           });
         }, 1000 * index + 1);
       });

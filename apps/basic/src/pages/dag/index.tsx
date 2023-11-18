@@ -17,7 +17,7 @@ const Page = () => {
             <Dnd />
           </div>
           <div className={styles.center}>
-          <div className={styles.toolbar}>
+            <div className={styles.toolbar}>
               <ExecuteAll />
             </div>
             <div className={styles.graph}>
