@@ -1,11 +1,12 @@
-import { XFlow, XFlowGraph, Background } from '@antv/xflow';
+import { XFlow, XFlowGraph, Clipboard } from '@antv/xflow';
 
 import { ConfigDrawer } from './config-drawer';
+import { Connect } from './connect';
 import { Control } from './control';
 import { Dnd } from './dnd/dnd';
-import { ExecuteAll } from './execute-all';
 import styles from './index.less';
 import { DAG_EDGE, DAG_CONNECTOR } from './shape';
+import { Toolbar } from './toolbar';
 
 const Page = () => {
   return (
@@ -17,8 +18,8 @@ const Page = () => {
             <Dnd />
           </div>
           <div className={styles.center}>
-          <div className={styles.toolbar}>
-              <ExecuteAll />
+            <div className={styles.toolbar}>
+              <Toolbar />
             </div>
             <div className={styles.graph}>
               <XFlowGraph
@@ -45,7 +46,8 @@ const Page = () => {
                   zIndex: -1,
                 }}
               />
-              <Background color="#FFF" />
+              <Clipboard />
+              <Connect />
               <div className={styles.controlTool}>
                 <Control
                   items={['zoomOut', 'zoomTo', 'zoomIn', 'zoomToFit', 'zoomToOrigin']}
