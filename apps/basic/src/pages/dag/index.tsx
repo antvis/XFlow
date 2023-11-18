@@ -1,7 +1,6 @@
-import { XFlow, XFlowGraph, Background } from '@antv/xflow';
+import { XFlow, XFlowGraph, Background, Control } from '@antv/xflow';
 
 import { ConfigDrawer } from './config-drawer';
-import { Control } from './control';
 import { Dnd } from './dnd/dnd';
 import { ExecuteAll } from './execute-all';
 import styles from './index.less';
