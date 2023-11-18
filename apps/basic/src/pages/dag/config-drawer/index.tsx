@@ -1,36 +1,45 @@
-import type { Node } from '@antv/xflow';
-import { useGraphInstance } from '@antv/xflow';
-import { Drawer } from 'antd';
-import { useEffect, useState } from 'react';
+import { useGraphStore, useGraphEvent } from '@antv/xflow';
+import { Drawer, Space, Button, Form, Input } from 'antd';
+import { useState } from 'react';
 
 interface NodeData {
+  id: string;
   label?: string;
   status?: 'default' | 'running' | 'success' | 'failed';
 }
-
 const ConfigDrawer = () => {
-  const graph = useGraphInstance();
-  const [open, SetOpen] = useState(false);
-  const [nodeData, setNodeData] = useState<NodeData>({});
+  const [form] = Form.useForm();
+  const updateNode = useGraphStore((state) => state.updateNode);
+  const [open, setOpen] = useState(false);
+  const [nodeData, setNodeData] = useState<NodeData>();
 
   const onClose = () => {
-    SetOpen(false);
-    setNodeData({});
+    setOpen(false);
+    form.resetFields();
   };
 
-  useEffect(() => {
-    if (graph) {
-      graph.on('node:click', ({ node }: { node: Node }) => {
-        const data = node.getData();
-        SetOpen(true);
-        setNodeData(data);
+  const onSave = () => {
+    form.validateFields().then(({ label }) => {
+      updateNode(nodeData?.id as string, {
+        data: {
+          ...nodeData,
+          label,
+        },
       });
+      onClose();
+    });
+  };
 
-      graph.on('blank:click', () => {
-        onClose();
-      });
-    }
-  }, [graph]);
+  useGraphEvent('node:click', ({ node }) => {
+    const { data } = node;
+    setOpen(true);
+    setNodeData(data);
+    form.setFieldsValue(data);
+  });
+
+  useGraphEvent('blank:click', () => {
+    onClose();
+  });
 
   return (
     <Drawer
@@ -40,8 +49,24 @@ const ConfigDrawer = () => {
       destroyOnClose
       mask={false}
       onClose={onClose}
+      footer={
+        <Space>
+          <Button onClick={onClose}>取消</Button>
+          <Button onClick={onSave} type="primary">
+            保存
+          </Button>
+        </Space>
+      }
     >
-      <div>组件名：{nodeData?.label}</div>
+      <Form form={form} layout="vertical" requiredMark={false} autoComplete="off">
+        <Form.Item
+          name="label"
+          label="组件名"
+          rules={[{ required: true, message: '请填写组件名称' }]}
+        >
+          <Input placeholder="请填写组件名称" />
+        </Form.Item>
+      </Form>
     </Drawer>
   );
 };

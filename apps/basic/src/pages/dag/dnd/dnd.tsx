@@ -113,17 +113,20 @@ const componentTreeData = [
 ];
 
 const Dnd = () => {
+  let id = 0;
   const { startDrag } = useDnd();
 
   const handleMouseDown = (
     e: React.MouseEvent<Element, MouseEvent>,
     item: ComponentTreeItem,
   ) => {
+    id += 1;
     startDrag(
       {
-        id: `${item.title}${Date.now()}`,
+        id: id.toString(),
         shape: DAG_NODE,
         data: {
+          id: id.toString(),
           label: item.title,
           status: 'default',
         },
