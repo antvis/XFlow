@@ -4,7 +4,7 @@ import {
   PlusOutlined,
   MinusOutlined,
 } from '@ant-design/icons';
-import { useGraphInstance } from '@antv/xflow';
+import { useGraphEvent, useGraphInstance } from '@antv/xflow';
 import type { MenuProps } from 'antd';
 import { Button, Dropdown, Tooltip } from 'antd';
 import type { TooltipPlacement } from 'antd/es/tooltip';
@@ -88,6 +88,10 @@ const Control = (props: ControlIProps) => {
   const graph = useGraphInstance();
 
   const [zoom, setZoom] = useState(1);
+
+  useGraphEvent('scale', ({ sx }) => {
+    setZoom(sx);
+  });
 
   useEffect(() => {
     if (graph) {
