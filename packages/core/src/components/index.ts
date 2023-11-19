@@ -8,3 +8,4 @@ export * from './History';
 export * from './Minimap';
 export * from './Snapline';
 export * from './Transform';
+export * from './Control';

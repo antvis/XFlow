@@ -14,11 +14,11 @@
     "umi": "^4.0.64"
   },
   "devDependencies": {
-    "@types/highlight.js": "^9.12.4",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "antd": "^5.0.0",
     "@ant-design/icons": "^5.2.6",
+    "@types/highlight.js": "^9.12.4",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "antd": "^5.0.0",
     "classnames": "^2.3.2"
   },
   "peerDependencies": {

@@ -1,8 +1,7 @@
-import { XFlow, XFlowGraph, Clipboard } from '@antv/xflow';
+import { XFlow, XFlowGraph, Clipboard, Control } from '@antv/xflow';
 
 import { ConfigDrawer } from './config-drawer';
 import { Connect } from './connect';
-import { Control } from './control';
 import { Dnd } from './dnd/dnd';
 import styles from './index.less';
 import { DAG_EDGE, DAG_CONNECTOR } from './shape';

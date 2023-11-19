@@ -4,4 +4,5 @@ export const routes = [
   { path: '/dnd', component: '@/pages/dnd' },
   { path: '/dag', component: '@/pages/dag' },
   { path: '/diff', component: '@/pages/diff' },
+  { path: '/flow', component: '@/pages/flow' },
 ];
