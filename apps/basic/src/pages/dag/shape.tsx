@@ -45,7 +45,6 @@ register({
   height: 36,
   component: AlgoNode,
   effect: ['data'],
-  inherit: 'react-shape',
   ports: {
     groups: {
       top: {
