@@ -1,5 +1,6 @@
-import { useGraphInstance } from '@antv/xflow';
-import { GraphData, GraphDataWithDiffInfo } from '..';
+import type { useGraphInstance } from '@antv/xflow';
+
+import type { GraphData, GraphDataWithDiffInfo } from '..';
 
 export const compare: (
   originalData: GraphData,

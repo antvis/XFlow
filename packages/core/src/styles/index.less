@@ -40,3 +40,37 @@
 .x6-widget-transform-resize {
   border-radius: 0;
 }
+
+// control style
+.toolButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e6e8eb;
+  border-radius: 6px;
+
+  .ant-btn-default:disabled {
+    border-color: #fff;
+  }
+
+  button {
+    min-width: 36px !important;
+    height: 36px;
+    border: 1px solid #fff;
+  }
+
+  .dropDownBtn {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.toolbuttonVertical {
+  flex-direction: column;
+
+  button {
+    min-width: 40px !important;
+  }
+}
+// control style end

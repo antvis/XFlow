@@ -1,0 +1,103 @@
+.page {
+  margin: 10px auto;
+
+  .container {
+    display: flex;
+    width: 1200px;
+    height: 100vh;
+    border-radius: 5px;
+    box-shadow: 0 12px 5px -10px rgb(0 0 0 / 10%), 0 0 4px 0 rgb(0 0 0 / 10%);
+  }
+
+  .dnd {
+    overflow: auto;
+    width: 200px;
+    flex-shrink: 0;
+    border-right: 1px solid #ccc;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+      color: #fff;
+      cursor: move;
+      list-style: none;
+      text-align: center;
+
+      div {
+        margin: 0 4px;
+        margin: 16px;
+      }
+
+      .dndItemImg {
+        width: 52px;
+        height: 52px;
+        border: 1px solid #5f95ff;
+        background-color: #5f95ff;
+        font-size: 12px;
+      }
+
+      .dndItemStart {
+        width: 80px;
+        height: 50px;
+        border: 1px solid rgb(255 149 128);
+        border-radius: 25px;
+        background-color: rgb(255 149 128);
+        line-height: 50px;
+      }
+
+      .dndItemProcess {
+        width: 100px;
+        height: 60px;
+        border: 1px solid rgb(74 123 203);
+        background-color: rgb(74 123 203);
+        line-height: 60px;
+      }
+
+      .dndItemNo {
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgb(72 203 164);
+        border-radius: 5px;
+        background-color: rgb(72 203 164);
+        line-height: 36px;
+      }
+
+      .dndItemYes {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgb(72 203 164);
+        border-radius: 5px;
+        background-color: rgb(72 203 164);
+        line-height: 42px;
+      }
+
+      .dndItemNotOk {
+        width: 66px;
+        height: 37px;
+        border: 1px solid rgb(72 203 164);
+        border-radius: 5px;
+        background-color: rgb(72 203 164);
+        line-height: 37px;
+      }
+
+      .dndItemPolygon {
+        position: relative;
+        width: 140px;
+        height: 60px;
+        background-color: rgb(128 170 255);
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+        transition: 1s clip-path;
+
+        span {
+          position: absolute;
+          top: 20px;
+          left: 54px;
+          color: #fff;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
