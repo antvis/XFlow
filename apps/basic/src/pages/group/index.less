@@ -1,0 +1,46 @@
+.container {
+  width: 1200px;
+  height: 600px;
+  margin: 100px auto;
+  border-radius: 5px;
+
+  .content {
+    display: flex;
+    height: calc(100% - 80px);
+    box-shadow: 0 12px 5px -10px rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .tools {
+    height: 80px;
+
+    button {
+      margin-right: 12px;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.edit-popconfirm-wrapper {
+  position: relative;
+  width: 500px;
+
+  .group-name-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .confirm-footer {
+    margin-top: 12px;
+    margin-left: calc(100% - 135px);
+    display: flex;
+
+    .cancel-btn {
+      margin-right: 12px;
+    }
+  }
+
+  :global(.ant-input) {
+    flex: 1;
+    background-color: #eaeaea;
+  }
+}

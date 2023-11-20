@@ -1,8 +1,8 @@
-import type { Node, Edge, Graph, Options, Rectangle } from '@antv/x6';
+import type { Node, Edge, Cell, Graph, Options, Rectangle, CellView } from '@antv/x6';
 import type { Scroller } from '@antv/x6-plugin-scroller';
 import type { Selection } from '@antv/x6-plugin-selection';
 
-export type { Node, Edge };
+export type { Node, Edge, Cell };
 export interface NodeOptions extends Node.Metadata {
   selected?: boolean;
   draggable?: boolean;
@@ -42,7 +42,9 @@ export interface GraphOptions {
   embedable?: boolean;
   embedOptions?: Partial<Omit<Options.Embedding, 'enabled'>>;
   restrict?: boolean;
-  restrictOptions?: { bound: Rectangle.RectangleLike };
+  restrictOptions?: {
+    bound: Rectangle.RectangleLike | ((arg: CellView) => Rectangle.RectangleLike);
+  };
   connectionOptions?: Partial<Omit<Options.Connecting, 'createEdge'>>;
   selectOptions?: Omit<Selection.Options, 'enabled'>;
   keyboardOptions?: {
