@@ -1,14 +1,8 @@
-import {
-  OneToOneOutlined,
-  BorderOuterOutlined,
-  PlusOutlined,
-  MinusOutlined,
-} from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Button, Dropdown, Tooltip } from 'antd';
-import type { TooltipPlacement } from 'antd/es/tooltip';
+import Tippy from '@tippyjs/react';
 import classNames from 'classnames';
+import { Plus, Minus, Minimize, Dice5 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import 'tippy.js/dist/tippy.css';
 
 import { useGraphEvent, useGraphInstance } from '@/hooks';
 
@@ -22,25 +16,25 @@ export enum ControlEnum {
   ZoomToOrigin = 'zoomToOrigin',
 }
 
-const dropDownItems: MenuProps['items'] = [
+const dropDownItems = [
   {
-    key: 1,
+    key: '1',
     label: '50%',
   },
   {
-    key: 2,
+    key: '2',
     label: '75%',
   },
   {
-    key: 3,
+    key: '3',
     label: '100%',
   },
   {
-    key: 4,
+    key: '4',
     label: '125%',
   },
   {
-    key: 5,
+    key: '5',
     label: '150%',
   },
 ];
@@ -48,23 +42,23 @@ const dropDownItems: MenuProps['items'] = [
 const ControlToolMap = {
   [ControlEnum.ZoomIn]: {
     label: '放大',
-    icon: <PlusOutlined style={{ color: '#545456' }} />,
+    icon: <Plus color="#545456" size={20} />,
   },
   [ControlEnum.ZoomOut]: {
     label: '缩小',
-    icon: <MinusOutlined style={{ color: '#545456' }} />,
+    icon: <Minus color="#545456" size={20} />,
   },
   [ControlEnum.ZoomTo]: {
     label: '缩放至',
-    icon: <PlusOutlined style={{ color: '#545456' }} />,
+    icon: <Plus color="#545456" size={20} />,
   },
   [ControlEnum.ZoomToFit]: {
     label: '自适应窗口大小',
-    icon: <BorderOuterOutlined style={{ color: '#545456' }} />,
+    icon: <Minimize color="#545456" size={20} />,
   },
   [ControlEnum.ZoomToOrigin]: {
     label: '实际像素展示',
-    icon: <OneToOneOutlined style={{ color: '#545456' }} />,
+    icon: <Dice5 color="#545456" size={20} />,
   },
 };
 
@@ -81,7 +75,7 @@ type ControlAction = (typeof ControlActionList)[number];
 interface ControlIProps {
   items: ControlAction[];
   direction?: 'horizontal' | 'vertical';
-  placement?: TooltipPlacement;
+  placement?: 'top' | 'right' | 'bottom' | 'left';
 }
 
 const Control = (props: ControlIProps) => {
@@ -148,31 +142,42 @@ const Control = (props: ControlIProps) => {
       {items.map((tool) => {
         if (tool === 'zoomTo') {
           return (
-            <Dropdown
-              menu={{
-                items: dropDownItems,
-                onClick: ({ key }) => changeZoom(tool, key),
-              }}
-              placement="top"
+            <Tippy
               key={tool}
-              trigger={['click']}
+              content={
+                <div className="tippyBtnContent">
+                  {dropDownItems.map((item) => {
+                    return (
+                      <button key={item.key} onClick={() => changeZoom(tool, item.key)}>
+                        {item.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              }
+              interactive
+              placement="top"
+              arrow={false}
+              theme="light-border"
             >
-              <Button className="dropDownBtn">{`${Math.floor(zoom * 100)}%`}</Button>
-            </Dropdown>
+              <button className="dropDownBtn">{`${Math.floor(zoom * 100)}%`}</button>
+            </Tippy>
           );
         } else if (ControlActionList.includes(tool)) {
           return (
-            <Tooltip
+            <Tippy
               key={tool}
-              title={ControlToolMap[tool].label}
+              content={ControlToolMap[tool].label}
               placement={placement}
+              arrow
             >
-              <Button
-                icon={ControlToolMap[tool].icon}
+              <button
                 onClick={() => changeZoom(tool)}
                 disabled={!isToolButtonEnabled(tool as ControlEnum)}
-              />
-            </Tooltip>
+              >
+                {ControlToolMap[tool].icon}
+              </button>
+            </Tippy>
           );
         } else {
           return null;

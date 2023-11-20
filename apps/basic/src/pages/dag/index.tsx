@@ -4,6 +4,7 @@ import { ConfigDrawer } from './config-drawer';
 import { Connect } from './connect';
 import { Dnd } from './dnd/dnd';
 import styles from './index.less';
+import { InitShape } from './node';
 import { DAG_EDGE, DAG_CONNECTOR } from './shape';
 import { Toolbar } from './toolbar';
 
@@ -37,14 +38,11 @@ const Page = () => {
                 }}
                 connectionEdgeOptions={{
                   shape: DAG_EDGE,
-                  attrs: {
-                    line: {
-                      strokeDasharray: '5 5',
-                    },
-                  },
+                  animated: true,
                   zIndex: -1,
                 }}
               />
+              <InitShape />
               <Clipboard />
               <Connect />
               <div className={styles.controlTool}>
