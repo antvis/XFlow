@@ -46,7 +46,7 @@ const Page = () => {
               allowLoop: false,
               highlight: true,
               anchor: 'center',
-              router: 'manhattan',
+              router: 'orth',
               connector: 'rounded',
             }}
             connectionEdgeOptions={{

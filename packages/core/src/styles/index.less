@@ -50,19 +50,57 @@
   border: 1px solid #e6e8eb;
   border-radius: 6px;
 
-  .ant-btn-default:disabled {
-    border-color: #fff;
-  }
-
   button {
     min-width: 36px !important;
     height: 36px;
     border: 1px solid #fff;
+    border-radius: 4px;
+    background-color: #fff;
+    outline: none;
+    user-select: none;
+    touch-action: manipulation;
+    cursor: pointer;
+
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.04);
+      color: rgba(0, 0, 0, 0.25);
+    }
+    &:hover {
+      border: 1px solid #4096ff;
+    }
   }
 
   .dropDownBtn {
     width: 100%;
     padding: 0;
+  }
+
+  .tippy-box {
+    border: none !important;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05) !important;
+    background-color: #ffffff;
+  }
+
+  .tippy-content {
+    width: 60px;
+    padding: 4px !important;
+  }
+
+  .tippyBtnContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      width: 100%;
+      min-width: 36px !important;
+
+      &:hover {
+        border: none !important;
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+    }
   }
 }
 

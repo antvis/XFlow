@@ -47,7 +47,7 @@ const InitEdge = () => {
         shape: CUSTOM_EDGE,
         source: {
           cell: 'initNode8',
-          port: 'group2',
+          port: 'group4',
         },
         target: {
           cell: 'initNode5',
@@ -79,16 +79,25 @@ const InitEdge = () => {
       },
       {
         shape: CUSTOM_EDGE,
-        source: 'initNode12',
-        target: 'initNode13',
+        source: {
+          cell: 'initNode12',
+          port: 'group3',
+        },
+        target: {
+          cell: 'initNode13',
+          port: 'group1',
+        },
       },
       {
         shape: CUSTOM_EDGE,
         source: {
           cell: 'initNode11',
-          port: 'group3',
+          port: 'group2',
         },
-        target: 'initNode13',
+        target: {
+          cell: 'initNode13',
+          port: 'group4',
+        },
       },
       {
         shape: CUSTOM_EDGE,

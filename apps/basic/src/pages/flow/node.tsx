@@ -56,7 +56,6 @@ const ports = {
   ],
 };
 
-const CUSTOMIMAGE = 'custom-image';
 const BASICFLOWNODE = 'basic-flow-node';
 const CUSTOMPROCESSNODE = 'custom-process-node';
 const CUSTOMCOURSENODE = 'custom-course-node';
@@ -127,50 +126,6 @@ Graph.registerNode(CUSTOMPROCESSNODE, {
   },
 });
 
-Graph.registerNode(
-  CUSTOMIMAGE,
-  {
-    inherit: 'rect',
-    width: 52,
-    height: 52,
-    markup: [
-      {
-        tagName: 'rect',
-        selector: 'body',
-      },
-      {
-        tagName: 'image',
-      },
-      {
-        tagName: 'text',
-        selector: 'label',
-      },
-    ],
-    attrs: {
-      body: {
-        stroke: '#5F95FF',
-        fill: '#5F95FF',
-      },
-      image: {
-        width: 26,
-        height: 26,
-        refX: 13,
-        refY: 16,
-      },
-      label: {
-        refX: 3,
-        refY: 2,
-        textAnchor: 'left',
-        textVerticalAnchor: 'top',
-        fontSize: 12,
-        fill: '#fff',
-      },
-    },
-    ports: { ...ports },
-  },
-  true,
-);
-
 const InitNode = () => {
   const addNodes = useGraphStore((state) => state.addNodes);
 
@@ -179,8 +134,8 @@ const InitNode = () => {
       {
         id: 'initNode1',
         shape: BASICFLOWNODE,
-        x: 100,
-        y: 100,
+        x: 20,
+        y: 65,
         width: 80,
         height: 50,
         attrs: {
@@ -197,71 +152,71 @@ const InitNode = () => {
       {
         id: 'initNode2',
         shape: CUSTOMCOURSENODE,
-        x: 300,
-        y: 95,
+        x: 180,
+        y: 60,
         label: 'Add to Cart',
       },
       {
         id: 'initNode3',
         shape: CUSTOMCOURSENODE,
-        x: 500,
-        y: 95,
+        x: 370,
+        y: 60,
         label: 'Checkout \n items',
       },
       {
         id: 'initNode4',
         shape: CUSTOMCOURSENODE,
-        x: 700,
-        y: 95,
+        x: 570,
+        y: 60,
         label: 'Add \n Shipping',
       },
       {
         id: 'initNode5',
         shape: CUSTOMCOURSENODE,
-        x: 700,
-        y: 220,
+        x: 570,
+        y: 260,
         label: 'Add \n Payment',
       },
       {
         id: 'initNode6',
         shape: CUSTOMPROCESSNODE,
-        x: 680,
-        y: 380,
+        x: 550,
+        y: 470,
         label: 'Valid Payment?',
       },
       {
         id: 'initNode7',
         shape: CUSTOMVERIFYNODE,
-        x: 900,
-        y: 392,
+        x: 790,
+        y: 482,
         label: 'No',
       },
       {
         id: 'initNode8',
         shape: CUSTOMCOURSENODE,
-        x: 1050,
-        y: 380,
+        x: 860,
+        y: 260,
         label: 'Present \n Error',
       },
       {
         id: 'initNode9',
         shape: CUSTOMVERIFYNODE,
-        x: 500,
-        y: 392,
+        x: 400,
+        y: 482,
         label: 'Yes',
       },
       {
         id: 'initNode10',
         shape: CUSTOMCOURSENODE,
-        x: 300,
-        y: 380,
+        x: 180,
+        y: 470,
         label: 'Send Order \n to',
       },
       {
         id: 'initNode11',
         shape: CUSTOMVERIFYNODE,
-        x: 100,
-        y: 592,
+        x: 10,
+        y: 852,
         width: 80,
         height: 36,
         label: 'Not Ok',
@@ -269,29 +224,29 @@ const InitNode = () => {
       {
         id: 'initNode12',
         shape: CUSTOMCOURSENODE,
-        x: 300,
-        y: 580,
+        x: 180,
+        y: 660,
         label: 'Pack Order',
       },
       {
         id: 'initNode13',
         shape: CUSTOMPROCESSNODE,
-        x: 280,
-        y: 800,
+        x: 160,
+        y: 840,
         label: 'Quality Check?',
       },
       {
         id: 'initNode14',
         shape: CUSTOMVERIFYNODE,
-        x: 500,
-        y: 812,
+        x: 410,
+        y: 852,
         label: 'Yes',
       },
       {
         id: 'initNode15',
         shape: CUSTOMCOURSENODE,
-        x: 700,
-        y: 799,
+        x: 570,
+        y: 840,
         label: 'Ship Items \n to Customer ',
       },
     ]);
@@ -306,7 +261,6 @@ const InitNode = () => {
 
 export {
   InitNode,
-  CUSTOMIMAGE,
   CUSTOMCOURSENODE,
   CUSTOMVERIFYNODE,
   BASICFLOWNODE,
