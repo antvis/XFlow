@@ -1,4 +1,4 @@
-import { PlayCircleOutlined } from '@ant-design/icons';
+import { PlayCircleOutlined, CopyOutlined } from '@ant-design/icons';
 import type { Edge, NodeOptions, Node } from '@antv/xflow';
 import {
   useGraphInstance,
@@ -94,11 +94,11 @@ const Toolbar = () => {
         全部执行
       </Button>
       <Button type="primary" size="small" style={{ fontSize: 12 }} onClick={onCopy}>
-        <PlayCircleOutlined />
+        <CopyOutlined />
         复制
       </Button>
       <Button type="primary" size="small" style={{ fontSize: 12 }} onClick={onPaste}>
-        <PlayCircleOutlined />
+        <CopyOutlined />
         粘贴
       </Button>
     </Space>
