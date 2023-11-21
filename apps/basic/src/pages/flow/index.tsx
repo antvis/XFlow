@@ -72,20 +72,18 @@ const Page = () => {
           />
           <Grid
             type="doubleMesh"
-            options={{
-              size: 10,
-              args: [
-                {
-                  color: '#E7E8EA',
-                  thickness: 1,
-                },
-                {
-                  color: '#CBCED3',
-                  thickness: 1,
-                  factor: 4,
-                },
-              ],
-            }}
+            size={10}
+            options={[
+              {
+                color: '#E7E8EA',
+                thickness: 1,
+              },
+              {
+                color: '#CBCED3',
+                thickness: 1,
+                factor: 4,
+              },
+            ]}
           />
           <Transform resizing rotating />
           <Snapline />

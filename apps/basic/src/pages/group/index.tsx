@@ -40,8 +40,8 @@ const Group = () => {
             restrict
             restrictOptions={{
               bound: (view) => {
-                const cell = view.cell;
-                if (cell.isNode()) {
+                const cell = view?.cell;
+                if (cell && cell.isNode()) {
                   const parent = cell.getParent();
                   if (parent) {
                     return parent.getBBox();

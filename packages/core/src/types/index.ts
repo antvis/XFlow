@@ -43,7 +43,9 @@ export interface GraphOptions {
   embedOptions?: Partial<Omit<Options.Embedding, 'enabled'>>;
   restrict?: boolean;
   restrictOptions?: {
-    bound: Rectangle.RectangleLike | ((arg: CellView) => Rectangle.RectangleLike);
+    bound:
+      | Rectangle.RectangleLike
+      | ((arg: CellView | null) => Rectangle.RectangleLike | null);
   };
   connectionOptions?: Partial<Omit<Options.Connecting, 'createEdge'>>;
   selectOptions?: Omit<Selection.Options, 'enabled'>;
