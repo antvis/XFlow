@@ -90,15 +90,15 @@ const Toolbar = () => {
         style={{ fontSize: 12 }}
         onClick={handleExcute}
       >
-        <PlayCircleOutlined rev />
+        <PlayCircleOutlined />
         全部执行
       </Button>
       <Button type="primary" size="small" style={{ fontSize: 12 }} onClick={onCopy}>
-        <PlayCircleOutlined rev />
+        <PlayCircleOutlined />
         复制
       </Button>
       <Button type="primary" size="small" style={{ fontSize: 12 }} onClick={onPaste}>
-        <PlayCircleOutlined rev />
+        <PlayCircleOutlined />
         粘贴
       </Button>
     </Space>

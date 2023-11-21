@@ -3,7 +3,6 @@ import { useDnd } from '@antv/xflow';
 
 import styles from './index.less';
 import {
-  CUSTOMIMAGE,
   CUSTOMPROCESSNODE,
   CUSTOMCOURSENODE,
   CUSTOMVERIFYNODE,
@@ -45,34 +44,6 @@ const Dnd = () => {
 export { Dnd };
 
 const list = [
-  {
-    type: 'Img',
-    label: 'Client',
-    node: {
-      shape: CUSTOMIMAGE,
-      label: 'Client',
-      attrs: {
-        image: {
-          'xlink:href':
-            'https://gw.alipayobjects.com/zos/bmw-prod/687b6cb9-4b97-42a6-96d0-34b3099133ac.svg',
-        },
-      },
-    },
-  },
-  {
-    type: 'Img',
-    label: 'Http',
-    node: {
-      shape: CUSTOMIMAGE,
-      label: 'Http',
-      attrs: {
-        image: {
-          'xlink:href':
-            'https://gw.alipayobjects.com/zos/bmw-prod/dc1ced06-417d-466f-927b-b4a4d3265791.svg',
-        },
-      },
-    },
-  },
   {
     type: 'Start',
     label: '开始',

@@ -38,16 +38,17 @@
     "@antv/x6-plugin-snapline": "^2.1.7",
     "@antv/x6-plugin-transform": "^2.1.8",
     "@antv/x6-react-shape": "^2.2.2",
+    "@tippyjs/react": "^4.2.6",
     "immer": "^10.0.3",
+    "lucide-react": "^0.292.0",
+    "tippy.js": "^6.3.7",
     "zustand": "^4.4.3"
   },
   "devDependencies": {
-    "@ant-design/icons": "^5.2.6",
     "@antv/config-tsconfig": "workspace:^",
     "@antv/config-tsup": "workspace:^",
     "@antv/testing": "workspace:^",
     "@types/react": "^18.2.37",
-    "antd": "^5.0.0",
     "classnames": "^2.3.2"
   },
   "peerDependencies": {
