@@ -78,7 +78,9 @@ export const createGraphStore = () => {
       set(
         produce((state: State) => {
           if (!ns.length) return;
-          const duplicated = state.nodes.find((n) => ns.some((m) => m.id === n.id));
+          const duplicated = state.nodes.find((n) =>
+            ns.some((m) => m.id && m.id === n.id),
+          );
           if (!duplicated) {
             state.nodes.push(...ns);
             if (!options?.silent) {
@@ -133,7 +135,9 @@ export const createGraphStore = () => {
       set(
         produce((state: State) => {
           if (!es.length) return;
-          const duplicated = state.edges.find((e) => es.some((m) => m.id === e.id));
+          const duplicated = state.edges.find((e) =>
+            es.some((m) => m.id && m.id === e.id),
+          );
           if (!duplicated) {
             state.edges.push(...es);
             if (!options?.silent) {

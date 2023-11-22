@@ -6,4 +6,5 @@ export const routes = [
   { path: '/diff', component: '@/pages/diff' },
   { path: '/flow', component: '@/pages/flow' },
   { path: '/group', component: '@/pages/group' },
+  { path: '/drawing', component: '@/pages/drawing' },
 ];
