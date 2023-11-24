@@ -2,7 +2,7 @@ import type { Node, Cell } from '@antv/xflow';
 import { useGraphStore, useGraphInstance, useGraphEvent } from '@antv/xflow';
 import { Button, Popover, Popconfirm, Input } from 'antd';
 import * as _ from 'lodash';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { groupNodePadding } from './const';

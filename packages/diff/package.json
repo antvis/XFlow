@@ -35,7 +35,9 @@
     "@types/react": "^18.0.28"
   },
   "peerDependencies": {
-    "react": "^18.0.0"
+    "antd": ">= 3.26.19 || >=5.0.0",
+    "react": ">=16.8.6 || >=17.0.0 || >=18.0.0",
+    "react-dom": ">=16.8.6 || >=17.0.0 || >= 18.0.0"
   },
   "bugs": {
     "url": "https://github.com/antvis/XFlow/issues"

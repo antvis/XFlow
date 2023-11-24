@@ -1,4 +1,4 @@
-import { createContext, useRef, type FC, type PropsWithChildren } from 'react';
+import React, { createContext, useRef, type FC, type PropsWithChildren } from 'react';
 
 import { createGraphStore, type GraphStore } from '../store';
 

@@ -1,5 +1,5 @@
 import { History as H } from '@antv/x6-plugin-history';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { useGraphInstance } from '../hooks/useGraphInstance';
 

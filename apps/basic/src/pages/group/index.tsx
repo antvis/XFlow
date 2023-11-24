@@ -5,6 +5,7 @@ import styles from './index.less';
 import NormalNode from './NormalNode';
 import { ToolsButton } from './tools';
 import { NodeRenderKey } from './type';
+import React from 'react';
 
 // 注册普通节点
 register({

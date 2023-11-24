@@ -1,7 +1,7 @@
 import type { EdgeOptions, NodeOptions, useGraphInstance } from '@antv/xflow';
 import { XFlow, XFlowGraph } from '@antv/xflow';
 import type { FC } from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import type { DiffGraphOptions } from '@/types';
 import { compare, syncGraph } from '@/util';
