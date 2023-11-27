@@ -49,7 +49,7 @@ export function apply(target: any, patchItem: any): any {
     if (!targetResult.hasOwnProperty(k)) targetResult[k] = patchItem[k]; //This ensure the key exists and TS can't throw a wobbly over an undefined key
     if (patchItem[k] === null) {
       delete targetResult[k];
-    } else {
+    } else if (targetResult[k] !== null) {
       targetResult[k] = apply(targetResult[k], patchItem[k]);
     }
   });
