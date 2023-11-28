@@ -1,5 +1,5 @@
 import type { Node } from '@antv/xflow';
-
+import React from 'react';
 import type { INodeData } from '../type';
 
 import styles from './index.less';

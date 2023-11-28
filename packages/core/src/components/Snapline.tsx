@@ -1,5 +1,5 @@
 import { Snapline as S } from '@antv/x6-plugin-snapline';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { useGraphInstance } from '../hooks/useGraphInstance';
 

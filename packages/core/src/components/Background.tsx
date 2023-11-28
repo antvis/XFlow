@@ -1,5 +1,5 @@
 import type { Graph } from '@antv/x6';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { useGraphInstance } from '../hooks/useGraphInstance';
 

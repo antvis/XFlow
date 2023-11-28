@@ -5,6 +5,7 @@ import cx from 'classnames';
 import type { INodeData } from '../type';
 
 import styles from './index.less';
+import React from 'react';
 
 const GroupNode = ({ node }: { node: Node }) => {
   const { width, height } = node.getBBox();

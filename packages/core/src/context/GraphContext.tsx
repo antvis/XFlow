@@ -1,5 +1,5 @@
 import type { Graph } from '@antv/x6';
-import { createContext, useState, type FC, type PropsWithChildren } from 'react';
+import React, { createContext, useState, type FC, type PropsWithChildren } from 'react';
 
 interface GraphContextValue {
   graph: Graph | null;

@@ -2,7 +2,7 @@ import { Graph, Options } from '@antv/x6';
 import { Keyboard } from '@antv/x6-plugin-keyboard';
 import { Scroller } from '@antv/x6-plugin-scroller';
 import { Selection } from '@antv/x6-plugin-selection';
-import { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 
 import { GraphContext } from '../context';
 import type { GraphOptions } from '../types';

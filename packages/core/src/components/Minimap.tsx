@@ -1,6 +1,6 @@
 import { NodeView } from '@antv/x6';
 import { MiniMap as M } from '@antv/x6-plugin-minimap';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { useGraphInstance } from '../hooks/useGraphInstance';
 

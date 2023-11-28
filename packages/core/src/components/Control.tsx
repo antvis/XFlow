@@ -1,7 +1,7 @@
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames';
 import { Plus, Minus, Minimize, Dice5 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'tippy.js/dist/tippy.css';
 
 import { useGraphEvent, useGraphInstance } from '@/hooks';

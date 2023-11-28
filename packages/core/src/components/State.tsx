@@ -1,7 +1,7 @@
 /* eslint-disable no-case-declarations */
 import type { Graph, EventArgs, Cell } from '@antv/x6';
 import { FunctionExt, ObjectExt, Point } from '@antv/x6';
-import { useEffect, type FC } from 'react';
+import React, { useEffect, type FC } from 'react';
 
 import { useGraphEvent, useGraphInstance, useGraphStore } from '../hooks';
 import type { ChangeItem } from '../store';

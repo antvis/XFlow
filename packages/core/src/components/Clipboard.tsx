@@ -1,5 +1,5 @@
 import { Clipboard as C } from '@antv/x6-plugin-clipboard';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { useGraphInstance } from '../hooks/useGraphInstance';
 

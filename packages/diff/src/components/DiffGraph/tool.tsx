@@ -1,7 +1,7 @@
 import type { EdgeOptions, NodeOptions } from '@antv/xflow';
 import { useGraphInstance, useGraphStore } from '@antv/xflow';
 import type { FC } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 interface ToolOptions {
   data: {
