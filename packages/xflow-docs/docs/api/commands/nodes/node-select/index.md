@@ -11,7 +11,7 @@ nav:
   order: 1
 ---
 
-## 移动节点
+## 选中节点
 
 XFlow 提供节点添加的命令 `XFlowNodeCommands.SELECT_NODE`, 通过该命令可以实现在画布显示选中节点的状态
 
