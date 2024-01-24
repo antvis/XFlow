@@ -5,6 +5,7 @@ import type { UseBoundStore, StoreApi } from 'zustand';
 
 import type { NodeOptions, EdgeOptions } from '../types';
 import { apply } from '../util';
+import { StringExt } from '@antv/x6';
 
 export type Command =
   | 'init'
@@ -78,6 +79,12 @@ export const createGraphStore = () => {
       set(
         produce((state: State) => {
           if (!ns.length) return;
+          // generate id for nodes
+          ns.forEach((n) => {
+            if (!n.id) {
+              n.id = StringExt.uuid();
+            }
+          });
           const duplicated = state.nodes.find((n) =>
             ns.some((m) => m.id && m.id === n.id),
           );
@@ -135,6 +142,12 @@ export const createGraphStore = () => {
       set(
         produce((state: State) => {
           if (!es.length) return;
+          // generate id for edges
+          es.forEach((e) => {
+            if (!e.id) {
+              e.id = StringExt.uuid();
+            }
+          });
           const duplicated = state.edges.find((e) =>
             es.some((m) => m.id && m.id === e.id),
           );
