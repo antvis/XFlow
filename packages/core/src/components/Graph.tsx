@@ -113,6 +113,7 @@ const XFlowGraph = (props: GraphOptions) => {
         graph.options.mousewheel = {
           ...Options.defaults.mousewheel,
           ...zoomOptions,
+          enabled: true,
         };
       } else {
         graph.disableMouseWheel();
