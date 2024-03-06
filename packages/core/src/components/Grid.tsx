@@ -20,7 +20,7 @@ const Grid = <T extends GridTypes>(props: GridProps<T>) => {
       graph.clearGrid();
       graph.drawGrid({
         type,
-        ...options,
+        args: options,
       });
       graph.showGrid();
     }
