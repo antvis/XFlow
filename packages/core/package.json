@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "setup": "tsup src/index.ts",
-    "build": "tsup src/index.ts",
+    "build": "tsup src/index.ts && pnpm run build:umd",
+    "build:umd": "rollup -c",
     "dev": "tsup src/index.ts --watch",
     "lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:css": "stylelint --allow-empty-input 'src/**/*.{css,less}'",
@@ -42,14 +43,25 @@
     "immer": "^10.0.3",
     "lucide-react": "^0.292.0",
     "tippy.js": "^6.3.7",
-    "zustand": "^4.4.3"
+    "zustand": "^4.4.3",
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@antv/config-tsconfig": "workspace:^",
     "@antv/config-tsup": "workspace:^",
     "@antv/testing": "workspace:^",
     "@types/react": "^18.2.37",
-    "classnames": "^2.3.2"
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@rollup/plugin-typescript": "^8.2.5",
+    "rollup": "^2.56.3",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-filesize": "^9.1.1",
+    "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-progress": "^1.1.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "less": "^4.1.1"
   },
   "peerDependencies": {
     "react": ">=16.8.6 || >=17.0.0 || >=18.0.0",
