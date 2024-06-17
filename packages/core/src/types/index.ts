@@ -37,6 +37,14 @@ export interface GraphOptions {
 
   // node & edge
   connectionEdgeOptions?: Partial<EdgeOptions>;
+  onPortRendered?: (args: Options.OnPortRenderedArgs) => void;
+  onEdgeLabelRendered?: (args: Options.OnEdgeLabelRenderedArgs) => void;
+
+  // cell
+  createCellView?: (
+    this: Graph,
+    cell: Cell,
+  ) => typeof CellView | (new (...args: any[]) => CellView) | null | undefined;
 
   // interactive
   embedable?: boolean;

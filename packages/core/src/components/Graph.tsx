@@ -28,6 +28,9 @@ const XFlowGraph = (props: GraphOptions) => {
     restrict,
     restrictOptions,
     connectionOptions,
+    onPortRendered,
+    onEdgeLabelRendered,
+    createCellView,
     selectOptions,
     keyboardOptions,
     scroller,
@@ -67,6 +70,9 @@ const XFlowGraph = (props: GraphOptions) => {
         magnetAvailable: magnetAvailableHighlightOptions,
         magnetAdsorbed: magnetAdsorbedHighlightOptions,
       },
+      onPortRendered,
+      onEdgeLabelRendered,
+      createCellView,
     });
 
     g.use(new Selection({ enabled: true, ...selectOptions }));
