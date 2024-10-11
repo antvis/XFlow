@@ -88,7 +88,7 @@ const Toolbar = () => {
         type="primary"
         size="small"
         style={{ fontSize: 12 }}
-        onClick={handleExcute}
+        onClick={handleExecute}
       >
         <PlayCircleOutlined />
         全部执行
