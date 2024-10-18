@@ -6,8 +6,6 @@ import 'tippy.js/dist/tippy.css';
 
 import { useGraphEvent, useGraphInstance } from '@/hooks';
 
-import '../styles/index.less';
-
 export enum ControlEnum {
   ZoomTo = 'zoomTo',
   ZoomIn = 'zoomIn',

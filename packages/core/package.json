@@ -38,7 +38,7 @@
     "@antv/x6-plugin-selection": "^2.2.1",
     "@antv/x6-plugin-snapline": "^2.1.7",
     "@antv/x6-plugin-transform": "^2.1.8",
-    "@antv/x6-react-shape": "2.0.8",
+    "@antv/x6-react-shape": "^2.1.1",
     "@tippyjs/react": "^4.2.6",
     "immer": "^10.0.3",
     "lucide-react": "^0.292.0",

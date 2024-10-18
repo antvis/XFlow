@@ -1,7 +1,8 @@
 import { type PropsWithChildren, type FC } from 'react';
 import React from 'react';
+
 import { GraphProvider, StoreProvider } from '../context';
-import '../styles/index.less';
+import '../styles/index.css';
 
 const XFlow: FC<PropsWithChildren> = ({ children }) => {
   return (

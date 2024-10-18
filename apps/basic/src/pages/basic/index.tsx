@@ -9,6 +9,7 @@ import {
   Snapline,
   Transform,
 } from '@antv/xflow';
+import '@antv/xflow/dist/index.css';
 
 import styles from './index.less';
 import { JSONCode } from './json';
