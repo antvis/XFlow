@@ -87,4 +87,7 @@ export interface GraphOptions {
   nodeAvailableHighlightOptions?: Graph.HighlightManager.Options;
   magnetAvailableHighlightOptions?: Graph.HighlightManager.Options;
   magnetAdsorbedHighlightOptions?: Graph.HighlightManager.Options;
+
+  // port
+  magnetThreshold?: number;
 }

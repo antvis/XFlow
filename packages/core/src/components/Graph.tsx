@@ -41,6 +41,7 @@ const XFlowGraph = (props: GraphOptions) => {
     nodeAvailableHighlightOptions,
     magnetAvailableHighlightOptions,
     magnetAdsorbedHighlightOptions,
+    magnetThreshold,
   } = props;
   const { graph, setGraph } = useContext(GraphContext);
 
@@ -73,6 +74,7 @@ const XFlowGraph = (props: GraphOptions) => {
       onPortRendered,
       onEdgeLabelRendered,
       createCellView,
+      magnetThreshold,
     });
 
     g.use(new Selection({ enabled: true, ...selectOptions }));

@@ -118,6 +118,7 @@ const ToolsButton = () => {
   const addEdges = useGraphStore((state) => state.addEdges);
   const removeEdges = useGraphStore((state) => state.removeEdges);
   const updateEdge = useGraphStore((state) => state.updateEdge);
+  const getNodes = useGraphStore((state) => state.getNodes);
   const { copy, paste } = useClipboard();
   const { exportPNG } = useExport();
   const { undo, redo, canUndo, canRedo } = useHistory();
@@ -138,6 +139,7 @@ const ToolsButton = () => {
 
   const onInit = () => {
     initData(initialData);
+    console.log(getNodes());
   };
 
   const onAddNodes = () => {

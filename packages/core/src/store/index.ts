@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { StringExt } from '@antv/x6';
 import { produce, original } from 'immer';
 import { create } from 'zustand';
 import type { UseBoundStore, StoreApi } from 'zustand';
 
 import type { NodeOptions, EdgeOptions } from '../types';
 import { apply } from '../util';
-import { StringExt } from '@antv/x6';
 
 export type Command =
   | 'init'
@@ -44,6 +44,7 @@ export type Actions = {
     data: { nodes: NodeOptions[]; edges: EdgeOptions[] },
     options?: ActionOptions,
   ) => void;
+  getNodes: () => NodeOptions[];
   addNodes: (ns: NodeOptions[], options?: ActionOptions) => void;
   removeNodes: (ids: string[], options?: ActionOptions) => void;
   updateNode: (id: string, data: UpdateNodeDataOrFn, options?: ActionOptions) => void;
@@ -56,7 +57,7 @@ export type Actions = {
 export type GraphStore = UseBoundStore<StoreApi<State & Actions>>;
 
 export const createGraphStore = () => {
-  return create<State & Actions>((set) => ({
+  return create<State & Actions>((set, get) => ({
     nodes: [],
     edges: [],
     changeList: [],
@@ -74,6 +75,8 @@ export const createGraphStore = () => {
           }
         }),
       ),
+
+    getNodes: () => get().nodes,
 
     addNodes: (ns, options) =>
       set(
@@ -137,6 +140,8 @@ export const createGraphStore = () => {
           }
         }),
       ),
+
+    getEdges: () => get().edges,
 
     addEdges: (es, options) =>
       set(
