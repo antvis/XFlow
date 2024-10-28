@@ -48,6 +48,7 @@ export type Actions = {
   addNodes: (ns: NodeOptions[], options?: ActionOptions) => void;
   removeNodes: (ids: string[], options?: ActionOptions) => void;
   updateNode: (id: string, data: UpdateNodeDataOrFn, options?: ActionOptions) => void;
+  getEdges: () => EdgeOptions[];
   addEdges: (es: EdgeOptions[], options?: ActionOptions) => void;
   removeEdges: (ids: string[], options?: ActionOptions) => void;
   updateEdge: (id: string, data: UpdateEdgeDataOrFn, options?: ActionOptions) => void;
