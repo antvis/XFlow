@@ -148,7 +148,7 @@ const Control = (props: ControlIProps) => {
                 <div className="tippyBtnContent">
                   {dropDownItems.map((item) => {
                     return (
-                      <button key={item.key} onClick={() => changeZoom(tool, item.key)}>
+                      <button key={item.key} type="button" onClick={() => changeZoom(tool, item.key)}>
                         {item.label}
                       </button>
                     );
@@ -160,7 +160,7 @@ const Control = (props: ControlIProps) => {
               arrow={false}
               theme="light-border"
             >
-              <button className="dropDownBtn">{`${Math.floor(zoom * 100)}%`}</button>
+              <button type="button" className="dropDownBtn">{`${Math.floor(zoom * 100)}%`}</button>
             </Tippy>
           );
         } else if (ControlActionList.includes(tool)) {
@@ -172,6 +172,7 @@ const Control = (props: ControlIProps) => {
               arrow
             >
               <button
+                type="button"
                 onClick={() => changeZoom(tool)}
                 disabled={!isToolButtonEnabled(tool as ControlEnum)}
               >
