@@ -1,5 +1,9 @@
 [English (US)](README.md) | 简体中文
 
+> **⚠️ 重要提示：本项目不再继续迭代**
+>
+> 考虑到用户量情况，XFlow 未来不会继续迭代。相关需求强烈建议使用 [X6](https://github.com/antvis/X6)，X6 是会持续维护的。
+
 <p align="center"><strong>用于构建图编辑应用的 React 组件</strong></p>
 
 ## 特性

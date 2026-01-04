@@ -1,5 +1,9 @@
 English (US) | [简体中文](README.zh-Hans.md)
 
+> **⚠️ Important Notice: This Project is No Longer Actively Maintained**
+>
+> Due to the current user base situation, XFlow will not continue to be iterated in the future. For related needs, it is strongly recommended to use [X6](https://github.com/antvis/X6), which will be continuously maintained.
+
 <p align="center"><strong>React component for building interactive diagrams</strong></p>
 
 ## Features
